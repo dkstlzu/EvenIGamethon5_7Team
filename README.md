@@ -18,4 +18,4 @@
 
 ## 게임톤 일정
 
-![milestone](@gamethon/schedule.png)
+![milestone](gamethon/schedule.png)
