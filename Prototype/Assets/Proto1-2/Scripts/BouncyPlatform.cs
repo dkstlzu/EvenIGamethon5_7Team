@@ -14,7 +14,9 @@ namespace EvenI7.Proto1_2
         {
             if (other.gameObject.tag == "Player")
             {
-                other.gameObject.GetComponent<Proto1_2Character>().BouncyPlatformJump(JumpPower);
+                var character = other.gameObject.GetComponent<Proto1_2Character>();
+                if (character)
+                    character.BouncyPlatformJump(JumpPower);
                 AC.SetTrigger(_jumpAcHash);
             }
         }

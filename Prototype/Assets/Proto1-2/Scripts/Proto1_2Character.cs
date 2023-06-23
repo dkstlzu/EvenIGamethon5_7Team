@@ -32,6 +32,7 @@ namespace EvenI7.Proto1_2
             {
                 print("Hit By Obstacle");
                 Destroy(other.gameObject);
+                Hit();
             }
         }
         
@@ -44,6 +45,11 @@ namespace EvenI7.Proto1_2
                 _firstPlatformJumped = true;
                 OnFirstPlatformJump?.Invoke();
             }
+        }
+
+        public void Hit()
+        {
+            Rigidbody.velocity = new Vector2(-_lastVelocity.x, -2);
         }
 
         public void Jump()

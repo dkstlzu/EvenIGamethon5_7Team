@@ -8,7 +8,9 @@ namespace EvenI7.Proto1_2
         {
             if (other.gameObject.tag == "Player")
             {
-                other.gameObject.GetComponent<Proto1_2Character>().SwitchDirection();
+                var character = other.gameObject.GetComponent<Proto1_2Character>();
+                if (character)
+                    character.SwitchDirection();
             }
         }
     }
