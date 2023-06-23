@@ -1134,7 +1134,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 4.87
+    width: 4.27
     height: 0.73
 --- !u!4 &1659868746
 Transform:
@@ -1382,6 +1382,10 @@ PrefabInstance:
     - target: {fileID: 8448706364947312849, guid: 59cc893e6c0657947903f4adb4423aa7, type: 3}
       propertyPath: MoveSpeed
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8448706364947312849, guid: 59cc893e6c0657947903f4adb4423aa7, type: 3}
+      propertyPath: MovingToRight
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59cc893e6c0657947903f4adb4423aa7, type: 3}

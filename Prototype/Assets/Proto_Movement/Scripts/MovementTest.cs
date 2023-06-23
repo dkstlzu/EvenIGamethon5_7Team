@@ -1,10 +1,6 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Microsoft.Build.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 namespace EvenI7.Proto_Movement
 {
@@ -44,6 +40,23 @@ namespace EvenI7.Proto_Movement
             MoveDirectrion = Vector2.right * context.ReadValue<float>();
         }
 
+        public void OnMoveLeftButtonClicked()
+        {
+            MoveDirectrion = -Vector2.right;
+        }
+
+        public void OnMoveRightButtonClicked()
+        {
+            MoveDirectrion = Vector2.right;
+        }
+
+        public void OnStopButtonClicked()
+        {
+            MoveDirectrion = Vector2.zero;
+            Rigidbody.velocity = Vector2.zero;
+        }
+        
+
         private void FixedUpdate()
         {
             if (MoveType == MoveType.Linear)
@@ -55,7 +68,7 @@ namespace EvenI7.Proto_Movement
             }
         }
 
-        IEnumerator AutoMoveCoroutine()
+        public IEnumerator AutoMoveCoroutine()
         {
             transform.position = AutoMoveStartPosition.position;
             float distance = AutoMoveEndPosition.position.x - AutoMoveStartPosition.position.x;

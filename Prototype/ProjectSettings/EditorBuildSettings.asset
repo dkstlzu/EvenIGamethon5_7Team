@@ -5,8 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Proto/Proto.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 0
+    path: Assets/Proto1-1/Proto1-1.unity
+    guid: 15932260d1161554a82b37237a3906dc
+  - enabled: 0
+    path: Assets/Proto1-2/Proto1-2.unity
+    guid: 0526a23a2ae14a843a4489aa3c254ada
+  - enabled: 1
+    path: Assets/Proto_Movement/ProtoMovement.unity
+    guid: ddab1a0e5ca81034daade8c3eb6f8e43
   m_configObjects:
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: dee5c86cc2041db41becb9c889fe43ff, type: 2}
+    com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: a7c8c75c376900d4088116b33e52bc01, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: f137d73545f5b1144acee31944e2a518, type: 2}

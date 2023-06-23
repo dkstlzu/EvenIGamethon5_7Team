@@ -59,7 +59,7 @@ public partial class @Proto1_1InputAsset: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9685156f-8de4-4641-81a5-f34c7d6910f1"",
-                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""path"": ""<Touchscreen>/Press"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -71,6 +71,17 @@ public partial class @Proto1_1InputAsset: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""b664c329-e5a5-4fdf-be35-ace16be882a7"",
                     ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TouchPressed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""82108eaf-9e67-47d3-98b6-49678ebf9f8e"",
+                    ""path"": ""<Pointer>/press"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

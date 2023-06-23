@@ -15,7 +15,11 @@ namespace EvenI7.Proto1_2
             
             InputAsset.Enable();
             InputAsset.Ingame.Start.performed += OnStart;
-            InputAsset.Ingame.TouchPressed.performed += OnTouch;
+            Character.OnFirstPlatformJump += () =>
+            {
+                InputAsset.Ingame.Start.performed -= OnStart;
+                InputAsset.Ingame.TouchPressed.performed += OnTouch;
+            };
         }
 
         private void OnTouch(InputAction.CallbackContext obj)
@@ -26,7 +30,6 @@ namespace EvenI7.Proto1_2
         private void OnStart(InputAction.CallbackContext obj)
         {
             Character.Jump();
-            InputAsset.Ingame.Start.performed -= OnStart;
         }
 
         private void OnEnable()

@@ -16,18 +16,27 @@ namespace EvenI7.Proto1_1
         private void Start()
         {
             _proto11CharacterInput = GameObject.FindWithTag("Player").GetComponent<Proto1_1CharacterInput>();
-            _proto11CharacterInput.OnIngameTouchPressed += () =>
+            print("Jump pad Start");
+            _proto11CharacterInput.OnIngameTouchPressed += SwitchJumpPadFollow;
+            _proto11CharacterInput.OnIngameTouchUnpressed += SwitchJumpPadFollow;
+        }
+
+        void SwitchJumpPadFollow()
+        {
+            if (JumpPadIsFollowingTouch)
             {
-                _proto11CharacterInput.InputAsset.Ingame.TouchPosition.performed += JumpPadPositionUpdate;
-                JumpPadIsFollowingTouch = true;
-            };
-            
-            _proto11CharacterInput.OnIngameTouchUnpressed += () =>
-            {
+                print("SwitchPadFollow off");
                 _proto11CharacterInput.InputAsset.Ingame.TouchPosition.performed -= JumpPadPositionUpdate;
                 JumpPadIsFollowingTouch = false;
-            };
+            }
+            else
+            {
+                print("SwitchPadFollow on");
+                _proto11CharacterInput.InputAsset.Ingame.TouchPosition.performed += JumpPadPositionUpdate;
+                JumpPadIsFollowingTouch = true;
+            }
         }
+        
 
         private void OnCollisionEnter2D(Collision2D other)
         {
@@ -50,6 +59,8 @@ namespace EvenI7.Proto1_1
             Vector3 clampedTouchWorldPosition = new Vector3(Mathf.Clamp(touchLocalPosition.x, -screenSizeInWorld.x, screenSizeInWorld.x), 
                                                             Mathf.Clamp(touchLocalPosition.y, -screenSizeInWorld.y, screenSizeInWorld.y),
                                                             10);
+            
+            print($"DB - touchPosition : {touchPosition}, screenSizeInWorld : {screenSizeInWorld}, touchWorldPosition : {touchWorldPosition}, touchLocalPosition {touchLocalPosition}, clampedTouchWorldPosition : {clampedTouchWorldPosition}");
             transform.localPosition = clampedTouchWorldPosition;
         }
     }

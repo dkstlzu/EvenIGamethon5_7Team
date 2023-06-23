@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace EvenI7.Proto1_2
@@ -9,6 +10,9 @@ namespace EvenI7.Proto1_2
         public float MoveSpeed;
         public float JumpPower;
         public bool MovingToRight;
+
+        public event Action OnFirstPlatformJump;
+        private bool _firstPlatformJumped;
         
         private Vector2 _lastVelocity;
         private float _goundedCheckDistance = 0.1f;
@@ -34,6 +38,12 @@ namespace EvenI7.Proto1_2
         public void BouncyPlatformJump(float jumpPower)
         {
             Rigidbody.velocity = new Vector2(_lastVelocity.x, jumpPower);
+
+            if (!_firstPlatformJumped)
+            {
+                _firstPlatformJumped = true;
+                OnFirstPlatformJump?.Invoke();
+            }
         }
 
         public void Jump()
