@@ -400,9 +400,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemPrefab: {fileID: 6519306388298918169, guid: edd0b02263fda43418f3a80013a9d6a1, type: 3}
   ObstaclePrefab: {fileID: 5224813169759591695, guid: 567a246afce12c34399ec1f61dcf5b60, type: 3}
+  PlatformPrefab: {fileID: 0}
   SpawnArea: {fileID: 1401896552}
   ItemSpawnIntervalHeight: 10
   ObstacleSpawnIntervalHeight: 10
+  PlatformSpawnIntervalHeight: 0
+  LastPlatformPosition: {fileID: 0}
+  AcceleratingHeightInterval: 0
 --- !u!4 &909964830
 Transform:
   m_ObjectHideFlags: 0
@@ -697,7 +701,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6004371469326239281, guid: b479f557026ec6e45ab7efc7b2fd9d20, type: 3}
       propertyPath: SideJumpPower
-      value: 6.35
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8097501087916537977, guid: b479f557026ec6e45ab7efc7b2fd9d20, type: 3}
       propertyPath: m_RootOrder

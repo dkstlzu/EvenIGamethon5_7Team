@@ -11,5 +11,10 @@ namespace EvenI7
         {
             Collider = GetComponent<Collider2D>();
         }
+
+        public void Block()
+        {
+            
+        }
     }
 }
