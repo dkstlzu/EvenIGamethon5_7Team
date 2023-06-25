@@ -16,8 +16,12 @@ namespace EvenI7.ProtoScreenSplit
         LeftHalfToMiddle,
         RightHalfToMiddle,
         LeftToFull,
+        LeftToLeftHalf,
         MiddleTofull,
+        MiddleToLeftHalf,
+        MiddleToRightHalf,
         RightToFull,
+        RightToRightHalf,
         LeftHalfToFull,
         RightHalfToFull,
         VanishFromFull,
@@ -102,12 +106,22 @@ namespace EvenI7.ProtoScreenSplit
                 break;
                     
             }
-            
-            Character.gameObject.SetActive(true);
+
             if (friendName != FriendName.None)
             {
+                Character.gameObject.SetActive(true);
+                Character.transform.position = Game.instance.StartPosition.position;
                 Character.FriendCharacter.Name = friendName;
             }
+        }
+
+        private static readonly int VanishHash = Animator.StringToHash("Vanish");
+
+        public void Vanish()
+        {
+            Animator.SetTrigger(VanishHash);
+            Character.FirstJump = false;
+            Character.gameObject.SetActive(false);
         }
     }
 }

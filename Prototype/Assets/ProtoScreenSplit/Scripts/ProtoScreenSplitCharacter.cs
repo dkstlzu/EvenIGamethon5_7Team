@@ -1,6 +1,5 @@
 ﻿using System;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace EvenI7.ProtoScreenSplit
@@ -49,6 +48,7 @@ namespace EvenI7.ProtoScreenSplit
         private void FixedUpdate()
         {
             _lastVelocity = rigidbody.velocity;
+            MovingToRight = (_lastVelocity.x >= 0);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -65,11 +65,10 @@ namespace EvenI7.ProtoScreenSplit
             {
                 var platform = other.GetComponent<BouncyPlatform>();
                 BouncyJump(platform.JumpPower);
-                platform.PushedOut(FriendCharacter.PushingPlatformPower);
+                platform.PushedOut(this);
             } else if (layer == _friendLayer)
             {
                 var friend = other.GetComponent<FriendCollectable>();
-                FriendCollectionManager.instance.Collect(friend.Name);
                 print($"Hello Firend! {friend.Name}");
 
                 ScreenSplit.instance.AddNewScreen(friend.Name);
@@ -79,7 +78,6 @@ namespace EvenI7.ProtoScreenSplit
         public void SwitchMoveDirection()
         {
             rigidbody.velocity = new Vector2(-_lastVelocity.x, _lastVelocity.y);
-            MovingToRight = !MovingToRight;
         }
 
         public void StartJump()
@@ -103,7 +101,6 @@ namespace EvenI7.ProtoScreenSplit
         public void Hit(int damage)
         {
             CurrentHp -= damage;
-            animator.SetTrigger(_hitHash);
         }
     }
 }

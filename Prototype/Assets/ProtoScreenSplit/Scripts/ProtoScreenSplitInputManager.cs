@@ -19,6 +19,11 @@ namespace EvenI7.ProtoScreenSplit
             InputAsset.Ingame.TouchPressed.performed += OnTouchScreen;
         }
 
+        private void OnDestroy()
+        {
+            InputAsset.Ingame.TouchPressed.performed -= OnTouchScreen;
+        }
+
         private void OnTouchScreen(InputAction.CallbackContext obj)
         {
             ScreenSplit.ScreenSide side = ScreenSplit.instance.GetSide(InputAsset.Ingame.TouchPosition.ReadValue<Vector2>());

@@ -34,19 +34,24 @@ namespace EvenI7.ProtoScreenSplit
             }
         }
 
-        public void PushedOut(float power)
+        public void PushedOut(ProtoScreenSplitCharacter by)
         {
-            int coef;
-            if (Random.value > 0.5)
+            Vector2 direction;
+            if (by.transform.position.x > transform.position.x)
             {
-                coef = 1;
+                direction = Vector2.left;
             }
             else
             {
-                coef = -1;
+                direction = Vector2.right;
             }
             
-            _rigidbody2D.AddForce(Vector2.right * coef * power, ForceMode2D.Impulse);
+            PushedOut(by.FriendCharacter.PushingPlatformPower, direction);
+        }
+
+        public void PushedOut(float power, Vector2 direction)
+        {
+            _rigidbody2D.AddForce(direction * power, ForceMode2D.Impulse);
         }
     }
 }

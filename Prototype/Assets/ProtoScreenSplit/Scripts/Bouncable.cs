@@ -34,6 +34,16 @@ namespace EvenI7.ProtoScreenSplit
             _rigidbody2D.velocity = new Vector2(_lastVelocity.x, -_lastVelocity.y);
         }
 
+        public void BounceFrom(Vector2 from)
+        {
+            float speed = _rigidbody2D.velocity.magnitude;
+
+            Vector2 direction = (Vector2)transform.position - from;
+
+            _rigidbody2D.velocity = direction.normalized;
+            _rigidbody2D.velocity *= speed;
+        }
+
         public void BounceUp(float boundPower)
         {
             float targetYPower = Mathf.Max(boundPower, -_lastVelocity.y);

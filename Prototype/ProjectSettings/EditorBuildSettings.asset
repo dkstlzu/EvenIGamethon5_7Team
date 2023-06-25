@@ -17,9 +17,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Proto_Movement/ProtoMovement.unity
     guid: ddab1a0e5ca81034daade8c3eb6f8e43
-  - enabled: 1
+  - enabled: 0
     path: Assets/Proto_Swiping/Proto_Swiping.unity
     guid: 8aea39bfdbeec8c4391797328342ec32
+  - enabled: 1
+    path: Assets/ProtoScreenSplit/ProtoScreenSplit.unity
+    guid: be408260427175449be21f8f58b95780
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: dee5c86cc2041db41becb9c889fe43ff, type: 2}
     com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: a7c8c75c376900d4088116b33e52bc01, type: 2}

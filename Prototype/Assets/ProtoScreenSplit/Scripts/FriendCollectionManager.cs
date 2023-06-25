@@ -11,6 +11,9 @@ namespace EvenI7.ProtoScreenSplit
         public List<FriendCollection> CollectingFriendCharacterList;
         public List<FriendCollection> CollectedFriendCharacterList;
 
+        public event Action<FriendName, int> OnCollectFriend;
+        public event Action<FriendName> OnCollectFriendFinish;
+
         private void Awake()
         {
             CollectionDict = new Dictionary<FriendName, FriendCollection>();
@@ -34,6 +37,8 @@ namespace EvenI7.ProtoScreenSplit
             var coll = CollectionDict[name];
             coll.CurrentCollectingNumber++;
             
+            OnCollectFriend?.Invoke(name, coll.CurrentCollectingNumber);
+            
             if (coll.CurrentCollectingNumber >= coll.TargetCollectingNumber)
             {
                 CollectFinish(name);    
@@ -44,6 +49,8 @@ namespace EvenI7.ProtoScreenSplit
         {
             CollectingFriendCharacterList.Remove(CollectionDict[name]);
             CollectedFriendCharacterList.Add(CollectionDict[name]);
+            
+            OnCollectFriendFinish?.Invoke(name);
         }
     }
 

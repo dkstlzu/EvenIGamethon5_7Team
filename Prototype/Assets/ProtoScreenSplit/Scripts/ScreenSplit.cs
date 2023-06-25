@@ -51,22 +51,73 @@ namespace EvenI7.ProtoScreenSplit
         private void Awake()
         {
             _moon = GameObject.FindWithTag("Moon").GetComponent<Moon>();
-            // _moon.OnFriendCharacterArrivedToMoon +=
+            _moon.OnFriendCharacterArrivedToMoon += (character) =>
+            {
+                ScreenSide side = GetSide(character);
+                DestroyScreen(side);
+            };
         }
 
         public void DestroyScreen(ScreenSide side)
         {
+            SplitedScreenQueue.Add(GetScreen(side));
+            
             switch (side)
             {
                 case ScreenSide.LEFT:
+                    if (MIDDLE)
+                    {
+                        LEFT.Vanish();
+                        MIDDLE.Split(ScreenSplitAnimationType.MiddleToLeftHalf);
+                        RIGHT.Split(ScreenSplitAnimationType.RightToRightHalf);
+
+                        LEFT = MIDDLE;
+                        MIDDLE = null;
+                    }
+                    else
+                    {
+                        LEFT.Vanish();
+                        RIGHT.Split(ScreenSplitAnimationType.RightHalfToFull);
+
+                        LEFT = null;
+                        MIDDLE = RIGHT;
+                        RIGHT = null;
+                    }
                     break;
                 case ScreenSide.RIGHT:
+                    if (MIDDLE)
+                    {
+                        RIGHT.Vanish();
+                        MIDDLE.Split(ScreenSplitAnimationType.MiddleToRightHalf);
+                        LEFT.Split(ScreenSplitAnimationType.LeftToLeftHalf);
+
+                        RIGHT = MIDDLE;
+                        MIDDLE = null;
+                    }
+                    else
+                    {
+                        RIGHT.Vanish();
+                        LEFT.Split(ScreenSplitAnimationType.LeftHalfToFull);
+
+                        RIGHT = null;
+                        MIDDLE = LEFT;
+                        LEFT = null;
+                    }
                     break;
                 case ScreenSide.MIDDLE:
+                    if (CurrentSplitedScreenNumber < 2) return;
+                    
+                    LEFT.Split(ScreenSplitAnimationType.LeftToLeftHalf);
+                    RIGHT.Split(ScreenSplitAnimationType.RightToRightHalf);
+                    MIDDLE.Vanish();
+
+                    MIDDLE = null;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(side), side, null);
             }
+
+            CurrentSplitedScreenNumber--;
         }
 
         public SplitedScreen AddNewScreen(FriendName withFriend)
@@ -221,6 +272,23 @@ namespace EvenI7.ProtoScreenSplit
             return ScreenSide.LEFT;
         }
 
+        public ScreenSide GetSide(FriendCharacter withFriend)
+        {
+            if (LEFT && LEFT?.Character.FriendCharacter == withFriend)
+            {
+                return ScreenSide.LEFT;
+            } else if (MIDDLE && MIDDLE?.Character.FriendCharacter == withFriend)
+            {
+                return ScreenSide.MIDDLE;
+            } else if (RIGHT && RIGHT?.Character.FriendCharacter == withFriend)
+            {
+                return ScreenSide.RIGHT;
+            } else
+            {
+                return ScreenSide.NONE;
+            }
+        }
+
         public SplitedScreen GetScreen(ScreenSide side)
         {
             switch (side)
@@ -236,6 +304,23 @@ namespace EvenI7.ProtoScreenSplit
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(side), side, null);
+            }
+        }
+
+        public SplitedScreen GetScreen(FriendCharacter withFriend)
+        {
+            if (LEFT && LEFT?.Character.FriendCharacter == withFriend)
+            {
+                return LEFT;
+            } else if (MIDDLE && MIDDLE?.Character.FriendCharacter == withFriend)
+            {
+                return MIDDLE;
+            } else if (RIGHT && RIGHT?.Character.FriendCharacter == withFriend)
+            {
+                return RIGHT;
+            } else
+            {
+                return null;
             }
         }
         
