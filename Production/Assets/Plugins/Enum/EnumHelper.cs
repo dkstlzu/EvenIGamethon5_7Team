@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace dkstlzu.Utility
 {
@@ -38,6 +40,73 @@ namespace dkstlzu.Utility
             }
             if (endIndex < 0) endIndex = intarr.Length-1;
         }
+        
+        public static string[] ClapNamesOfEnum<EnumType>(int from, int to = Int32.MaxValue) where EnumType : Enum
+        {
+            throw new System.NotImplementedException();
+            
+            string[] names = Enum.GetNames(typeof(EnumType));
+
+            for (int i = 0; i < names.Length; i++)
+            {
+                Debug.Log(names[i]);
+            }
+
+            return names;
+        }
+
+        public static EnumType[] ClapValuesOfEnum<EnumType>(int from, int to = Int32.MaxValue) where EnumType : Enum
+        {
+            int[] values = (int[])Enum.GetValues(typeof(EnumType));
+
+            for (int i = 0; i < values.Length; i++)
+            {
+                Debug.Log(values[i]);
+            }
+            
+            Array.Sort(values);
+
+            for (int i = 0; i < values.Length; i++)
+            {
+                Debug.Log(values[i]);
+            }
+            
+            int startIndex = 0, length = 0;
+            bool startIndexSet = false;
+            
+            for (int i = 0, j = 0; i < values.Length; i++)
+            {
+                if (values[i] < from) continue;
+
+                if (!startIndexSet)
+                {
+                    startIndex = i;
+                    startIndexSet = true;
+                }
+
+                if (values[i] > to)
+                {
+                    length = i - startIndex;
+                    break;
+                }
+
+            }
+            
+            int[] clapedValues = new int[length];
+
+            Array.Copy(values, startIndex, clapedValues, 0, length);
+
+            EnumType[] result = new EnumType[length];
+
+            for (int i = 0; i < length; i++)
+            {
+                result[i] = (EnumType)(object)clapedValues[i];
+            }
+            
+            return result;
+        }
+        
+        
         public static void ClapIndexOfEnum<EnumType>(int from, int to, out int startIndex, out int endIndex) where EnumType : Enum
         {
             ClapIndexOfEnum(typeof(EnumType), from, to, out startIndex, out endIndex);
