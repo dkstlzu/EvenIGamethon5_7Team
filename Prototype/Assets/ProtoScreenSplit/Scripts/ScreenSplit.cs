@@ -122,6 +122,8 @@ namespace EvenI7.ProtoScreenSplit
 
         public SplitedScreen AddNewScreen(FriendName withFriend)
         {
+            if (MaxSplitScreenNumber <= CurrentSplitedScreenNumber) return null;
+            
             if (CurrentSplitedScreenNumber == 1)
             {
                 if (UnityEngine.Random.value > 0.5)
