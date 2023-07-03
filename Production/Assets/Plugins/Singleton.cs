@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace MoonBunny
+namespace dkstlzu.Utility
 {
     public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {

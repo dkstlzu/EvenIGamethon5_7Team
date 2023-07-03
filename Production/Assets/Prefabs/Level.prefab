@@ -662,6 +662,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 0
+  GameOverUI: {fileID: 0}
 --- !u!1 &6693079068318714329
 GameObject:
   m_ObjectHideFlags: 0
@@ -968,7 +969,7 @@ GameObject:
   - component: {fileID: 1805193209513917890}
   m_Layer: 0
   m_Name: DefaultStartPosition
-  m_TagString: Untagged
+  m_TagString: DefaultStartPosition
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

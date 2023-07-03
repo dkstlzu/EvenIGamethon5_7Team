@@ -13,26 +13,29 @@ namespace MoonBunny
         public event Action OnESCInputPerformed;
 #endif
 
-        private void Start()
+        private void Awake()
         {
             InputAsset = new MoonBunnyInputAsset();
-            InputAsset.Enable();
 #if UNITY_EDITOR
             ESCInputAction.Enable();
             ESCInputAction.performed += (ctx) => OnESCInputPerformed?.Invoke();
 #endif
             
             InputAsset.Ingame.TouchPressed.performed += OnTouchScreen;
+            DisableIngameInput();
+
+            GameManager.instance.OnStageSceneLoaded += (stageName) => EnableIngameInput();
+            GameManager.instance.OnStageSceneUnloaded += (stageName) => DisableIngameInput();
         }
 
-        private void OnEnable()
+        public void EnableIngameInput()
         {
-            InputAsset.Enable();
+            InputAsset.Ingame.Enable();
         }
 
-        private void OnDisable()
+        public void DisableIngameInput()
         {
-            InputAsset.Disable();
+            InputAsset.Ingame.Disable();
         }
 
         private void OnDestroy()

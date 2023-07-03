@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using dkstlzu.Utility;
 using UnityEngine;
 
 namespace MoonBunny
@@ -51,8 +52,15 @@ namespace MoonBunny
                     CollectingFriendCharacterList.Add(collection);
                 }
             }
+            
+            GameManager.instance.LoadCollection();
         }
-        
+
+        private void OnDestroy()
+        {
+            GameManager.instance.SaveCollection();
+        }
+
         public void Collect(FriendName name)
         {
             if (CollectFinished(name))

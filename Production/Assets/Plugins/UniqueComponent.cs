@@ -29,12 +29,18 @@ namespace dkstlzu.Utility
         {
             if (!_Add())
             {
+                print("Unique Component Add failed");
                 if (DestroyGameObject) DestroyImmediate(DestroyGameObject);
                 else if (TargetComponent is Transform || TargetComponent is RectTransform) DestroyImmediate(TargetComponent.gameObject);
                 else DestroyImmediate(TargetComponent);
 
                 Destroy(this);
             }
+        }
+
+        private void OnDestroy()
+        {
+            ComponentsDict = new Dictionary<object, Component>();
         }
 
         public void DestroyTarget()

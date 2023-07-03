@@ -1738,6 +1738,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StageSelectUI: {fileID: 90656402}
+  Stage1Button: {fileID: 1736539080}
+  Stage2Button: {fileID: 508492822}
+  Stage3Button: {fileID: 604797945}
+  Stage4Button: {fileID: 1597214184}
+  Stage5Button: {fileID: 393086416}
+  StageChallengeButton: {fileID: 1059996781}
 --- !u!114 &1335592079
 MonoBehaviour:
   m_ObjectHideFlags: 0

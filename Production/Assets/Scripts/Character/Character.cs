@@ -71,7 +71,6 @@ namespace MoonBunny
         {
             if (FirstJumped) return;
             Jump(Friend.StartJumpHorizontalSpeed, Friend.StartJumpVerticalSpeed);
-            FirstJumped = true;
         }
 
         public void Jump(float horizontalSpeed, float verticalSpeed)
@@ -81,12 +80,26 @@ namespace MoonBunny
 
         public void BouncyJump(float bouncyPower)
         {
+            FirstJumped = true;
+
             Jump(_lastVelocity.x, Friend.BouncyPower + bouncyPower);
         }
 
         public void Hit(int damage)
         {
             CurrentHp -= damage;
+        }
+
+        public void Enable()
+        {
+            FirstJumped = false;
+            gameObject.SetActive(true);
+            transform.position = GameManager.instance.StartPosition.position;
+        }
+
+        public void Disable()
+        {
+            gameObject.SetActive(false);
         }
     }
 }

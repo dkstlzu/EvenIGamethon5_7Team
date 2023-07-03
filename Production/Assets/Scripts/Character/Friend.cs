@@ -39,7 +39,6 @@ namespace MoonBunny
                 StartJumpHorizontalSpeed = spec.StartJumpHorizontalSpeed;
                 StartJumpVerticalSpeed = spec.StartJumpVerticalSpeed;
                 BouncyPower = spec.BouncyPower;
-                PushingPlatformPower = spec.PushingPlatformPower;
                 MaxHp = spec.MaxHp;
             }
         }

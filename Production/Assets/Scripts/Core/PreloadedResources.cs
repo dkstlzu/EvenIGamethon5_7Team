@@ -14,9 +14,10 @@ namespace MoonBunny
         public List<Sprite> ObstacleSpriteList;
         public List<ObstacleSpec> ObstacleSpecList;
 
-        /*private void Awake()
+        [ContextMenu("Manually Load Assets")]
+        private void Awake()
         {
-            // Friend
+            /*// Friend
             string[] friendNames = EnumHelper.ClapNamesOfEnum<FriendName>(0);
             string friendSpritePath = "Sprites/Characters/";
 
@@ -68,8 +69,8 @@ namespace MoonBunny
             {
                 ObstacleSpec spec = Resources.Load<ObstacleSpec>(Path.Combine(obstacleSpecPath, obstacleNames[i]));
                 ObstacleSpecList.Add(spec);
-            }
-        }*/
+            }*/
+        }
 
     }
 }

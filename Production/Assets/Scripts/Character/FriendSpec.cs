@@ -8,7 +8,9 @@ namespace MoonBunny
         public float StartJumpHorizontalSpeed;
         public float StartJumpVerticalSpeed;
         public float BouncyPower;
-        public float PushingPlatformPower;
         public int MaxHp;
+        public int Power;
+        public int Luck;
+        public int MagneticPower;
     }
 }

@@ -44,15 +44,15 @@ namespace dkstlzu.Utility
         public static string[] ClapNamesOfEnum<EnumType>(int from, int to = Int32.MaxValue) where EnumType : Enum
         {
             throw new System.NotImplementedException();
-            
-            string[] names = Enum.GetNames(typeof(EnumType));
-
-            for (int i = 0; i < names.Length; i++)
-            {
-                Debug.Log(names[i]);
-            }
-
-            return names;
+            //
+            // string[] names = Enum.GetNames(typeof(EnumType));
+            //
+            // for (int i = 0; i < names.Length; i++)
+            // {
+            //     Debug.Log(names[i]);
+            // }
+            //
+            // return names;
         }
 
         public static EnumType[] ClapValuesOfEnum<EnumType>(int from, int to = Int32.MaxValue) where EnumType : Enum
@@ -74,7 +74,7 @@ namespace dkstlzu.Utility
             int startIndex = 0, length = 0;
             bool startIndexSet = false;
             
-            for (int i = 0, j = 0; i < values.Length; i++)
+            for (int i = 0; i < values.Length; i++)
             {
                 if (values[i] < from) continue;
 

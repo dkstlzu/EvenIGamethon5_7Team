@@ -2,32 +2,55 @@
 using System.IO;
 using System.Text;
 using UnityEngine;
-using Object = UnityEngine.Object;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace MoonBunny
 {
-    [Serializable]
-    public class SaveLoadSystem : IDisposable
+    public class SaveLoadSystem
     {
+        public bool LoadedData;
         public SaveData SaveData;
         public string DataSavingFolderPath = Path.Combine(Application.streamingAssetsPath, "Saves");
         private string DataSavingFileName = "Save";
         private string DataSavingExtension = ".txt";
 
         public string SaveDataFilePath => Path.Combine(DataSavingFolderPath, DataSavingFileName) + DataSavingExtension;
-        private FileStream _saveDataFileStream;
-        
-        public SaveLoadSystem()
+
+#if UNITY_EDITOR
+        [MenuItem("Dev/CreateDefaultSaveData")]
+        public static void CreateDefaultSaveDataFile()
         {
-            _saveDataFileStream = File.OpenWrite(SaveDataFilePath);
+            SaveData data = new SaveData();
+            string jsonData = JsonUtility.ToJson(data);
+            byte[] byteData = Encoding.UTF8.GetBytes(jsonData);
+
+            string defaultPath = Path.Combine(Application.streamingAssetsPath, "Saves", "Save") + ".txt";
+            
+            File.WriteAllText(defaultPath, String.Empty);
+
+            using (FileStream fs = File.OpenWrite(defaultPath))
+            {
+                fs.Write(byteData);
+                fs.Flush();
+            }
         }
+#endif
             
         public void Save(object data, string fileName)
         {
             string jsonData = JsonUtility.ToJson(data);
             byte[] byteData = Encoding.UTF8.GetBytes(jsonData);
+            
+            File.WriteAllText(SaveDataFilePath, String.Empty);
 
-            _saveDataFileStream.Write(byteData);
+            using (FileStream fs = File.OpenWrite(SaveDataFilePath))
+            {
+                fs.Write(byteData);
+                fs.Flush();
+            }
         }
 
         public void SaveDatabase()
@@ -37,14 +60,18 @@ namespace MoonBunny
 
         public object Load(Type type, string path)
         {
-            byte[] data = new byte[_saveDataFileStream.Length];
-            string jsonData = String.Empty;
-            int count;
-            count = _saveDataFileStream.Read(data, 0, data.Length);
-            if (count > 0)
+            using (FileStream fs = File.OpenRead(SaveDataFilePath))
             {
-                jsonData = Encoding.UTF8.GetString(data, 0, count);
-                return Convert.ChangeType(JsonUtility.FromJson(jsonData, type), type);
+                byte[] data = new byte[fs.Length];
+                string jsonData = String.Empty;
+                int count;
+                count = fs.Read(data, 0, data.Length);
+                
+                if (count > 0)
+                {
+                    jsonData = Encoding.UTF8.GetString(data, 0, count);
+                    return Convert.ChangeType(JsonUtility.FromJson(jsonData, type), type);
+                }
             }
 
             return null;
@@ -57,17 +84,8 @@ namespace MoonBunny
 
         public void LoadDatabase()
         {
+            LoadedData = true;
             SaveData = Load<SaveData>(SaveDataFilePath);
-        }
-
-        private string PathCombine(string fileName)
-        {
-            return Path.Combine(DataSavingFolderPath, fileName) + DataSavingExtension;
-        }
-
-        public void Dispose()
-        {
-            _saveDataFileStream?.Dispose();
         }
     }
 }

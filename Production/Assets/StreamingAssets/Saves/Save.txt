@@ -1,0 +1,1 @@
+{"FirstFriendCollectedNumber":0,"SecondFriendCollectedNumber":0,"ThirdFriendCollectedNumber":0,"Stage1Clear":false,"Stage2Clear":true,"Stage3Clear":false,"Stage4Clear":true,"Stage5Clear":true}

@@ -9,16 +9,6 @@ namespace MoonBunny.Dev.Editor
         private const string CollectionAssetPath = "Assets/Resources/Specs/FriendCollection.asset"; 
         private const string DefaultCollectionAssetPath = "Assets/Resources/Specs/DefaultFriendCollection.asset";
 
-        static DatabaseManipulator()
-        {
-            CustomEditorPlayCallBack.OnExitingPlayMode += DisposeSaveLoadSystem;
-        }
-
-        static void DisposeSaveLoadSystem()
-        {
-            GameManager.instance.SaveLoadSystem.Dispose();
-        }
-            
         [MenuItem("Dev/ResetDatas")]
         static void ResetDatas()
         {
