@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 39fb64055b894cc29d854e8131d8729a, type: 3}
-  m_Name: First
+  m_Name: Second
   m_EditorClassIdentifier: 
-  StartJumpHorizontalSpeed: 1
-  StartJumpVerticalSpeed: 1
-  BouncyPower: 1
-  MaxHp: 1
-  Power: 1
-  MagneticPower: 1
+  StartJumpHorizontalSpeed: 2
+  StartJumpVerticalSpeed: 2
+  BouncyPower: 2
+  MaxHp: 2
+  Power: 2
+  MagneticPower: 2

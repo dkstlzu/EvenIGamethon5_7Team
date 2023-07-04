@@ -2,7 +2,7 @@
 
 namespace MoonBunny
 {
-    [CreateAssetMenu(fileName = "_ItemSpec", menuName = "Specs/ItemSpec", order = 0)]
+    [CreateAssetMenu(menuName = "Specs/Item")]
     public class ItemSpec : ScriptableObject
     {
         public int Score;

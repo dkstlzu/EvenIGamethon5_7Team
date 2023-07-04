@@ -17,6 +17,8 @@ namespace MoonBunny
     [Serializable]
     public class Friend
     {
+        [SerializeField] private FriendName _name;
+
         public float StartJumpHorizontalSpeed;
         public float StartJumpVerticalSpeed;
         public float BouncyPower;
@@ -25,7 +27,6 @@ namespace MoonBunny
         public int MaxHp;
         public int CurrentHp;
         
-        [SerializeField] private FriendName _name;
         [SerializeField] private SpriteRenderer _renderer;
         public FriendName Name
         {

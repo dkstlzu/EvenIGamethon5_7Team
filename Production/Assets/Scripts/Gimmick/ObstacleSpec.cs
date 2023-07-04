@@ -2,7 +2,7 @@
 
 namespace MoonBunny
 {
-    [CreateAssetMenu(fileName = "_Obstacle", menuName = "Specs/Obstacle", order = 0)]
+    [CreateAssetMenu(menuName = "Specs/Obstacle")]
     public class ObstacleSpec : ScriptableObject
     {
         public int Damage;

@@ -49,6 +49,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Score: 0
   StartPosition: {fileID: 0}
+  GlobalGravity: 0
+  Stage1Clear: 0
+  Stage2Clear: 0
+  Stage3Clear: 0
+  Stage4Clear: 0
+  Stage5Clear: 0
+  isFirstPlay: 0
+  _tutorialUIGO: {fileID: 0}
+  useSaveSystem: 0
 --- !u!114 &1854696770133704652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,6 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 789c0ba912f7455bb4aeb156e5ba98a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Collection: {fileID: 0}
   CollectingFriendCharacterList: []
   CollectedFriendCharacterList: []
 --- !u!114 &2270504176230317985
@@ -75,6 +85,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3043d2eedd14a5faa94760190eecce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ESCInputAction:
+    m_Name: ESC Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 2c48d434-54f4-4bbe-8912-7a70cc7c7e88
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!114 &6680752847438356378
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,7 +10,6 @@ namespace MoonBunny
         public float BouncyPower;
         public int MaxHp;
         public int Power;
-        public int Luck;
         public int MagneticPower;
     }
 }

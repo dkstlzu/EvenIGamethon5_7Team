@@ -16,6 +16,7 @@ namespace MoonBunny.CustomEditors
 
         public override void OnInspectorGUI()
         {
+            GameManager gm = target as GameManager;
             base.OnInspectorGUI();
             
             serializedObject.Update();
