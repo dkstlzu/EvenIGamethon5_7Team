@@ -16,6 +16,8 @@ namespace MoonBunny
         private void Awake()
         {
             InputAsset = new MoonBunnyInputAsset();
+            InputAsset.Enable();
+            
 #if UNITY_EDITOR
             ESCInputAction.Enable();
             ESCInputAction.performed += (ctx) => OnESCInputPerformed?.Invoke();
@@ -30,11 +32,13 @@ namespace MoonBunny
 
         public void EnableIngameInput()
         {
+            print("IngameInput Enabled");
             InputAsset.Ingame.Enable();
         }
 
         public void DisableIngameInput()
         {
+            print("IngameInput Disabled");
             InputAsset.Ingame.Disable();
         }
 
@@ -45,6 +49,7 @@ namespace MoonBunny
 
         private void OnTouchScreen(InputAction.CallbackContext obj)
         {
+            print("OnTouch");
             ScreenSplit.ScreenSide side = ScreenSplit.instance.GetSide(InputAsset.Ingame.TouchPosition.ReadValue<Vector2>());
             Character targetCharacter = ScreenSplit.instance.GetScreen(side).Character;
             if (!targetCharacter.FirstJumped) targetCharacter.StartJump();

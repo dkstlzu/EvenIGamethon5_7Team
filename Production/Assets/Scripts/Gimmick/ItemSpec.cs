@@ -6,6 +6,7 @@ namespace MoonBunny
     public class ItemSpec : ScriptableObject
     {
         public int Score;
+        public AudioClip AudioClip;
 		public Sprite Sprite;
     }
 }

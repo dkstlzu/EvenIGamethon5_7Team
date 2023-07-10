@@ -7,5 +7,7 @@ namespace MoonBunny
     {
         public int Damage;
         public bool isBouncy;
+        public AudioClip AudioClip;
+        public Sprite Sprite;
     }
 }

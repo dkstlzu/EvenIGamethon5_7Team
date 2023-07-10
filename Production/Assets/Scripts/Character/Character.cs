@@ -24,6 +24,8 @@ namespace MoonBunny
         public bool FirstJumped;
         public Friend Friend;
 
+        private IsGrounded _isGrounded;
+
         public int CurrentHp
         {
             get => Friend.CurrentHp;
@@ -33,6 +35,13 @@ namespace MoonBunny
         private void Reset()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
+        }
+
+        private void Awake()
+        {
+            _isGrounded = new IsGrounded();
+            _isGrounded.Type = GroundCheckType.Line;
+            _isGrounded.TargetTransform = transform;
         }
 
         private Vector2 _lastVelocity;
@@ -75,6 +84,8 @@ namespace MoonBunny
 
         public void Jump(float horizontalSpeed, float verticalSpeed)
         {
+            if (!_isGrounded) return;
+            
             _rigidbody.velocity = new Vector2(horizontalSpeed, verticalSpeed);
         }
 
@@ -100,6 +111,19 @@ namespace MoonBunny
         public void Disable()
         {
             gameObject.SetActive(false);
+        }
+
+        private void OnDrawGizmos()
+        {
+            if (_isGrounded == null) return;
+
+            if (_isGrounded.Type == GroundCheckType.Line)
+            {
+                Gizmos.DrawLine(transform.position, transform.position + Vector3.down * _isGrounded.CheckDistance);
+            } else if (_isGrounded.Type == GroundCheckType.Box)
+            {
+                Gizmos.DrawCube(transform.position, Vector3.one);
+            }
         }
     }
 }

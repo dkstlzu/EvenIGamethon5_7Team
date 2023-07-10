@@ -323,10 +323,7 @@ MonoBehaviour:
       m_Action: Any Input
       m_Flags: 0
     m_Flags: 0
-  SplashImages:
-  - {fileID: 21300000, guid: 9cb8144e01c27ff469299c0b689a55d7, type: 3}
-  - {fileID: 21300000, guid: 4476a1c70ff9d674d9507ab4cf2875a8, type: 3}
-  - {fileID: 21300000, guid: 2c81eb054c3ebd9479787af9cf7bcba1, type: 3}
+  SplashImages: []
   SplashInterval: 5
   SplashCurve:
     serializedVersion: 2
@@ -362,6 +359,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   SplashNumber: 0
+  NextScene: 1
   _renderer: {fileID: 1271392898}
 --- !u!212 &1271392898
 SpriteRenderer:

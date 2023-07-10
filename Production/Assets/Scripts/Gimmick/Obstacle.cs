@@ -5,9 +5,10 @@ namespace MoonBunny
 {
     public enum ObstacleType
     {
-        Block,
-        
+        None = -1,
+        Block = 0,
     }
+    
     public class Obstacle : MonoBehaviour
     {
         [SerializeField] private ObstacleType _type;

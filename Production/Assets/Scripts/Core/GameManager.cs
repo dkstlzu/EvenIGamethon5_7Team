@@ -53,18 +53,20 @@ namespace MoonBunny
             {
                 SCB.SceneLoadCallBackDict[SceneName.Stage1] += FirstPlayTutorialOn;
             }
-
+            
             SCB.SceneLoadCallBackDict[SceneName.Stage1] += () => OnStageSceneLoaded?.Invoke(SceneName.Stage1);
             SCB.SceneLoadCallBackDict[SceneName.Stage2] += () => OnStageSceneLoaded?.Invoke(SceneName.Stage2);
             SCB.SceneLoadCallBackDict[SceneName.Stage3] += () => OnStageSceneLoaded?.Invoke(SceneName.Stage3);
             SCB.SceneLoadCallBackDict[SceneName.Stage4] += () => OnStageSceneLoaded?.Invoke(SceneName.Stage4);
             SCB.SceneLoadCallBackDict[SceneName.Stage5] += () => OnStageSceneLoaded?.Invoke(SceneName.Stage5);
+            SCB.SceneLoadCallBackDict[SceneName.StageChallenge] += () => OnStageSceneLoaded?.Invoke(SceneName.StageChallenge);
             
             SCB.SceneUnloadCallBackDict[SceneName.Stage1] += () => OnStageSceneUnloaded?.Invoke(SceneName.Stage1);
             SCB.SceneUnloadCallBackDict[SceneName.Stage2] += () => OnStageSceneUnloaded?.Invoke(SceneName.Stage2);
             SCB.SceneUnloadCallBackDict[SceneName.Stage3] += () => OnStageSceneUnloaded?.Invoke(SceneName.Stage3);
             SCB.SceneUnloadCallBackDict[SceneName.Stage4] += () => OnStageSceneUnloaded?.Invoke(SceneName.Stage4);
             SCB.SceneUnloadCallBackDict[SceneName.Stage5] += () => OnStageSceneUnloaded?.Invoke(SceneName.Stage5);
+            SCB.SceneUnloadCallBackDict[SceneName.StageChallenge] += () => OnStageSceneUnloaded?.Invoke(SceneName.StageChallenge);
 
             OnStageSceneLoaded += (StageName) => FindDefaultStartPosition();
         }
@@ -147,6 +149,7 @@ namespace MoonBunny
         {
             Instantiate(_tutorialUIGO).GetComponent<TutorialUI>().On();
             SCB.SceneLoadCallBackDict[SceneName.Stage1] -= FirstPlayTutorialOn;
+            PlayerPrefs.SetInt("MoonBunnyFirstPlay", 0);
         }
         
         private void OnItemTaken(Item item)

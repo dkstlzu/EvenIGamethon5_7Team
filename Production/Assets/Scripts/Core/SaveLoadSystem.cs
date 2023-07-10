@@ -111,8 +111,7 @@ namespace MoonBunny
             "BoundcyPower"
         };
 
-        [MenuItem("Dev/CreateDefaultMapData")]
-        public static void CreateDefaultMapData()
+        public static void CreateDefaultMapData(string fileName)
         {
             string directory = Path.Combine(Application.streamingAssetsPath, "MapData");
             
@@ -121,7 +120,7 @@ namespace MoonBunny
                 Directory.CreateDirectory(directory);
             }
 
-            string file = Path.Combine(Application.streamingAssetsPath, "MapData", "Map.csv");
+            string file = Path.Combine(Application.streamingAssetsPath, "MapData", fileName + ".csv");
             
             using (var writer = File.CreateText(file))
             {
@@ -147,7 +146,7 @@ namespace MoonBunny
                 fileStr[i] = str[i].ToString();
             }
 
-            CreateDefaultMapData();
+            CreateDefaultMapData(DataSavingFileName);
             File.AppendAllLines(SaveDataFilePath, fileStr);
         }
 

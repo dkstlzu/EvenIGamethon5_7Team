@@ -7,14 +7,6 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-    "com.occasoftware.super-simple-skybox": {
-      "version": "file:com.occasoftware.super-simple-skybox",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {
-        "com.unity.shadergraph": "12.1.6"
-      }
-    },
     "com.unity.2d.animation": {
       "version": "9.0.3",
       "depth": 1,

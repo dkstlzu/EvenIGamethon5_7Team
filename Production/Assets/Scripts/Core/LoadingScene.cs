@@ -33,6 +33,7 @@ namespace MoonBunny
         [Range(0, 10)] public float SplashInterval;
         public AnimationCurve SplashCurve;
         public int SplashNumber = 0;
+        public int NextScene = -1;
 
         [SerializeField] private SpriteRenderer _renderer;
 
@@ -43,7 +44,10 @@ namespace MoonBunny
             AnyInputAction.Enable();
 
             AnyInputAction.performed += SkipSlpash;
-            _renderer.sprite = SplashImages[0];
+            if (SplashImages.Count > 0)
+            {
+                _renderer.sprite = SplashImages[0];
+            }
         }
 
         private void OnDestroy()
@@ -55,6 +59,12 @@ namespace MoonBunny
 
         private void Update()
         {
+            if (SplashImages.Count == 0)
+            {
+                FinishSplash();
+                return;
+            }
+            
             _timer += Time.deltaTime;
 
             if (_timer >= SplashInterval)
@@ -87,7 +97,15 @@ namespace MoonBunny
 
         void FinishSplash()
         {
-            SceneManager.LoadScene(SceneName.Start);
+            if (NextScene < 0)
+            {
+                Destroy(_renderer);
+                Destroy(this);
+            }
+            else
+            {
+                SceneManager.LoadScene(SceneName.GetNames()[NextScene]);
+            }
         }
     }
 }

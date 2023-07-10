@@ -6,7 +6,8 @@ namespace MoonBunny
 {
     public enum ItemType
     {
-        LuckyColver,
+        None = -1,
+        LuckyClover = 0,
         Butterfly,
         FairyWing,
         CottonCandy,
@@ -25,7 +26,9 @@ namespace MoonBunny
                 _renderer.sprite = PreloadedResources.instance.ItemSpriteList[(int)_type];
 
                 ItemSpec spec = PreloadedResources.instance.ItemSpecList[(int)_type];
+                
                 Score = spec.Score;
+                _audioSource.clip = spec.AudioClip;
             }
         }
         

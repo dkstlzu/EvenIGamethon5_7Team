@@ -8,15 +8,15 @@ namespace MoonBunny
     public enum StageName
     {
         [StringValue(SceneName.Stage1)]
-        One,
+        GrassField,
         [StringValue(SceneName.Stage2)]
-        Two,
+        FairyForest,
         [StringValue(SceneName.Stage3)]
-        Three,
+        CottonCandySky,
         [StringValue(SceneName.Stage4)]
-        Four,
+        HoneyTastedAurora,
         [StringValue(SceneName.Stage5)]
-        Five,
+        StarfulMilkyWay,
         [StringValue(SceneName.StageChallenge)]
         Challenge,
     }
