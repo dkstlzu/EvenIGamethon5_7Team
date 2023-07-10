@@ -12,6 +12,17 @@ namespace MoonBunny.Dev.Editor
         [MenuItem("Dev/ResetDatas")]
         static void ResetDatas()
         {
+            ResetCollection();
+            ResetFirstPlay();
+        }
+
+        private static void ResetFirstPlay()
+        {
+            PlayerPrefs.SetInt("MoonBunnyFirstPlay", 1);
+        }
+
+        static void ResetCollection()
+        {
             FriendCollection collection = AssetDatabase.LoadAssetAtPath<FriendCollection>(CollectionAssetPath);
             FriendCollection defaultCollection = AssetDatabase.LoadAssetAtPath<FriendCollection>(DefaultCollectionAssetPath);
 

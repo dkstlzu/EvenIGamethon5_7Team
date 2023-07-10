@@ -91,7 +91,7 @@ namespace MoonBunny
 #if UNITY_EDITOR
             if (!useSaveSystem) return;
 #endif
-            if (!SaveLoadSystem.LoadedData) SaveLoadSystem.LoadDatabase();
+            if (!SaveLoadSystem.DataIsLoaded) SaveLoadSystem.LoadDatabase();
             
             Stage1Clear = SaveLoadSystem.SaveData.Stage1Clear;
             Stage2Clear = SaveLoadSystem.SaveData.Stage2Clear;
@@ -105,7 +105,7 @@ namespace MoonBunny
 #if UNITY_EDITOR
             if (!useSaveSystem) return;
 #endif
-            if (!SaveLoadSystem.LoadedData)
+            if (!SaveLoadSystem.DataIsLoaded)
             {
                 Debug.LogError("Cannot save progress. SaveLoadsystem never loaded data");
                 return;
