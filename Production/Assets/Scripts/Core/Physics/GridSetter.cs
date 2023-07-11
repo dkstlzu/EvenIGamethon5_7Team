@@ -5,11 +5,12 @@ namespace MoonBunny
 {
     public class GridSetter
     {
+        private static string path = "GridSetting";
+
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        [InitializeOnLoadMethod]
         static void OnBeforeSceneLoadRuntimeMethod()
         {
-            string path = "GridSetting";
-            
             GridTransform.GridSetting = Resources.Load<GridSetting>(path);
         }
 
@@ -28,12 +29,6 @@ namespace MoonBunny
             {
                 SceneView.duringSceneGui -= ShowGridGizmo;
             }
-        }
-
-        [MenuItem("Dev/ShowGrid", true)]
-        static bool ShowGridValidation()
-        {
-            return EditorApplication.isPlaying;
         }
 
         static void ShowGridGizmo(SceneView sceneView)
@@ -60,7 +55,7 @@ namespace MoonBunny
                 {
                     Vector2 center = GridTransform.Snap(new Vector2(x, y));
 
-                    Handles.DrawSolidRectangleWithOutline(new Rect(center, gridSize), Color.clear, outlineColor);
+                    Handles.DrawSolidRectangleWithOutline(new Rect(center - gridSize/2, gridSize), Color.clear, outlineColor);
 
                     y += gridSize.y;
                 }

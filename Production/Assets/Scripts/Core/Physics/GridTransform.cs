@@ -1,4 +1,5 @@
 ﻿using System;
+using MoonBunny.Dev;
 using UnityEngine;
 
 namespace MoonBunny
@@ -8,7 +9,7 @@ namespace MoonBunny
     {
         public static GridSetting GridSetting;
         
-        public Transform transform;
+        [HideInInspector] public Transform transform;
         public Vector2 position
         {
             get => transform.position;
@@ -26,7 +27,6 @@ namespace MoonBunny
             GridPosition = new IntVector2(transform.position.x / GridSetting.GridWidth, transform.position.y / GridSetting.GridHeight);
         }
 
-        [ContextMenu("SnapToGrid")]
         public void SnapToGrid()
         {
             transform.position = new Vector3(GridPosition.x * GridSetting.GridWidth, GridPosition.y * GridSetting.GridHeight, transform.position.z);
@@ -55,9 +55,10 @@ namespace MoonBunny
         {
             float realX = x * GridSetting.GridWidth;
             float realY = y * GridSetting.GridHeight;
-
-            float yVelocity = Mathf.Sqrt(realY * gravity);
+            
+            float yVelocity = Mathf.Sqrt(realY * gravity * 2);
             float xVelocity = realX / (yVelocity / gravity * 2);
+            
 
             Vector2 result = new Vector2(xVelocity, yVelocity);
             
@@ -66,7 +67,7 @@ namespace MoonBunny
     }
 
     [Serializable]
-    public class IntVector2
+    public struct IntVector2
     {
         public int x;
         public int y;

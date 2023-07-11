@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace MoonBunny
 {
+    [ExecuteInEditMode]
     public class GridObject : MonoBehaviour
     {
         public GridTransform GridTransform;
@@ -16,6 +17,12 @@ namespace MoonBunny
         protected virtual void Update()
         {
             GridTransform.Update();
+        }
+
+        [ContextMenu("SnapToGrid")]
+        public void SnapToGrid()
+        {
+            GridTransform.SnapToGrid();
         }
     }
 }
