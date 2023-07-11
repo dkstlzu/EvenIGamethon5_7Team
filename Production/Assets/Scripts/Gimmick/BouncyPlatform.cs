@@ -10,15 +10,8 @@ namespace MoonBunny
         private static readonly int JumpHash = Animator.StringToHash("Jump");
 
         [SerializeField] private Animator _animator;
-        [SerializeField] private Rigidbody2D _rigidbody2D;
         [Range(0, 1)] public float HorizontalDampingSpeed;
-        public float JumpPower;
-
-        private void FixedUpdate()
-        {
-            if (_rigidbody2D.velocity.magnitude > 0)
-            _rigidbody2D.velocity = new Vector2( Mathf.Lerp(_rigidbody2D.velocity.x, 0, HorizontalDampingSpeed), _rigidbody2D.velocity.y);
-        }
+        public int JumpPower;
 
         public void PushedOut(Character by)
         {
@@ -29,7 +22,6 @@ namespace MoonBunny
 
         void PushedOut(float power, Vector2 direction)
         {
-            _rigidbody2D.AddForce(direction * power, ForceMode2D.Impulse);
         }
     }
 }

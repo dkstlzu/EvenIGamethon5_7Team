@@ -49,11 +49,9 @@ namespace MoonBunny
 
         private void OnTouchScreen(InputAction.CallbackContext obj)
         {
-            print("OnTouch");
             ScreenSplit.ScreenSide side = ScreenSplit.instance.GetSide(InputAsset.Ingame.TouchPosition.ReadValue<Vector2>());
             Character targetCharacter = ScreenSplit.instance.GetScreen(side).Character;
             if (!targetCharacter.FirstJumped) targetCharacter.StartJump();
-            else targetCharacter.Bouncable.BounceX();
         }
     }
 }

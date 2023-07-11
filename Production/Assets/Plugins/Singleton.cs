@@ -13,11 +13,6 @@ namespace dkstlzu.Utility
                 if (_instance == null)
                 {
                     _instance = GameObject.FindObjectOfType<T>();
-                    if (_instance == null)
-                    {
-                        GameObject go = new GameObject($"{typeof(T)} singleton instance");
-                        _instance = go.AddComponent<T>(); 
-                    }
                 }
 
                 return _instance;

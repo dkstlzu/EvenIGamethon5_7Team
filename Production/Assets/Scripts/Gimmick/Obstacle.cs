@@ -9,7 +9,7 @@ namespace MoonBunny
         Block = 0,
     }
     
-    public class Obstacle : MonoBehaviour
+    public class Obstacle : Gimmick
     {
         [SerializeField] private ObstacleType _type;
 
@@ -31,14 +31,5 @@ namespace MoonBunny
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private SpriteRenderer _renderer;
 
-        public static event Action<Obstacle> OnObstacleCollision;
-
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            if (other.tag == "Player")
-            {
-                OnObstacleCollision?.Invoke(this);
-            }
-        }
     }
 }

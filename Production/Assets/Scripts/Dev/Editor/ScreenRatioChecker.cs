@@ -66,11 +66,15 @@ namespace MoonBunny.Dev.Editor
 
         private static float targetWidth = 1080;
         private static float targetHeight = 2340;
-        private static float camHeight = Camera.main.orthographicSize * 2;
-        private static float camWidth = camHeight * Camera.main.aspect;
-        private static float pixelToUnit = targetHeight / camHeight;
+        private static float camWidth => GetCamHeight() * Camera.main.aspect;
+        private static float pixelToUnit => targetHeight / GetCamHeight();
         private static float unitHeightPerBox => _heightPerBox * pixelToUnit;
         private static float widthPerBox => targetWidth / _intHorizontalDivision;
+
+        static float GetCamHeight()
+        {
+            return Camera.main.orthographicSize * 2;
+        }
         
 
         

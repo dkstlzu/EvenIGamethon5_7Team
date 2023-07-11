@@ -15,6 +15,8 @@ namespace MoonBunny
         public event Action<FriendName, int> OnCollectFriend;
         public event Action<FriendName> OnCollectFriendFinish;
 
+        private GameManager _gameManager;
+
         public FriendCollection.Data this[FriendName name]
         {
             get
@@ -52,13 +54,14 @@ namespace MoonBunny
                     CollectingFriendCharacterList.Add(collection);
                 }
             }
-            
-            GameManager.instance.LoadCollection();
+
+            _gameManager = GameManager.instance;
+            if (_gameManager) _gameManager.LoadCollection();
         }
 
         private void OnDestroy()
         {
-            GameManager.instance.SaveCollection();
+            if (_gameManager) _gameManager.SaveCollection();
         }
 
         public void Collect(FriendName name)

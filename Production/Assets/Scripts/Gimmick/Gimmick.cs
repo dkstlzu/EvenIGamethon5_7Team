@@ -2,7 +2,7 @@
 
 namespace MoonBunny
 {
-    public class Platform : Gimmick
+    public class Gimmick : GridObject
     {
         
     }

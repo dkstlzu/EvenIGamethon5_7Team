@@ -14,6 +14,8 @@ namespace MoonBunny
         public List<Sprite> ObstacleSpriteList;
         public List<ObstacleSpec> ObstacleSpecList;
 
+        public BouncyPlatformSetting BouncyPlatformSetting;
+
         [ContextMenu("Manually Load Assets")]
         private void Awake()
         {

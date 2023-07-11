@@ -9,7 +9,7 @@ namespace MoonBunny.Dev.Editor
         private const string CollectionAssetPath = "Assets/Resources/Specs/FriendCollection.asset"; 
         private const string DefaultCollectionAssetPath = "Assets/Resources/Specs/DefaultFriendCollection.asset";
 
-        [MenuItem("Dev/ResetDatas")]
+        [MenuItem("Dev/ResetDatas", priority = 10)]
         static void ResetDatas()
         {
             ResetCollection();

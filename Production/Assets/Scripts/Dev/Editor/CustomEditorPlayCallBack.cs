@@ -43,7 +43,7 @@ namespace MoonBunny.Dev.Editor
             }
         }
 
-        [MenuItem("Dev/PlayOnStartScnene %#p")]
+        [MenuItem("Dev/PlayOnStartScnene %#p", priority = 0)]
         public static void PlayOnStartScene()
         {
             // Debug.Log("Static method");

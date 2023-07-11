@@ -47,6 +47,8 @@ namespace MoonBunny
                 fs.Write(byteData);
                 fs.Flush();
             }
+
+            AssetDatabase.Refresh();
         }
 #endif
             
@@ -62,6 +64,8 @@ namespace MoonBunny
                 fs.Write(byteData);
                 fs.Flush();
             }
+            
+            AssetDatabase.Refresh();
         }
 
         public void SaveDatabase()
@@ -128,6 +132,8 @@ namespace MoonBunny
                 str.AppendJoin(CSVSeperator, CSVHeader);
                 writer.WriteLine(str);
             }
+            
+            AssetDatabase.Refresh();
         }
 
         public void SaveCSV()
@@ -148,6 +154,7 @@ namespace MoonBunny
 
             CreateDefaultMapData(DataSavingFileName);
             File.AppendAllLines(SaveDataFilePath, fileStr);
+            AssetDatabase.Refresh();
         }
 
         public void LoadCSV()
@@ -192,7 +199,7 @@ namespace MoonBunny
 
                 Vector3 platformPosition = new Vector3( float.Parse(lineContent[xIndex]), float.Parse(lineContent[yIndex]), 0);
                 Vector3 platformScale = new Vector3(float.Parse(lineContent[sizeXIndex]), float.Parse(lineContent[sizeYIndex]), 1);
-                float platformBouncyPower = float.Parse(lineContent[bouncyPowerIndex]);
+                int platformBouncyPower = int.Parse(lineContent[bouncyPowerIndex]);
                 
                 platformGos[i-1] = MonoBehaviour.Instantiate(platformPrefab, platformPosition, Quaternion.identity, platformsParent.transform);
                 platformGos[i-1].transform.localScale = platformScale;

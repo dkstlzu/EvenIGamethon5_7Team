@@ -6,19 +6,12 @@ using UnityEngine.Serialization;
 
 namespace MoonBunny
 {
-    [RequireComponent(typeof(Rigidbody2D))]
-    public class Character : MonoBehaviour
+    public class Character : GridObject
     {
         // Hard Caching
-        private static readonly int _itemLayer = 7;
-        private static readonly int _obstacleLayer = 8;
-        private static readonly int _platformLayer = 9;
-        private static readonly int _friendLayer = 10;
         private static readonly int _hitHash = Animator.StringToHash("Hit");
         
-        [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private Animator animator;
-        public Bouncable Bouncable; 
         
         public bool MovingToRight;
         public bool FirstJumped;
@@ -32,12 +25,7 @@ namespace MoonBunny
             set => Friend.CurrentHp = value;
         }
 
-        private void Reset()
-        {
-            _rigidbody = GetComponent<Rigidbody2D>();
-        }
-
-        private void Awake()
+        protected void Awake()
         {
             _isGrounded = new IsGrounded();
             _isGrounded.Type = GroundCheckType.Line;
@@ -48,52 +36,12 @@ namespace MoonBunny
 
         private void FixedUpdate()
         {
-            _lastVelocity = _rigidbody.velocity;
             MovingToRight = (_lastVelocity.x >= 0);
-        }
-
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            int layer = other.gameObject.layer;
-
-            /*if (layer == _itemLayer)
-            {
-                other.GetComponent<Item>().Taken();
-            } else if (layer == _obstacleLayer)
-            {
-                Hit(other.GetComponent<Obstacle>().Damage);
-            } else */if (layer == _platformLayer)
-            {
-                var platform = other.GetComponent<BouncyPlatform>();
-                BouncyJump(platform.JumpPower);
-                platform.PushedOut(this);
-            } else if (layer == _friendLayer)
-            {
-                var friend = other.GetComponent<FriendCollectable>();
-                print($"Hello Firend! {friend.Name}");
-
-                ScreenSplit.instance.AddNewScreen(friend.Name);
-            }
         }
 
         public void StartJump()
         {
             if (FirstJumped) return;
-            Jump(Friend.StartJumpHorizontalSpeed, Friend.StartJumpVerticalSpeed);
-        }
-
-        public void Jump(float horizontalSpeed, float verticalSpeed)
-        {
-            if (!_isGrounded) return;
-            
-            _rigidbody.velocity = new Vector2(horizontalSpeed, verticalSpeed);
-        }
-
-        public void BouncyJump(float bouncyPower)
-        {
-            FirstJumped = true;
-
-            Jump(_lastVelocity.x, Friend.BouncyPower + bouncyPower);
         }
 
         public void Hit(int damage)
@@ -101,17 +49,17 @@ namespace MoonBunny
             CurrentHp -= damage;
         }
 
-        public void Enable()
-        {
-            FirstJumped = false;
-            gameObject.SetActive(true);
-            transform.position = GameManager.instance.StartPosition.position;
-        }
-
-        public void Disable()
-        {
-            gameObject.SetActive(false);
-        }
+        // public void Enable()
+        // {
+        //     FirstJumped = false;
+        //     gameObject.SetActive(true);
+        //     transform.position = GameManager.instance.StartPosition.position;
+        // }
+        //
+        // public void Disable()
+        // {
+        //     gameObject.SetActive(false);
+        // }
 
         private void OnDrawGizmos()
         {

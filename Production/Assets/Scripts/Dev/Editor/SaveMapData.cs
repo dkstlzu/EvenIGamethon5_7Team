@@ -6,7 +6,7 @@ namespace MoonBunny.Dev.Editor
 {
     public class SaveMapData
     {
-        [MenuItem("Dev/SaveMapData")]
+        [MenuItem("Dev/SaveMapData", priority = 1)]
         public static void SaveData()
         {
             string fileName = GetFileName();
@@ -21,7 +21,7 @@ namespace MoonBunny.Dev.Editor
             system.SaveCSV();
         }
         
-        [MenuItem("Dev/LoadMapData")]
+        [MenuItem("Dev/LoadMapData", priority = 1)]
         public static void LoadData()
         {
             string fileName = GetFileName();

@@ -14,7 +14,7 @@ namespace MoonBunny
         DreamCatcher,
     }
     
-    public class Item : MonoBehaviour
+    public class Item : Gimmick
     {
         [SerializeField] private ItemType _type;
         public ItemType Type
@@ -36,16 +36,7 @@ namespace MoonBunny
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private SpriteRenderer _renderer;
 
-        public static event Action<Item> OnItemCollision;
         public static event Action<Item> OnItemTaken;
-
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            if (other.tag == "Player")
-            {
-                OnItemCollision?.Invoke(this);
-            }
-        }
 
         public virtual void Taken()
         {

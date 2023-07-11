@@ -1,0 +1,73 @@
+﻿using UnityEditor;
+using UnityEngine;
+
+namespace MoonBunny
+{
+    public class GridSetter
+    {
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        static void OnBeforeSceneLoadRuntimeMethod()
+        {
+            string path = "GridSetting";
+            
+            GridTransform.GridSetting = Resources.Load<GridSetting>(path);
+        }
+
+        public static bool ShowGrid = false;
+
+        [MenuItem("Dev/ShowGrid")]
+        static void ShowGridToggle()
+        {
+            ShowGrid = !ShowGrid;
+
+            if (ShowGrid)
+            {
+                SceneView.duringSceneGui += ShowGridGizmo;
+            }
+            else
+            {
+                SceneView.duringSceneGui -= ShowGridGizmo;
+            }
+        }
+
+        [MenuItem("Dev/ShowGrid", true)]
+        static bool ShowGridValidation()
+        {
+            return EditorApplication.isPlaying;
+        }
+
+        static void ShowGridGizmo(SceneView sceneView)
+        {
+            Camera sceneViewCam = sceneView.camera;
+            Vector3 sceneViewCamPosition = sceneViewCam.transform.position;
+            float sceneViewCamSize = sceneViewCam.orthographicSize;
+
+            float yMin = sceneViewCamPosition.y - sceneViewCamSize;
+            float yMax = sceneViewCamPosition.y + sceneViewCamSize;
+            float xMin = sceneViewCamPosition.x - sceneViewCamSize * sceneViewCam.aspect;
+            float xMax = sceneViewCamPosition.x + sceneViewCamSize * sceneViewCam.aspect;
+
+            float x = xMin;
+            float y = yMin;
+
+            Vector2 gridSize = GridTransform.GetGridSize();
+            Color outlineColor = Color.cyan;
+            outlineColor.a = 0.3f;
+            
+            while (x < xMax)
+            {
+                while (y < yMax)
+                {
+                    Vector2 center = GridTransform.Snap(new Vector2(x, y));
+
+                    Handles.DrawSolidRectangleWithOutline(new Rect(center, gridSize), Color.clear, outlineColor);
+
+                    y += gridSize.y;
+                }
+
+                x += gridSize.x;
+                y = yMin;
+            }
+        }
+    }
+}
