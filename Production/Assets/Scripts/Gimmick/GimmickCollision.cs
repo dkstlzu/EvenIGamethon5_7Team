@@ -40,6 +40,16 @@ public class ObstacleCollision : GimmickCollision
     }
 }
 
+public class RicecakeCollision : GimmickCollision
+{
+    public Ricecake Ricecake => (Ricecake)Other;
+
+    public RicecakeCollision(Ricecake ricecake) : base(ricecake)
+    {
+        
+    }
+}
+
 public class BouncyPlatformCollision : GimmickCollision
 {
     public BouncyPlatform Platform => (BouncyPlatform)Other;

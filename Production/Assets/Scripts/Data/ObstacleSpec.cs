@@ -6,7 +6,6 @@ namespace MoonBunny
     public class ObstacleSpec : ScriptableObject
     {
         public int Damage;
-        public bool isBouncy;
         public AudioClip AudioClip;
         public Sprite Sprite;
     }

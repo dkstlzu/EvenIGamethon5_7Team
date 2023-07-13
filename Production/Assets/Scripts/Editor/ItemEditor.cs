@@ -7,29 +7,22 @@ using Object = UnityEngine.Object;
 
 namespace MoonBunny.CustomEditors
 {
-    [CustomEditor(typeof(Item))]
-    public class ItemEditor : Editor
+    [CustomEditor(typeof(Item), true)]
+    public class ItemEditor : GridObjectEditor
     {
         private const string SpecPath = "Assets/Resources/Specs/Item/";
         
         public override VisualElement CreateInspectorGUI()
         {
-            VisualElement root = new VisualElement();
+            VisualElement root = base.CreateInspectorGUI();
 
-            PropertyField ScoreField = new PropertyField(serializedObject.FindProperty("Score"));
-            PropertyField AudioSource = new PropertyField(serializedObject.FindProperty("_audioSource"));
-            PropertyField Renderer = new PropertyField(serializedObject.FindProperty("_renderer"));
             SerializedProperty typeSP = serializedObject.FindProperty("_type");
             
-            root.Add(ScoreField);
-            root.Add(AudioSource);
-            root.Add(Renderer);
-
             EnumField typeField = new EnumField("Type", Enum.Parse<ItemType>(typeSP.enumNames[typeSP.enumValueIndex]));
 
             typeField.RegisterValueChangedCallback((ce) => OnTypeChanged((ItemType)ce.newValue));
             
-            root.Insert(0, typeField);
+            root.Insert(2, typeField);
             
             return root;
         }

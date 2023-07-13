@@ -12,11 +12,15 @@ namespace MoonBunny
         FairyWing,
         CottonCandy,
         DreamCatcher,
+        Rocket,
+        Magnet,
+        Heart,
+        StarCandy,
     }
     
     public class Item : Gimmick
     {
-        [SerializeField] private ItemType _type;
+        [HideInInspector][SerializeField] private ItemType _type;
         public ItemType Type
         {
             get => _type;

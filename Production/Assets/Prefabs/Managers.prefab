@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 1854696770133704652}
   - component: {fileID: 2270504176230317985}
   - component: {fileID: 6680752847438356378}
+  - component: {fileID: 7181178156869599547}
+  - component: {fileID: 6744147499280745772}
   m_Layer: 0
   m_Name: Managers
   m_TagString: GameController
@@ -56,8 +58,8 @@ MonoBehaviour:
   Stage4Clear: 0
   Stage5Clear: 0
   isFirstPlay: 0
-  _tutorialUIGO: {fileID: 0}
-  useSaveSystem: 0
+  _tutorialUIGO: {fileID: 1381214040629822484, guid: 318cac4417a8d9f46838e50ec5e04e7f, type: 3}
+  useSaveSystem: 1
 --- !u!114 &1854696770133704652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,7 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 789c0ba912f7455bb4aeb156e5ba98a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Collection: {fileID: 0}
+  Collection: {fileID: 11400000, guid: 8567fb0f0baa28d48869e1210a637507, type: 2}
   CollectingFriendCharacterList: []
   CollectedFriendCharacterList: []
 --- !u!114 &2270504176230317985
@@ -112,3 +114,42 @@ MonoBehaviour:
   ItemSpecList: []
   ObstacleSpriteList: []
   ObstacleSpecList: []
+  RicecakeSpriteList:
+  - {fileID: 21300000, guid: 7c4dd99b040d03e40adcb5ad058434fb, type: 3}
+  - {fileID: 21300000, guid: 694432ebdd2535045a6be8faa51f914a, type: 3}
+  - {fileID: 21300000, guid: d642ef84d90b49a489dc3552b1ebc130, type: 3}
+  - {fileID: 21300000, guid: be587d504af53f04d8ccb1d9d652a397, type: 3}
+  - {fileID: 21300000, guid: 642099a3b0b2da242aadcfabbab09ff2, type: 3}
+  BouncyPlatformSetting: {fileID: 0}
+--- !u!114 &7181178156869599547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386506531079968234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73817cb4c827192449520e8cca1f8f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetComponent: {fileID: 5611170586294499107}
+  useUniqueComponent: 1
+  UniqueComponent: {fileID: 6744147499280745772}
+--- !u!114 &6744147499280745772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386506531079968234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647211ed0408e1648b6775d644c52d3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Uniqueness: 1
+  TargetComponent: {fileID: 5611170586294499107}
+  HashID: 
+  DestroyGameObject: {fileID: 0}
+  ReplacePreviousOne: 0

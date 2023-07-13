@@ -6,12 +6,14 @@ namespace MoonBunny
     public enum ObstacleType
     {
         None = -1,
-        Block = 0,
+        PinWheel = 0,
+        SpiderWeb,
+        ShootingStar,
     }
     
     public class Obstacle : Gimmick
     {
-        [SerializeField] private ObstacleType _type;
+        [HideInInspector][SerializeField] private ObstacleType _type;
 
         public ObstacleType Type
         {

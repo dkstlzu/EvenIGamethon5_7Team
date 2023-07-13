@@ -1,4 +1,5 @@
-﻿using dkstlzu.Utility;
+﻿using System;
+using dkstlzu.Utility;
 using MoonBunny.UIs;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -24,7 +25,20 @@ namespace MoonBunny
     {
         public StageName Name;
 
+        public int EndlineHeight;
+
         public GameOverUI GameOverUI;
+
+        private LevelSummoner _summoner;
+        public void Awake()
+        {
+            _summoner = GetComponent<LevelSummoner>();
+        }
+
+        private void Start()
+        {
+            _summoner.SummonRicecakes();
+        }
 
         public void Clear()
         {

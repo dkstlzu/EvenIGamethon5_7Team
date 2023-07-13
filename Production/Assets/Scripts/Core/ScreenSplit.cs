@@ -111,13 +111,13 @@ namespace MoonBunny
 
         public void DestoryCharacterInScreen(SplitedScreen screen)
         {
-            screen.Character.Disable();
+            // screen.Character.Disable();
         }
 
         public void CreateCharacterInScreen(SplitedScreen screen, FriendName name)
         {
-            screen.Character.Enable();
-            screen.Character.Friend.Name = name;
+            // screen.Character.Enable();
+            // screen.Character.Friend.Name = name;
         }
 
         public ScreenSide GetSide(Vector2 pointOnScreen)

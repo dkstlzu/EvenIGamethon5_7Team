@@ -6,7 +6,7 @@ namespace MoonBunny
 {
     public class MoonBunnyRigidbody : MonoBehaviour
     {
-        public Vector2 GridJumpVelocity;
+        public Vector2Int GridJumpVelocity;
         public float Gravity;
         public GridObject GridObject;
         public List<MoonBunnyCollider.ColliderLayerMask> ColliderLayerList;
@@ -21,6 +21,11 @@ namespace MoonBunny
 
         private void Awake()
         {
+            if (GridObject == null)
+            {
+                TryGetComponent<GridObject>(out GridObject);
+            }
+            
             _colliderList = new List<MoonBunnyCollider>();
             
             foreach (var colliderLayer in ColliderLayerList)
@@ -29,7 +34,7 @@ namespace MoonBunny
             }
             
             _movement = new MoonBunnyMovement(GridObject.GridTransform, Gravity);
-            _movement.GridVelocity = new IntVector2(GridJumpVelocity);
+            _movement.GridVelocity = GridJumpVelocity;
         }
 
         public void Update()
@@ -122,6 +127,9 @@ namespace MoonBunny
                 } else if (gridObject is BouncyPlatform bouncyPlatform)
                 {
                     collision = new BouncyPlatformCollision(bouncyPlatform);
+                } else if (gridObject is Ricecake ricecake)
+                {
+                    collision = new RicecakeCollision(ricecake);
                 }
 
                 return true;
@@ -136,7 +144,7 @@ namespace MoonBunny
     {
         public Vector2 Velocity;
 
-        public IntVector2 GridVelocity;
+        public Vector2Int GridVelocity;
 
         private GridTransform _transform;
 
@@ -194,7 +202,7 @@ namespace MoonBunny
         public void Collide(Collision collision)
         {
             if (collision == null) return;
-
+            
             if (collision is BouncyPlatformCollision bouncyPlatformCollision)
             {
                 Velocity = GridTransform.GetVelocityByGrid(GridVelocity.x, GridVelocity.y + bouncyPlatformCollision.Platform.JumpPower, _gravity.GravityScale);
@@ -202,6 +210,11 @@ namespace MoonBunny
             {
                 
             }
+        }
+
+        private void PlayerCollide(Collision collision)
+        {
+            
         }
 
     }

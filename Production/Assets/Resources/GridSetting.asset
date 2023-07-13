@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4848507334b6485ab73f87dc39ef6291, type: 3}
   m_Name: GridSetting
   m_EditorClassIdentifier: 
-  CameraOrthogonalSize: 5
+  CameraOrthogonalSize: 13
   CameraAspect: 0.4615385
-  Origin: {x: 0, y: 0}
+  Origin: {x: -0.5, y: 0}
   HorizontalDivision: 6
   GridHeight: 2
-  GridWidth: 0.76923084
+  GridWidth: 2.0000002

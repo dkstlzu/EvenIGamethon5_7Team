@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4318821955201273328}
-  - component: {fileID: 6930174432885776739}
   - component: {fileID: 6183660109679586148}
   - component: {fileID: 2617486049700150016}
   - component: {fileID: 978205355702668989}
+  - component: {fileID: 3675761889070197999}
   m_Layer: 9
   m_Name: BouncyPlatform
   m_TagString: Untagged
@@ -36,22 +36,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6930174432885776739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6143585326858288700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57ac90eb11784b76b4b82e637307f857, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animator: {fileID: 978205355702668989}
-  _rigidbody2D: {fileID: 2617486049700150016}
-  HorizontalDampingSpeed: 0
-  JumpPower: 6.5
 --- !u!61 &6183660109679586148
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -145,6 +129,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3675761889070197999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6143585326858288700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57ac90eb11784b76b4b82e637307f857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GridTransform:
+    transform: {fileID: 4318821955201273328}
+    GridPosition: {x: 0, y: 0}
+  _animator: {fileID: 978205355702668989}
+  HorizontalDampingSpeed: 0.032
+  JumpPower: 5
 --- !u!1 &6685337230468245306
 GameObject:
   m_ObjectHideFlags: 0

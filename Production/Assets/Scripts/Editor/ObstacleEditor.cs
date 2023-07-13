@@ -7,29 +7,22 @@ using Object = UnityEngine.Object;
 
 namespace MoonBunny.CustomEditors
 {
-    [CustomEditor(typeof(Obstacle))]
-    public class ObstacleEditor : Editor
+    [CustomEditor(typeof(Obstacle), true)]
+    public class ObstacleEditor : GridObjectEditor
     {
         private const string SpecPath = "Assets/Resources/Specs/Obstacle/";
 
         public override VisualElement CreateInspectorGUI()
         {
-            VisualElement root = new VisualElement();
+            VisualElement root = base.CreateInspectorGUI();
 
-            PropertyField AudioSource = new PropertyField(serializedObject.FindProperty("_audioSource"));
-            PropertyField Renderer = new PropertyField(serializedObject.FindProperty("_renderer"));
-            PropertyField Damage = new PropertyField(serializedObject.FindProperty("Damage"));
             SerializedProperty typeSP = serializedObject.FindProperty("_type");
                       
-            root.Add(Damage);
-            root.Add(AudioSource);
-            root.Add(Renderer);
-            
             EnumField TypeField = new EnumField("Type", Enum.Parse<ObstacleType>(typeSP.enumNames[typeSP.enumValueIndex]));
 
             TypeField.RegisterValueChangedCallback((ce) => OnTypeChanged((ObstacleType)ce.newValue));
   
-            root.Insert(0, TypeField);
+            root.Insert(2, TypeField);
             
             return root;
         }

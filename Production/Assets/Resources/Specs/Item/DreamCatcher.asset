@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6efffd50fe8d4fab83d922af40d691b9, type: 3}
   m_Name: DreamCatcher
   m_EditorClassIdentifier: 
-  Score: 0
-  Sprite: {fileID: 0}
+  Score: 3
+  AudioClip: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 622a1a5bc25526a48872b625237ab9b9, type: 3}

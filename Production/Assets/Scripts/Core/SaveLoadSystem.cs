@@ -4,6 +4,7 @@ using System.Text;
 using UnityEngine;
 
 #if UNITY_EDITOR
+using System.Globalization;
 using UnityEditor;
 #endif
 
@@ -103,16 +104,21 @@ namespace MoonBunny
             SaveData = LoadJson<SaveData>();
         }
 
+#if UNITY_EDITOR
         private static string CSVSeperator = ",";
 
         private static string[] CSVHeader = new string[]
         {
             "No",
+            "Type",
             "X",
             "Y",
-            "SizeX",
-            "SizeY",
-            "BoundcyPower"
+            "Value1",
+            "Value2",
+            "Value3",
+            "Value4",
+            "Value5",
+            "Value6",
         };
 
         public static void CreateDefaultMapData(string fileName)
@@ -159,60 +165,182 @@ namespace MoonBunny
 
         public void LoadCSV()
         {
-            GameObject platformsParent = GameObject.FindWithTag("Platforms");
+            ConvertToPrefabInstanceSettings setting = new ConvertToPrefabInstanceSettings();
+            setting.recordPropertyOverridesOfMatches = true;
+            setting.logInfo = false;
+            setting.componentsNotMatchedBecomesOverride = true;
+            setting.gameObjectsNotMatchedBecomesOverride = true;
 
-            if (platformsParent == null)
-            {
-                Debug.LogError("There is no Platforms taged Gameobject in active scene check again");
-                return;
-            }
+            Gimmick[] gimmicksInSceneAlready = GameObject.FindObjectsByType<Gimmick>(FindObjectsInactive.Include, FindObjectsSortMode.None);
 
-            string platformAssetPath = "Assets/Prefabs/Level/BouncyPlatform.prefab";
-            GameObject platformPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(platformAssetPath);
-
-            if (platformPrefab == null)
-            {
-                Debug.LogError($"There is no platform prefab on {platformAssetPath} check again");
-                return;
-            }
-
-            BouncyPlatform[] platformsInSceneAlready = GameObject.FindObjectsByType<BouncyPlatform>(FindObjectsInactive.Include, FindObjectsSortMode.None);
-
-            foreach (BouncyPlatform platform in platformsInSceneAlready)
+            foreach (Gimmick platform in gimmicksInSceneAlready)
             {
                 MonoBehaviour.DestroyImmediate(platform.gameObject);
             }
             
             string[] fileContents = File.ReadAllLines(SaveDataFilePath);
 
+            int typeIndex = Array.IndexOf(CSVHeader, "Type");
             int xIndex = Array.IndexOf(CSVHeader, "X");
             int yIndex = Array.IndexOf(CSVHeader, "Y");
-            int sizeXIndex = Array.IndexOf(CSVHeader, "SizeX");
-            int sizeYIndex = Array.IndexOf(CSVHeader, "SizeY");
-            int bouncyPowerIndex = Array.IndexOf(CSVHeader, "SizeX");
+            int bouncyPlatformPowerIndex = Array.IndexOf(CSVHeader, "Value1");
+            int bouncyPlatformHorizontalMoveIndex = Array.IndexOf(CSVHeader, "Value2");
+            int bouncyPlatformVerticalMoveIndex = Array.IndexOf(CSVHeader, "Value3");
+            int randomSpawnerType1Index = Array.IndexOf(CSVHeader, "Value1");
+            int randomSpawnerValue1Index = Array.IndexOf(CSVHeader, "Value2");
+            int randomSpawnerType2Index = Array.IndexOf(CSVHeader, "Value3");
+            int randomSpawnerValue2Index = Array.IndexOf(CSVHeader, "Value4");
+            int randomSpawnerIDIndex = Array.IndexOf(CSVHeader, "Value5");
 
-            GameObject[] platformGos = new GameObject[fileContents.Length-1];
+            NumberFormatInfo numberFormatInfo = new NumberFormatInfo();
+            numberFormatInfo.NegativeSign = "-";
+            
+            RandomSpawner.Init();
+            
+            Debug.Log($"Load CSV Data total line : {fileContents.Length}");
 
             for (int i = 1; i < fileContents.Length; i++)
             {
-                string[] lineContent = fileContents[i].Split(CSVSeperator);
+                try
+                {
+                    string[] lineContent = fileContents[i].Split(CSVSeperator);
 
-                Vector3 platformPosition = new Vector3( float.Parse(lineContent[xIndex]), float.Parse(lineContent[yIndex]), 0);
-                Vector3 platformScale = new Vector3(float.Parse(lineContent[sizeXIndex]), float.Parse(lineContent[sizeYIndex]), 1);
-                int platformBouncyPower = int.Parse(lineContent[bouncyPowerIndex]);
-                
-                platformGos[i-1] = MonoBehaviour.Instantiate(platformPrefab, platformPosition, Quaternion.identity, platformsParent.transform);
-                platformGos[i-1].transform.localScale = platformScale;
-                platformGos[i-1].GetComponent<BouncyPlatform>().JumpPower = platformBouncyPower;
+                    if (lineContent.Length == 0)
+                    {
+                        break;
+                    }
+
+                    Vector3 objectPosition = new Vector3(float.Parse(lineContent[xIndex], numberFormatInfo),
+                        float.Parse(lineContent[yIndex], numberFormatInfo), 0);
+
+                    Transform objectParent = GameObject.FindWithTag(GetTargetTag(lineContent[typeIndex])).transform;
+
+                    GameObject targetPrefab = GetTargetPrefab(lineContent[typeIndex]);
+
+                    if (targetPrefab == null)
+                    {
+                        Debug.LogError($"There is no prefab of {lineContent[typeIndex]} check again");
+                        continue;
+                    }
+
+                    GameObject instantiatedGo = null;
+
+                    if (lineContent[typeIndex] == "RandomSpawner")
+                    {
+                        instantiatedGo = RandomSpawner.MakeNew(GetTargetPrefab(lineContent[randomSpawnerType1Index]),
+                            GetTargetPrefab(lineContent[randomSpawnerType2Index]),
+                            new Vector2Int((int)objectPosition.x, (int)objectPosition.y),
+                            int.Parse(lineContent[randomSpawnerIDIndex]));
+                    }
+                    else
+                    {
+                        instantiatedGo = MonoBehaviour.Instantiate(targetPrefab, objectPosition, Quaternion.identity, objectParent);
+                    }
+
+                    if (instantiatedGo == null)
+                    {
+                        Debug.LogError($"Something wrong while instantiating {lineContent[typeIndex]} check again");
+                        continue;
+                    }
+
+                    switch (lineContent[typeIndex])
+                    {
+                        case "BouncyPlatform":
+                            BouncyPlatform platform = instantiatedGo.GetComponent<BouncyPlatform>();
+                            platform.JumpPower = int.Parse(lineContent[bouncyPlatformPowerIndex]);
+                            platform.VerticalMoveRange = int.Parse(lineContent[bouncyPlatformVerticalMoveIndex]);
+                            platform.HorizontalMoveRange = int.Parse(lineContent[bouncyPlatformHorizontalMoveIndex]);
+                            break;
+                    }
+
+                    if (PrefabUtility.GetPrefabAssetType(instantiatedGo) == PrefabAssetType.NotAPrefab)
+                    {
+                        PrefabUtility.ConvertToPrefabInstance(instantiatedGo, targetPrefab, setting, InteractionMode.UserAction);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError(e + $"\nError accured while loading csv data line : {i}");
+                }
             }
 
-            ConvertToPrefabInstanceSettings setting = new ConvertToPrefabInstanceSettings();
-            setting.recordPropertyOverridesOfMatches = true;
-            setting.logInfo = false;
-            setting.componentsNotMatchedBecomesOverride = true;
-            setting.gameObjectsNotMatchedBecomesOverride = true;
-            
-            PrefabUtility.ConvertToPrefabInstances(platformGos, platformPrefab, setting, InteractionMode.UserAction);
+            RandomSpawner.Uninit();
         }
+
+        private string GetTypeInCSV(GridObject obj)
+        {
+            string result = string.Empty;
+            
+            switch (obj)
+            {
+                case BouncyPlatform platform:
+                    break;
+                case CrackPlatform platform:
+                    break;
+                case Rocket rocket:
+                    break;
+                case Magnet magnet:
+                    break;
+                case RandomSpawner spawner:
+                    break;
+                case ItemBox itemBox:
+                    break;
+                case ShootingStar shootingStar:
+                    break;
+            }
+
+            return result;
+        }
+
+        private Type GetTypeFromCSV(string typeStr)
+        {
+            Type type = null;
+            
+            switch (typeStr)
+            {
+                
+            }
+
+            return type;
+        }
+        
+        private string GetTargetTag(string type)
+        {
+            string result = "Level";
+            
+            switch (type)
+            {
+                case "BouncyPlatform":
+                case "CrackPlatform":
+                    result = "Platforms";
+                    break;
+                case "Rocket":
+                case "Magnet":
+                case "ItemBox":
+                    result = "Items";        
+                    break;
+                case "ShootingStar":
+                    result = "Obstacles";    
+                    break;
+            }
+
+            return result;
+        }
+
+        private const string GimmickPath = "Assets/Prefabs/Level/";
+        
+        private string GetTargetPath(string type)
+        {
+            return Path.Combine(GimmickPath, type + ".prefab");
+        }
+
+        private GameObject GetTargetPrefab(string type)
+        {
+            return AssetDatabase.LoadAssetAtPath<GameObject>(GetTargetPath(type));
+        }
+#endif
+
+
+
     }
 }

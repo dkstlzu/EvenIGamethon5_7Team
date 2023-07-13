@@ -13,6 +13,7 @@ namespace MoonBunny
         public event Action OnESCInputPerformed;
 #endif
 
+        private Character _character;
         private void Awake()
         {
             InputAsset = new MoonBunnyInputAsset();
@@ -34,6 +35,7 @@ namespace MoonBunny
         {
             print("IngameInput Enabled");
             InputAsset.Ingame.Enable();
+            _character = GameObject.FindWithTag("Player").GetComponent<Character>();
         }
 
         public void DisableIngameInput()
@@ -49,9 +51,7 @@ namespace MoonBunny
 
         private void OnTouchScreen(InputAction.CallbackContext obj)
         {
-            ScreenSplit.ScreenSide side = ScreenSplit.instance.GetSide(InputAsset.Ingame.TouchPosition.ReadValue<Vector2>());
-            Character targetCharacter = ScreenSplit.instance.GetScreen(side).Character;
-            if (!targetCharacter.FirstJumped) targetCharacter.StartJump();
+            if (!_character.FirstJumped) _character.StartJump();
         }
     }
 }

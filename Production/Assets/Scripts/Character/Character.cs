@@ -25,8 +25,10 @@ namespace MoonBunny
             set => Friend.CurrentHp = value;
         }
 
-        protected void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+            
             _isGrounded = new IsGrounded();
             _isGrounded.Type = GroundCheckType.Line;
             _isGrounded.TargetTransform = transform;

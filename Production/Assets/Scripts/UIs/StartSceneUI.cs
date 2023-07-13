@@ -45,7 +45,13 @@ namespace MoonBunny.UIs
 
         private GameManager _gameManager;
 
-       private void Start()
+        [RuntimeInitializeOnLoadMethod]
+        static void InitializeOnLoad()
+        {
+            _showCutScene = true;
+        }
+
+        private void Start()
         {
             _gameManager = GameManager.instance;
 
@@ -55,19 +61,12 @@ namespace MoonBunny.UIs
             if (!_gameManager.Stage4Clear) Stage5Button.interactable = false;
             if (!_gameManager.Stage5Clear) StageChallengeButton.interactable = false;
 
-            _showCutScene = true;
             if (!_showCutScene)
             {
-                GetComponent<Animator>().enabled = false;
-                IntroCanvasGroup.alpha = 0;
-                IntroCanvasGroup.blocksRaycasts = false;
-                MainCanvasGroup.alpha = 1;
-                MainCanvasGroup.blocksRaycasts = true;
-                FriendSelectCanvasGroup.alpha = 1;
-                FriendSelectCanvasGroup.blocksRaycasts = true;
+                SkipIntro();
             }
 
-            // _showCutScene = false;
+            _showCutScene = false;
         }
 
         public void OnSettingButtonClicked()
@@ -159,6 +158,17 @@ namespace MoonBunny.UIs
             _gameManager.GetComponent<InputManager>().InputAsset.UI.Click.performed += OnPressTheAnyKeyIntro;
         }
 
+        public void SkipIntro()
+        {
+            GetComponent<Animator>().enabled = false;
+            IntroCanvasGroup.alpha = 0;
+            IntroCanvasGroup.blocksRaycasts = false;
+            MainCanvasGroup.alpha = 1;
+            MainCanvasGroup.blocksRaycasts = true;
+            FriendSelectCanvasGroup.alpha = 1;
+            FriendSelectCanvasGroup.blocksRaycasts = true;
+        }
+
         public void OnExitButtonClicked()
         {
 #if UNITY_EDITOR
@@ -177,6 +187,7 @@ namespace MoonBunny.UIs
                 return;
             }
 
+            print(name + " " + StringValue.GetStringValue(stageName));
             SceneManager.LoadScene(StringValue.GetStringValue(stageName));
         }
 
