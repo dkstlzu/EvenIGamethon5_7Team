@@ -12,9 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39fb64055b894cc29d854e8131d8729a, type: 3}
   m_Name: Third
   m_EditorClassIdentifier: 
-  StartJumpHorizontalSpeed: 3
-  StartJumpVerticalSpeed: 3
-  BouncyPower: 3
-  MaxHp: 3
-  Power: 3
-  MagneticPower: 3
+  HorizontalJumpSpeed: 4
+  VerticalJumpSpeed: 4

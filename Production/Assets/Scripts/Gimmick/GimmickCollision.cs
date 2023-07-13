@@ -1,6 +1,7 @@
 ﻿using MoonBunny;
 using UnityEngine;
 
+
 public class Collision
 {
     public GridObject Other;
@@ -22,6 +23,12 @@ public class GimmickCollision : Collision
     public GimmickCollision(Gimmick gimmick) : base(gimmick)
     {
     }
+
+    public override void OnCollision()
+    {
+        Debug.Log($"GimmickCollision {Gimmick}");
+        Gimmick.Invoke();
+    }
 }
 
 public class ItemCollision : GimmickCollision
@@ -40,25 +47,11 @@ public class ObstacleCollision : GimmickCollision
     }
 }
 
-public class RicecakeCollision : GimmickCollision
+
+public class PlatformCollision : GimmickCollision
 {
-    public Ricecake Ricecake => (Ricecake)Other;
-
-    public RicecakeCollision(Ricecake ricecake) : base(ricecake)
+    public Platform Platform => (Platform)Other;
+    public PlatformCollision(Platform platform) : base(platform)
     {
-        
-    }
-}
-
-public class BouncyPlatformCollision : GimmickCollision
-{
-    public BouncyPlatform Platform => (BouncyPlatform)Other;
-    public BouncyPlatformCollision(BouncyPlatform bouncyPlatform) : base(bouncyPlatform)
-    {
-    }
-
-    public override void OnCollision()
-    {
-        base.OnCollision();
     }
 }

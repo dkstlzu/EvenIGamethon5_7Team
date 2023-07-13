@@ -34,7 +34,6 @@ namespace MoonBunny.CustomEditors
             ObstacleSpec obstacleSpec = AssetDatabase.LoadAssetAtPath<ObstacleSpec>(finalPath);
 
             serializedObject.FindProperty("_type").intValue = (int)newType;
-            serializedObject.FindProperty("Damage").intValue = obstacleSpec.Damage;
             serializedObject.FindProperty("_audioSource").objectReferenceValue = obstacleSpec.AudioClip;
             
             Object spriteRenderer = serializedObject.FindProperty("_renderer").objectReferenceValue;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -53,12 +54,29 @@ namespace MoonBunny
             return spawner.gameObject;
         }
 #endif
-
         
         public void SetTargets(GameObject firstTargetPrefab, GameObject secondTargetPrefab)
         {
             FirstTarget = firstTargetPrefab;
             SecondTarget = secondTargetPrefab;
+        }
+
+        private void Start()
+        {
+#if UNITY_EDITOR
+            if (!EditorApplication.isPlaying) return;
+#endif
+            Transform parent = GameObject.FindWithTag("Obstacles").transform;
+
+            GameObject targetPrefab = (Random.value > 0.5) ? FirstTarget : SecondTarget;
+
+            int count = PossiblePositionList.Count;
+
+            Vector2Int position = PossiblePositionList[Random.Range(0, count)];
+
+            Instantiate(targetPrefab, GridTransform.ToReal(position), Quaternion.identity, parent);
+            
+            Destroy(gameObject);
         }
     }
 }

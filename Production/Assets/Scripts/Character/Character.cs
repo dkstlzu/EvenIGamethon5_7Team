@@ -1,19 +1,18 @@
-﻿using System;
-using MoonBunny;
-using TMPro;
+﻿using UnityEditor;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace MoonBunny
 {
     public class Character : GridObject
     {
         // Hard Caching
-        private static readonly int _hitHash = Animator.StringToHash("Hit");
+        private static readonly int _jumpHash = Animator.StringToHash("FirstJumped");
+        private static readonly int _fallingHash = Animator.StringToHash("isFalling");
         
-        [SerializeField] private Animator animator;
+        [SerializeField] private Animator _animator;
+        [SerializeField] private SpriteRenderer _renderer;
+        [SerializeField] private MoonBunnyRigidbody _rigidbody;
         
-        public bool MovingToRight;
         public bool FirstJumped;
         public Friend Friend;
 
@@ -25,43 +24,54 @@ namespace MoonBunny
             set => Friend.CurrentHp = value;
         }
 
+        public bool LookingRight => !_renderer.flipX;
+
         protected override void Awake()
         {
             base.Awake();
+
+            CurrentHp = Friend.MaxHp;
             
             _isGrounded = new IsGrounded();
             _isGrounded.Type = GroundCheckType.Line;
             _isGrounded.TargetTransform = transform;
         }
 
-        private Vector2 _lastVelocity;
-
-        private void FixedUpdate()
+        protected override void Update()
         {
-            MovingToRight = (_lastVelocity.x >= 0);
+            base.Update();
+#if UNITY_EDITOR
+            if (!EditorApplication.isPlaying) return;
+#endif
+            if (_rigidbody.isMovingToLeft)
+            {
+                _renderer.flipX = true;
+            }
+            else if (_rigidbody.isMovingToRight)
+            {
+                _renderer.flipX = false;
+            }
+            _animator.SetBool(_fallingHash, _rigidbody.isFalling);
         }
 
         public void StartJump()
         {
             if (FirstJumped) return;
+            
+            _rigidbody.Jump();
+            _animator.SetBool(_jumpHash, true);
+            FirstJumped = true;
         }
 
-        public void Hit(int damage)
+        public void FlipDirection()
         {
-            CurrentHp -= damage;
+            _rigidbody.FlipXDirection();
         }
 
-        // public void Enable()
-        // {
-        //     FirstJumped = false;
-        //     gameObject.SetActive(true);
-        //     transform.position = GameManager.instance.StartPosition.position;
-        // }
-        //
-        // public void Disable()
-        // {
-        //     gameObject.SetActive(false);
-        // }
+        public void Hit()
+        {
+            CurrentHp -= 1;
+        }
 
         private void OnDrawGizmos()
         {

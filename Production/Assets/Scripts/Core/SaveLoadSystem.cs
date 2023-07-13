@@ -171,12 +171,12 @@ namespace MoonBunny
             setting.componentsNotMatchedBecomesOverride = true;
             setting.gameObjectsNotMatchedBecomesOverride = true;
 
-            Gimmick[] gimmicksInSceneAlready = GameObject.FindObjectsByType<Gimmick>(FindObjectsInactive.Include, FindObjectsSortMode.None);
-
-            foreach (Gimmick platform in gimmicksInSceneAlready)
-            {
-                MonoBehaviour.DestroyImmediate(platform.gameObject);
-            }
+            // Gimmick[] gimmicksInSceneAlready = GameObject.FindObjectsByType<Gimmick>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            //
+            // foreach (Gimmick platform in gimmicksInSceneAlready)
+            // {
+            //     MonoBehaviour.DestroyImmediate(platform.gameObject);
+            // }
             
             string[] fileContents = File.ReadAllLines(SaveDataFilePath);
 

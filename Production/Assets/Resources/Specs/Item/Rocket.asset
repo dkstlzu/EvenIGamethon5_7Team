@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6efffd50fe8d4fab83d922af40d691b9, type: 3}
   m_Name: Rocket
   m_EditorClassIdentifier: 
-  Score: 5
+  Score: 10
   AudioClip: {fileID: 0}
-  Sprite: {fileID: 21300000, guid: 50d859ee2d34aa7429f203d82503f533, type: 3}
+  Sprite: {fileID: 21300000, guid: a0aca8f55f20043aa820967787d70baa, type: 3}

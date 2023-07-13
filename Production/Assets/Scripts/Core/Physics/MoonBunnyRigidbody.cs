@@ -10,6 +10,10 @@ namespace MoonBunny
         public float Gravity;
         public GridObject GridObject;
         public List<MoonBunnyCollider.ColliderLayerMask> ColliderLayerList;
+
+        public bool isMovingToRight => _movement.Velocity.x > 0;
+        public bool isMovingToLeft => _movement.Velocity.x < 0;
+        public bool isFalling => _movement.Velocity.y < 0;
             
         private List<MoonBunnyCollider> _colliderList;
         private MoonBunnyMovement _movement;
@@ -25,16 +29,17 @@ namespace MoonBunny
             {
                 TryGetComponent<GridObject>(out GridObject);
             }
+                        
+            _movement = new MoonBunnyMovement(GridObject.GridTransform, Gravity);
+            _movement.GridVelocity = GridJumpVelocity;
             
             _colliderList = new List<MoonBunnyCollider>();
             
             foreach (var colliderLayer in ColliderLayerList)
             {
-                _colliderList.Add(new MoonBunnyCollider(colliderLayer));
+                _colliderList.Add(new MoonBunnyCollider(_movement, colliderLayer));
             }
-            
-            _movement = new MoonBunnyMovement(GridObject.GridTransform, Gravity);
-            _movement.GridVelocity = GridJumpVelocity;
+
         }
 
         public void Update()
@@ -48,7 +53,11 @@ namespace MoonBunny
             {
                 if (collider.WillCollide(_movement.Velocity, deltaTime, out collision))
                 {
-                    collision.OnCollision();
+                    print($"RigidBody Collision with {collision.Other}");
+                    if (collision is GimmickCollision gimmickCollision)
+                    {
+                        gimmickCollision.OnCollision();
+                    }
                     _movement.Collide(collision);
                 }
             }
@@ -60,28 +69,53 @@ namespace MoonBunny
         {
             _movement.StartMove(velocity);
         }
+
+        public void Jump()
+        {
+            _movement.Jump();
+        }
+        
+        public void FlipXDirection()
+        {
+            _movement.FlipX();
+        }
+        
     }
 
     public class MoonBunnyCollider
     {
+        [Flags]
+        public enum Direciton
+        {
+            None  = 0,
+            Up    = 0x10,
+            Down  = 0x100,
+            Left  = 0x1000,
+            Right = 0x10000,
+        }
         [Serializable]
-        public class ColliderLayerMask
+        public class ColliderLayerMask          
         {
             public Collider2D Collider;
             public LayerMask LayerMask;
+            public Direciton Direciton;
         }
 
+        private MoonBunnyMovement _movement;
         private Collider2D _collider;
         private LayerMask _targetLayer;
+        private Direciton _direciton;
 
-        public MoonBunnyCollider(ColliderLayerMask colliderLayerMask) : this(colliderLayerMask.Collider, colliderLayerMask.LayerMask)
+        public MoonBunnyCollider(MoonBunnyMovement movement, ColliderLayerMask colliderLayerMask) : this(colliderLayerMask.Collider, colliderLayerMask.LayerMask, colliderLayerMask.Direciton)
         {
+            _movement = movement;
         }
 
-        public MoonBunnyCollider(Collider2D collider, LayerMask layerMask)
+        public MoonBunnyCollider(Collider2D collider, LayerMask layerMask, Direciton direciton)
         {
             _collider = collider;
             _targetLayer = layerMask;
+            _direciton = direciton;
         }
         
         public bool IsColliding(out Collision collision)
@@ -97,10 +131,11 @@ namespace MoonBunny
         private bool CheckCollisionOn(Vector2 position, out Collision collision)
         {
             Collider2D other = null;
+            collision = null;
 
             if (_collider is BoxCollider2D boxCollider2D)
             {
-                other = Physics2D.OverlapBox(  position + boxCollider2D.offset, boxCollider2D.size, 0, _targetLayer);
+                other = Physics2D.OverlapBox(position + boxCollider2D.offset, boxCollider2D.size, 0, _targetLayer);
 
             } else if (_collider is CircleCollider2D circleCollider2D)
             {
@@ -109,7 +144,49 @@ namespace MoonBunny
    
             if (other == null)
             {
-                collision = null;
+                return false;
+            }
+
+            bool directionCorrect = false;
+           
+            if ((_direciton & Direciton.Down) > 0)
+            {
+                if (other.transform.position.y < _collider.transform.position.y + _collider.offset.y && _movement.Velocity.y < 0)
+                {
+                    Debug.Log("Rigidbody DirectionCheck Down");
+                    directionCorrect = true;
+                }
+            }
+            
+            if ((_direciton & Direciton.Up) > 0)
+            {
+                if (other.transform.position.y > _collider.transform.position.y + _collider.offset.y && _movement.Velocity.y > 0)
+                {
+                    Debug.Log("Rigidbody DirectionCheck Up");
+                    directionCorrect = true;
+                }
+            }
+            
+            if ((_direciton & Direciton.Left) > 0)
+            {
+                if (other.transform.position.x < _collider.transform.position.x + _collider.offset.x && _movement.Velocity.x < 0)
+                {
+                    Debug.Log("Rigidbody DirectionCheck Left");
+                    directionCorrect = true;
+                }
+            }
+            
+            if ((_direciton & Direciton.Right) > 0)
+            {
+                if (other.transform.position.x > _collider.transform.position.x + _collider.offset.x && _movement.Velocity.x > 0)
+                {
+                    Debug.Log("Rigidbody DirectionCheck Right");
+                    directionCorrect = true;
+                }
+            }
+
+            if (!directionCorrect)
+            {
                 return false;
             }
 
@@ -124,19 +201,18 @@ namespace MoonBunny
                 } else if (gridObject is Obstacle obstacle)
                 {
                     collision = new ObstacleCollision(obstacle);
-                } else if (gridObject is BouncyPlatform bouncyPlatform)
+                } else if (gridObject is Platform platform)
                 {
-                    collision = new BouncyPlatformCollision(bouncyPlatform);
-                } else if (gridObject is Ricecake ricecake)
+                    collision = new PlatformCollision(platform);
+                } else if (gridObject is Gimmick gimmick)
                 {
-                    collision = new RicecakeCollision(ricecake);
+                    collision = new GimmickCollision(gimmick);
                 }
 
                 return true;
             }
 
-            collision = null;
-            return false;
+            return true;
         }
     }
 
@@ -157,7 +233,7 @@ namespace MoonBunny
         public MoonBunnyMovement(GridTransform transform, float gravity)
         {
             _transform = transform;
-            _lastPosition = _transform.position;
+            _lastPosition = _transform.transform.position;
             _gravity = new MoonBunnyGravity(this, gravity);
         }
         
@@ -170,7 +246,7 @@ namespace MoonBunny
         {
             if (isPaused) return;
 
-            _transform.position = new Vector2(_lastPosition.x + deltaTime * Velocity.x, _lastPosition.y + deltaTime * Velocity.y);
+            _transform.position = new Vector3(_lastPosition.x + deltaTime * Velocity.x, _lastPosition.y + deltaTime * Velocity.y, _transform.transform.position.z);
             _lastPosition = _transform.position;
         }
         
@@ -182,6 +258,11 @@ namespace MoonBunny
         public void StartMove(Vector2 velocity)
         {
             StartMove(velocity.x, velocity.y);
+        }
+
+        public void Jump()
+        {
+            StartMove(GridTransform.GetVelocityByGrid(GridVelocity.x, GridVelocity.y, _gravity.GravityScale));
         }
 
         public void StopMove()
@@ -199,24 +280,48 @@ namespace MoonBunny
             isPaused = false;
         }
         
+        public void FlipX()
+        {
+            StartMove(-Velocity.x, Velocity.y);
+        }
+        
         public void Collide(Collision collision)
         {
             if (collision == null) return;
             
-            if (collision is BouncyPlatformCollision bouncyPlatformCollision)
+            if (collision is PlatformCollision platformCollision)
             {
-                Velocity = GridTransform.GetVelocityByGrid(GridVelocity.x, GridVelocity.y + bouncyPlatformCollision.Platform.JumpPower, _gravity.GravityScale);
+                if (platformCollision.Platform is BouncyPlatform bouncyPlatform)
+                {
+                    var gridVel = GridTransform.GetVelocityByGrid(GridVelocity.x, GridVelocity.y + bouncyPlatform.JumpPower, _gravity.GravityScale);
+                    StartMove(Velocity.x, gridVel.y);
+                } else if (platformCollision.Platform is SideWall sideWall)
+                {
+                    FlipX();
+                } else if (platformCollision.Platform is Platform platform)
+                {
+                    StopMove();
+                } 
             } else if (collision is ObstacleCollision obstacleCollision)
             {
-                
+                if (obstacleCollision.Obstacle is PinWheel pinWheel)
+                {
+                    float xVelocity = Velocity.x;
+                    float yVelocity = Velocity.y;
+
+                    if ((pinWheel.transform.position.x - _lastPosition.x) * xVelocity > 0)
+                    {
+                        xVelocity = -xVelocity;
+                    }
+                    if ((pinWheel.transform.position.y - _lastPosition.y) * yVelocity > 0)
+                    {
+                        yVelocity = -yVelocity;
+                    }
+
+                    Velocity = new Vector2(xVelocity, yVelocity);
+                }
             }
         }
-
-        private void PlayerCollide(Collision collision)
-        {
-            
-        }
-
     }
 
     public class MoonBunnyGravity

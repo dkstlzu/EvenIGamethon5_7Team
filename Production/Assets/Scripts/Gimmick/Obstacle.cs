@@ -24,11 +24,8 @@ namespace MoonBunny
                 _renderer.sprite = PreloadedResources.instance.ObstacleSpriteList[(int)_type];
 
                 ObstacleSpec spec = PreloadedResources.instance.ObstacleSpecList[(int)_type];
-                Damage = spec.Damage;
             }
         }
-
-        public int Damage;
 
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private SpriteRenderer _renderer;

@@ -14,6 +14,7 @@ namespace MoonBunny
         public List<Sprite> ObstacleSpriteList;
         public List<ObstacleSpec> ObstacleSpecList;
         public List<Sprite> RicecakeSpriteList;
+        public List<Sprite> PlatformSpriteList;
 
         public BouncyPlatformSetting BouncyPlatformSetting;
 

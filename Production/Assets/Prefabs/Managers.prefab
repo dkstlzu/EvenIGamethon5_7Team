@@ -120,6 +120,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d642ef84d90b49a489dc3552b1ebc130, type: 3}
   - {fileID: 21300000, guid: be587d504af53f04d8ccb1d9d652a397, type: 3}
   - {fileID: 21300000, guid: 642099a3b0b2da242aadcfabbab09ff2, type: 3}
+  PlatformSpriteList:
+  - {fileID: -1309043300, guid: 6936268adcd5c1f42b0ae31d96ce616f, type: 3}
+  - {fileID: 618631936, guid: 6936268adcd5c1f42b0ae31d96ce616f, type: 3}
   BouncyPlatformSetting: {fileID: 0}
 --- !u!114 &7181178156869599547
 MonoBehaviour:

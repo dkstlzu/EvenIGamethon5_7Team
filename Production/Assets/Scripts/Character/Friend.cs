@@ -19,12 +19,9 @@ namespace MoonBunny
     {
         [SerializeField] private FriendName _name;
 
-        public float StartJumpHorizontalSpeed;
-        public float StartJumpVerticalSpeed;
-        public float BouncyPower;
-        public float PushingPlatformPower;
+        public Vector2Int JumpPower;
 
-        public int MaxHp;
+        public static int MaxHp = 3;
         public int CurrentHp;
         
         [SerializeField] private SpriteRenderer _renderer;
@@ -37,10 +34,8 @@ namespace MoonBunny
                 _renderer.sprite = PreloadedResources.instance.FriendSpriteList[(int)value];
 
                 FriendSpec spec = PreloadedResources.instance.FriendSpecList[(int)value];
-                StartJumpHorizontalSpeed = spec.StartJumpHorizontalSpeed;
-                StartJumpVerticalSpeed = spec.StartJumpVerticalSpeed;
-                BouncyPower = spec.BouncyPower;
-                MaxHp = spec.MaxHp;
+                JumpPower.x = spec.HorizontalJumpSpeed;
+                JumpPower.y = spec.VerticalJumpSpeed;
             }
         }
 

@@ -21,6 +21,9 @@ namespace MoonBunny
             if (GridTransform == null)
             {
                 GridTransform = new GridTransform(transform);
+            } else if (GridTransform.transform == null)
+            {
+                GridTransform.transform = transform;
             }
         }
 
@@ -39,6 +42,12 @@ namespace MoonBunny
         public void SnapToGrid()
         {
             GridTransform.SnapToGrid();
+        }
+
+        [ContextMenu("Move To Origin")]
+        public void ToOrigin()
+        {
+            transform.position = GridTransform.ToReal(Vector2Int.zero);
         }
     }
 }

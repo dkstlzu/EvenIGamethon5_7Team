@@ -51,7 +51,8 @@ namespace MoonBunny
 
         private void OnTouchScreen(InputAction.CallbackContext obj)
         {
-            if (!_character.FirstJumped) _character.StartJump();
+            print("TouchTouch");
+            // if (!_character.FirstJumped) _character.StartJump();
         }
     }
 }

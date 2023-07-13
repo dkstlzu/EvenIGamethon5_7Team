@@ -1,5 +1,82 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &10114161976580971
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7785571256842894365}
+  - component: {fileID: 8245130013832087367}
+  m_Layer: 6
+  m_Name: Foot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7785571256842894365
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10114161976580971}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6942469379576056503}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &8245130013832087367
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10114161976580971}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.81297433}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.25833917}
+  m_EdgeRadius: 0
 --- !u!1 &5646199421161689791
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,7 +89,7 @@ GameObject:
   - component: {fileID: 2034000656419043365}
   - component: {fileID: 8993331230077029172}
   - component: {fileID: 4521182815814504969}
-  - component: {fileID: 3279031468630697788}
+  - component: {fileID: 3294111410425793835}
   m_Layer: 6
   m_Name: Character
   m_TagString: Player
@@ -33,6 +110,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2686131617209394370}
+  - {fileID: 7785571256842894365}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -51,17 +129,14 @@ MonoBehaviour:
   GridTransform:
     transform: {fileID: 6942469379576056503}
     GridPosition: {x: 0, y: 0}
-  animator: {fileID: 0}
-  MovingToRight: 0
+  _animator: {fileID: 8993331230077029172}
+  _renderer: {fileID: 1956461046610411173}
+  _rigidbody: {fileID: 4521182815814504969}
   FirstJumped: 0
   Friend:
     _name: 0
-    StartJumpHorizontalSpeed: 0
-    StartJumpVerticalSpeed: 0
-    BouncyPower: 0
-    PushingPlatformPower: 0
-    MaxHp: 0
-    CurrentHp: 0
+    JumpPower: {x: 2, y: 2}
+    CurrentHp: 3
     _renderer: {fileID: 0}
 --- !u!95 &8993331230077029172
 Animator:
@@ -97,14 +172,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GridJumpVelocity: {x: 2, y: 2}
-  Gravity: 0
+  Gravity: 10
   GridObject: {fileID: 2034000656419043365}
   ColliderLayerList:
-  - Collider: {fileID: 3279031468630697788}
+  - Collider: {fileID: 8245130013832087367}
     LayerMask:
       serializedVersion: 2
-      m_Bits: 1920
---- !u!61 &3279031468630697788
+      m_Bits: 4608
+    Direciton: 256
+  - Collider: {fileID: 3294111410425793835}
+    LayerMask:
+      serializedVersion: 2
+      m_Bits: 11648
+    Direciton: -1
+--- !u!61 &3294111410425793835
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -222,14 +303,14 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5a1657acc5f1e3441a78ac0ac8d92c56, type: 3}
+  m_Sprite: {fileID: 1171363112, guid: d97e4758b87206d419ce217ffdc763ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.12, y: 5.12}
+  m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace MoonBunny
 {
-    public class GameOverFloor : MonoBehaviour
+    public class GameOverFloor : Platform
     {
 
     }

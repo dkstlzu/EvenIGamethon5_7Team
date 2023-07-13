@@ -19,24 +19,18 @@ namespace MoonBunny.CustomEditors
             Foldout foldout = new Foldout();
             foldout.text = "Friend";
 
-            PropertyField StartJumpHorizontal = new PropertyField(property.FindPropertyRelative("StartJumpHorizontalSpeed"));
-            PropertyField StartJumpVertical = new PropertyField(property.FindPropertyRelative("StartJumpVerticalSpeed"));
-            PropertyField BouncyPower = new PropertyField(property.FindPropertyRelative("BouncyPower"));
-            PropertyField PushingPlatformPower = new PropertyField(property.FindPropertyRelative("PushingPlatformPower"));
-            PropertyField MaxHp = new PropertyField(property.FindPropertyRelative("MaxHp"));
+            PropertyField JumpPower = new PropertyField(property.FindPropertyRelative("JumpPower"));
+            PropertyField HP = new PropertyField(property.FindPropertyRelative("CurrentHp"));
+
             SerializedProperty nameSP = property.FindPropertyRelative("_name");
             
-            foldout.Add(StartJumpHorizontal);
-            foldout.Add(StartJumpVertical);
-            foldout.Add(BouncyPower);
-            foldout.Add(PushingPlatformPower);
-            foldout.Add(MaxHp);
-
             EnumField namefield = new EnumField("Type", Enum.Parse<FriendName>(nameSP.enumNames[nameSP.enumValueIndex]));
 
             namefield.RegisterValueChangedCallback((ce) => OnNameChanged((FriendName)ce.newValue, property));
 
             foldout.Insert(0, namefield);
+            foldout.Add(JumpPower);
+            foldout.Add(HP);
             
             root.Add(foldout);
             return root;
@@ -49,10 +43,8 @@ namespace MoonBunny.CustomEditors
             FriendSpec friendSpec = AssetDatabase.LoadAssetAtPath<FriendSpec>(finalPath);
 
             property.FindPropertyRelative("_name").intValue = (int)(newName);
-            property.FindPropertyRelative("StartJumpHorizontalSpeed").floatValue = friendSpec.StartJumpHorizontalSpeed;
-            property.FindPropertyRelative("StartJumpVerticalSpeed").floatValue = friendSpec.StartJumpHorizontalSpeed;
-            property.FindPropertyRelative("BouncyPower").floatValue = friendSpec.BouncyPower;
-            property.FindPropertyRelative("MaxHp").intValue = friendSpec.MaxHp;
+            // property.FindPropertyRelative("JumpPower").intValue = friendSpec.HorizontalJumpSpeed;
+            // property.FindPropertyRelative("JumpPower").intValue = friendSpec.VerticalJumpSpeed;
             property.serializedObject.ApplyModifiedProperties();
             property.serializedObject.Update();
         }
