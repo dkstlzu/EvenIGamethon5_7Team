@@ -1,7 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using MoonBunny.Dev;
 using UnityEngine;
+using UnityEngine.Networking;
 
 #if UNITY_EDITOR
 using System.Globalization;
@@ -40,7 +42,7 @@ namespace MoonBunny
             byte[] byteData = Encoding.UTF8.GetBytes(jsonData);
 
             string defaultPath = Path.Combine(Application.streamingAssetsPath, "Saves", "Save") + ".txt";
-            
+         
             File.WriteAllText(defaultPath, String.Empty);
 
             using (FileStream fs = File.OpenWrite(defaultPath))
@@ -55,18 +57,39 @@ namespace MoonBunny
             
         public void SaveJson(object data)
         {
+            if (data == null)
+            {
+                MoonBunnyLog.print("Cannot save data : SaveData is null");
+                return;
+            }
+            
             string jsonData = JsonUtility.ToJson(data, true);
             byte[] byteData = Encoding.UTF8.GetBytes(jsonData);
             
+#if UNITY_ANDROID
+            MoonBunnyLog.print("SaveLoadSystem save : is Android");
+            UnityWebRequest request = UnityWebRequest.Put(SaveDataFilePath, byteData);
+            request.SendWebRequest().completed += (ao) =>
+            {
+                MoonBunnyLog.print("Save Data successfully : is Android");
+            };
+            
+#else
+            MoonBunnyLog.print("SaveLoadSystem save : is not Android");
             File.WriteAllText(SaveDataFilePath, String.Empty);
 
             using (FileStream fs = File.OpenWrite(SaveDataFilePath))
             {
                 fs.Write(byteData);
                 fs.Flush();
+                MoonBunnyLog.print("Save Data successfully");
             }
-            
+#endif
+
+
+#if UNITY_EDITOR
             AssetDatabase.Refresh();
+#endif
         }
 
         public void SaveDatabase()
@@ -76,6 +99,39 @@ namespace MoonBunny
 
         public object LoadJson(Type type)
         {
+#if UNITY_ANDROID
+            MoonBunnyLog.print("SaveLoadSystem load : is Android");
+
+            UnityWebRequest request = UnityWebRequest.Get(SaveDataFilePath);
+            var oper = request.SendWebRequest();
+            // oper.completed += (operation) =>
+            // {
+            //     string jsonData;
+            //     jsonData = Encoding.UTF8.GetString(oper.webRequest.downloadHandler.data);
+            //     return Convert.ChangeType(JsonUtility.FromJson(jsonData, type), type);
+            // };
+
+            while (!request.isDone)
+            {
+                if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
+                {
+                    break;
+                }
+            }
+
+            if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
+            {
+                
+            }
+            else
+            {
+                string jsonData;
+                jsonData = Encoding.UTF8.GetString(oper.webRequest.downloadHandler.data);
+                return Convert.ChangeType(JsonUtility.FromJson(jsonData, type), type);
+            }
+#else
+            MoonBunnyLog.print("SaveLoadSystem load : is not Android");
+
             using (FileStream fs = File.OpenRead(SaveDataFilePath))
             {
                 byte[] data = new byte[fs.Length];
@@ -89,7 +145,7 @@ namespace MoonBunny
                     return Convert.ChangeType(JsonUtility.FromJson(jsonData, type), type);
                 }
             }
-
+#endif
             return null;
         }
 
@@ -100,8 +156,16 @@ namespace MoonBunny
 
         public void LoadDatabase()
         {
-            DataIsLoaded = true;
             SaveData = LoadJson<SaveData>();
+            if (SaveData != null)
+            {
+                MoonBunnyLog.print("SaveData is loaded successfully");
+                DataIsLoaded = true;
+            }
+            else
+            {
+                MoonBunnyLog.print("SaveData load failed");
+            }
         }
 
 #if UNITY_EDITOR
@@ -210,9 +274,11 @@ namespace MoonBunny
                         break;
                     }
 
-                    Vector3 objectPosition = new Vector3(float.Parse(lineContent[xIndex], numberFormatInfo),
-                        float.Parse(lineContent[yIndex], numberFormatInfo), 0);
-
+                    Vector2Int gridPosition = new Vector2Int(int.Parse(lineContent[xIndex], numberFormatInfo),
+                        int.Parse(lineContent[yIndex], numberFormatInfo));
+                    
+                    Vector3 realPosition = GridTransform.ToReal(gridPosition);
+                    
                     Transform objectParent = GameObject.FindWithTag(GetTargetTag(lineContent[typeIndex])).transform;
 
                     GameObject targetPrefab = GetTargetPrefab(lineContent[typeIndex]);
@@ -229,12 +295,12 @@ namespace MoonBunny
                     {
                         instantiatedGo = RandomSpawner.MakeNew(GetTargetPrefab(lineContent[randomSpawnerType1Index]),
                             GetTargetPrefab(lineContent[randomSpawnerType2Index]),
-                            new Vector2Int((int)objectPosition.x, (int)objectPosition.y),
+                            gridPosition,
                             int.Parse(lineContent[randomSpawnerIDIndex]));
                     }
                     else
                     {
-                        instantiatedGo = MonoBehaviour.Instantiate(targetPrefab, objectPosition, Quaternion.identity, objectParent);
+                        instantiatedGo = MonoBehaviour.Instantiate(targetPrefab, realPosition, Quaternion.identity, objectParent);
                     }
 
                     if (instantiatedGo == null)

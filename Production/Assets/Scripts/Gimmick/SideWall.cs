@@ -2,7 +2,7 @@
 
 namespace MoonBunny
 {
-    public class SideWall : Platform
+    public class SideWall : FieldObject
     {
         
     }

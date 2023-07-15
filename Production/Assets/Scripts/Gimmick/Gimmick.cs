@@ -4,9 +4,10 @@ namespace MoonBunny
 {
     public class Gimmick : GridObject
     {
-        public virtual void Invoke()
+        public bool InvokeOnCollision = true;
+        public virtual void Invoke(MoonBunnyRigidbody with)
         {
-            print("Gimmick Invoke");
+            print($"Gimmick Invoke {gameObject} with {with}");
         }
     }
 }

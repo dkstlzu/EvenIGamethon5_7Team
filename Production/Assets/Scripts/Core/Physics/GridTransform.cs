@@ -61,13 +61,24 @@ namespace MoonBunny
             return new Vector2Int(Mathf.RoundToInt(offset.x / GridSetting.GridWidth), Mathf.RoundToInt(offset.y / GridSetting.GridHeight));
         }
 
+        public static bool HasGridObject(Vector2Int gridPosition)
+        {
+            GridObject gridObject;
+            return HasGridObject(gridPosition, out gridObject);
+        }
+
+        private static LayerMask S_findingLayerMask = LayerMask.GetMask(new string[]{
+            "Friend","Item","Obstacle","Platform"});
+
         public static bool HasGridObject(Vector2Int gridPosition, out GridObject gridObject)
         {
-            Collider2D collider = Physics2D.OverlapBox(ToReal(gridPosition), GetGridSize(), 0);
-            if (collider != null)
+            Collider2D[] colliders = Physics2D.OverlapBoxAll(ToReal(gridPosition), GetGridSize(), 0,S_findingLayerMask);
+            if (colliders != null && colliders.Length > 0)
             {
-                collider.TryGetComponent<GridObject>(out gridObject);
-                return true;
+                if (colliders[0].TryGetComponent<GridObject>(out gridObject))
+                {
+                    return true;
+                }
             }
 
             gridObject = null;
@@ -96,6 +107,47 @@ namespace MoonBunny
             Vector2 result = new Vector2(xVelocity, yVelocity);
             
             return result;
+        }
+
+        public static Vector2 GetVelocityByGrid(Vector2Int velocity, float gravity)
+        {
+            return GetVelocityByGrid(velocity.x, velocity.y, gravity);
+        }
+
+        public static Vector2Int GetGridByVelocity(float x, float y, float grvaity)
+        {
+            float peekTime = Mathf.Abs(y / grvaity);
+
+            float xDistance = x * peekTime * 2;
+            float yDistance = y * peekTime / 2;
+
+            return ToGrid(new Vector2(xDistance, yDistance) + OriginInReal);
+        }
+
+        public static Vector2Int GetGridByVelocity(Vector2 velocity, float gravity)
+        {
+            return GetGridByVelocity(velocity.x, velocity.y, gravity);
+        }
+
+        public static Vector2 ConvertVelocityByGravity(float xVelocity, float yVelocity, float previousGravity, float changingGravity)
+        {
+            float peekTime = Mathf.Abs(yVelocity / previousGravity);
+
+            float xDistance = xVelocity * peekTime * 2;
+            float yDistance = yVelocity * peekTime / 2;
+            
+            float changedYVelocity = Mathf.Sqrt(yDistance * changingGravity * 2);
+            float changedPeekTime = changedYVelocity / changingGravity;
+            float changedXVelocity = xDistance / (changedPeekTime * 2);
+            
+            Debug.Log($"Convert Velocity previous : {xVelocity}, {yVelocity}, {previousGravity}.\nNext : {changedXVelocity}, {changedYVelocity}, {changingGravity}");
+
+            return new Vector2(changedXVelocity, changedYVelocity);
+        }
+        
+        public static Vector2 ConvertVelocityByGravity(Vector2 velocity, float previousGravity, float changingGravity)
+        {
+            return ConvertVelocityByGravity(velocity.x, velocity.y, previousGravity, changingGravity);
         }
     }
 }

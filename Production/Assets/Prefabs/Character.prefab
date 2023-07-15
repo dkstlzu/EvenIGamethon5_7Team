@@ -112,7 +112,7 @@ Transform:
   - {fileID: 2686131617209394370}
   - {fileID: 7785571256842894365}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2034000656419043365
 MonoBehaviour:
@@ -172,7 +172,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GridJumpVelocity: {x: 2, y: 2}
-  Gravity: 10
+  _gravity: 5
+  MoveSacle: 1
   GridObject: {fileID: 2034000656419043365}
   ColliderLayerList:
   - Collider: {fileID: 8245130013832087367}
@@ -183,7 +184,7 @@ MonoBehaviour:
   - Collider: {fileID: 3294111410425793835}
     LayerMask:
       serializedVersion: 2
-      m_Bits: 11648
+      m_Bits: 28032
     Direciton: -1
 --- !u!61 &3294111410425793835
 BoxCollider2D:

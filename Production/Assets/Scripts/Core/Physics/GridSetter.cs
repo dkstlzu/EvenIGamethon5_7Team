@@ -1,4 +1,7 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 using UnityEngine;
 
 namespace MoonBunny
@@ -8,12 +11,15 @@ namespace MoonBunny
         private static string path = "GridSetting";
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+#if UNITY_EDITOR
         [InitializeOnLoadMethod]
+#endif
         static void OnBeforeSceneLoadRuntimeMethod()
         {
             GridTransform.GridSetting = Resources.Load<GridSetting>(path);
         }
 
+#if UNITY_EDITOR
         public static bool ShowGrid = false;
 
         [MenuItem("Dev/ShowGrid")]
@@ -64,5 +70,6 @@ namespace MoonBunny
                 y = yMin;
             }
         }
+#endif
     }
 }

@@ -25,11 +25,12 @@ namespace MoonBunny
     {
         public StageName Name;
 
-        public int EndlineHeight;
-
-        public GameOverUI GameOverUI;
+        public StageSpec Spec;
 
         private LevelSummoner _summoner;
+
+        public StageUI UI;
+        
         public void Awake()
         {
             _summoner = GetComponent<LevelSummoner>();
@@ -40,14 +41,24 @@ namespace MoonBunny
             _summoner.SummonRicecakes();
         }
 
+        public void InitStage(StageSpec spec = null)
+        {
+            if (spec != null)
+            {
+                Spec = spec;
+            }
+            
+            
+        }
+
         public void Clear()
         {
-            GameOverUI.ClearUI();
+            UI.Clear();
         }
 
         public void Fail()
         {
-            GameOverUI.FailUI();
+            UI.Fail();
         }
         
         public void Quit()

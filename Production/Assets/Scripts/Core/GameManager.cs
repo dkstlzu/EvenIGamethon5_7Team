@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using dkstlzu.Utility;
+using MoonBunny.Dev;
 using MoonBunny.UIs;
-using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,7 +13,19 @@ namespace MoonBunny
     {
         public SceneLoadCallbackSetter SCB;
         public SaveLoadSystem SaveLoadSystem;
-        public int Score;
+
+        public Stage Stage;
+
+        private int _score;
+        public int Score
+        {
+            get => _score;
+            set
+            {
+                _score = value;
+                Stage?.UI.SetScore(_score);
+            }
+        }
         public Transform StartPosition;
         [HideInInspector] public float GlobalGravity;
         [HideInInspector] public bool Stage1Clear;
@@ -68,7 +80,8 @@ namespace MoonBunny
             SCB.SceneUnloadCallBackDict[SceneName.Stage5] += () => OnStageSceneUnloaded?.Invoke(SceneName.Stage5);
             SCB.SceneUnloadCallBackDict[SceneName.StageChallenge] += () => OnStageSceneUnloaded?.Invoke(SceneName.StageChallenge);
 
-            OnStageSceneLoaded += (StageName) => FindDefaultStartPosition();
+            OnStageSceneLoaded += (name) => FindDefaultStartPosition();
+            OnStageSceneLoaded += (name) => FindStageObject();
         }
 
         private void Start()
@@ -122,27 +135,27 @@ namespace MoonBunny
             SaveLoadSystem.SaveDatabase();
         }
 
-        public void LoadCollection()
+        public void LoadCollection(FriendCollectionManager manager)
         {
 #if UNITY_EDITOR
             if (!useSaveSystem) return;
 #endif
-            FriendCollection.Data data = FriendCollectionManager.instance[FriendName.First];
+            FriendCollection.Data data = manager[FriendName.First];
             data.CurrentCollectingNumber = SaveLoadSystem.SaveData.FirstFriendCollectedNumber;
-            data = FriendCollectionManager.instance[FriendName.Second];
+            data = manager[FriendName.Second];
             data.CurrentCollectingNumber = SaveLoadSystem.SaveData.SecondFriendCollectedNumber;
-            data = FriendCollectionManager.instance[FriendName.Third];
+            data = manager[FriendName.Third];
             data.CurrentCollectingNumber = SaveLoadSystem.SaveData.ThirdFriendCollectedNumber;
         }
 
-        public void SaveCollection()
+        public void SaveCollection(FriendCollectionManager manager)
         {
 #if UNITY_EDITOR
             if (!useSaveSystem) return;
 #endif
-            SaveLoadSystem.SaveData.FirstFriendCollectedNumber = FriendCollectionManager.instance[FriendName.First].CurrentCollectingNumber;
-            SaveLoadSystem.SaveData.SecondFriendCollectedNumber = FriendCollectionManager.instance[FriendName.Second].CurrentCollectingNumber;
-            SaveLoadSystem.SaveData.ThirdFriendCollectedNumber = FriendCollectionManager.instance[FriendName.Third].CurrentCollectingNumber;
+            SaveLoadSystem.SaveData.FirstFriendCollectedNumber = manager[FriendName.First].CurrentCollectingNumber;
+            SaveLoadSystem.SaveData.SecondFriendCollectedNumber = manager[FriendName.Second].CurrentCollectingNumber;
+            SaveLoadSystem.SaveData.ThirdFriendCollectedNumber = manager[FriendName.Third].CurrentCollectingNumber;
         }
 
         public void FirstPlayTutorialOn()
@@ -160,6 +173,18 @@ namespace MoonBunny
         void FindDefaultStartPosition()
         {
             StartPosition = GameObject.FindWithTag("DefaultStartPosition").transform;
+        }
+
+        void FindStageObject()
+        {
+            Stage = FindObjectOfType<Stage>();
+        }
+
+        public void GameOver()
+        {
+            MoonBunnyLog.print("GameOver");
+            MoonBunnyRigidbody.DisableAll();
+            Stage.UI.Fail();
         }
 
         public void RestartApplication()

@@ -9,6 +9,7 @@ using UnityEditor;
 
 namespace MoonBunny
 {
+    [DefaultExecutionOrder(-1)]
     public class RandomSpawner : Gimmick
     {
         public List<Vector2Int> PossiblePositionList;

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8456364878238152755}
   - component: {fileID: 7166602896446207038}
   - component: {fileID: 1735029295689619169}
+  - component: {fileID: 961518109954677004}
   m_Layer: 8
   m_Name: PinWheel
   m_TagString: Untagged
@@ -50,9 +51,9 @@ MonoBehaviour:
     transform: {fileID: 8456364878238152755}
     GridPosition: {x: 0, y: 0}
   _type: 0
-  Damage: 10
   _audioSource: {fileID: 0}
   _renderer: {fileID: 4148142135554199687}
+  _animator: {fileID: 961518109954677004}
 --- !u!61 &1735029295689619169
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -98,6 +99,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &961518109954677004
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990297408804778716}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 558f8f1617ded1842bb7edb960fb7f99, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3850327263319211218
 GameObject:
   m_ObjectHideFlags: 0

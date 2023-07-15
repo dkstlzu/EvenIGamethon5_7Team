@@ -24,9 +24,10 @@ namespace MoonBunny
             Score = RainbowCakeScore;
         }
 
-        public override void Invoke()
+        public override void Invoke(MoonBunnyRigidbody rigidbody)
         {
-            print("Ricecake Invoke");
+            base.Invoke(rigidbody);
+            
             GameManager.instance.Score += Score;
             Destroy(gameObject);
         }

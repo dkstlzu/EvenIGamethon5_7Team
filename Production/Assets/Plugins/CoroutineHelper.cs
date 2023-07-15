@@ -9,12 +9,12 @@ namespace dkstlzu.Utility
     {
         public static void OnNextFrame(Action action)
         {
-            CoroutineHelper.instance.StartCoroutine(AfterFrame(action, 1));
+            CreateIfNull().StartCoroutine(AfterFrame(action, 1));
         }
 
         public static void Delay(Action action, float time)
         {
-            CoroutineHelper.instance.StartCoroutine(AfterTime(action, time));
+            CreateIfNull().StartCoroutine(AfterTime(action, time));
         }
         
         static IEnumerator AfterFrame(Action action, int frame)

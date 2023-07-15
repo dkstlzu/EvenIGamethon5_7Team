@@ -30,5 +30,15 @@ namespace MoonBunny
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private SpriteRenderer _renderer;
 
+        public override void Invoke(MoonBunnyRigidbody with)
+        {
+            base.Invoke(with);
+
+            Character character;
+            if (with.TryGetComponent<Character>(out character))
+            {
+                character.CurrentHp--;
+            }
+        }
     }
 }

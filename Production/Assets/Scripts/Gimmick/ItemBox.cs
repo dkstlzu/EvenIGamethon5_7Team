@@ -15,8 +15,10 @@ namespace MoonBunny
 
         private float _totalPotential => HeartPotential + StarCandyPotential + RicecakePotential;
 
-        public override void Invoke()
+        public override void Invoke(MoonBunnyRigidbody rigidbody)
         {
+            base.Invoke(rigidbody);
+            
             float randomValue = Random.value;
             GameObject targetGo = null;
             Transform parent = GameObject.FindWithTag("Items").transform;

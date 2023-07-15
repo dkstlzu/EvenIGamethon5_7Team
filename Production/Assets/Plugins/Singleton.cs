@@ -18,5 +18,16 @@ namespace dkstlzu.Utility
                 return _instance;
             }
         }
+
+        public static T CreateIfNull()
+        {
+            if (_instance == null)
+            {
+                _instance = new GameObject($"{typeof(T)} instance").AddComponent<T>();
+            }
+
+            return _instance;
+        }
+        
     }
 }

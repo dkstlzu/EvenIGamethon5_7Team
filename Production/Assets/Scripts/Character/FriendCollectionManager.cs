@@ -56,12 +56,12 @@ namespace MoonBunny
             }
 
             _gameManager = GameManager.instance;
-            if (_gameManager) _gameManager.LoadCollection();
+            if (_gameManager) _gameManager.LoadCollection(this);
         }
 
         private void OnDestroy()
         {
-            if (_gameManager) _gameManager.SaveCollection();
+            if (_gameManager) _gameManager.SaveCollection(this);
         }
 
         public void Collect(FriendName name)

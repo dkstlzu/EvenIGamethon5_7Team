@@ -49,10 +49,11 @@ MonoBehaviour:
   GridTransform:
     transform: {fileID: 8124042349635491868}
     GridPosition: {x: 0, y: 0}
-  _type: 0
-  Score: 0
+  InvokeOnCollision: 1
+  _type: 6
+  Score: 10
   _audioSource: {fileID: 0}
-  _renderer: {fileID: 0}
+  _renderer: {fileID: 7581157464681463720}
 --- !u!61 &9141902299460575830
 BoxCollider2D:
   m_ObjectHideFlags: 0

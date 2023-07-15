@@ -1,13 +1,14 @@
 ﻿using System;
-using TreeEditor;
-using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEngine;
+
+#if UNITY_EDITOR
+using UnityEditor.SceneManagement;
+#endif
 
 namespace MoonBunny
 {
-    [ExecuteInEditMode]
-    public class GridObject : MonoBehaviour
+    [ExecuteAlways]
+    public class GridObject : FieldObject
     {
         [HideInInspector] public GridTransform GridTransform;
 

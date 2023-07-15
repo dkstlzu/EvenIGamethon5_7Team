@@ -39,14 +39,18 @@ namespace MoonBunny
         public int Score;
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private SpriteRenderer _renderer;
+        
 
         public static event Action<Item> OnItemTaken;
 
         public virtual void Taken()
         {
             OnItemTaken?.Invoke(this);
+            if (_audioSource)
             _audioSource.Play();
             _renderer.enabled = false;
+            GetComponent<Collider2D>().enabled = false;
+            Destroy(gameObject, 2);
         }
     }
 }

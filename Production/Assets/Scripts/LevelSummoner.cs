@@ -23,17 +23,12 @@ namespace MoonBunny
             _stage = GetComponent<Stage>();
         }
 
-        public void Summon(GameObject go, Vector3 position)
-        {
-            Instantiate(go, position, Quaternion.identity);
-        }
-
         public void SummonRicecakes()
         {
             int xmin = GridTransform.GridXMin;
             int xmax = GridTransform.GridXMax;
             int ymin = 0;
-            int ymax = _stage.EndlineHeight;
+            int ymax = _stage.Spec.Height;
 
             int summonNumber = 0;
             List<Vector2Int> summonPositionList = new List<Vector2Int>();
@@ -49,7 +44,7 @@ namespace MoonBunny
 
                 Vector2Int randomGridPosition = new Vector2Int(randomX, randomY);
 
-                if (!summonPositionList.Contains(randomGridPosition))
+                if (!summonPositionList.Contains(randomGridPosition) && !GridTransform.HasGridObject(randomGridPosition))
                 {
                     summonPositionList.Add(randomGridPosition);
                     summonNumber++;

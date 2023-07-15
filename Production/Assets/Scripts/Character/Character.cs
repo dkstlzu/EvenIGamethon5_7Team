@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System;
+using UnityEditor;
 using UnityEngine;
 
 namespace MoonBunny
@@ -21,7 +22,11 @@ namespace MoonBunny
         public int CurrentHp
         {
             get => Friend.CurrentHp;
-            set => Friend.CurrentHp = value;
+            set
+            {
+                Friend.CurrentHp = value;
+                GameManager.instance.Stage.UI.LoseHP();
+            }
         }
 
         public bool LookingRight => !_renderer.flipX;
@@ -29,12 +34,15 @@ namespace MoonBunny
         protected override void Awake()
         {
             base.Awake();
-
-            CurrentHp = Friend.MaxHp;
             
             _isGrounded = new IsGrounded();
             _isGrounded.Type = GroundCheckType.Line;
             _isGrounded.TargetTransform = transform;
+        }
+
+        private void Start()
+        {
+            CurrentHp = Friend.MaxHp;
         }
 
         protected override void Update()
@@ -65,7 +73,7 @@ namespace MoonBunny
 
         public void FlipDirection()
         {
-            _rigidbody.FlipXDirection();
+            _rigidbody.Move(new Vector2(-_rigidbody.Velocity.x, _rigidbody.Velocity.y));
         }
 
         public void Hit()

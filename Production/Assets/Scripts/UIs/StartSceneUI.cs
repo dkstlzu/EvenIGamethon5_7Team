@@ -55,11 +55,11 @@ namespace MoonBunny.UIs
         {
             _gameManager = GameManager.instance;
 
-            if (!_gameManager.Stage1Clear) Stage2Button.interactable = false;
-            if (!_gameManager.Stage2Clear) Stage3Button.interactable = false;
-            if (!_gameManager.Stage3Clear) Stage4Button.interactable = false;
-            if (!_gameManager.Stage4Clear) Stage5Button.interactable = false;
-            if (!_gameManager.Stage5Clear) StageChallengeButton.interactable = false;
+            Stage2Button.interactable = _gameManager.Stage1Clear;
+            Stage3Button.interactable = _gameManager.Stage2Clear;
+            Stage4Button.interactable = _gameManager.Stage3Clear;
+            Stage5Button.interactable = _gameManager.Stage4Clear;
+            StageChallengeButton.interactable = _gameManager.Stage5Clear;
 
             if (!_showCutScene)
             {

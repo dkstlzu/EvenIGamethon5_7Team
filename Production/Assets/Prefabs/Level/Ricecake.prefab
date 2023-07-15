@@ -136,6 +136,7 @@ MonoBehaviour:
   GridTransform:
     transform: {fileID: 4158881762286901858}
     GridPosition: {x: 0, y: 0}
+  InvokeOnCollision: 1
   Score: 10
   _headRenerer: {fileID: 1838160478450083354}
   _topRenerer: {fileID: 5480316791527243968}
