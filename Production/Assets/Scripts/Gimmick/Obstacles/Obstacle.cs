@@ -8,6 +8,10 @@ namespace MoonBunny
         None = -1,
         PinWheel = 0,
         SpiderWeb,
+        Bee,
+        CarnivorousFlower,
+        Crow,
+        Thunder,
         ShootingStar,
     }
     
