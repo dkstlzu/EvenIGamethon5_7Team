@@ -37,13 +37,13 @@ namespace MoonBunny
         public bool isFirstPlay;
         [SerializeField] private GameObject _tutorialUIGO;
 
-        public event Action<string> OnStageSceneLoaded;
-        public event Action<string> OnStageSceneUnloaded;
+        public event Action OnStageSceneLoaded;
+        public event Action OnStageSceneUnloaded;
         
 #if UNITY_EDITOR
         public bool useSaveSystem;
 #endif
-
+        
         private void Awake()
         {
 #if UNITY_EDITOR
@@ -59,29 +59,27 @@ namespace MoonBunny
 
             isFirstPlay = PlayerPrefs.GetInt("MoonBunnyFirstPlay", 1) > 0 ? true : false;
 
-            SCB = new SceneLoadCallbackSetter(SceneName.GetNames());
+            SCB = new SceneLoadCallbackSetter(SceneName.Names);
 
             if (isFirstPlay)
             {
-                SCB.SceneLoadCallBackDict[SceneName.Stage1] += FirstPlayTutorialOn;
+                SCB.SceneLoadCallBackDict[SceneName.Stage1_1] += FirstPlayTutorialOn;
             }
-            
-            SCB.SceneLoadCallBackDict[SceneName.Stage1] += () => OnStageSceneLoaded?.Invoke(SceneName.Stage1);
-            SCB.SceneLoadCallBackDict[SceneName.Stage2] += () => OnStageSceneLoaded?.Invoke(SceneName.Stage2);
-            SCB.SceneLoadCallBackDict[SceneName.Stage3] += () => OnStageSceneLoaded?.Invoke(SceneName.Stage3);
-            SCB.SceneLoadCallBackDict[SceneName.Stage4] += () => OnStageSceneLoaded?.Invoke(SceneName.Stage4);
-            SCB.SceneLoadCallBackDict[SceneName.Stage5] += () => OnStageSceneLoaded?.Invoke(SceneName.Stage5);
-            SCB.SceneLoadCallBackDict[SceneName.StageChallenge] += () => OnStageSceneLoaded?.Invoke(SceneName.StageChallenge);
-            
-            SCB.SceneUnloadCallBackDict[SceneName.Stage1] += () => OnStageSceneUnloaded?.Invoke(SceneName.Stage1);
-            SCB.SceneUnloadCallBackDict[SceneName.Stage2] += () => OnStageSceneUnloaded?.Invoke(SceneName.Stage2);
-            SCB.SceneUnloadCallBackDict[SceneName.Stage3] += () => OnStageSceneUnloaded?.Invoke(SceneName.Stage3);
-            SCB.SceneUnloadCallBackDict[SceneName.Stage4] += () => OnStageSceneUnloaded?.Invoke(SceneName.Stage4);
-            SCB.SceneUnloadCallBackDict[SceneName.Stage5] += () => OnStageSceneUnloaded?.Invoke(SceneName.Stage5);
-            SCB.SceneUnloadCallBackDict[SceneName.StageChallenge] += () => OnStageSceneUnloaded?.Invoke(SceneName.StageChallenge);
 
-            OnStageSceneLoaded += (name) => FindDefaultStartPosition();
-            OnStageSceneLoaded += (name) => FindStageObject();
+            for (int i = 2; i < SceneName.Names.Length; i++)
+            {
+                SCB.SceneLoadCallBackDict[SceneName.Names[i]] += () =>
+                {
+                    OnStageSceneLoaded?.Invoke();
+                };
+                SCB.SceneUnloadCallBackDict[SceneName.Names[i]] += () =>
+                {
+                    OnStageSceneUnloaded?.Invoke();
+                };
+            }
+
+            OnStageSceneLoaded += () => FindDefaultStartPosition();
+            OnStageSceneLoaded += () => FindStageObject();
         }
 
         private void Start()
@@ -97,8 +95,6 @@ namespace MoonBunny
         private void OnApplicationQuit()
         {
             SaveProgress();
-            
-            SCB.Dispose();
         }
 
         public void LoadProgress()
@@ -161,7 +157,7 @@ namespace MoonBunny
         public void FirstPlayTutorialOn()
         {
             Instantiate(_tutorialUIGO).GetComponent<TutorialUI>().On();
-            SCB.SceneLoadCallBackDict[SceneName.Stage1] -= FirstPlayTutorialOn;
+            SCB.SceneLoadCallBackDict[SceneName.Stage1_1] -= FirstPlayTutorialOn;
             PlayerPrefs.SetInt("MoonBunnyFirstPlay", 0);
         }
         
@@ -172,12 +168,18 @@ namespace MoonBunny
 
         void FindDefaultStartPosition()
         {
-            StartPosition = GameObject.FindWithTag("DefaultStartPosition").transform;
+            CoroutineHelper.OnNextFrame(() =>
+            {
+                StartPosition = GameObject.FindWithTag("DefaultStartPosition").transform;
+            });
         }
 
         void FindStageObject()
         {
-            Stage = FindObjectOfType<Stage>();
+            CoroutineHelper.OnNextFrame(() =>
+            {
+                Stage = GameObject.FindWithTag("Level").GetComponent<Stage>();
+            });
         }
 
         public void GameOver()

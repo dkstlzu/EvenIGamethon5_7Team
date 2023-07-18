@@ -11,20 +11,24 @@ namespace MoonBunny
     {
         public const string Loading = "0. Loading";
         public const string Start = "1. Start";
-        public const string Stage1 = "2. Stage1";
-        public const string Stage2 = "3. Stage2";
-        public const string Stage3 = "4. Stage3";
-        public const string Stage4 = "5. Stage4";
-        public const string Stage5 = "6. Stage5";
+        public const string Stage1_1 = "2. Stage1_1";
+        public const string Stage1_2 = "2. Stage1_2";
+        public const string Stage1_3 = "2. Stage1_3";
+        public const string Stage2_1 = "3. Stage2_1";
+        public const string Stage2_2 = "3. Stage2_2";
+        public const string Stage2_3 = "3. Stage2_3";
+        public const string Stage3_1 = "4. Stage3_1";
+        public const string Stage3_2 = "4. Stage3_2";
+        public const string Stage3_3 = "4. Stage3_3";
+        public const string Stage4_1 = "5. Stage4_1";
+        public const string Stage4_2 = "5. Stage4_2";
+        public const string Stage4_3 = "5. Stage4_3";
+        public const string Stage5_1 = "6. Stage5_1";
+        public const string Stage5_2 = "6. Stage5_2";
+        public const string Stage5_3 = "6. Stage5_3";
         public const string StageChallenge = "7. Stage Challenge";
 
-        public static string[] GetNames()
-        {
-            return new string[]
-            {
-                Loading, Start, Stage1, Stage2, Stage3, Stage4, Stage5, StageChallenge
-            };
-        }
+        public static string[] Names = {Loading, Start, Stage1_1, Stage1_2, Stage1_3, Stage2_1, Stage2_2, Stage2_3, Stage3_1, Stage3_2, Stage3_3, Stage4_1, Stage4_2, Stage4_3, Stage5_1, Stage5_2, Stage5_3, StageChallenge};
     }
     public class LoadingScene : MonoBehaviour
     {
@@ -104,7 +108,7 @@ namespace MoonBunny
             }
             else
             {
-                SceneManager.LoadScene(SceneName.GetNames()[NextScene]);
+                SceneManager.LoadScene(SceneName.Names[NextScene]);
             }
         }
     }

@@ -8,6 +8,7 @@ namespace MoonBunny
         public float FlySpeed;
         [SerializeField] private MoonBunnyRigidbody _rigidbody;
         [SerializeField] private Transform _pickingPoint;
+        [SerializeField] private Animator _animator;
         private int _flyingDirection = 0;
         private TransformForce _picker;
         private MoonBunnyRigidbody _pickingRigidbody;
@@ -36,6 +37,8 @@ namespace MoonBunny
                 }
 
                 _rigidbody.StopMove();
+                _renderer.flipX = !_renderer.flipX;
+                _animator.SetBool("Attack", false);
             }
         }
 
@@ -67,12 +70,16 @@ namespace MoonBunny
             if (direciton > 0)
             {
                 _rigidbody.Move(new Vector2(FlySpeed, 0));
+                _renderer.flipX = true;
             } else if (direciton < 0)
             {
                 _rigidbody.Move(new Vector2(-FlySpeed, 0));
+                _renderer.flipX = false;
             }
 
             _flyingDirection = direciton;
+            
+            _animator.SetBool("Attack", true);
         }
     }
 }

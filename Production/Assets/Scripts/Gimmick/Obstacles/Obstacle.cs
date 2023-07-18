@@ -31,8 +31,8 @@ namespace MoonBunny
             }
         }
 
-        [SerializeField] private AudioSource _audioSource;
-        [SerializeField] private SpriteRenderer _renderer;
+        [SerializeField] protected AudioSource _audioSource;
+        [SerializeField] protected SpriteRenderer _renderer;
 
         public override void Invoke(MoonBunnyRigidbody with)
         {

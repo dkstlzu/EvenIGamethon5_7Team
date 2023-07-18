@@ -101,8 +101,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 511804839
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f86792ca2052e44fb82023e8b8d3b4c2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -165,6 +165,7 @@ MonoBehaviour:
   GridTransform:
     transform: {fileID: 7341699881150526479}
     GridPosition: {x: 0, y: 0}
+  InvokeOnCollision: 1
   HeartPrefab: {fileID: 2720095451388572036, guid: 8edb841a54188ff48ba3f757a60da215, type: 3}
   HeartPotential: 0.3
   StarCandyPrefab: {fileID: 7958158822191411938, guid: 52f6842611c0f0949916eb3a77b44ae2, type: 3}

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using dkstlzu.Utility;
+using MoonBunny.Dev;
 using UnityEngine;
 
 namespace MoonBunny
@@ -50,6 +51,7 @@ namespace MoonBunny
 
         public GridObject GridObject;
         public List<MoonBunnyCollider.ColliderLayerMask> ColliderLayerList;
+        public bool isGrounded;
 
         public Vector2 Velocity => _movement.Velocity;
         public bool isMovingToRight => _movement.Velocity.x > 0;
@@ -115,13 +117,18 @@ namespace MoonBunny
                 OnEnterCollision?.Invoke(enterCollision);
             }
 
+            isGrounded = false;
+                
             foreach (Collision stayCollision in IntersectWith(_currentCollision, _previousCollision))
             {
+                if (stayCollision is PlatformCollision)
+                {
+                    isGrounded = true;
+                }
                 _movement.Collide(stayCollision);
             }
             
             _previousCollision = new HashSet<Collision>(_currentCollision);
-
             
             // Movement
             _movement.UpdateMove(deltaTime * MoveSacle);
@@ -184,11 +191,6 @@ namespace MoonBunny
             _movement.StartMove(GridTransform.GetVelocityByGrid(gridVelocity, Gravity));
         }
 
-        public void Jump()
-        {
-            _movement.Jump();
-        }
-        
         public void StopMove()
         {
             _movement.StopMove();
@@ -414,11 +416,6 @@ namespace MoonBunny
             StartMove(velocity.x, velocity.y);
         }
 
-        public void Jump()
-        {
-            StartMove(GridTransform.GetVelocityByGrid(GridVelocity.x, GridVelocity.y, _gravity.GravityValue));
-        }
-
         public void StopMove()
         {
             Velocity = Vector2.zero;
@@ -447,17 +444,18 @@ namespace MoonBunny
             {
                 if (platformCollision.Platform is BouncyPlatform bouncyPlatform)
                 {
-                    Vector2Int fallingGridVelocity = GridTransform.GetGridByVelocity(Velocity.x, Velocity.y, _gravity.GravityValue);
+                    Vector2Int fallingGridVelocity = GridTransform.GetGridByVelocity(Velocity.x, -Velocity.y, _gravity.GravityValue);
 
-                    if (fallingGridVelocity.y > 0) return;
+                    int targetGridVelocityX = Velocity.x >= 0 ? GridVelocity.x : -GridVelocity.x;
+                    int targetGridVelocityY = fallingGridVelocity.y / 3 * GridVelocity.y + bouncyPlatform.JumpPower;
 
-                    int targetVelocityY = -fallingGridVelocity.y / 3 + bouncyPlatform.JumpPower + GridVelocity.y;
-
-                    Vector2Int bouncyGridVelocity =  new Vector2Int(fallingGridVelocity.x, Mathf.Min(targetVelocityY, MaxGridVelocityY));
+                    Vector2Int bouncyGridVelocity =  new Vector2Int(targetGridVelocityX, Mathf.Min(targetGridVelocityY, MaxGridVelocityY));
                     
                     var gridVel = GridTransform.GetVelocityByGrid(bouncyGridVelocity, _gravity.GravityValue);
                     
-                    StartMove(Velocity.x, gridVel.y);
+                    MoonBunnyLog.print($"FallingGridVelocity {fallingGridVelocity}, GridVelocity {GridVelocity}, bouncyPower {bouncyPlatform.JumpPower}, bouncyGridVelocity {bouncyGridVelocity}, gridVel {gridVel}");
+
+                    StartMove(gridVel);
                 } else if (platformCollision.Platform is Platform platform)
                 {
                     StopMove();

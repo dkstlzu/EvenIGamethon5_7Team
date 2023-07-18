@@ -49,10 +49,12 @@ MonoBehaviour:
   GridTransform:
     transform: {fileID: 7499688134873762586}
     GridPosition: {x: 0, y: 0}
+  InvokeOnCollision: 1
   _type: 7
   Score: 10
   _audioSource: {fileID: 0}
   _renderer: {fileID: 5987550671068724122}
+  Duration: 0
 --- !u!58 &1358182683715893375
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -158,8 +160,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 511804839
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 21cb8c775421e4096915fe18192a6f63, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

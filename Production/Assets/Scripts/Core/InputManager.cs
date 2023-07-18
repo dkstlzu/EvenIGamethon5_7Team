@@ -16,8 +16,8 @@ namespace MoonBunny
             
             DisableIngameInput();
 
-            GameManager.instance.OnStageSceneLoaded += (stageName) => EnableIngameInput();
-            GameManager.instance.OnStageSceneUnloaded += (stageName) => DisableIngameInput();
+            GameManager.instance.OnStageSceneLoaded += () => EnableIngameInput();
+            GameManager.instance.OnStageSceneUnloaded += () => DisableIngameInput();
         }
 
         public void EnableIngameInput()

@@ -9,9 +9,8 @@ using UnityEditor;
 
 namespace dkstlzu.Utility
 {
-    public class SceneLoadCallbackSetter : IDisposable
+    public class SceneLoadCallbackSetter
     {
-        public static bool _initiated = false;
         public List<string> SceneNameList = new List<string>();
 
         public SceneLoadCallbackSetter(IEnumerable<string> sceneNames)
@@ -23,18 +22,6 @@ namespace dkstlzu.Utility
                 SSceneLoadCallBackDict.Add(sceneName, delegate{});
                 SSceneUnloadCallBackDict.Add(sceneName, delegate{});
             }
-
-            Init();
-            
-#if UNITY_EDITOR
-            AssemblyReloadEvents.beforeAssemblyReload += Dispose;
-#endif
-        }
-
-        [RuntimeInitializeOnLoadMethod]
-        ~SceneLoadCallbackSetter()
-        {
-            Dispose();
         }
 
         public static Dictionary<string, Action> SSceneLoadCallBackDict = new Dictionary<string, Action>();
@@ -42,14 +29,27 @@ namespace dkstlzu.Utility
         public Dictionary<string, Action> SceneLoadCallBackDict => SSceneLoadCallBackDict;
         public Dictionary<string, Action> SceneUnloadCallBackDict => SSceneUnloadCallBackDict;
 
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void Init()
         {
-            if (_initiated) return;
-
-            _initiated = true;
-
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+            SceneManager.sceneUnloaded -= OnSceneUnloaded;
+            
+            SSceneLoadCallBackDict.Clear();
+            SSceneUnloadCallBackDict.Clear();
+            
             SceneManager.sceneLoaded += OnSceneLoaded;
             SceneManager.sceneUnloaded += OnSceneUnloaded;
+        }
+
+        [InitializeOnLoadMethod]
+        static void Uninit()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+            SceneManager.sceneUnloaded -= OnSceneUnloaded;
+            
+            SSceneLoadCallBackDict.Clear();
+            SSceneUnloadCallBackDict.Clear();
         }
 
         static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -69,26 +69,11 @@ namespace dkstlzu.Utility
             Action action;
             if (!SSceneUnloadCallBackDict.TryGetValue(scene.name, out action))
             {
-                Debug.Log($"Scene CallBack do not have Scene named{scene.name}");
+                Debug.Log($"Scene CallBack do not have Scene named {scene.name}");
                 return;
             }
 
             action?.Invoke();            
-        }
-
-        public void Dispose()
-        {
-            _initiated = false;
-                        
-            SceneManager.sceneLoaded -= OnSceneLoaded;
-            SceneManager.sceneUnloaded -= OnSceneUnloaded;
-            
-            SSceneLoadCallBackDict.Clear();
-            SSceneUnloadCallBackDict.Clear();
-            
-#if UNITY_EDITOR
-            AssemblyReloadEvents.beforeAssemblyReload -= Dispose;
-#endif
         }
     }
 }

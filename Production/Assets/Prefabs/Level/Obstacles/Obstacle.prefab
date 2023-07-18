@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 511804839
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -132,12 +132,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GridTransform:
-    transform: {fileID: 0}
-    GridPosition:
-      x: 0
-      y: 0
+    transform: {fileID: 3019367796918393334}
+    GridPosition: {x: 0, y: 0}
+  InvokeOnCollision: 1
   _type: 0
-  Damage: 0
   _audioSource: {fileID: 7879473350847418822}
   _renderer: {fileID: 4570590143564065488}
 --- !u!82 &7879473350847418822

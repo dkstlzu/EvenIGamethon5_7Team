@@ -112,7 +112,7 @@ Transform:
   - {fileID: 2686131617209394370}
   - {fileID: 7785571256842894365}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2034000656419043365
 MonoBehaviour:
@@ -134,10 +134,10 @@ MonoBehaviour:
   _rigidbody: {fileID: 4521182815814504969}
   FirstJumped: 0
   Friend:
+    _spec: {fileID: 11400000, guid: de0d6d68fdeaf674f9392cccdb55f50b, type: 2}
     _name: 0
-    JumpPower: {x: 2, y: 2}
-    CurrentHp: 3
-    _renderer: {fileID: 0}
+    JumpPower: {x: 1, y: 1}
+    MagneticPower: 0
 --- !u!95 &8993331230077029172
 Animator:
   serializedVersion: 5
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44342a30f9e24963b7611ebeb9b91d16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GridJumpVelocity: {x: 2, y: 2}
+  GridJumpVelocity: {x: 1, y: 1}
   _gravity: 5
   MoveSacle: 1
   GridObject: {fileID: 2034000656419043365}
@@ -186,6 +186,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 28032
     Direciton: -1
+  isGrounded: 0
 --- !u!61 &3294111410425793835
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -301,9 +302,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 511804839
+  m_SortingLayer: 1
+  m_SortingOrder: 1
   m_Sprite: {fileID: 1171363112, guid: d97e4758b87206d419ce217ffdc763ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using dkstlzu.Utility;
+using MoonBunny.Dev;
 using UnityEditor;
 using UnityEngine;
 
@@ -17,27 +18,33 @@ namespace MoonBunny
     [Serializable]
     public class Friend
     {
+        public static int MaxHp = 3;
+
+        [SerializeField] private FriendSpec _spec;
+        
         [SerializeField] private FriendName _name;
 
         public Vector2Int JumpPower;
+        public int MagneticPower;
 
-        public static int MaxHp = 3;
-        public int CurrentHp;
         
-        [SerializeField] private SpriteRenderer _renderer;
         public FriendName Name
         {
             get => _name;
-            set
-            {
-                _name = value;
-                _renderer.sprite = PreloadedResources.instance.FriendSpriteList[(int)value];
-
-                FriendSpec spec = PreloadedResources.instance.FriendSpecList[(int)value];
-                JumpPower.x = spec.HorizontalJumpSpeed;
-                JumpPower.y = spec.VerticalJumpSpeed;
-            }
+            set => _name = value;
         }
+
+        public void SetBySpec(FriendSpec spec = null)
+        {
+            if (spec != null)
+            {
+                _spec = spec;
+            }
+
+            JumpPower = new Vector2Int(_spec.HorizontalJumpSpeed, _spec.VerticalJumpSpeed);
+            MagneticPower = _spec.MagneticPower;
+        }
+        
 
         public void Collect()
         {

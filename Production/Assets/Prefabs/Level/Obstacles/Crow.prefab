@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 6025101029061996136}
   - component: {fileID: 7654082840996625779}
   - component: {fileID: 5877526524361088950}
+  - component: {fileID: 328350423277327692}
   m_Layer: 8
   m_Name: Crow
   m_TagString: Untagged
@@ -146,7 +147,7 @@ Transform:
   - {fileID: 3065762815980239553}
   - {fileID: 767583652419479791}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6025101029061996136
 MonoBehaviour:
@@ -170,6 +171,7 @@ MonoBehaviour:
   FlySpeed: 5
   _rigidbody: {fileID: 5877526524361088950}
   _pickingPoint: {fileID: 3065762815980239553}
+  _animator: {fileID: 328350423277327692}
 --- !u!61 &7654082840996625779
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -237,6 +239,28 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 2048
     Direciton: 69632
+  isGrounded: 0
+--- !u!95 &328350423277327692
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3897835639789149897}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3cb8916eb6762924b9d1fc7123f0382f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4893652534188495665
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,10 +331,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 511804839
+  m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300058, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
+  m_Sprite: {fileID: -6027949801594893719, guid: 106c86331284a604b9e8b5593f414ee1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

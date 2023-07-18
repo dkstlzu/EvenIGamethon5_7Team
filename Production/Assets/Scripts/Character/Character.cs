@@ -1,5 +1,5 @@
 ﻿using System;
-using UnityEditor;
+using dkstlzu.Utility;
 using UnityEngine;
 
 namespace MoonBunny
@@ -17,15 +17,21 @@ namespace MoonBunny
         public bool FirstJumped;
         public Friend Friend;
 
-        private IsGrounded _isGrounded;
-
+        private int _currentHP;
         public int CurrentHp
         {
-            get => Friend.CurrentHp;
+            get => _currentHP;
             set
             {
-                Friend.CurrentHp = value;
-                GameManager.instance.Stage.UI.LoseHP();
+                _currentHP = value;
+
+                if (GameManager.instance != null)
+                {
+                    if (GameManager.instance.Stage != null)
+                    {
+                        GameManager.instance.Stage.UI.LoseHP();
+                    }
+                }
             }
         }
 
@@ -35,13 +41,18 @@ namespace MoonBunny
         {
             base.Awake();
             
-            _isGrounded = new IsGrounded();
-            _isGrounded.Type = GroundCheckType.Line;
-            _isGrounded.TargetTransform = transform;
+#if UNITY_EDITOR
+            if (!UnityEditor.EditorApplication.isPlaying) return;
+#endif
+            
+            _rigidbody.GridJumpVelocity = Friend.JumpPower;
         }
 
         private void Start()
         {
+#if UNITY_EDITOR
+            if (!UnityEditor.EditorApplication.isPlaying) return;
+#endif
             CurrentHp = Friend.MaxHp;
         }
 
@@ -49,7 +60,7 @@ namespace MoonBunny
         {
             base.Update();
 #if UNITY_EDITOR
-            if (!EditorApplication.isPlaying) return;
+            if (!UnityEditor.EditorApplication.isPlaying) return;
 #endif
             if (_rigidbody.isMovingToLeft)
             {
@@ -64,9 +75,9 @@ namespace MoonBunny
 
         public void StartJump()
         {
-            if (FirstJumped) return;
+            if (FirstJumped || !_rigidbody.isGrounded) return;
             
-            _rigidbody.Jump();
+            _rigidbody.Move(new Vector2Int(1, 4));
             _animator.SetBool(_jumpHash, true);
             FirstJumped = true;
         }
@@ -79,19 +90,6 @@ namespace MoonBunny
         public void Hit()
         {
             CurrentHp -= 1;
-        }
-
-        private void OnDrawGizmos()
-        {
-            if (_isGrounded == null) return;
-
-            if (_isGrounded.Type == GroundCheckType.Line)
-            {
-                Gizmos.DrawLine(transform.position, transform.position + Vector3.down * _isGrounded.CheckDistance);
-            } else if (_isGrounded.Type == GroundCheckType.Box)
-            {
-                Gizmos.DrawCube(transform.position, Vector3.one);
-            }
         }
     }
 }

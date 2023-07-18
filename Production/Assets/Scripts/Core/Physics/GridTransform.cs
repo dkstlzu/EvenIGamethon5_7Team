@@ -97,14 +97,29 @@ namespace MoonBunny
 
         public static Vector2 GetVelocityByGrid(int x, int y, float gravity)
         {
-            float realX = x * GridSetting.GridWidth;
-            float realY = y * GridSetting.GridHeight;
-            
-            float yVelocity = Mathf.Sqrt(realY * gravity * 2);
-            float xVelocity = realX / (yVelocity / gravity * 2);
-            
+            if (y <= 0)
+            {
+                Debug.LogWarning($"GetVelocityByGrid wrong usage. y must be positive");
+                return Vector2.zero;
+            }
 
+            if (gravity <= 0)
+            {
+                Debug.LogWarning($"GetVelocityByGrid wrong usage. gravity must be positive");
+                return Vector2.zero;
+            }
+            
+            float xDistance = x * GridSetting.GridWidth;
+            float yDistance = y * GridSetting.GridHeight;
+            
+            float yVelocity = Mathf.Sqrt(yDistance * gravity * 2);
+            
+            float peekTime = yVelocity / gravity;
+            float xVelocity = xDistance / (peekTime * 2);
+            
             Vector2 result = new Vector2(xVelocity, yVelocity);
+            
+            MoonBunnyLog.print($"GetVelocityByGrid x : {x}, y {y}, xd {xDistance}, yd {yDistance}, peekTime {peekTime}, result {result}");
             
             return result;
         }
@@ -114,14 +129,29 @@ namespace MoonBunny
             return GetVelocityByGrid(velocity.x, velocity.y, gravity);
         }
 
-        public static Vector2Int GetGridByVelocity(float x, float y, float grvaity)
+        public static Vector2Int GetGridByVelocity(float x, float y, float gravity)
         {
-            float peekTime = Mathf.Abs(y / grvaity);
+            if (y <= 0)
+            {
+                Debug.LogWarning($"GetGridByVelocity wrong usage. y must be positive");
+                return Vector2Int.zero;
+            }
+
+            if (gravity <= 0)
+            {
+                Debug.LogWarning($"GetGridByVelocity wrong usage. gravity must be positive");
+                return Vector2Int.zero;
+            }
+            
+            float peekTime = y / gravity;
 
             float xDistance = x * peekTime * 2;
             float yDistance = y * peekTime / 2;
 
-            return ToGrid(new Vector2(xDistance, yDistance) + OriginInReal);
+            Vector2Int xGrid = ToGrid(new Vector2(xDistance, 0) + OriginInReal);
+            Vector2Int yGrid = ToGrid(new Vector2(0, yDistance) + OriginInReal);
+
+            return new Vector2Int(xGrid.x, yGrid.y);
         }
 
         public static Vector2Int GetGridByVelocity(Vector2 velocity, float gravity)

@@ -18,7 +18,6 @@ namespace MoonBunny.UIs
         [Header("Main UI Flow")]
         public CanvasGroup IntroCanvasGroup;
         public CanvasGroup MainIntroCanvasGroup;
-        public CanvasGroup MainCanvasGroup;
         public CanvasGroup FriendSelectCanvasGroup;
         public CanvasGroup StageSelectCanvasGroup;
 
@@ -29,10 +28,6 @@ namespace MoonBunny.UIs
         public CanvasGroup InventoryUICanvasGroup;
         public CanvasGroup StoreUICanvasGroup;
 
-        [Header("Sub Buttons")] 
-        public CanvasGroup SettingButtonCanvasGroup;
-        public CanvasGroup BackToFriendSelectButtonCanvasGroup;
-
         [Header("Stage Buttons")]
         public Button Stage1Button;
         public Button Stage2Button;
@@ -40,8 +35,6 @@ namespace MoonBunny.UIs
         public Button Stage4Button;
         public Button Stage5Button;
         public Button StageChallengeButton;
-
-        public GameObject FriendLibraryPrefab;
 
         private GameManager _gameManager;
 
@@ -123,16 +116,27 @@ namespace MoonBunny.UIs
         {
             FadeIn(StageSelectCanvasGroup);
             FadeOut(FriendSelectCanvasGroup);
-            FadeOut(SettingButtonCanvasGroup);
-            FadeIn(BackToFriendSelectButtonCanvasGroup);
         }
 
         public void OnBackToFriendSelectButtonClicked()
         {
             FadeOut(StageSelectCanvasGroup);                    
             FadeIn(FriendSelectCanvasGroup);                  
-            FadeIn(SettingButtonCanvasGroup);                 
-            FadeOut(BackToFriendSelectButtonCanvasGroup);       
+        }
+
+        public void OnStartButtonClicked()
+        {
+            
+        }
+
+        public void OnDiamondPlusButtonClicked()
+        {
+            
+        }
+
+        public void OnGoldPlusButtonClicked()
+        {
+            
         }
         
         public void OnPressTheAnyKeyIntro(InputAction.CallbackContext callbackContext)
@@ -143,7 +147,6 @@ namespace MoonBunny.UIs
             CoroutineHelper.Delay(() =>
             {
                 FadeOut(MainIntroCanvasGroup);
-                FadeIn(MainCanvasGroup);
                 FadeIn(FriendSelectCanvasGroup);
             }, 5f);
 
@@ -163,8 +166,6 @@ namespace MoonBunny.UIs
             GetComponent<Animator>().enabled = false;
             IntroCanvasGroup.alpha = 0;
             IntroCanvasGroup.blocksRaycasts = false;
-            MainCanvasGroup.alpha = 1;
-            MainCanvasGroup.blocksRaycasts = true;
             FriendSelectCanvasGroup.alpha = 1;
             FriendSelectCanvasGroup.blocksRaycasts = true;
         }
@@ -181,13 +182,12 @@ namespace MoonBunny.UIs
         public void OnStageButtonClicked(string name)
         {
             StageName stageName;
-            if (!StageName.TryParse(name, true, out stageName))
+            if (!StageName.TryParse(name+"1", true, out stageName))
             {
                 Debug.LogError("StageName is wrong while stage button clicked");
                 return;
             }
 
-            print(name + " " + StringValue.GetStringValue(stageName));
             SceneManager.LoadScene(StringValue.GetStringValue(stageName));
         }
 

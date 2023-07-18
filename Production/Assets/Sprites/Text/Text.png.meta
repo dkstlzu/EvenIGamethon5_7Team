@@ -136,7 +136,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Text_0
+      name: StageSelect5
       rect:
         serializedVersion: 2
         x: 15
@@ -144,7 +144,7 @@ TextureImporter:
         width: 592
         height: 82
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -152,6 +152,279 @@ TextureImporter:
       bones: []
       spriteID: 2e07e1463dbbba14597bfbba315e47fb
       internalID: 1213473683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Start
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 1199
+        width: 227
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b227215b484cc54d8ce05b0c8f2f303
+      internalID: 691126336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StageSelect4
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 1067
+        width: 338
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 207b222aff7e2c240aace3efb5878f3f
+      internalID: -949540266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StageSelect3
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 933
+        width: 342
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a70054172c98b484b9b9acbe184992bd
+      internalID: -365189970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StageSelect2
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 799
+        width: 275
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50bfdb6e5ece0bd43a036bfa20b9660f
+      internalID: -675309943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StageSelect1
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 673
+        width: 281
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a1fb7bc942deea4dbc05b129b427f8a
+      internalID: 1964536759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FriedLibraryTitle
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 960
+        width: 508
+        height: 164
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 437188ece5dc17549a8419fcf72851ef
+      internalID: 1043963040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GotoStageSelect
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 819
+        width: 335
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b9b795c617d73340a188ad86844caef
+      internalID: -809182450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Touch
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 678
+        width: 301
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d1438de5fc9af944ab071f4501772bb
+      internalID: 1993187244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collection
+      rect:
+        serializedVersion: 2
+        x: 805
+        y: 696
+        width: 87
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5af94b4c5fecaa648b1b9bfef7b30d11
+      internalID: 387477235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CountdownOne
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 319
+        width: 250
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 947bc9cfd56ca2347934be7cfbb481b6
+      internalID: -1603050900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CountdownTwo
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 320
+        width: 250
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f40c041a853232a40a652814b1a40353
+      internalID: 1115430312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CountdownThree
+      rect:
+        serializedVersion: 2
+        x: 521
+        y: 318
+        width: 250
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94c7e76524d2692499cbe45d37f89eb6
+      internalID: -1577799527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CountdownStart
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 18
+        width: 885
+        height: 232
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f14baaa44f13c124199930611864a2ea
+      internalID: 157829923
       vertices: []
       indices: 
       edges: []
@@ -167,7 +440,20 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Text_0: 1213473683
+      Collection: 387477235
+      CountdownOne: -1603050900
+      CountdownStart: 157829923
+      CountdownThree: -1577799527
+      CountdownTwo: 1115430312
+      FriedLibraryTitle: 1043963040
+      GotoStageSelect: -809182450
+      StageSelect1: 1964536759
+      StageSelect2: -675309943
+      StageSelect3: -365189970
+      StageSelect4: -949540266
+      StageSelect5: 1213473683
+      Start: 691126336
+      Touch: 1993187244
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

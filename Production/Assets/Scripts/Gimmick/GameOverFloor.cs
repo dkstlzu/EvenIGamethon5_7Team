@@ -10,15 +10,11 @@ namespace MoonBunny
         {
             base.Invoke(with);
             
-            MoonBunnyLog.print("HI");
-
             if (with.tag == "Player")
             {
-                MoonBunnyLog.print("HI Hello");
                 Character character = with.GetComponent<Character>();
                 if (character.FirstJumped)
                 {
-                    MoonBunnyLog.print("HI Hello World");
                     GameManager.instance.GameOver();
                 }
             }

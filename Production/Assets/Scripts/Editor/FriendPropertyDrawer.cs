@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using dkstlzu.Utility;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -11,40 +12,42 @@ namespace MoonBunny.CustomEditors
     public class FriendPropertyDrawer : PropertyDrawer
     {
         private const string SpecPath = "Assets/Resources/Specs/Friend/";
+        private const string Space = "   ";
+
+        private VisualElement root;
         
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            VisualElement root = new VisualElement();
+            root = new VisualElement();
             
             Foldout foldout = new Foldout();
             foldout.text = "Friend";
 
-            PropertyField JumpPower = new PropertyField(property.FindPropertyRelative("JumpPower"));
-            PropertyField HP = new PropertyField(property.FindPropertyRelative("CurrentHp"));
+            PropertyField spec = new PropertyField(property.FindPropertyRelative("_spec"));
+            Label nameSP = new Label("Name" + Space + property.FindPropertyRelative("_name").enumNames[property.FindPropertyRelative("_name").enumValueIndex]);
+            Label jumpPower = new Label("JumpPower" + Space + property.FindPropertyRelative("JumpPower.x").intValue + Space + property.FindPropertyRelative("JumpPower.y").intValue);
+            Label magneticPower = new Label("MagneticPower" + Space + property.FindPropertyRelative("MagneticPower").intValue);
 
-            SerializedProperty nameSP = property.FindPropertyRelative("_name");
-            
-            EnumField namefield = new EnumField("Type", Enum.Parse<FriendName>(nameSP.enumNames[nameSP.enumValueIndex]));
+            spec.RegisterValueChangeCallback((evt) => OnSpecChanged((FriendSpec)evt.changedProperty.objectReferenceValue, property));
 
-            namefield.RegisterValueChangedCallback((ce) => OnNameChanged((FriendName)ce.newValue, property));
-
-            foldout.Insert(0, namefield);
-            foldout.Add(JumpPower);
-            foldout.Add(HP);
+            foldout.Add(spec);
+            foldout.Add(nameSP);
+            foldout.Add(jumpPower);
+            foldout.Add(magneticPower);
             
             root.Add(foldout);
             return root;
         }
 
-        private void OnNameChanged(FriendName newName, SerializedProperty property)
+        private void OnSpecChanged(FriendSpec changedSpec, SerializedProperty property)
         {
-            string finalPath = Path.Combine(SpecPath, newName.ToString() + ".asset");
-
-            FriendSpec friendSpec = AssetDatabase.LoadAssetAtPath<FriendSpec>(finalPath);
-
-            property.FindPropertyRelative("_name").intValue = (int)(newName);
-            // property.FindPropertyRelative("JumpPower").intValue = friendSpec.HorizontalJumpSpeed;
-            // property.FindPropertyRelative("JumpPower").intValue = friendSpec.VerticalJumpSpeed;
+            if (changedSpec == null) return;
+            
+            property.FindPropertyRelative("_name").intValue = (int)(changedSpec.Name);
+            property.FindPropertyRelative("JumpPower.x").intValue = changedSpec.HorizontalJumpSpeed;
+            property.FindPropertyRelative("JumpPower.y").intValue = changedSpec.VerticalJumpSpeed;
+            property.FindPropertyRelative("MagneticPower").intValue = changedSpec.MagneticPower;
+            
             property.serializedObject.ApplyModifiedProperties();
             property.serializedObject.Update();
         }
