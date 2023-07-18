@@ -397,7 +397,31 @@ namespace MoonBunny
         
         private string GetTargetPath(string type)
         {
-            return Path.Combine(GimmickPath, type + ".prefab");
+            string result = "";
+            
+            switch (type)
+            {
+                case "Rocket":
+                case "Magnet":
+                case "Item":
+                case "Heart":
+                    result = Path.Combine(GimmickPath, "Items", type + ".prefab");
+                    break;
+                case "Bee":
+                case "CarnivorousFlower":
+                case "Crow":
+                case "Obstacle":
+                case "PinWheel":
+                case "ShootingStar":
+                case "SpiderWeb":
+                    result = Path.Combine(GimmickPath, "Obstacles", type + ".prefab");
+                    break;
+                default:
+                    result = Path.Combine(GimmickPath, type + ".prefab");
+                    break;
+            }
+            
+            return result;
         }
 
         private GameObject GetTargetPrefab(string type)
@@ -405,8 +429,5 @@ namespace MoonBunny
             return AssetDatabase.LoadAssetAtPath<GameObject>(GetTargetPath(type));
         }
 #endif
-
-
-
     }
 }

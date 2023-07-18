@@ -453,8 +453,6 @@ namespace MoonBunny
                     
                     var gridVel = GridTransform.GetVelocityByGrid(bouncyGridVelocity, _gravity.GravityValue);
                     
-                    MoonBunnyLog.print($"FallingGridVelocity {fallingGridVelocity}, GridVelocity {GridVelocity}, bouncyPower {bouncyPlatform.JumpPower}, bouncyGridVelocity {bouncyGridVelocity}, gridVel {gridVel}");
-
                     StartMove(gridVel);
                 } else if (platformCollision.Platform is Platform platform)
                 {

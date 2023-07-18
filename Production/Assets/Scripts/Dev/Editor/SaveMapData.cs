@@ -6,7 +6,7 @@ namespace MoonBunny.Dev.Editor
 {
     public class SaveMapData
     {
-        [MenuItem("Dev/SaveMapData", priority = 1)]
+        [MenuItem("Dev/MapData/Save", priority = 0)]
         public static void SaveData()
         {
             string fileName = GetFileName();
@@ -21,7 +21,7 @@ namespace MoonBunny.Dev.Editor
             system.SaveCSV();
         }
         
-        [MenuItem("Dev/LoadMapData", priority = 1)]
+        [MenuItem("Dev/MapData/Load", priority = 1)]
         public static void LoadData()
         {
             string fileName = GetFileName();
@@ -34,6 +34,19 @@ namespace MoonBunny.Dev.Editor
             SaveLoadSystem system = new SaveLoadSystem("MapData", fileName, "csv");
             
             system.LoadCSV();
+        }
+
+        [MenuItem("Dev/MapData/Clear", priority = 2)]
+        public static void ClearMapData()
+        {
+            Gimmick[] gimmicks = GameObject.FindObjectsByType<Gimmick>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+
+            for (int i = 0; i < gimmicks.Length; i++)
+            {
+                if (gimmicks[i] is GameOverFloor) continue;
+                
+                MonoBehaviour.DestroyImmediate(gimmicks[i].gameObject);
+            }
         }
 
         private static string GetFileName()

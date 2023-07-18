@@ -119,8 +119,6 @@ namespace MoonBunny
             
             Vector2 result = new Vector2(xVelocity, yVelocity);
             
-            MoonBunnyLog.print($"GetVelocityByGrid x : {x}, y {y}, xd {xDistance}, yd {yDistance}, peekTime {peekTime}, result {result}");
-            
             return result;
         }
 
@@ -170,8 +168,6 @@ namespace MoonBunny
             float changedPeekTime = changedYVelocity / changingGravity;
             float changedXVelocity = xDistance / (changedPeekTime * 2);
             
-            Debug.Log($"Convert Velocity previous : {xVelocity}, {yVelocity}, {previousGravity}.\nNext : {changedXVelocity}, {changedYVelocity}, {changingGravity}");
-
             return new Vector2(changedXVelocity, changedYVelocity);
         }
         
