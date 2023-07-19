@@ -166,8 +166,8 @@ MonoBehaviour:
     GridPosition: {x: 0, y: 2}
   InvokeOnCollision: 1
   _type: 0
-  _audioSource: {fileID: 0}
   _renderer: {fileID: 915102327818019555}
+  _audioClip: {fileID: 0}
   FlySpeed: 5
   _rigidbody: {fileID: 5877526524361088950}
   _pickingPoint: {fileID: 3065762815980239553}
@@ -215,7 +215,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 40, y: 2}
   m_EdgeRadius: 0
 --- !u!114 &5877526524361088950
 MonoBehaviour:
@@ -229,7 +229,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44342a30f9e24963b7611ebeb9b91d16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GridJumpVelocity: {x: 0, y: 0}
   _gravity: 0
   MoveSacle: 1
   GridObject: {fileID: 6025101029061996136}
@@ -240,6 +239,8 @@ MonoBehaviour:
       m_Bits: 2048
     Direciton: 69632
   isGrounded: 0
+  DefaultHorizontalSpeed: 1
+  BouncyRatio: 0.3
 --- !u!95 &328350423277327692
 Animator:
   serializedVersion: 5

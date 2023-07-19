@@ -2,7 +2,7 @@
     "FirstFriendCollectedNumber": 0,
     "SecondFriendCollectedNumber": 0,
     "ThirdFriendCollectedNumber": 0,
-    "GoldNumber": 134,
+    "GoldNumber": 154,
     "Stage1_1Clear": true,
     "Stage1_2Clear": false,
     "Stage1_3Clear": true,

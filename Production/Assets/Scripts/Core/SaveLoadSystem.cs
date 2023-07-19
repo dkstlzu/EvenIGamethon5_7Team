@@ -417,7 +417,7 @@ namespace MoonBunny
                     result = Path.Combine(GimmickPath, "Items", type + ".prefab");
                     break;
                 case "Bee":
-                case "CarnivorousFlower":
+                case "Cannibalism":
                 case "Crow":
                 case "Obstacle":
                 case "PinWheel":

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 897461213550519597}
   - component: {fileID: 944878243764793647}
   m_Layer: 8
-  m_Name: CarnivorousFlower
+  m_Name: Cannibalism
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
