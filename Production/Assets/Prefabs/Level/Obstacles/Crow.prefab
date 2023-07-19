@@ -57,7 +57,7 @@ MonoBehaviour:
       - m_Target: {fileID: 6025101029061996136}
         m_TargetAssemblyTypeName: MoonBunny.Crow, Assembly-CSharp
         m_MethodName: Fly
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -215,7 +215,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 40, y: 2}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &5877526524361088950
 MonoBehaviour:

@@ -65,19 +65,19 @@ namespace MoonBunny
             }
         }
 
-        public void Fly(int direciton)
+        public void Fly()
         {
-            if (direciton > 0)
+            if (GridTransform.GridPosition.x < 0)
             {
                 _rigidbody.Move(new Vector2(FlySpeed, 0));
                 _renderer.flipX = true;
-            } else if (direciton < 0)
+                _flyingDirection = 1;
+            } else if (GridTransform.GridPosition.x > 0)
             {
                 _rigidbody.Move(new Vector2(-FlySpeed, 0));
                 _renderer.flipX = false;
+                _flyingDirection = -1;
             }
-
-            _flyingDirection = direciton;
             
             _animator.SetBool("Attack", true);
         }
