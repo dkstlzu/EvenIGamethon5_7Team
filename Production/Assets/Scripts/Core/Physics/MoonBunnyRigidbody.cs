@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using dkstlzu.Utility;
+using MoonBunny.Dev;
 using UnityEngine;
 
 namespace MoonBunny
@@ -57,7 +58,7 @@ namespace MoonBunny
         public bool isFalling => _movement.Velocity.y < 0;
             
         private List<MoonBunnyCollider> _colliderList;
-        private MoonBunnyMovement _movement;
+        [SerializeField] private MoonBunnyMovement _movement;
         public int DefaultHorizontalSpeed = 1;
         public float BouncyRatio = 0.3f;
 
@@ -399,6 +400,7 @@ namespace MoonBunny
         }
     }
 
+    [Serializable]
     public class MoonBunnyMovement
     {
         public Vector2 Velocity;
@@ -425,6 +427,8 @@ namespace MoonBunny
         
         public void UpdateGravity(float deltaTime)
         {
+            if (!enabled) return;
+
             _gravity.Update(deltaTime);
         }
 
@@ -485,6 +489,9 @@ namespace MoonBunny
                     Vector2Int bouncyGridVelocity =  new Vector2Int(targetGridVelocityX, Mathf.Min(targetGridVelocityY, MaxGridVelocityY));
                     
                     var gridVel = GridTransform.GetVelocityByGrid(bouncyGridVelocity, _gravity.GravityValue);
+                    
+                    // MoonBunnyLog.print($"Velocity {Velocity}, relativeSpeed {relativeSpeedByHeight}, falling {fallingGridVelocity}, targetx {targetGridVelocityX},\n" +
+                    //                    $" targety {targetGridVelocityY}, bouncyVel {bouncyGridVelocity}, gridVel {gridVel}");
                     
                     StartMove(gridVel);
                 } else if (platformCollision.Platform is CrackPlatform crackPlatform)

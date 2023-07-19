@@ -57,7 +57,7 @@ namespace MoonBunny
         public static Vector2Int ToGrid(Vector2 position)
         {
             Vector2 offset = position - OriginInReal;
-
+            
             return new Vector2Int(Mathf.RoundToInt(offset.x / GridSetting.GridWidth), Mathf.RoundToInt(offset.y / GridSetting.GridHeight));
         }
 
@@ -139,7 +139,11 @@ namespace MoonBunny
 
             float peekHeight = yVelocity * peekTime / 2;
 
-            return peekHeight * heightRatio;
+            float ratioHeight = peekHeight * heightRatio;
+
+            float targetY = Mathf.Sqrt(ratioHeight * gravity * 2);
+
+            return targetY;
         }
 
         public static Vector2Int GetGridByVelocity(float x, float y, float gravity)
