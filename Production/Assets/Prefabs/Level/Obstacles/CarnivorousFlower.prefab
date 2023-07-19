@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4424910062137783902}
   - component: {fileID: 897461213550519597}
   - component: {fileID: 944878243764793647}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CarnivorousFlower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,6 +53,7 @@ MonoBehaviour:
   InvokeOnCollision: 1
   _type: 0
   _renderer: {fileID: 2082156502020886801}
+  _audioClip: {fileID: 0}
   _animator: {fileID: 944878243764793647}
 --- !u!61 &897461213550519597
 BoxCollider2D:
@@ -130,7 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4597463299600335413}
   - component: {fileID: 2082156502020886801}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
