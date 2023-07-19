@@ -45,7 +45,9 @@ namespace MoonBunny.Dev.Editor
 
             for (int i = 0; i < gimmicks.Length; i++)
             {
-                if (gimmicks[i] is GameOverFloor) continue;
+                if (gimmicks[i] is GameOverFloor || gimmicks[i] is StageGoal) continue;
+                
+                if (gimmicks[i] == null) continue;
                 
                 MonoBehaviour.DestroyImmediate(gimmicks[i].gameObject);
             }

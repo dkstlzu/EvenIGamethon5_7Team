@@ -213,6 +213,29 @@ namespace MoonBunny
         {
             _movement.ForcePosition(position);
         }
+
+        [ContextMenu("Enable")]
+        public void Enable()
+        {
+            EnableCollision();
+            _movement.UnpauseMove();
+        }
+
+        [ContextMenu("Disable")]
+        public void Disable()
+        {
+            ForcePosition();
+            DisableCollision();
+            _movement.PauseMove();
+        }
+
+        [ContextMenu("Force Position")]
+        public void ForcePosition()
+        {
+            _movement.ForcePosition(transform.position);
+        }
+        
+        
     }
 
     public class MoonBunnyCollider

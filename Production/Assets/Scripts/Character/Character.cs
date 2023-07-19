@@ -42,7 +42,6 @@ namespace MoonBunny
 #if UNITY_EDITOR
             if (!UnityEditor.EditorApplication.isPlaying) return;
 #endif
-            print("DB");
             _rigidbody.DefaultHorizontalSpeed = Friend.HorizontalSpeed;
             _rigidbody.BouncyRatio = Friend.JumpPower;
             CurrentHp = Friend.MaxHp;

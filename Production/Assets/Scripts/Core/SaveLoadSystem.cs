@@ -281,7 +281,10 @@ namespace MoonBunny
 
                     GameObject targetPrefab = GetTargetPrefab(lineContent[typeIndex]);
 
-                    if (targetPrefab == null)
+                    if (lineContent[typeIndex] == "GoalInPlatform" || lineContent[typeIndex] == "SpawnPoint")
+                    {
+                        
+                    } else if (targetPrefab == null)
                     {
                         Debug.LogError($"There is no prefab of {lineContent[typeIndex]} check again");
                         continue;
@@ -295,7 +298,7 @@ namespace MoonBunny
                             GetTargetPrefab(lineContent[randomSpawnerType2Index]),
                             gridPosition,
                             int.Parse(lineContent[randomSpawnerIDIndex]));
-                    } else if (lineContent[typeIndex] == "StageGoal")
+                    } else if (lineContent[typeIndex] == "GoalInPlatform")
                     {
                         GameObject.FindWithTag("StageGoal").transform.position = realPosition;
                         continue;
