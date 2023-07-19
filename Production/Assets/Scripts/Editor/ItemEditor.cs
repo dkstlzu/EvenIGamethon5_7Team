@@ -35,21 +35,26 @@ namespace MoonBunny.CustomEditors
             
             serializedObject.FindProperty("_type").intValue = (int)newType;
             serializedObject.FindProperty("Score").intValue = itemSpec.Score;
-            serializedObject.FindProperty("_audioSource").objectReferenceValue = itemSpec.AudioClip;
+            serializedObject.FindProperty("_audioClip").objectReferenceValue = itemSpec.AudioClip;
 
             Object spriteRenderer = serializedObject.FindProperty("_renderer").objectReferenceValue;
 
             if (spriteRenderer == null)
             {
-                Debug.LogWarning("Check the SpriteRenderer reference in inspector. modification of sprite is not applied correctly");    
+                Debug.LogWarning("Check the SpriteRenderer reference in inspector. modification of sprite is not applied correctly");
+                Item item = (Item)serializedObject.targetObject;
+                spriteRenderer = item.GetComponentInChildren<SpriteRenderer>();
+                serializedObject.FindProperty("_renderer").objectReferenceValue = spriteRenderer;
             }
-            else
+
+            if (!spriteRenderer)
             {
                 SerializedObject spriteRendererSO = new SerializedObject(spriteRenderer);
                 spriteRendererSO.FindProperty("m_Sprite").objectReferenceValue = itemSpec.Sprite;
                 spriteRendererSO.ApplyModifiedProperties();
                 spriteRendererSO.Update();
             }
+
             
             serializedObject.ApplyModifiedProperties();
             serializedObject.Update();

@@ -118,6 +118,7 @@ MonoBehaviour:
     GridPosition: {x: 0, y: 0}
   InvokeOnCollision: 1
   _animator: {fileID: 978205355702668989}
+  _renderer: {fileID: 3889271018641120838}
   JumpPower: 5
   VerticalMoveRange: 0
   HorizontalMoveRange: 0

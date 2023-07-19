@@ -52,7 +52,6 @@ MonoBehaviour:
     GridPosition: {x: 0, y: 0}
   InvokeOnCollision: 1
   _type: 0
-  _audioSource: {fileID: 0}
   _renderer: {fileID: 2082156502020886801}
   _animator: {fileID: 944878243764793647}
 --- !u!61 &897461213550519597
@@ -110,7 +109,7 @@ Animator:
   m_GameObject: {fileID: 402927940997024248}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5021f9f514b0d3949a5332e34e4419a2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -194,7 +193,7 @@ SpriteRenderer:
   m_SortingLayerID: 511804839
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -1746059339, guid: d9f830c7bb609084ebef87d82c7d20ea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -202,6 +201,6 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0

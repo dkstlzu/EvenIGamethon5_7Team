@@ -4,9 +4,10 @@ using UnityEngine;
 using Object = UnityEngine.Object;
 
 
+// [Serializable]
 public class Collision : IEquatable<Collision>
 {
-    private FieldObject _other;
+    [SerializeField] private FieldObject _other;
     public FieldObject Other => _other;
 
     public Collision(FieldObject other)
@@ -95,5 +96,15 @@ public class PlatformCollision : GimmickCollision
     public Platform Platform => (Platform)Other;
     public PlatformCollision(MoonBunnyRigidbody rigidbody, Platform platform) : base(rigidbody, platform)
     {
+    }
+}
+
+public class BouncyPlatformCollision : PlatformCollision
+{
+    public static AudioClip JumpAudioClip;
+    public BouncyPlatform BouncyPlatform => (BouncyPlatform)Other;
+    public BouncyPlatformCollision(MoonBunnyRigidbody rigidbody, BouncyPlatform platform) : base(rigidbody, platform)
+    {
+        SoundManager.instance.PlayClip(JumpAudioClip);
     }
 }

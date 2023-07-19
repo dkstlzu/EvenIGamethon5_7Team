@@ -9,13 +9,16 @@ namespace MoonBunny
     {
         [Header("Prefabs")]
         public GameObject RicecakePrefab;
+        public GameObject CoinPrefab;
         public GameObject FriendPrefab;
 
         public int RicecakeNumber;
         [Range(0, 1)] public float RainbowRicecakeRatio;
+        public int CoinNumber;
 
         private Character _player;
         private Stage _stage;
+        private List<Vector2Int> _summonPositionList = new List<Vector2Int>();
 
         private void Awake()
         {
@@ -31,11 +34,17 @@ namespace MoonBunny
             int ymax = _stage.Spec.Height;
 
             int summonNumber = 0;
-            List<Vector2Int> summonPositionList = new List<Vector2Int>();
 
             float startTime = Time.realtimeSinceStartup;
             float nowTime = Time.realtimeSinceStartup;
             float crash = 2f;
+            
+            GameObject parent = GameObject.FindWithTag("Items");
+
+            if (parent == null)
+            {
+                parent = new GameObject("Ricecakes");
+            }
 
             while (summonNumber < RicecakeNumber)
             {
@@ -44,10 +53,16 @@ namespace MoonBunny
 
                 Vector2Int randomGridPosition = new Vector2Int(randomX, randomY);
 
-                if (!summonPositionList.Contains(randomGridPosition) && !GridTransform.HasGridObject(randomGridPosition))
+                if (!_summonPositionList.Contains(randomGridPosition) && !GridTransform.HasGridObject(randomGridPosition))
                 {
-                    summonPositionList.Add(randomGridPosition);
+                    _summonPositionList.Add(randomGridPosition);
                     summonNumber++;
+                    Ricecake cake = Instantiate(RicecakePrefab, GridTransform.ToReal(randomGridPosition), Quaternion.identity, parent.transform).GetComponent<Ricecake>();
+
+                    if (Random.value <= RainbowRicecakeRatio)
+                    {
+                        cake.MakeRainbow();
+                    }
                 }
 
                 nowTime = Time.realtimeSinceStartup;
@@ -58,21 +73,48 @@ namespace MoonBunny
                     break;
                 }
             }
+        }
 
+        public void SummonCoins()
+        {
+            int xmin = GridTransform.GridXMin;
+            int xmax = GridTransform.GridXMax;
+            int ymin = 0;
+            int ymax = _stage.Spec.Height;
+            
+            int summonNumber = 0;
+
+            float startTime = Time.realtimeSinceStartup;
+            float nowTime = Time.realtimeSinceStartup;
+            float crash = 2f;
+            
             GameObject parent = GameObject.FindWithTag("Items");
 
             if (parent == null)
             {
-                parent = new GameObject("Ricecakes");
+                parent = new GameObject("Coins");
             }
-
-            foreach (Vector2Int position in summonPositionList)
+            
+            while (summonNumber < CoinNumber)
             {
-                Ricecake cake = Instantiate(RicecakePrefab, GridTransform.ToReal(position), Quaternion.identity, parent.transform).GetComponent<Ricecake>();
+                int randomX = Random.Range(xmin, xmax + 1);
+                int randomY = Random.Range(ymin, ymax + 1);
 
-                if (Random.value <= RainbowRicecakeRatio)
+                Vector2Int randomGridPosition = new Vector2Int(randomX, randomY);
+
+                if (!_summonPositionList.Contains(randomGridPosition) && !GridTransform.HasGridObject(randomGridPosition))
                 {
-                    cake.MakeRainbow();
+                    _summonPositionList.Add(randomGridPosition);
+                    summonNumber++;
+                    Coin coin = Instantiate(CoinPrefab, GridTransform.ToReal(randomGridPosition), Quaternion.identity, parent.transform).GetComponent<Coin>();
+                }
+
+                nowTime = Time.realtimeSinceStartup;
+
+                if (nowTime - startTime > crash)
+                {
+                    Debug.LogWarning($"LevelSummoner coin summon failed by timeover {nowTime - startTime}");
+                    break;
                 }
             }
         }

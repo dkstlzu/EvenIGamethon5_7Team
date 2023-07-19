@@ -68,7 +68,7 @@ namespace MoonBunny
         }
 
         private static LayerMask S_findingLayerMask = LayerMask.GetMask(new string[]{
-            "Friend","Item","Obstacle","Platform"});
+            "Friend","Item","Obstacle","Platform","Character","Gimmick","Ricecake"});
 
         public static bool HasGridObject(Vector2Int gridPosition, out GridObject gridObject)
         {
@@ -125,6 +125,21 @@ namespace MoonBunny
         public static Vector2 GetVelocityByGrid(Vector2Int velocity, float gravity)
         {
             return GetVelocityByGrid(velocity.x, velocity.y, gravity);
+        }
+
+        public static float GetVelocityByRelativeHeight(float yVelocity, float gravity, float heightRatio)
+        {
+            if (yVelocity <= 0)
+            {
+                Debug.LogWarning($"GetVelocityByRelativeHeight wrong usage. y must be positive");
+                return 0;
+            }
+            
+            float peekTime = yVelocity / gravity;
+
+            float peekHeight = yVelocity * peekTime / 2;
+
+            return peekHeight * heightRatio;
         }
 
         public static Vector2Int GetGridByVelocity(float x, float y, float gravity)

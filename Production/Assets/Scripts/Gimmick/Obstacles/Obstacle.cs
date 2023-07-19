@@ -22,17 +22,10 @@ namespace MoonBunny
         public ObstacleType Type
         {
             get => _type;
-            set
-            {
-                _type = value;
-                _renderer.sprite = PreloadedResources.instance.ObstacleSpriteList[(int)_type];
-
-                ObstacleSpec spec = PreloadedResources.instance.ObstacleSpecList[(int)_type];
-            }
         }
 
-        [SerializeField] protected AudioSource _audioSource;
         [SerializeField] protected SpriteRenderer _renderer;
+        [SerializeField] protected AudioClip _audioClip;
 
         public override void Invoke(MoonBunnyRigidbody with)
         {
@@ -41,7 +34,8 @@ namespace MoonBunny
             Character character;
             if (with.TryGetComponent<Character>(out character))
             {
-                character.CurrentHp--;
+                character.Hit();
+                if (_audioClip) SoundManager.instance.PlayClip(_audioClip);
             }
         }
     }

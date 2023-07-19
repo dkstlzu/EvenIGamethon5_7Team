@@ -9,9 +9,10 @@ namespace MoonBunny
 {
     public class BouncyPlatform : Platform
     {
-        private static readonly int JumpHash = Animator.StringToHash("Jump");
+        private static readonly int BounceHash = Animator.StringToHash("Bounce");
 
         [SerializeField] private Animator _animator;
+        [SerializeField] private SpriteRenderer _renderer;
         public int JumpPower;
         public int VerticalMoveRange;
         public int HorizontalMoveRange;
@@ -33,6 +34,9 @@ namespace MoonBunny
 #if UNITY_EDITOR
             if (!EditorApplication.isPlaying) return;
 #endif
+            _renderer.sprite = PreloadedResources.instance.BouncyPlatformSpriteList[GameManager.instance.Stage.StageLevel - 1];
+            _animator.runtimeAnimatorController =
+                PreloadedResources.instance.BouncyPlatformAnimatorControllerList[GameManager.instance.Stage.StageLevel - 1];
 
             Vector2Int loopEndPosition = GridTransform.GridPosition + new Vector2Int(HorizontalMoveRange, VerticalMoveRange);
 
@@ -64,6 +68,13 @@ namespace MoonBunny
             float y = _loopYDelta * Mathf.Sin(_timer * multiplier);
 
             transform.position = new Vector3(x, y, transform.position.z) + _loopCenterPosition;
+        }
+        
+        public override void Invoke(MoonBunnyRigidbody with)
+        {
+            base.Invoke(with);
+            
+            _animator.SetTrigger(BounceHash);
         }
     }
 }

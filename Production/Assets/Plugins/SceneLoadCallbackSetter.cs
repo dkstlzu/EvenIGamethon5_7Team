@@ -42,7 +42,9 @@ namespace dkstlzu.Utility
             SceneManager.sceneUnloaded += OnSceneUnloaded;
         }
 
+#if UNITY_EDITOR
         [InitializeOnLoadMethod]
+#endif
         static void Uninit()
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;

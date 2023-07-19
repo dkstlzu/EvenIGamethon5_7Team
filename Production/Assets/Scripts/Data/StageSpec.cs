@@ -6,5 +6,8 @@ namespace MoonBunny
     public class StageSpec : ScriptableObject
     {
         public int Height;
+        public int FirstStepScore;
+        public int SecondStepScore;
+        public int ThirdStepScore;
     }
 }

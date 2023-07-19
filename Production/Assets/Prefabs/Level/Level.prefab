@@ -336,9 +336,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RicecakePrefab: {fileID: 6739887548533978570, guid: 7077ee0a6b7a8ce4e9f199dc55d902b3, type: 3}
+  CoinPrefab: {fileID: 5553466026946515911, guid: 33683233be09cd345bba46a8631556d4, type: 3}
   FriendPrefab: {fileID: 3964396391748974210, guid: f08077e1aab2d394f8079d0d9b08fbac, type: 3}
   RicecakeNumber: 100
   RainbowRicecakeRatio: 0.2
+  CoinNumber: 50
 --- !u!114 &8967351194144355069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,7 +354,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 0
-  Spec: {fileID: 11400000, guid: 7e4f134cf9ecf704bbe9353d76d684da, type: 2}
+  _spec: {fileID: 11400000, guid: 7e4f134cf9ecf704bbe9353d76d684da, type: 2}
   UI: {fileID: 2628499118603251068}
 --- !u!1 &3369113203156632384
 GameObject:
@@ -684,7 +686,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8200631460433556745}
   - component: {fileID: 7243735031654124080}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -800,7 +802,7 @@ GameObject:
   - component: {fileID: 7734729899028666847}
   - component: {fileID: 6417125784653494227}
   - component: {fileID: 1145530004512929840}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LevelEnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -835,6 +837,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b41e278e647546f0abca90b51c6b19bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GridTransform:
+    transform: {fileID: 7734729899028666847}
+    GridPosition: {x: 0, y: 0}
+  InvokeOnCollision: 1
   Stage: {fileID: 8967351194144355069}
 --- !u!61 &1145530004512929840
 BoxCollider2D:

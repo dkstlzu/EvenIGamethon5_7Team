@@ -173,6 +173,7 @@ MonoBehaviour:
   RicecakePrefab: {fileID: 6739887548533978570, guid: 7077ee0a6b7a8ce4e9f199dc55d902b3, type: 3}
   RicecakePotential: 0.4
   SpawnPoint: {fileID: 5884445767338031052}
+  _audioClip: {fileID: 8300000, guid: 5e4c5b77d61becc4d8724279a7b8b5f2, type: 3}
 --- !u!61 &1038363849056003676
 BoxCollider2D:
   m_ObjectHideFlags: 0

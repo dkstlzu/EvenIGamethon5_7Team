@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Rocket
   m_EditorClassIdentifier: 
   Score: 10
-  AudioClip: {fileID: 0}
+  AudioClip: {fileID: 8300000, guid: f4828492e24b7304e800453915f98644, type: 3}
   Sprite: {fileID: 21300000, guid: a0aca8f55f20043aa820967787d70baa, type: 3}

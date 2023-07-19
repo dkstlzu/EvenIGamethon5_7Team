@@ -12,6 +12,7 @@ namespace MoonBunny
         [Range(0, 1)] public float RicecakePotential;
 
         public Transform SpawnPoint;
+        [SerializeField] private AudioClip _audioClip;
 
         private float _totalPotential => HeartPotential + StarCandyPotential + RicecakePotential;
 
@@ -43,6 +44,7 @@ namespace MoonBunny
                 print("Something wrong on itembox");
             }
             
+            SoundManager.instance.PlayClip(_audioClip);
             Destroy(gameObject);
         }
     }

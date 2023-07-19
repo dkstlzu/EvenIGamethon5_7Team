@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 0
   HorizontalJumpSpeed: 1
-  VerticalJumpSpeed: 1
+  VerticalJumpSpeed: 0.3333333
   MagneticPower: 0

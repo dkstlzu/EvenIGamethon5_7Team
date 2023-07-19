@@ -52,9 +52,9 @@ MonoBehaviour:
     transform: {fileID: 4804730468090003016}
     GridPosition: {x: 0, y: 0}
   InvokeOnCollision: 0
-  _type: 2
-  _audioSource: {fileID: 0}
+  _type: 6
   _renderer: {fileID: 4916834324087131418}
+  _audioClip: {fileID: 8300000, guid: b68e2ed4335ae4242a1c7be5964906fc, type: 3}
   FallingSpeed: 5
   _rigidbody: {fileID: 4113551608878759203}
 --- !u!61 &1906680907040517807
@@ -114,12 +114,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44342a30f9e24963b7611ebeb9b91d16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GridJumpVelocity: {x: 0, y: 0}
   _gravity: 0
   MoveSacle: 1
   GridObject: {fileID: 2838584814036015846}
   ColliderLayerList: []
   isGrounded: 0
+  DefaultHorizontalSpeed: 1
+  BouncyRatio: 0.3
 --- !u!1 &844767219678845997
 GameObject:
   m_ObjectHideFlags: 0

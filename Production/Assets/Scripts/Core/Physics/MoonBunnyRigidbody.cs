@@ -35,7 +35,6 @@ namespace MoonBunny
             }
         }
         
-        public Vector2Int GridJumpVelocity;
         [SerializeField] private float _gravity;
         public float Gravity
         {
@@ -60,9 +59,11 @@ namespace MoonBunny
             
         private List<MoonBunnyCollider> _colliderList;
         private MoonBunnyMovement _movement;
+        public int DefaultHorizontalSpeed = 1;
+        public float BouncyRatio = 0.3f;
 
-        private HashSet<Collision> _currentCollision = new HashSet<Collision>();
-        private HashSet<Collision> _previousCollision = new HashSet<Collision>();
+        private List<Collision> _currentCollision = new List<Collision>();
+        private List<Collision> _previousCollision = new List<Collision>();
 
         public event Action<Collision> OnEnterCollision;
 
@@ -79,7 +80,8 @@ namespace MoonBunny
             }
                         
             _movement = new MoonBunnyMovement(GridObject.GridTransform, Gravity);
-            _movement.GridVelocity = GridJumpVelocity;
+            _movement.DefaultHorizontalSpeedOnCollide = DefaultHorizontalSpeed;
+            _movement.Bounciness = BouncyRatio;
             
             _colliderList = new List<MoonBunnyCollider>();
             
@@ -128,13 +130,13 @@ namespace MoonBunny
                 _movement.Collide(stayCollision);
             }
             
-            _previousCollision = new HashSet<Collision>(_currentCollision);
+            _previousCollision = new List<Collision>(_currentCollision);
             
             // Movement
             _movement.UpdateMove(deltaTime * MoveSacle);
         }
 
-        private Collision[] ExceptWith(HashSet<Collision> from, HashSet<Collision> with)
+        private Collision[] ExceptWith(IEnumerable<Collision> from, IEnumerable<Collision> with)
         {
             HashSet<Collision> temp = new HashSet<Collision>(from);
             
@@ -143,7 +145,7 @@ namespace MoonBunny
             return temp.ToArray();
         }
 
-        private Collision[] IntersectWith(HashSet<Collision> first, HashSet<Collision> second)
+        private Collision[] IntersectWith(IEnumerable<Collision> first, IEnumerable<Collision> second)
         {
             HashSet<Collision> temp = new HashSet<Collision>(first);
             
@@ -170,15 +172,17 @@ namespace MoonBunny
 
         public void ChangeDelta(float delta, float time = -1)
         {
-            MoveSacle = delta;
-
+            float previousMoveScale = MoveSacle;
+            
             if (time > 0)
             {
                 CoroutineHelper.Delay(() =>
                 {
-                    MoveSacle = 1;
+                    MoveSacle = previousMoveScale;
                 }, time);
             }
+            
+            MoveSacle = delta;
         }
         
         public void Move(Vector2 velocity)
@@ -339,6 +343,9 @@ namespace MoonBunny
                 } else if (fieldObject is Obstacle obstacle)
                 {
                     collision = new ObstacleCollision(_rigidbody, obstacle);
+                } else if (fieldObject is BouncyPlatform bouncyPlatform)
+                {
+                    collision = new BouncyPlatformCollision(_rigidbody, bouncyPlatform);
                 } else if (fieldObject is Platform platform)
                 {
                     collision = new PlatformCollision(_rigidbody, platform);
@@ -374,7 +381,8 @@ namespace MoonBunny
     {
         public Vector2 Velocity;
 
-        public Vector2Int GridVelocity;
+        public int DefaultHorizontalSpeedOnCollide = 1;
+        public float Bounciness = 1f/3;
 
         private static int MaxGridVelocityY = 10;
         
@@ -444,16 +452,20 @@ namespace MoonBunny
             {
                 if (platformCollision.Platform is BouncyPlatform bouncyPlatform)
                 {
-                    Vector2Int fallingGridVelocity = GridTransform.GetGridByVelocity(Velocity.x, -Velocity.y, _gravity.GravityValue);
+                    float relativeSpeedByHeight = GridTransform.GetVelocityByRelativeHeight(-Velocity.y, _gravity.GravityValue, Bounciness);
+                    Vector2Int fallingGridVelocity = GridTransform.GetGridByVelocity(0, relativeSpeedByHeight, _gravity.GravityValue);
 
-                    int targetGridVelocityX = Velocity.x >= 0 ? GridVelocity.x : -GridVelocity.x;
-                    int targetGridVelocityY = fallingGridVelocity.y / 3 * GridVelocity.y + bouncyPlatform.JumpPower;
+                    int targetGridVelocityX = Velocity.x >= 0 ? DefaultHorizontalSpeedOnCollide : -DefaultHorizontalSpeedOnCollide;
+                    int targetGridVelocityY = fallingGridVelocity.y + bouncyPlatform.JumpPower;
 
                     Vector2Int bouncyGridVelocity =  new Vector2Int(targetGridVelocityX, Mathf.Min(targetGridVelocityY, MaxGridVelocityY));
                     
                     var gridVel = GridTransform.GetVelocityByGrid(bouncyGridVelocity, _gravity.GravityValue);
                     
                     StartMove(gridVel);
+                } else if (platformCollision.Platform is CrackPlatform crackPlatform)
+                {
+                    
                 } else if (platformCollision.Platform is Platform platform)
                 {
                     StopMove();

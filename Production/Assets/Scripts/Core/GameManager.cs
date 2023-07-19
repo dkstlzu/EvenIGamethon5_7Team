@@ -5,6 +5,7 @@ using MoonBunny.Dev;
 using MoonBunny.UIs;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace MoonBunny
 {
@@ -28,11 +29,47 @@ namespace MoonBunny
         }
         public Transform StartPosition;
         [HideInInspector] public float GlobalGravity;
-        [HideInInspector] public bool Stage1Clear;
-        [HideInInspector] public bool Stage2Clear;
-        [HideInInspector] public bool Stage3Clear;
-        [HideInInspector] public bool Stage4Clear;
-        [HideInInspector] public bool Stage5Clear;
+        [HideInInspector] public bool Stage1_1Clear;
+        [HideInInspector] public bool Stage1_2Clear;
+        [HideInInspector] public bool Stage1_3Clear;
+        [HideInInspector] public bool Stage2_1Clear;
+        [HideInInspector] public bool Stage2_2Clear;
+        [HideInInspector] public bool Stage2_3Clear;
+        [HideInInspector] public bool Stage3_1Clear;
+        [HideInInspector] public bool Stage3_2Clear;
+        [HideInInspector] public bool Stage3_3Clear;
+        [HideInInspector] public bool Stage4_1Clear;
+        [HideInInspector] public bool Stage4_2Clear;
+        [HideInInspector] public bool Stage4_3Clear;
+        [HideInInspector] public bool Stage5_1Clear;
+        [HideInInspector] public bool Stage5_2Clear;
+        [HideInInspector] public bool Stage5_3Clear;
+
+        public StartSceneUI StartSceneUI;
+        private int _diamondNumber;
+        public int DiamondNumber
+        {
+            get => _diamondNumber;
+            set
+            {
+                _diamondNumber = value;
+                if (StartSceneUI) StartSceneUI.DiamonText1.text = value.ToString();
+                if (StartSceneUI) StartSceneUI.DiamonText2.text = value.ToString();
+            }
+        }
+
+        private int _goldNumber;
+
+        public int GoldNumber
+        {
+            get => _goldNumber;
+            set
+            {
+                _goldNumber = value;
+                if (StartSceneUI) StartSceneUI.GoldText1.text = value.ToString();
+                if (StartSceneUI) StartSceneUI.GoldText2.text = value.ToString();
+            }
+        }
 
         public bool isFirstPlay;
         [SerializeField] private GameObject _tutorialUIGO;
@@ -77,9 +114,6 @@ namespace MoonBunny
                     OnStageSceneUnloaded?.Invoke();
                 };
             }
-
-            OnStageSceneLoaded += () => FindDefaultStartPosition();
-            OnStageSceneLoaded += () => FindStageObject();
         }
 
         private void Start()
@@ -103,12 +137,24 @@ namespace MoonBunny
             if (!useSaveSystem) return;
 #endif
             if (!SaveLoadSystem.DataIsLoaded) SaveLoadSystem.LoadDatabase();
+
+            GoldNumber = SaveLoadSystem.SaveData.GoldNumber;
             
-            Stage1Clear = SaveLoadSystem.SaveData.Stage1Clear;
-            Stage2Clear = SaveLoadSystem.SaveData.Stage2Clear;
-            Stage3Clear = SaveLoadSystem.SaveData.Stage3Clear;
-            Stage4Clear = SaveLoadSystem.SaveData.Stage4Clear;
-            Stage5Clear = SaveLoadSystem.SaveData.Stage5Clear;
+            Stage1_1Clear = SaveLoadSystem.SaveData.Stage1_1Clear;
+            Stage1_2Clear = SaveLoadSystem.SaveData.Stage1_2Clear;
+            Stage1_3Clear = SaveLoadSystem.SaveData.Stage1_3Clear;
+            Stage2_1Clear = SaveLoadSystem.SaveData.Stage2_1Clear;
+            Stage2_2Clear = SaveLoadSystem.SaveData.Stage2_2Clear;
+            Stage2_3Clear = SaveLoadSystem.SaveData.Stage2_3Clear;
+            Stage3_1Clear = SaveLoadSystem.SaveData.Stage3_1Clear;
+            Stage3_2Clear = SaveLoadSystem.SaveData.Stage3_2Clear;
+            Stage3_3Clear = SaveLoadSystem.SaveData.Stage3_3Clear;
+            Stage4_1Clear = SaveLoadSystem.SaveData.Stage4_1Clear;
+            Stage4_2Clear = SaveLoadSystem.SaveData.Stage4_2Clear;
+            Stage4_3Clear = SaveLoadSystem.SaveData.Stage4_3Clear;
+            Stage5_1Clear = SaveLoadSystem.SaveData.Stage5_1Clear;
+            Stage5_2Clear = SaveLoadSystem.SaveData.Stage5_2Clear;
+            Stage5_3Clear = SaveLoadSystem.SaveData.Stage5_3Clear;
         }
 
         public void SaveProgress()
@@ -122,11 +168,23 @@ namespace MoonBunny
                 return;
             }
 
-            SaveLoadSystem.SaveData.Stage1Clear = Stage1Clear;
-            SaveLoadSystem.SaveData.Stage2Clear = Stage2Clear;
-            SaveLoadSystem.SaveData.Stage3Clear = Stage3Clear;
-            SaveLoadSystem.SaveData.Stage4Clear = Stage4Clear;
-            SaveLoadSystem.SaveData.Stage5Clear = Stage5Clear;
+            SaveLoadSystem.SaveData.GoldNumber = GoldNumber;
+
+            SaveLoadSystem.SaveData.Stage1_1Clear = Stage1_1Clear;
+            SaveLoadSystem.SaveData.Stage1_2Clear = Stage1_2Clear;
+            SaveLoadSystem.SaveData.Stage1_3Clear = Stage1_3Clear;
+            SaveLoadSystem.SaveData.Stage2_1Clear = Stage2_1Clear;
+            SaveLoadSystem.SaveData.Stage2_2Clear = Stage2_2Clear;
+            SaveLoadSystem.SaveData.Stage2_3Clear = Stage2_3Clear;
+            SaveLoadSystem.SaveData.Stage3_1Clear = Stage3_1Clear;
+            SaveLoadSystem.SaveData.Stage3_2Clear = Stage3_2Clear;
+            SaveLoadSystem.SaveData.Stage3_3Clear = Stage3_3Clear;
+            SaveLoadSystem.SaveData.Stage4_1Clear = Stage4_1Clear;
+            SaveLoadSystem.SaveData.Stage4_2Clear = Stage4_2Clear;
+            SaveLoadSystem.SaveData.Stage4_3Clear = Stage4_3Clear;
+            SaveLoadSystem.SaveData.Stage5_1Clear = Stage5_1Clear;
+            SaveLoadSystem.SaveData.Stage5_2Clear = Stage5_2Clear;
+            SaveLoadSystem.SaveData.Stage5_3Clear = Stage5_3Clear;
 
             SaveLoadSystem.SaveDatabase();
         }
@@ -164,29 +222,6 @@ namespace MoonBunny
         private void OnItemTaken(Item item)
         {
             Score += item.Score;
-        }
-
-        void FindDefaultStartPosition()
-        {
-            CoroutineHelper.OnNextFrame(() =>
-            {
-                StartPosition = GameObject.FindWithTag("DefaultStartPosition").transform;
-            });
-        }
-
-        void FindStageObject()
-        {
-            CoroutineHelper.OnNextFrame(() =>
-            {
-                Stage = GameObject.FindWithTag("Level").GetComponent<Stage>();
-            });
-        }
-
-        public void GameOver()
-        {
-            MoonBunnyLog.print("GameOver");
-            MoonBunnyRigidbody.DisableAll();
-            Stage.UI.Fail();
         }
 
         public void RestartApplication()

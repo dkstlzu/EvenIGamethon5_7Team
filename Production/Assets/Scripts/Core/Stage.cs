@@ -3,6 +3,7 @@ using dkstlzu.Utility;
 using MoonBunny.UIs;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace MoonBunny
 {
@@ -45,50 +46,53 @@ namespace MoonBunny
     {
         public StageName Name;
 
-        public StageSpec Spec;
+        public int StageLevel
+        {
+            get => ((int)Name / 3) + 1;
+        }
+
+        [SerializeField] private StageSpec _spec;
+        public StageSpec Spec => _spec;
 
         private LevelSummoner _summoner;
 
         public StageUI UI;
+
+        private Character _character;
+        private float _realHeight;
         
         public void Awake()
         {
+            GameManager.instance.Stage = this;
+            UI.Stage = this;
             _summoner = GetComponent<LevelSummoner>();
+            Name = StringValue.GetEnumValue<StageName>(SceneManager.GetActiveScene().name);
         }
 
         private void Start()
         {
+            _character = GameObject.FindWithTag("Player").GetComponent<Character>();
             _summoner.SummonRicecakes();
+            _summoner.SummonCoins();
+            _realHeight = GridTransform.GridSetting.GridHeight * _spec.Height;
         }
 
-        public void InitStage(StageSpec spec = null)
+        public void CountDownFinish()
         {
-            if (spec != null)
-            {
-                Spec = spec;
-            }
-            
-            
+            _character.StartJump();
+            SoundManager.instance.PlayClip(PreloadedResources.instance.OpenStageAudioClip);
         }
 
         public void Clear()
         {
             UI.Clear();
+            MoonBunnyRigidbody.DisableAll();
         }
 
         public void Fail()
         {
             UI.Fail();
-        }
-        
-        public void Quit()
-        {
-            Finish();
-        }
-
-        public void Finish()
-        {
-            SceneManager.LoadScene(SceneName.Start);
+            MoonBunnyRigidbody.DisableAll();
         }
     }
 }

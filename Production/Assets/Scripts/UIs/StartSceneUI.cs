@@ -1,6 +1,7 @@
 ﻿using System;
 using DG.Tweening;
 using dkstlzu.Utility;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -28,13 +29,35 @@ namespace MoonBunny.UIs
         public CanvasGroup InventoryUICanvasGroup;
         public CanvasGroup StoreUICanvasGroup;
 
+        [Header("Money Texts")] 
+        public TextMeshProUGUI DiamonText1;
+        public TextMeshProUGUI DiamonText2;
+        public TextMeshProUGUI GoldText1;
+        public TextMeshProUGUI GoldText2;
+
         [Header("Stage Buttons")]
         public Button Stage1Button;
+        public Image Stage1StarImage;
         public Button Stage2Button;
+        public Image Stage2LockImage;
+        public Image Stage2StarImage;
         public Button Stage3Button;
+        public Image Stage3LockImage;
+        public Image Stage3StarImage;
         public Button Stage4Button;
+        public Image Stage4LockImage;
+        public Image Stage4StarImage;
         public Button Stage5Button;
+        public Image Stage5LockImage;
+        public Image Stage5StarImage;
         public Button StageChallengeButton;
+        public Image StageChallengeLockImage;
+        
+        [Header("Star Sprites")]
+        public Sprite StarNoneSprite;
+        public Sprite StarOneSprite;
+        public Sprite StarTwoSprite;
+        public Sprite StarThreeSprite;
 
         private GameManager _gameManager;
 
@@ -48,11 +71,37 @@ namespace MoonBunny.UIs
         {
             _gameManager = GameManager.instance;
 
-            Stage2Button.interactable = _gameManager.Stage1Clear;
-            Stage3Button.interactable = _gameManager.Stage2Clear;
-            Stage4Button.interactable = _gameManager.Stage3Clear;
-            Stage5Button.interactable = _gameManager.Stage4Clear;
-            StageChallengeButton.interactable = _gameManager.Stage5Clear;
+            Stage1StarImage.sprite = _gameManager.Stage1_1Clear
+                ? _gameManager.Stage1_2Clear ? _gameManager.Stage1_3Clear ? StarThreeSprite : StarTwoSprite : StarOneSprite
+                : StarNoneSprite;
+            Stage2Button.interactable = _gameManager.Stage1_3Clear;
+            Stage2LockImage.enabled = !_gameManager.Stage1_3Clear;
+            Stage2StarImage.sprite = _gameManager.Stage2_1Clear
+                ? _gameManager.Stage2_2Clear ? _gameManager.Stage2_3Clear ? StarThreeSprite : StarTwoSprite : StarOneSprite
+                : StarNoneSprite;
+            Stage3Button.interactable = _gameManager.Stage2_3Clear;
+            Stage3LockImage.enabled = !_gameManager.Stage2_3Clear;
+            Stage3StarImage.sprite = _gameManager.Stage3_1Clear
+                ? _gameManager.Stage3_2Clear ? _gameManager.Stage3_3Clear ? StarThreeSprite : StarTwoSprite : StarOneSprite
+                : StarNoneSprite;
+            Stage4Button.interactable = _gameManager.Stage3_3Clear;
+            Stage4LockImage.enabled = !_gameManager.Stage3_3Clear;
+            Stage4StarImage.sprite = _gameManager.Stage4_1Clear
+                ? _gameManager.Stage4_2Clear ? _gameManager.Stage4_3Clear ? StarThreeSprite : StarTwoSprite : StarOneSprite
+                : StarNoneSprite;
+            Stage5Button.interactable = _gameManager.Stage4_3Clear;
+            Stage5LockImage.enabled = !_gameManager.Stage4_3Clear;
+            Stage5StarImage.sprite = _gameManager.Stage5_1Clear
+                ? _gameManager.Stage5_2Clear ? _gameManager.Stage5_3Clear ? StarThreeSprite : StarTwoSprite : StarOneSprite
+                : StarNoneSprite;
+            StageChallengeButton.interactable = _gameManager.Stage5_3Clear;
+            StageChallengeLockImage.enabled = !_gameManager.Stage5_3Clear;
+
+            _gameManager.StartSceneUI = this;
+            DiamonText1.text = _gameManager.DiamondNumber.ToString();
+            DiamonText2.text = _gameManager.DiamondNumber.ToString();
+            GoldText1.text = _gameManager.GoldNumber.ToString();
+            GoldText2.text = _gameManager.GoldNumber.ToString();
 
             if (!_showCutScene)
             {

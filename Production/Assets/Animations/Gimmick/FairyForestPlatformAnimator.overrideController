@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: FairyForestPlatformAnimator
+  m_Controller: {fileID: 9100000, guid: ef84a13ce8bdbb749934b701325899cd, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: a5cd39fe8ee7cb648aaf6ebaf593eaf4, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 8366f3eae65c0a2438870c3ad8e2fe4a, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 8877e63d27beaf24e92028f60d8b5a0d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 0ec5b282194eac845ab9e7cfe1253f1e, type: 2}

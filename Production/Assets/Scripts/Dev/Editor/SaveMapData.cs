@@ -24,6 +24,8 @@ namespace MoonBunny.Dev.Editor
         [MenuItem("Dev/MapData/Load", priority = 1)]
         public static void LoadData()
         {
+            ClearMapData();
+            
             string fileName = GetFileName();
             if (fileName == string.Empty)
             {

@@ -7,16 +7,9 @@ namespace MoonBunny
     [DefaultExecutionOrder(-10)]
     public class PreloadedResources : Singleton<PreloadedResources>
     {
-        public List<Sprite> FriendSpriteList;
-        public List<FriendSpec> FriendSpecList;
-        public List<Sprite> ItemSpriteList;
-        public List<ItemSpec> ItemSpecList;
-        public List<Sprite> ObstacleSpriteList;
-        public List<ObstacleSpec> ObstacleSpecList;
-        public List<Sprite> RicecakeSpriteList;
-        public List<Sprite> PlatformSpriteList;
-
-        public BouncyPlatformSetting BouncyPlatformSetting;
+        public List<Sprite> BouncyPlatformSpriteList;
+        public List<RuntimeAnimatorController> BouncyPlatformAnimatorControllerList;
+        public AudioClip OpenStageAudioClip;
 
         [ContextMenu("Manually Load Assets")]
         private void Awake()

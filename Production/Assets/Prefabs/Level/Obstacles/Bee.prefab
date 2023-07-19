@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 511804839
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300050, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
+  m_Sprite: {fileID: -1812773114, guid: 5bcfa95bc1183164cab3aca13b01bc06, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 5943036066580041157}
   - component: {fileID: 5713561271783655176}
   - component: {fileID: 918443929657355966}
+  - component: {fileID: 6699340739426985292}
   m_Layer: 8
   m_Name: Bee
   m_TagString: Untagged
@@ -138,7 +139,7 @@ MonoBehaviour:
   _type: 0
   _audioSource: {fileID: 0}
   _renderer: {fileID: 5804303894752395474}
-  FlySpeed: 0
+  FlySpeed: 5
   _rigidbody: {fileID: 5713561271783655176}
 --- !u!114 &5713561271783655176
 MonoBehaviour:
@@ -208,3 +209,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &6699340739426985292
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7121778801934200298}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 743301e48d7f6b942bd4906938a53d73, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

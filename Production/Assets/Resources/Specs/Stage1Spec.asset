@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: Stage1Spec
   m_EditorClassIdentifier: 
   Height: 100
+  FirstStepScore: 200
+  SecondStepScore: 400
+  ThirdStepScore: 600

@@ -21,11 +21,13 @@ namespace MoonBunny
         public static int MaxHp = 3;
 
         [SerializeField] private FriendSpec _spec;
+        public FriendSpec Spec => _spec;
         
         [SerializeField] private FriendName _name;
 
-        public Vector2Int JumpPower;
-        public int MagneticPower;
+        public int HorizontalSpeed;
+        public float JumpPower;
+        public float MagneticPower;
 
         
         public FriendName Name
@@ -41,7 +43,8 @@ namespace MoonBunny
                 _spec = spec;
             }
 
-            JumpPower = new Vector2Int(_spec.HorizontalJumpSpeed, _spec.VerticalJumpSpeed);
+            HorizontalSpeed = _spec.HorizontalJumpSpeed;
+            JumpPower = _spec.VerticalJumpSpeed;
             MagneticPower = _spec.MagneticPower;
         }
         

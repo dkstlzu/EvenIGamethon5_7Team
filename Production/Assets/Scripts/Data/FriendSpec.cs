@@ -7,7 +7,7 @@ namespace MoonBunny
     {
         public FriendName Name;
         public int HorizontalJumpSpeed;
-        public int VerticalJumpSpeed;
-        public int MagneticPower;
+        public float VerticalJumpSpeed;
+        public float MagneticPower;
     }
 }

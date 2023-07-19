@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 namespace MoonBunny
 {
@@ -14,6 +15,16 @@ namespace MoonBunny
             if (!UnityEditor.EditorApplication.isPlaying) return;
 #endif
             _rigidbody.Move(new Vector2(FlySpeed, 0));
+        }
+
+        protected override void Update()
+        {
+            base.Update();
+#if UNITY_EDITOR
+            if (!UnityEditor.EditorApplication.isPlaying) return;
+#endif
+
+            _renderer.flipX = _rigidbody.isMovingToLeft;
         }
     }
 }

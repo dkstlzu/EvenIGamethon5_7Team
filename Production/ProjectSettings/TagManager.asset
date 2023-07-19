@@ -12,6 +12,7 @@ TagManager:
   - Friends
   - FxTemporaire
   - Level
+  - StageGoal
   layers:
   - Default
   - TransparentFX

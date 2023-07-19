@@ -9,17 +9,17 @@ namespace MoonBunny
         private const int NormalCakeScore = 10;
         private const int RainbowCakeScore = 50;
 
-        [SerializeField] private SpriteRenderer _headRenerer;
-        [SerializeField] private SpriteRenderer _topRenerer;
-        [SerializeField] private SpriteRenderer _middleRenerer;
-        [SerializeField] private SpriteRenderer _bottomRenerer;
+        [SerializeField] private SpriteRenderer _renderer;
+        [SerializeField] private AudioClip _audioClip;
+
+        [SerializeField] private Sprite _normalRiceCakeSprite;
+        [SerializeField] private Sprite _rainBowRiceCakeSprite;
+            
+            
 
         public void MakeRainbow()
         {
-            _headRenerer.sprite = PreloadedResources.instance.RicecakeSpriteList[4];
-            _topRenerer.sprite = PreloadedResources.instance.RicecakeSpriteList[1];
-            _middleRenerer.sprite = PreloadedResources.instance.RicecakeSpriteList[2];
-            _bottomRenerer.sprite = PreloadedResources.instance.RicecakeSpriteList[3];
+            _renderer.sprite = _rainBowRiceCakeSprite;
 
             Score = RainbowCakeScore;
         }
@@ -29,6 +29,7 @@ namespace MoonBunny
             base.Invoke(rigidbody);
             
             GameManager.instance.Score += Score;
+            SoundManager.instance.PlayClip(_audioClip);
             Destroy(gameObject);
         }
     }

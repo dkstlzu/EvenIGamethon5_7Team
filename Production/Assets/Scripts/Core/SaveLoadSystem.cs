@@ -65,17 +65,15 @@ namespace MoonBunny
             
             string jsonData = JsonUtility.ToJson(data, true);
             byte[] byteData = Encoding.UTF8.GetBytes(jsonData);
-            
-#if UNITY_ANDROID
-            MoonBunnyLog.print("SaveLoadSystem save : is Android");
-            UnityWebRequest request = UnityWebRequest.Put(SaveDataFilePath, byteData);
-            request.SendWebRequest().completed += (ao) =>
-            {
-                MoonBunnyLog.print("Save Data successfully : is Android");
-            };
-            
-#else
-            MoonBunnyLog.print("SaveLoadSystem save : is not Android");
+
+// #if UNITY_ANDROID
+            // UnityWebRequest request = UnityWebRequest.PostWwwForm(SaveDataFilePath, jsonData);
+            // request.SendWebRequest().completed += (ao) =>
+            // {
+            //     MoonBunnyLog.print("Save Data successfully : is Android");
+            // };
+            //
+// #else
             File.WriteAllText(SaveDataFilePath, String.Empty);
 
             using (FileStream fs = File.OpenWrite(SaveDataFilePath))
@@ -84,7 +82,7 @@ namespace MoonBunny
                 fs.Flush();
                 MoonBunnyLog.print("Save Data successfully");
             }
-#endif
+// #endif
 
 
 #if UNITY_EDITOR
@@ -297,6 +295,14 @@ namespace MoonBunny
                             GetTargetPrefab(lineContent[randomSpawnerType2Index]),
                             gridPosition,
                             int.Parse(lineContent[randomSpawnerIDIndex]));
+                    } else if (lineContent[typeIndex] == "StageGoal")
+                    {
+                        GameObject.FindWithTag("StageGoal").transform.position = realPosition;
+                        continue;
+                    } else if (lineContent[typeIndex] == "SpawnPoint")
+                    {
+                        GameObject.FindWithTag("DefaultStartPosition").transform.position = realPosition;
+                        continue;
                     }
                     else
                     {

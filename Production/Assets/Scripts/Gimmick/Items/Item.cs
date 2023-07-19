@@ -24,30 +24,18 @@ namespace MoonBunny
         public ItemType Type
         {
             get => _type;
-            set
-            {
-                _type = value;
-                _renderer.sprite = PreloadedResources.instance.ItemSpriteList[(int)_type];
-
-                ItemSpec spec = PreloadedResources.instance.ItemSpecList[(int)_type];
-                
-                Score = spec.Score;
-                _audioSource.clip = spec.AudioClip;
-            }
         }
         
         public int Score;
-        [SerializeField] private AudioSource _audioSource;
-        [SerializeField] private SpriteRenderer _renderer;
+        [SerializeField] protected SpriteRenderer _renderer;
+        [SerializeField] protected AudioClip _audioClip;
         
-
         public static event Action<Item> OnItemTaken;
 
         public virtual void Taken()
         {
             OnItemTaken?.Invoke(this);
-            if (_audioSource)
-            _audioSource.Play();
+            if (_audioClip) SoundManager.instance.PlayClip(_audioClip);
             _renderer.enabled = false;
             GetComponent<Collider2D>().enabled = false;
             Destroy(gameObject, 2);

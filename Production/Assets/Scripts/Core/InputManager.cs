@@ -22,13 +22,11 @@ namespace MoonBunny
 
         public void EnableIngameInput()
         {
-            print("IngameInput Enabled");
             InputAsset.Ingame.Enable();
         }
 
         public void DisableIngameInput()
         {
-            print("IngameInput Disabled");
             InputAsset.Ingame.Disable();
         }
     }

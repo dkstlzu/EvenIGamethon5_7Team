@@ -16,6 +16,8 @@ namespace MoonBunny
         
         public bool FirstJumped;
         public Friend Friend;
+        [SerializeField] private CircleCollider2D _magneticField;
+        [SerializeField] private AudioClip _jumpAudioClip;
 
         private int _currentHP;
         public int CurrentHp
@@ -24,13 +26,9 @@ namespace MoonBunny
             set
             {
                 _currentHP = value;
-
-                if (GameManager.instance != null)
+                if (_currentHP <= 0)
                 {
-                    if (GameManager.instance.Stage != null)
-                    {
-                        GameManager.instance.Stage.UI.LoseHP();
-                    }
+                    GameManager.instance.Stage.Fail();
                 }
             }
         }
@@ -45,7 +43,10 @@ namespace MoonBunny
             if (!UnityEditor.EditorApplication.isPlaying) return;
 #endif
             
-            _rigidbody.GridJumpVelocity = Friend.JumpPower;
+            _rigidbody.DefaultHorizontalSpeed = Friend.HorizontalSpeed;
+            _rigidbody.BouncyRatio = Friend.JumpPower;
+            CurrentHp = Friend.MaxHp;
+            BouncyPlatformCollision.JumpAudioClip = _jumpAudioClip;
         }
 
         private void Start()
@@ -53,7 +54,6 @@ namespace MoonBunny
 #if UNITY_EDITOR
             if (!UnityEditor.EditorApplication.isPlaying) return;
 #endif
-            CurrentHp = Friend.MaxHp;
         }
 
         protected override void Update()
@@ -87,9 +87,45 @@ namespace MoonBunny
             _rigidbody.Move(new Vector2(-_rigidbody.Velocity.x, _rigidbody.Velocity.y));
         }
 
+        public void SetMagneticPower(float power, float duration)
+        {
+            float previousPower = _magneticField.radius;
+            
+            Friend.MagneticPower += power;
+            _magneticField.radius += power;
+            
+            CoroutineHelper.Delay(() =>
+            {
+                Friend.MagneticPower = previousPower;
+                _magneticField.radius = previousPower;
+            }, duration);
+        }
+
         public void Hit()
         {
             CurrentHp -= 1;
+            if (GameManager.instance != null)
+            {
+                if (GameManager.instance.Stage != null)
+                {
+                    GameManager.instance.Stage.UI.LoseHP();
+                }
+            }
+        }
+
+        public void GetHeart()
+        {
+            if (_currentHP >= Friend.MaxHp) return;
+            
+            CurrentHp += 1;
+            if (GameManager.instance != null)
+            {
+                if (GameManager.instance.Stage != null)
+                {
+                    GameManager.instance.Stage.UI.GainHP();
+                }
+                    
+            }
         }
     }
 }

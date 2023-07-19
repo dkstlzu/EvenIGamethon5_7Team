@@ -7,7 +7,6 @@ namespace MoonBunny
         public bool InvokeOnCollision = true;
         public virtual void Invoke(MoonBunnyRigidbody with)
         {
-            print($"Gimmick Invoke {gameObject} with {with}");
         }
     }
 }
