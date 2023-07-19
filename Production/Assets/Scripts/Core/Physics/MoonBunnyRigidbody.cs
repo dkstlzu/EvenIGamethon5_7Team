@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using dkstlzu.Utility;
-using MoonBunny.Dev;
 using UnityEngine;
 
 namespace MoonBunny
@@ -390,7 +389,7 @@ namespace MoonBunny
 
         private Vector2 _lastPosition;
 
-        private bool isPaused;
+        private bool enabled = true;
         
         private MoonBunnyGravity _gravity;
 
@@ -408,7 +407,7 @@ namespace MoonBunny
 
         public void UpdateMove(float deltaTime)
         {
-            if (isPaused) return;
+            if (!enabled) return;
 
             _transform.position = new Vector3(_lastPosition.x + deltaTime * Velocity.x, _lastPosition.y + deltaTime * Velocity.y, _transform.transform.position.z);
             _lastPosition = _transform.position;
@@ -431,12 +430,14 @@ namespace MoonBunny
 
         public void PauseMove()
         {
-            isPaused = true;
+            enabled = false;
+            _gravity.Disable();
         }
 
         public void UnpauseMove()
         {
-            isPaused = false;
+            enabled = true;
+            _gravity.Enable();
         }
         
         public void FlipX()
@@ -529,6 +530,8 @@ namespace MoonBunny
         
         public float GravityValue;
 
+        private bool enabled = true;
+        
         public MoonBunnyGravity(MoonBunnyMovement movement)
         {
             _influencingMovement = movement;
@@ -541,7 +544,19 @@ namespace MoonBunny
 
         public void Update(float time)
         {
+            if (!enabled) return;
+            
             _influencingMovement.Velocity = new Vector2(_influencingMovement.Velocity.x, _influencingMovement.Velocity.y - GravityValue * time);
+        }
+
+        public void Enable()
+        {
+            enabled = true;
+        }
+
+        public void Disable()
+        {
+            enabled = false;
         }
     }
 }

@@ -19,7 +19,7 @@ namespace MoonBunny
         [SerializeField] private CircleCollider2D _magneticField;
         [SerializeField] private AudioClip _jumpAudioClip;
 
-        private int _currentHP;
+        [SerializeField] private int _currentHP;
         public int CurrentHp
         {
             get => _currentHP;
@@ -42,7 +42,7 @@ namespace MoonBunny
 #if UNITY_EDITOR
             if (!UnityEditor.EditorApplication.isPlaying) return;
 #endif
-            
+            print("DB");
             _rigidbody.DefaultHorizontalSpeed = Friend.HorizontalSpeed;
             _rigidbody.BouncyRatio = Friend.JumpPower;
             CurrentHp = Friend.MaxHp;
@@ -93,11 +93,13 @@ namespace MoonBunny
             
             Friend.MagneticPower += power;
             _magneticField.radius += power;
+            _magneticField.GetComponentInChildren<SpriteRenderer>().transform.localScale = new Vector3(_magneticField.radius, _magneticField.radius, 1);
             
             CoroutineHelper.Delay(() =>
             {
                 Friend.MagneticPower = previousPower;
                 _magneticField.radius = previousPower;
+                _magneticField.GetComponentInChildren<SpriteRenderer>().transform.localScale = new Vector3(_magneticField.radius, _magneticField.radius, 1);
             }, duration);
         }
 

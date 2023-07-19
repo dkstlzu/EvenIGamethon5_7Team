@@ -9,10 +9,12 @@ namespace MoonBunny.UIs
     {
         None,
         Magnet,
+        Spider,
     }
     public class StageUIBuff : MonoBehaviour
     {
         public GameObject MagnetBuff;
+        public GameObject SpiderDebuff;
 
         public void BuffOn(BuffType type, float duration = -1)
         {
@@ -22,12 +24,16 @@ namespace MoonBunny.UIs
                 case BuffType.Magnet:
                     targetGo = MagnetBuff;
                     break;
+                case BuffType.Spider:
+                    targetGo = SpiderDebuff;
+                    break;
             }
             
             targetGo.SetActive(true);
             if (duration > 0)
             {
-                StartCoroutine(BuffTimer(targetGo.GetComponentInChildren<Image>(), duration));
+                Image image = targetGo.GetComponentInChildren<Image>(true);
+                StartCoroutine(BuffTimer(image, duration));
             }
         }
 
@@ -54,7 +60,7 @@ namespace MoonBunny.UIs
                 yield return new WaitForEndOfFrame();
             }
             
-            image.gameObject.SetActive(false);
+            image.transform.parent.gameObject.SetActive(false);
         }
     }
 }

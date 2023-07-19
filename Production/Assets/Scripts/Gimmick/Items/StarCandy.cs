@@ -19,13 +19,10 @@ namespace MoonBunny
             Collider2D[] results = new Collider2D[MaxDestroyNumber];
             TargetArea.OverlapCollider(filter, results);
             
-            print($"DB {results.Length}");
-
             for (int i = 0; i < results.Length; i++)
             {
                 if (results[i] == null) continue;
                 
-                print($"DB result not null {results[i]}");
                 Destroy(results[i].gameObject);
             }
         }

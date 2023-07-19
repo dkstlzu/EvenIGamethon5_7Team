@@ -136,9 +136,7 @@ PlayerSettings:
   vulkanEnableCommandBufferRecycling: 1
   loadStoreDebugModeEnabled: 0
   bundleVersion: 0.01
-  preloadedAssets:
-  - {fileID: 8224556345942550753, guid: b633ac4ce534f4745a7e29dcaaa3b347, type: 2}
-  - {fileID: 11400000, guid: a283407f4d39a7d439b858e6570f0953, type: 2}
+  preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -159,6 +157,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.NUNETTINE.JumpingBunny
+    Standalone: com.NUNETTINE.JumpingBunny
   buildNumber:
     Bratwurst: 0
     Standalone: 0
@@ -166,7 +165,7 @@ PlayerSettings:
     tvOS: 0
   overrideDefaultApplicationIdentifier: 0
   AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 29
+  AndroidMinSdkVersion: 22
   AndroidTargetSdkVersion: 33
   AndroidPreferredInstallLocation: 1
   aotOptions: 

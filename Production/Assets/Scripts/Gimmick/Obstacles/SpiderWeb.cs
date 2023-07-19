@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using MoonBunny.UIs;
+using UnityEngine;
 
 namespace MoonBunny
 {
@@ -12,6 +13,8 @@ namespace MoonBunny
             base.Invoke(with);
 
             with.ChangeDelta(with.MoveSacle * Slow, Duration);
+            FindObjectOfType<StageUIBuff>().BuffOn(BuffType.Spider, Duration);
+            
             Destroy(gameObject);
         }
     }
