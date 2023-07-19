@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 579a854c0b6dcca4aa51c4d501a40778
+guid: 678b4acebbd2e7c4a9027dc0aef71088
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -136,11 +136,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: IconBtnMainNomal
+      name: IconStageLock
       rect:
         serializedVersion: 2
         x: 0
-        y: 518
+        y: 266
         width: 256
         height: 256
       alignment: 0
@@ -150,18 +150,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d69d821c1f088e42b545dc5448d25ca
-      internalID: 534202456
+      spriteID: 807f3304cac59e44a8e6c0d61ec191d5
+      internalID: 1916047239
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IconBtnMainLeft
+      name: IconStage2Shadow
       rect:
         serializedVersion: 2
         x: 256
-        y: 518
+        y: 266
         width: 256
         height: 256
       alignment: 0
@@ -171,81 +171,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 790fdd8b429841e4bba98a4344d8208a
-      internalID: 5212636
+      spriteID: d355f958de6182141b94920e1d884c88
+      internalID: -65296384
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IconBtnMainRight
-      rect:
-        serializedVersion: 2
-        x: 513
-        y: 518
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0fad5ac0c6886b14da731297699a933a
-      internalID: 1589047579
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IconBtnStart
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 262
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fb5ab047b290e2646b16d5e288ce0571
-      internalID: 846838974
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IconCharacterProfileFrame
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 262
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cbdd416547b76cb42ad45179567e074a
-      internalID: 267186327
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IconStageScoreStarNone
+      name: IconStage3Shadow
       rect:
         serializedVersion: 2
         x: 512
-        y: 262
+        y: 266
         width: 256
         height: 256
       alignment: 0
@@ -255,18 +192,60 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 014418870e663b6459ae1d92876d1e3f
-      internalID: 657237849
+      spriteID: f0c3bcbc91dc1ee448a952db7bfee854
+      internalID: 1052790441
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IconStageScoreStar1
+      name: IconStage4Shadow
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 266
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8af9f52b2a8e67a4cb0fbaa466b4fc31
+      internalID: -1095916960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IconStage5Shadow
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 266
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 004568b41dc652c40bda987977bdbd5e
+      internalID: 2098799166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IconStage1
       rect:
         serializedVersion: 2
         x: 0
-        y: 6
+        y: 10
         width: 256
         height: 256
       alignment: 0
@@ -276,18 +255,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65d4d3858a599c44b87b54fdd500d8c8
-      internalID: -1487664468
+      spriteID: 136d73f6c3885d148ae24d84d3b8e1c9
+      internalID: -824153572
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IconStageScoreStar2
+      name: IconStage2
       rect:
         serializedVersion: 2
         x: 256
-        y: 6
+        y: 10
         width: 256
         height: 256
       alignment: 0
@@ -297,18 +276,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 123bb39c6286af547ba8cb24576f0850
-      internalID: -1972003795
+      spriteID: 1947cd37b47d074488369f3287f49549
+      internalID: 181494118
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IconStageScoreStar3
+      name: IconStage3
       rect:
         serializedVersion: 2
         x: 512
-        y: 6
+        y: 10
         width: 256
         height: 256
       alignment: 0
@@ -318,8 +297,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 320f6f056849796459d978aa6dcf77dd
-      internalID: -1357321682
+      spriteID: 2415fdf434bcfe24dbf74fa183068d8d
+      internalID: -2037590240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IconStage4
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 10
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05d22a2b9e088db4d879a1101ebc41df
+      internalID: -2072558743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IconStage5
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 10
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f873ddd182633444eb181906c2d75f1d
+      internalID: -1871649231
       vertices: []
       indices: 
       edges: []
@@ -335,15 +356,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      IconBtnMainLeft: 5212636
-      IconBtnMainNomal: 534202456
-      IconBtnMainRight: 1589047579
-      IconBtnStart: 846838974
-      IconCharacterProfileFrame: 267186327
-      IconStageScoreStar1: -1487664468
-      IconStageScoreStar2: -1972003795
-      IconStageScoreStar3: -1357321682
-      IconStageScoreStarNone: 657237849
+      IconStage1: -824153572
+      IconStage2: 181494118
+      IconStage2Shadow: -65296384
+      IconStage3: -2037590240
+      IconStage3Shadow: 1052790441
+      IconStage4: -2072558743
+      IconStage4Shadow: -1095916960
+      IconStage5: -1871649231
+      IconStage5Shadow: 2098799166
+      IconStageLock: 1916047239
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
