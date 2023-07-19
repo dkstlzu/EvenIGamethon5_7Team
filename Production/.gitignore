@@ -74,5 +74,3 @@ crashlytics-build.properties
 # Custom
 **/*[Tt]est/
 **/*[Tt]est*
-StreamingAssets/MapData/
-StreamingAssets/Saves/
