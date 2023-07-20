@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using dkstlzu.Utility;
+using MoonBunny.Dev;
 using UnityEngine;
 
 namespace MoonBunny.Effects
@@ -95,6 +96,7 @@ namespace MoonBunny.Effects
     
     public class StarCandyEffect : IEffect
     {
+        public static GameObject S_StarCandyExplosionEffect;
         private static int S_MaxDestroyNumber;
         
         private LayerMask _targetLayerMask;
@@ -109,6 +111,8 @@ namespace MoonBunny.Effects
         public void Effect()
         {
             Collider2D[] results = Physics2D.OverlapAreaAll(_area.min, _area.max, _targetLayerMask);
+
+            MonoBehaviour.Instantiate(S_StarCandyExplosionEffect, _area.center, Quaternion.identity);
             
             for (int i = 0; i < results.Length; i++)
             {
@@ -203,6 +207,79 @@ namespace MoonBunny.Effects
         public void Effect()
         {
             _target.ChangeDelta(_slow, _duration);
+        }
+    }
+
+    public class ThunderEffect : IEffect
+    {
+        public static GameObject S_ThunderEffectPrefab;
+        private static LayerMask S_characterLayerMask = LayerMask.GetMask("Character");
+        
+        private int _targetColumn;
+        private float _warningDuration;
+
+        private Vector2 areaMin;
+        private Vector2 areaMax;
+        
+        public ThunderEffect(int targetColumn, float warningDuration)
+        {
+            _targetColumn = targetColumn;
+            _warningDuration = warningDuration;
+        }
+
+        public void Effect()
+        {
+            areaMin = GridTransform.ToReal(new Vector2Int(_targetColumn, GridTransform.GridYMin)) - GridTransform.GetGridSize() / 2;
+            areaMax = GridTransform.ToReal(new Vector2Int(_targetColumn, GameManager.instance.Stage.Spec.Height)) + GridTransform.GetGridSize() / 2;
+
+            WarningEffect warningEffect = new WarningEffect(new Rect(areaMin, areaMax - areaMin), _warningDuration);
+            warningEffect.Effect();
+            
+            CoroutineHelper.Delay(() =>
+            {
+                Vector3 thunderPosition = new Vector3(_targetColumn * GridTransform.GridSetting.GridWidth + GridTransform.OriginInReal.x,
+                    GameObject.FindWithTag("Player").transform.position.y, 0);
+                MonoBehaviour.Instantiate(S_ThunderEffectPrefab, thunderPosition, Quaternion.identity);
+                Attack();
+            }, _warningDuration);
+        }
+
+        void Attack()
+        {
+            var result = Physics2D.OverlapArea(areaMin, areaMax, S_characterLayerMask);
+
+            if (result == null)
+            {
+                return;
+            }
+
+            Character character = result.GetComponentInParent<Character>();
+
+            if (character)
+            {
+                character.Hit(null);
+            }
+        }
+    }
+
+    public class WarningEffect : IEffect
+    {
+        public static GameObject S_WarningEffectPrefab;
+            
+        private Rect _area;
+        private float _duration;
+        
+        public WarningEffect(Rect area, float duration)
+        {
+            _area = area;
+            _duration = duration;
+        }
+
+        public void Effect()
+        {
+            Warning warning = MonoBehaviour.Instantiate(S_WarningEffectPrefab, _area.center, Quaternion.identity).GetComponent<Warning>();
+            warning.Size = _area.size;
+            warning.Duration = _duration;
         }
     }
 }

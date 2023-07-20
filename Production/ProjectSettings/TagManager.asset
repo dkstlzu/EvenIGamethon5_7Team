@@ -56,3 +56,6 @@ TagManager:
   - name: Gimmick
     uniqueID: 511804839
     locked: 0
+  - name: Effect
+    uniqueID: 1177759979
+    locked: 0

@@ -239,8 +239,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6942469379576056503}
   - component: {fileID: 2034000656419043365}
-  - component: {fileID: 8993331230077029172}
   - component: {fileID: 4521182815814504969}
+  - component: {fileID: 8993331230077029172}
   - component: {fileID: 3294111410425793835}
   m_Layer: 6
   m_Name: Character
@@ -293,7 +293,6 @@ MonoBehaviour:
     JumpPower: 0.3333333
     MagneticPower: 0
   MagneticField: {fileID: 6427175580982026930}
-  _jumpAudioClip: {fileID: 8300000, guid: 3e35fa72656a4594e99720107582a5dd, type: 3}
   _currentHP: 0
   InvincibleDuration: 3
   InvincibleEffectCurve:
@@ -329,27 +328,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 1
     m_RotationOrder: 4
---- !u!95 &8993331230077029172
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5646199421161689791}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 804a55612287c32458a152721bbb8f9c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &4521182815814504969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,6 +371,27 @@ MonoBehaviour:
     Bounciness: 0
   DefaultHorizontalSpeed: 1
   BouncyRatio: 0.3
+--- !u!95 &8993331230077029172
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5646199421161689791}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 804a55612287c32458a152721bbb8f9c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!61 &3294111410425793835
 BoxCollider2D:
   m_ObjectHideFlags: 0

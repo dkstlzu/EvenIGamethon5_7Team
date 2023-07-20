@@ -123,7 +123,11 @@ MonoBehaviour:
   - {fileID: 9100000, guid: ef84a13ce8bdbb749934b701325899cd, type: 2}
   - {fileID: 22100000, guid: e334c6d11ca58804695bb76d90254a74, type: 2}
   - {fileID: 22100000, guid: 4bb068285fcb64642b0da2707ed2c17d, type: 2}
+  BouncyPlatformSound: {fileID: 8300000, guid: 3e35fa72656a4594e99720107582a5dd, type: 3}
   OpenStageAudioClip: {fileID: 8300000, guid: 1fdb7f1560016034698d3e970589b4ca, type: 3}
+  StarCandyEffectPrefab: {fileID: 3072994387487185058, guid: 7f997d2f0cc923545a16cd1f37627173, type: 3}
+  ThunderEffectPrefab: {fileID: 13301048646092075, guid: 99e78b6b4035d884a8534bf10f2a8096, type: 3}
+  WarningEffectPrefab: {fileID: 5105176418460448878, guid: d9d01206de179ba4d912ab7cfb2d3a54, type: 3}
 --- !u!114 &4825278954930423277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,7 +146,7 @@ MonoBehaviour:
   _bgmAudioSource: {fileID: 1519028595631678618}
   LobbyBGM: {fileID: 8300000, guid: 6e778b339a99a8348b10b394db2f9f6e, type: 3}
   Stage1BGM: {fileID: 0}
-  Stage2BGM: {fileID: 0}
+  Stage2BGM: {fileID: 8300000, guid: edd0afde7b757de459f2b4e78a3db2f6, type: 3}
   Stage3BGM: {fileID: 0}
   Stage4BGM: {fileID: 0}
   Stage5BGM: {fileID: 0}

@@ -11,6 +11,12 @@ namespace Dev.Editor
         private static Character _character;
         private static string LevelPath = "Assets/Prefab/Level/";
         
+        [MenuItem("Dev/PlayTest/Restart Stage")]
+        public static void RestartStage()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        
         [MenuItem("Dev/PlayTest/HP Recovery")]
         public static void GetHeart()
         {
@@ -19,12 +25,6 @@ namespace Dev.Editor
             _character.GetHeart();
         }
 
-        [MenuItem("Dev/PlayTest/Restart Stage")]
-        public static void RestartStage()
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-        
         [MenuItem("Dev/PlayTest/Magnet")]
         public static void ForceMagnet()
         {
@@ -44,8 +44,18 @@ namespace Dev.Editor
             new StarCandyEffect(LayerMask.GetMask("Obstacle"), area).Effect();
         }
 
-        [MenuItem("Dev/PlayTest/HP Recovery", true)]
+        [MenuItem("Dev/PlayTest/Thunder")]
+        public static void Thunder()
+        {
+            new ThunderEffect(1, 2).Effect();
+        }
+
         [MenuItem("Dev/PlayTest/Restart Stage", true)]
+        [MenuItem("Dev/PlayTest/HP Recovery", true)]
+        [MenuItem("Dev/PlayTest/Magnet", true)]
+        [MenuItem("Dev/PlayTest/Rocket", true)]
+        [MenuItem("Dev/PlayTest/StarCandy", true)]
+        [MenuItem("Dev/PlayTest/Thunder", true)]
         static bool PlayingValidation()
         {
             bool isPlaying = EditorApplication.isPlaying;

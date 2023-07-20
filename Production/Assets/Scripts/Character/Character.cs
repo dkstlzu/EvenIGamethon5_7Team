@@ -19,7 +19,6 @@ namespace MoonBunny
         public bool FirstJumped;
         public Friend Friend;
         public CircleCollider2D MagneticField;
-        [SerializeField] private AudioClip _jumpAudioClip;
 
         [SerializeField] private int _currentHP;
         public int CurrentHp
@@ -51,8 +50,6 @@ namespace MoonBunny
             _rigidbody.BouncyRatio = Friend.JumpPower;
             CurrentHp = Friend.MaxHp;
             new MagnetEffect(MagneticField, Friend.MagneticPower).Effect();
-            BouncyPlatform.S_JumpAudioClip = _jumpAudioClip;
-
         }
 
         private void Start()
