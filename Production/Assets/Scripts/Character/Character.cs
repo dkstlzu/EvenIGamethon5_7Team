@@ -1,6 +1,8 @@
 ﻿using System;
-using dkstlzu.Utility;
+using System.Collections;
+using MoonBunny.Effects;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace MoonBunny
 {
@@ -11,12 +13,12 @@ namespace MoonBunny
         private static readonly int _fallingHash = Animator.StringToHash("isFalling");
         
         [SerializeField] private Animator _animator;
-        [SerializeField] private SpriteRenderer _renderer;
+        public SpriteRenderer Renderer;
         [SerializeField] private MoonBunnyRigidbody _rigidbody;
         
         public bool FirstJumped;
         public Friend Friend;
-        [SerializeField] private CircleCollider2D _magneticField;
+        public CircleCollider2D MagneticField;
         [SerializeField] private AudioClip _jumpAudioClip;
 
         [SerializeField] private int _currentHP;
@@ -33,7 +35,10 @@ namespace MoonBunny
             }
         }
 
-        public bool LookingRight => !_renderer.flipX;
+        public float InvincibleDuration = 3;
+        public AnimationCurve InvincibleEffectCurve;
+
+        public bool LookingRight => !Renderer.flipX;
 
         protected override void Awake()
         {
@@ -45,7 +50,9 @@ namespace MoonBunny
             _rigidbody.DefaultHorizontalSpeed = Friend.HorizontalSpeed;
             _rigidbody.BouncyRatio = Friend.JumpPower;
             CurrentHp = Friend.MaxHp;
-            BouncyPlatformCollision.JumpAudioClip = _jumpAudioClip;
+            new MagnetEffect(MagneticField, Friend.MagneticPower).Effect();
+            BouncyPlatform.S_JumpAudioClip = _jumpAudioClip;
+
         }
 
         private void Start()
@@ -63,11 +70,11 @@ namespace MoonBunny
 #endif
             if (_rigidbody.isMovingToLeft)
             {
-                _renderer.flipX = true;
+                Renderer.flipX = true;
             }
             else if (_rigidbody.isMovingToRight)
             {
-                _renderer.flipX = false;
+                Renderer.flipX = false;
             }
             _animator.SetBool(_fallingHash, _rigidbody.isFalling);
         }
@@ -86,47 +93,19 @@ namespace MoonBunny
             _rigidbody.Move(new Vector2(-_rigidbody.Velocity.x, _rigidbody.Velocity.y));
         }
 
-        public void SetMagneticPower(float power, float duration)
-        {
-            float previousPower = _magneticField.radius;
-            
-            Friend.MagneticPower += power;
-            _magneticField.radius += power;
-            _magneticField.GetComponentInChildren<SpriteRenderer>().transform.localScale = new Vector3(_magneticField.radius, _magneticField.radius, 1);
-            
-            CoroutineHelper.Delay(() =>
-            {
-                Friend.MagneticPower = previousPower;
-                _magneticField.radius = previousPower;
-                _magneticField.GetComponentInChildren<SpriteRenderer>().transform.localScale = new Vector3(_magneticField.radius, _magneticField.radius, 1);
-            }, duration);
-        }
-
-        public void Hit()
+        public void Hit(Obstacle by)
         {
             CurrentHp -= 1;
-            if (GameManager.instance != null)
-            {
-                if (GameManager.instance.Stage != null)
-                {
-                    GameManager.instance.Stage.UI.LoseHP();
-                }
-            }
+            GameManager.instance.Stage.UI.LoseHP();
         }
+
 
         public void GetHeart()
         {
             if (_currentHP >= Friend.MaxHp) return;
             
             CurrentHp += 1;
-            if (GameManager.instance != null)
-            {
-                if (GameManager.instance.Stage != null)
-                {
-                    GameManager.instance.Stage.UI.GainHP();
-                }
-                    
-            }
+            GameManager.instance.Stage.UI.GainHP();
         }
     }
 }

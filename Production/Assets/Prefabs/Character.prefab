@@ -171,7 +171,7 @@ Transform:
   m_GameObject: {fileID: 3361663752613896190}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalScale: {x: 1.6, y: 1.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1199397743468646483}
@@ -283,7 +283,7 @@ MonoBehaviour:
     transform: {fileID: 6942469379576056503}
     GridPosition: {x: 0, y: 0}
   _animator: {fileID: 8993331230077029172}
-  _renderer: {fileID: 1956461046610411173}
+  Renderer: {fileID: 1956461046610411173}
   _rigidbody: {fileID: 4521182815814504969}
   FirstJumped: 0
   Friend:
@@ -292,9 +292,43 @@ MonoBehaviour:
     HorizontalSpeed: 1
     JumpPower: 0.3333333
     MagneticPower: 0
-  _magneticField: {fileID: 6427175580982026930}
+  MagneticField: {fileID: 6427175580982026930}
   _jumpAudioClip: {fileID: 8300000, guid: 3e35fa72656a4594e99720107582a5dd, type: 3}
   _currentHP: 0
+  InvincibleDuration: 3
+  InvincibleEffectCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1.0004576
+      inSlope: -2.005732
+      outSlope: -2.005732
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.498148
+      value: 0.0013062954
+      inSlope: -0.007857919
+      outSlope: -0.007857919
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1.9900162
+      outSlope: 1.9900162
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 1
+    m_RotationOrder: 4
 --- !u!95 &8993331230077029172
 Animator:
   serializedVersion: 5
@@ -345,9 +379,18 @@ MonoBehaviour:
   - Collider: {fileID: 3294111410425793835}
     LayerMask:
       serializedVersion: 2
-      m_Bits: 19840
+      m_Bits: 17792
     Direciton: -1
+  - Collider: {fileID: 3294111410425793835}
+    LayerMask:
+      serializedVersion: 2
+      m_Bits: 2048
+    Direciton: 69632
   isGrounded: 0
+  _movement:
+    Velocity: {x: 0, y: 0}
+    DefaultHorizontalSpeedOnCollide: 0
+    Bounciness: 0
   DefaultHorizontalSpeed: 1
   BouncyRatio: 0.3
 --- !u!61 &3294111410425793835

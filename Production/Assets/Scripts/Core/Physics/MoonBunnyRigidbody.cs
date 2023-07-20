@@ -64,6 +64,7 @@ namespace MoonBunny
 
         private List<Collision> _currentCollision = new List<Collision>();
         private List<Collision> _previousCollision = new List<Collision>();
+        private bool enabled = true;
 
         public event Action<Collision> OnEnterCollision;
 
@@ -95,6 +96,8 @@ namespace MoonBunny
 
         public void Update()
         {
+            if (!enabled) return;
+            
             float deltaTime = Time.deltaTime;
             _movement.UpdateGravity(deltaTime * MoveSacle);
             
@@ -218,16 +221,14 @@ namespace MoonBunny
         [ContextMenu("Enable")]
         public void Enable()
         {
-            EnableCollision();
-            _movement.UnpauseMove();
+            enabled = true;
         }
 
         [ContextMenu("Disable")]
         public void Disable()
         {
             ForcePosition();
-            DisableCollision();
-            _movement.PauseMove();
+            enabled = false;
         }
 
         [ContextMenu("Force Position")]
@@ -235,8 +236,14 @@ namespace MoonBunny
         {
             _movement.ForcePosition(transform.position);
         }
-        
-        
+
+        public void IgnoreCollision(LayerMask ignore)
+        {
+            foreach (MoonBunnyCollider collider in _colliderList)
+            {
+                collider.SetIgnore(ignore);
+            }
+        }
     }
 
     public class MoonBunnyCollider
@@ -262,6 +269,7 @@ namespace MoonBunny
         private MoonBunnyMovement _movement;
         private Collider2D _collider;
         private LayerMask _targetLayer;
+        private LayerMask _ignoreLayer;
         private Direciton _direciton;
 
         private bool _enabled = true;
@@ -304,11 +312,11 @@ namespace MoonBunny
 
             if (_collider is BoxCollider2D boxCollider2D)
             {
-                other = Physics2D.OverlapBox(position + boxCollider2D.offset, boxCollider2D.size, 0, _targetLayer);
+                other = Physics2D.OverlapBox(position + boxCollider2D.offset, boxCollider2D.size, 0, _targetLayer & ~_ignoreLayer);
 
             } else if (_collider is CircleCollider2D circleCollider2D)
             {
-                other = Physics2D.OverlapCircle(position + circleCollider2D.offset, circleCollider2D.radius, _targetLayer);
+                other = Physics2D.OverlapCircle(position + circleCollider2D.offset, circleCollider2D.radius, _targetLayer & ~_ignoreLayer);
             }
    
             if (other == null)
@@ -360,16 +368,7 @@ namespace MoonBunny
             {
                 collision = null;
                 
-                if (fieldObject is Item item)
-                {
-                    collision = new ItemCollision(_rigidbody, item);
-                } else if (fieldObject is Obstacle obstacle)
-                {
-                    collision = new ObstacleCollision(_rigidbody, obstacle);
-                } else if (fieldObject is BouncyPlatform bouncyPlatform)
-                {
-                    collision = new BouncyPlatformCollision(_rigidbody, bouncyPlatform);
-                } else if (fieldObject is Platform platform)
+                if (fieldObject is Platform platform)
                 {
                     collision = new PlatformCollision(_rigidbody, platform);
                 } else if (fieldObject is Gimmick gimmick)
@@ -398,6 +397,11 @@ namespace MoonBunny
         {
             _enabled = false;
         }
+
+        public void SetIgnore(LayerMask ignoreLayerMask)
+        {
+            _ignoreLayer = ignoreLayerMask;
+        }
     }
 
     [Serializable]
@@ -405,8 +409,8 @@ namespace MoonBunny
     {
         public Vector2 Velocity;
 
-        public int DefaultHorizontalSpeedOnCollide = 1;
-        public float Bounciness = 1f/3;
+        [HideInInspector] public int DefaultHorizontalSpeedOnCollide = 1;
+        [HideInInspector] public float Bounciness = 1f/3;
 
         private static int MaxGridVelocityY = 10;
         
@@ -478,8 +482,13 @@ namespace MoonBunny
             
             if (collision is PlatformCollision platformCollision)
             {
-                if (platformCollision.Platform is BouncyPlatform bouncyPlatform)
-                {
+                StopMove();
+                return;
+            }
+
+            switch (collision.Other)
+            {
+                case BouncyPlatform bouncyPlatform:
                     float relativeSpeedByHeight = GridTransform.GetVelocityByRelativeHeight(-Velocity.y, _gravity.GravityValue, Bounciness);
                     Vector2Int fallingGridVelocity = GridTransform.GetGridByVelocity(0, relativeSpeedByHeight, _gravity.GravityValue);
 
@@ -494,52 +503,26 @@ namespace MoonBunny
                     //                    $" targety {targetGridVelocityY}, bouncyVel {bouncyGridVelocity}, gridVel {gridVel}");
                     
                     StartMove(gridVel);
-                } else if (platformCollision.Platform is CrackPlatform crackPlatform)
-                {
-                    
-                } else if (platformCollision.Platform is Platform platform)
-                {
-                    StopMove();
-                } 
-            } else if (collision is ObstacleCollision obstacleCollision)
-            {
-                if (obstacleCollision.Obstacle is PinWheel pinWheel)
-                {
+                    break;
+                case PinWheel pinWheel:
+                case Bee bee:
                     float xVelocity = Velocity.x;
                     float yVelocity = Velocity.y;
                     
-                    if ((pinWheel.transform.position.x - _lastPosition.x) * xVelocity > 0)
+                    if ((collision.Other.transform.position.x - _lastPosition.x) * xVelocity > 0)
                     {
                         xVelocity = -xVelocity;
                     }
-                    if ((pinWheel.transform.position.y - _lastPosition.y) * yVelocity > 0)
+                    if ((collision.Other.transform.position.y - _lastPosition.y) * yVelocity > 0)
                     {
                         yVelocity = -yVelocity;
                     }
 
                     StartMove(new Vector2(xVelocity, yVelocity));
-                } else if (obstacleCollision.Obstacle is Bee bee)
-                {
-                    float xVelocity = Velocity.x;
-                    float yVelocity = Velocity.y;
-                    
-                    if ((bee.transform.position.x - _lastPosition.x) * xVelocity > 0)
-                    {
-                        xVelocity = -xVelocity;
-                    }
-                    if ((bee.transform.position.y - _lastPosition.y) * yVelocity > 0)
-                    {
-                        yVelocity = -yVelocity;
-                    }
-
-                    StartMove(new Vector2(xVelocity, yVelocity));
-                }
-            } else
-            {
-                if (collision.Other is SideWall sideWall)
-                {
+                    break;
+                case SideWall: 
                     FlipX();
-                }
+                    break;
             }
         }
 

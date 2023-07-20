@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4825278954930423277}
   - component: {fileID: 7181178156869599547}
   - component: {fileID: 6744147499280745772}
+  - component: {fileID: 4755970094666209831}
   m_Layer: 0
   m_Name: Managers
   m_TagString: GameController
@@ -178,6 +179,18 @@ MonoBehaviour:
   HashID: 
   DestroyGameObject: {fileID: 0}
   ReplacePreviousOne: 0
+--- !u!114 &4755970094666209831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386506531079968234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b29485255fa5433db4b3876f0f513f77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7393346921992038708
 GameObject:
   m_ObjectHideFlags: 0

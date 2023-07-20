@@ -1,12 +1,13 @@
-﻿using dkstlzu.Utility;
-using MoonBunny.UIs;
+﻿using System;
+using MoonBunny.Effects;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace MoonBunny
 {
     public class Magnet : Item
     {
+        public static event Action<float, float> OnMangetItemTaken;
+        
         public float MagnetPower;
         public float Duration;
 
@@ -14,12 +15,9 @@ namespace MoonBunny
         {
             base.Invoke(with);
             
-            with.GetComponent<Character>().SetMagneticPower(MagnetPower, Duration);
-            FindObjectOfType<StageUIBuff>().BuffOn(BuffType.Magnet, Duration);
-            
-            GetComponent<Collider2D>().enabled = false;
-            _renderer.enabled = false;
-            Destroy(gameObject, 2);
+            new MagnetEffect(with.GetComponentInChildren<CircleCollider2D>(), MagnetPower, Duration).Effect();
+            OnMangetItemTaken?.Invoke(MagnetPower, Duration);
+
         }
     }
 }

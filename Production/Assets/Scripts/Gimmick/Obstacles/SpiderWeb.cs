@@ -1,10 +1,14 @@
-﻿using MoonBunny.UIs;
+﻿using System;
+using MoonBunny.Effects;
+using MoonBunny.UIs;
 using UnityEngine;
 
 namespace MoonBunny
 {
     public class SpiderWeb : Obstacle
     {
+        public static event Action<float, float> OnSpiderwebObstacleTaken;
+            
         [Range(0, 1)] public float Slow;
         public float Duration;
         
@@ -12,8 +16,8 @@ namespace MoonBunny
         {
             base.Invoke(with);
 
-            with.ChangeDelta(with.MoveSacle * Slow, Duration);
-            FindObjectOfType<StageUIBuff>().BuffOn(BuffType.Spider, Duration);
+            new SlowEffect(with, Slow, Duration).Effect();
+            OnSpiderwebObstacleTaken?.Invoke(Slow, Duration);
             
             Destroy(gameObject);
         }

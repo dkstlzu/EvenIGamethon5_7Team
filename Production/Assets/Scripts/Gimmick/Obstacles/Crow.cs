@@ -1,4 +1,5 @@
 ﻿using System;
+using MoonBunny.Effects;
 using UnityEngine;
 
 namespace MoonBunny
@@ -10,7 +11,7 @@ namespace MoonBunny
         [SerializeField] private Transform _pickingPoint;
         [SerializeField] private Animator _animator;
         private int _flyingDirection = 0;
-        private TransformForce _picker;
+        private TransformForceEffect _picker;
         private MoonBunnyRigidbody _pickingRigidbody;
 
         private void Start()
@@ -32,6 +33,7 @@ namespace MoonBunny
                     _pickingRigidbody.StopMove();
                     _pickingRigidbody.UnpauseMove();
                 
+                    _picker.Quit();
                     _picker = null;
                     _pickingRigidbody = null;
                 }
@@ -47,22 +49,9 @@ namespace MoonBunny
             base.Invoke(with);
 
             with.PauseMove();
-            _picker = new TransformForce(with.transform, _pickingPoint);
+            _picker = new TransformForceEffect(with.transform, _pickingPoint);
+            _picker.Effect();
             _pickingRigidbody = with;
-        }
-
-        protected override void Update()
-        {
-            base.Update();
-
-#if UNITY_EDITOR
-            if (!UnityEditor.EditorApplication.isPlaying) return;
-#endif
-
-            if (_picker != null)
-            {
-                _picker.UpdateForce();
-            }
         }
 
         public void Fly()

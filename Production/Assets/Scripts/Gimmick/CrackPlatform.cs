@@ -2,7 +2,7 @@
 
 namespace MoonBunny
 {
-    public class CrackPlatform : Platform
+    public class CrackPlatform : Gimmick
     {
         [SerializeField] private Animator _animator;
         private static readonly int Crack = Animator.StringToHash("Crack");

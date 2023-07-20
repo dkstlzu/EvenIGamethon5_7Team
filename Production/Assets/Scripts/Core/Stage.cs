@@ -57,6 +57,17 @@ namespace MoonBunny
         private LevelSummoner _summoner;
 
         public StageUI UI;
+        
+        private int _score;
+        public int Score
+        {
+            get => _score;
+            set
+            {
+                _score = value;
+                UI.SetScore(_score);
+            }
+        }
 
         private Character _character;
         private float _realHeight;

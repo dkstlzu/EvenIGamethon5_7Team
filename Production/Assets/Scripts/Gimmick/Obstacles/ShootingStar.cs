@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using MoonBunny.Effects;
+using UnityEngine;
 
 namespace MoonBunny
 {
@@ -11,6 +12,8 @@ namespace MoonBunny
         {
             base.Invoke(with);
             
+            Character target = with.GetComponent<Character>();
+            new InvincibleEffect(with, LayerMask.GetMask("Obstacle"), target.Renderer, target.InvincibleDuration, target.InvincibleEffectCurve).Effect();
         }
 
         public void Fall()

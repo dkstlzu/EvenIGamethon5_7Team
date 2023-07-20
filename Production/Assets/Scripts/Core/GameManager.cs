@@ -17,16 +17,16 @@ namespace MoonBunny
 
         public Stage Stage;
 
-        private int _score;
-        public int Score
-        {
-            get => _score;
-            set
-            {
-                _score = value;
-                Stage?.UI.SetScore(_score);
-            }
-        }
+        // private int _score;
+        // public int Score
+        // {
+        //     get => _score;
+        //     set
+        //     {
+        //         _score = value;
+        //         Stage?.UI.SetScore(_score);
+        //     }
+        // }
         public Transform StartPosition;
         [HideInInspector] public float GlobalGravity;
         [HideInInspector] public bool Stage1_1Clear;
@@ -114,16 +114,6 @@ namespace MoonBunny
                     OnStageSceneUnloaded?.Invoke();
                 };
             }
-        }
-
-        private void Start()
-        {
-            Item.OnItemTaken += OnItemTaken;
-        }
-
-        private void OnDestroy()
-        {
-            Item.OnItemTaken -= OnItemTaken;
         }
 
         private void OnApplicationQuit()
@@ -217,11 +207,6 @@ namespace MoonBunny
             Instantiate(_tutorialUIGO).GetComponent<TutorialUI>().On();
             SCB.SceneLoadCallBackDict[SceneName.Stage1_1] -= FirstPlayTutorialOn;
             PlayerPrefs.SetInt("MoonBunnyFirstPlay", 0);
-        }
-        
-        private void OnItemTaken(Item item)
-        {
-            Score += item.Score;
         }
 
         public void RestartApplication()

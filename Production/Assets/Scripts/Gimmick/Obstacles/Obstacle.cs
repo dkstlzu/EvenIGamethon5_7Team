@@ -30,13 +30,9 @@ namespace MoonBunny
         public override void Invoke(MoonBunnyRigidbody with)
         {
             base.Invoke(with);
-
-            Character character;
-            if (with.TryGetComponent<Character>(out character))
-            {
-                character.Hit();
-                if (_audioClip) SoundManager.instance.PlayClip(_audioClip);
-            }
+            
+            if (_audioClip) SoundManager.instance.PlayClip(_audioClip);
+            with.GetComponent<Character>().Hit(this);
         }
     }
 }

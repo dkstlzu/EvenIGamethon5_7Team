@@ -9,12 +9,21 @@ namespace MoonBunny.UIs
     {
         None,
         Magnet,
+        Rocket,
         Spider,
     }
+    
     public class StageUIBuff : MonoBehaviour
     {
         public GameObject MagnetBuff;
         public GameObject SpiderDebuff;
+
+        private void Awake()
+        {
+            Magnet.OnMangetItemTaken += (power, duration) => BuffOn(BuffType.Magnet, duration);
+            Rocket.OnRocketItemTaken += (upSpeed, duration) => BuffOn(BuffType.Rocket, duration);
+            SpiderWeb.OnSpiderwebObstacleTaken += (slow, duration) => BuffOn(BuffType.Spider, duration);
+        }
 
         public void BuffOn(BuffType type, float duration = -1)
         {
@@ -28,22 +37,14 @@ namespace MoonBunny.UIs
                     targetGo = SpiderDebuff;
                     break;
             }
+
+            if (targetGo == null) return;
             
             targetGo.SetActive(true);
             if (duration > 0)
             {
                 Image image = targetGo.GetComponentInChildren<Image>(true);
                 StartCoroutine(BuffTimer(image, duration));
-            }
-        }
-
-        public void BuffOff(BuffType type)
-        {
-            switch (type)
-            {
-                case BuffType.Magnet:
-                    MagnetBuff.SetActive(false);
-                    break;
             }
         }
 

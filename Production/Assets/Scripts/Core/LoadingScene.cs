@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 namespace MoonBunny
 {
-    public class SceneName
+    public static class SceneName
     {
         public const string Loading = "0. Loading";
         public const string Start = "1. Start";
@@ -29,6 +30,12 @@ namespace MoonBunny
         public const string StageChallenge = "7. Stage Challenge";
 
         public static string[] Names = {Loading, Start, Stage1_1, Stage1_2, Stage1_3, Stage2_1, Stage2_2, Stage2_3, Stage3_1, Stage3_2, Stage3_3, Stage4_1, Stage4_2, Stage4_3, Stage5_1, Stage5_2, Stage5_3, StageChallenge};
+        public static string[] StageNames = {Stage1_1, Stage1_2, Stage1_3, Stage2_1, Stage2_2, Stage2_3, Stage3_1, Stage3_2, Stage3_3, Stage4_1, Stage4_2, Stage4_3, Stage5_1, Stage5_2, Stage5_3, StageChallenge};
+
+        public static bool isStage(string name)
+        {
+            return StageNames.Contains(name);
+        }
     }
     public class LoadingScene : MonoBehaviour
     {

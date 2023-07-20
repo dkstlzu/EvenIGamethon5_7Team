@@ -7,8 +7,9 @@ using UnityEditor;
 
 namespace MoonBunny
 {
-    public class BouncyPlatform : Platform
+    public class BouncyPlatform : Gimmick
     {
+        public static AudioClip S_JumpAudioClip;
         private static readonly int BounceHash = Animator.StringToHash("Bounce");
 
         [SerializeField] private Animator _animator;
@@ -75,6 +76,7 @@ namespace MoonBunny
             base.Invoke(with);
             
             _animator.SetTrigger(BounceHash);
+            SoundManager.instance.PlayClip(S_JumpAudioClip);
         }
     }
 }
