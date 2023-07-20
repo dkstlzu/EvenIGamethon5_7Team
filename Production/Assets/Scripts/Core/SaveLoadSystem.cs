@@ -248,6 +248,7 @@ namespace MoonBunny
             int bouncyPlatformPowerIndex = Array.IndexOf(CSVHeader, "Value1");
             int bouncyPlatformHorizontalMoveIndex = Array.IndexOf(CSVHeader, "Value2");
             int bouncyPlatformVerticalMoveIndex = Array.IndexOf(CSVHeader, "Value3");
+            int bouncyPlatformCycleLegnthIndex = Array.IndexOf(CSVHeader, "Value4");
             int randomSpawnerType1Index = Array.IndexOf(CSVHeader, "Value1");
             int randomSpawnerValue1Index = Array.IndexOf(CSVHeader, "Value2");
             int randomSpawnerType2Index = Array.IndexOf(CSVHeader, "Value3");
@@ -325,6 +326,7 @@ namespace MoonBunny
                             platform.JumpPower = int.Parse(lineContent[bouncyPlatformPowerIndex]);
                             platform.VerticalMoveRange = int.Parse(lineContent[bouncyPlatformVerticalMoveIndex]);
                             platform.HorizontalMoveRange = int.Parse(lineContent[bouncyPlatformHorizontalMoveIndex]);
+                            platform.LoopCycleLength = float.Parse(lineContent[bouncyPlatformCycleLegnthIndex]);
                             break;
                     }
 
