@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d25f6095671bbc84eacbca23e462c3f9
+guid: 2bca249ba59a8784d939256aee1d2f53
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,7 +136,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlatformFlower2_0
+      name: PlatformFlower2Yellow_0
       rect:
         serializedVersion: 2
         x: 0
@@ -150,14 +150,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 073520bcd6bc7954bbc1c96bca1ce8eb
-      internalID: -1914624586
+      spriteID: e229c33e3f281c848af42bb3b78798d7
+      internalID: 320736846
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformFlower2_1
+      name: PlatformFlower2Yellow_1
       rect:
         serializedVersion: 2
         x: 256
@@ -171,14 +171,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a4dc1ff81a3d774419a179d303d09d14
-      internalID: 1070697518
+      spriteID: d86d00eb2b113c643abe7d41d246e694
+      internalID: 1270838625
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformFlower2_2
+      name: PlatformFlower2Yellow_2
       rect:
         serializedVersion: 2
         x: 512
@@ -192,14 +192,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c63018fac383d649ae378cc47319f01
-      internalID: -13128940
+      spriteID: c50019f06a4e3144d8e99bd2c5ca1390
+      internalID: -720890337
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformFlower2_3
+      name: PlatformFlower2Yellow_3
       rect:
         serializedVersion: 2
         x: 0
@@ -213,14 +213,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fdec093dc9e8c8340ae716a15b1a83a1
-      internalID: -1737475342
+      spriteID: e86183bd2b017a6449dd960005d23e6c
+      internalID: -2139576848
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformFlower2_4
+      name: PlatformFlower2Yellow_4
       rect:
         serializedVersion: 2
         x: 256
@@ -234,14 +234,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a0316b73857d964ca7e456a238f047d
-      internalID: -1550859412
+      spriteID: b2b37d8b0c902a94cb880b17d4b0b5fe
+      internalID: 907717086
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformFlower2_5
+      name: PlatformFlower2Yellow_5
       rect:
         serializedVersion: 2
         x: 512
@@ -255,14 +255,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 52cf6f00bc2cb294c8f65690bdfdb4cd
-      internalID: 1763700621
+      spriteID: fdd0c8dd0d1f03d48a92e4fbb5c40504
+      internalID: 1371385112
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformFlower2_6
+      name: PlatformFlower2Yellow_6
       rect:
         serializedVersion: 2
         x: 0
@@ -276,14 +276,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 23349be5cc82569499ad48d15c5455a5
-      internalID: 211515502
+      spriteID: 78dc3b2f744e080428706fab4134b964
+      internalID: -1415992318
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformFlower2_7
+      name: PlatformFlower2Yellow_7
       rect:
         serializedVersion: 2
         x: 256
@@ -297,14 +297,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de7ffabc2a2430c4a8cf650746b3fdd8
-      internalID: -1785799675
+      spriteID: 05873521c3a53984f962980d9716a123
+      internalID: 2071497150
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformFlower2_8
+      name: PlatformFlower2Yellow_8
       rect:
         serializedVersion: 2
         x: 512
@@ -318,8 +318,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0602e8774f3cd094eb8ac4816b640b2a
-      internalID: 116849860
+      spriteID: 5d08873fb5e669e4ebe57b843ba57b03
+      internalID: -962220865
       vertices: []
       indices: 
       edges: []
@@ -335,15 +335,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PlatformFlower2_0: -1914624586
-      PlatformFlower2_1: 1070697518
-      PlatformFlower2_2: -13128940
-      PlatformFlower2_3: -1737475342
-      PlatformFlower2_4: -1550859412
-      PlatformFlower2_5: 1763700621
-      PlatformFlower2_6: 211515502
-      PlatformFlower2_7: -1785799675
-      PlatformFlower2_8: 116849860
+      PlatformFlower2Yellow_0: 320736846
+      PlatformFlower2Yellow_1: 1270838625
+      PlatformFlower2Yellow_2: -720890337
+      PlatformFlower2Yellow_3: -2139576848
+      PlatformFlower2Yellow_4: 907717086
+      PlatformFlower2Yellow_5: 1371385112
+      PlatformFlower2Yellow_6: -1415992318
+      PlatformFlower2Yellow_7: 2071497150
+      PlatformFlower2Yellow_8: -962220865
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
