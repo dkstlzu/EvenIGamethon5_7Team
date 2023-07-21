@@ -947,6 +947,10 @@ PrefabInstance:
       propertyPath: JumpPower
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3889271018641120838, guid: 953bd19362e145f4ebf681c8f95c9c32, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 636907228, guid: 060cba06346f4db4696dd4f43f54354f, type: 3}
     - target: {fileID: 4318821955201273328, guid: 953bd19362e145f4ebf681c8f95c9c32, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -2575,6 +2579,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3513748536211597182, guid: f647621381cdb9943ae2e1748a614ae0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.659999
+      objectReference: {fileID: 0}
     - target: {fileID: 4673129962269354994, guid: f647621381cdb9943ae2e1748a614ae0, type: 3}
       propertyPath: Character
       value: 
@@ -2595,6 +2603,10 @@ PrefabInstance:
       propertyPath: Character
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7632881472368895700, guid: f647621381cdb9943ae2e1748a614ae0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7869782706468600585, guid: f647621381cdb9943ae2e1748a614ae0, type: 3}
       propertyPath: m_Name
       value: Cameras
@@ -2605,7 +2617,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8497463935873801538, guid: f647621381cdb9943ae2e1748a614ae0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.659999
+      value: 6.659999
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3200,6 +3212,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level
       objectReference: {fileID: 0}
+    - target: {fileID: 4740608859320043184, guid: 444ca5ca609f794419dd299a9fe4cebf, type: 3}
+      propertyPath: m_Color.a
+      value: 0.9019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 4740608859320043184, guid: 444ca5ca609f794419dd299a9fe4cebf, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4740608859320043184, guid: 444ca5ca609f794419dd299a9fe4cebf, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4740608859320043184, guid: 444ca5ca609f794419dd299a9fe4cebf, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5959044011631036178, guid: 444ca5ca609f794419dd299a9fe4cebf, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3256,6 +3284,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8276122672916568586, guid: 444ca5ca609f794419dd299a9fe4cebf, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e3040897717b4fd49a41852aeb9d464e, type: 3}
     - target: {fileID: 8436291786976744597, guid: 444ca5ca609f794419dd299a9fe4cebf, type: 3}
       propertyPath: GridTransform.GridPosition.y
       value: -1
