@@ -139,7 +139,7 @@ MonoBehaviour:
   _type: 0
   _renderer: {fileID: 5804303894752395474}
   _audioClip: {fileID: 0}
-  FlySpeed: 5
+  FlySpeed: 3
   _rigidbody: {fileID: 5713561271783655176}
 --- !u!114 &5713561271783655176
 MonoBehaviour:
@@ -163,6 +163,10 @@ MonoBehaviour:
       m_Bits: 2048
     Direciton: 69632
   isGrounded: 0
+  _movement:
+    Velocity: {x: 0, y: 0}
+    DefaultHorizontalSpeedOnCollide: 0
+    Bounciness: 0
   DefaultHorizontalSpeed: 1
   BouncyRatio: 0.3
 --- !u!61 &918443929657355966
