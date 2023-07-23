@@ -171,7 +171,7 @@ Transform:
   m_GameObject: {fileID: 3361663752613896190}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 1.6, y: 1.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1199397743468646483}
@@ -293,7 +293,7 @@ MonoBehaviour:
     JumpPower: 0.3333333
     MagneticPower: 0
   MagneticField: {fileID: 6427175580982026930}
-  _currentHP: 3
+  _currentHP: 0
   InvincibleDuration: 3
   InvincibleEffectCurve:
     serializedVersion: 2
@@ -340,8 +340,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44342a30f9e24963b7611ebeb9b91d16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gravity: 10
-  MoveSacle: 1.6
+  _gravity: 5
+  MoveSacle: 1.5
   GridObject: {fileID: 2034000656419043365}
   ColliderLayerList:
   - Collider: {fileID: 8245130013832087367}
@@ -370,7 +370,7 @@ MonoBehaviour:
     DefaultHorizontalSpeedOnCollide: 0
     Bounciness: 0
   DefaultHorizontalSpeed: 1
-  BouncyRatio: 0.3333333
+  BouncyRatio: 0.3
 --- !u!95 &8993331230077029172
 Animator:
   serializedVersion: 5
