@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d2bbf7b6a7b1fc14090e171dcefd23b6
+guid: 79815079d665b3d49ad806f08183b68b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 80
+  spritePixelsToUnits: 128
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -136,11 +136,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlatformCloudSprites_0
+      name: PlatformCloud1_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 514
+        y: 518
         width: 256
         height: 256
       alignment: 0
@@ -150,18 +150,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d5a62ecd6a9721d4e879cf91a89d6f7b
-      internalID: 485674867
+      spriteID: 57f57a6001dfb744aa25d0a131ebb463
+      internalID: -1197524088
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformCloudSprites_1
+      name: PlatformCloud1_1
       rect:
         serializedVersion: 2
         x: 256
-        y: 514
+        y: 518
         width: 256
         height: 256
       alignment: 0
@@ -171,18 +171,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 458852a189c15f04d9191a37186549e7
-      internalID: 1075165948
+      spriteID: 87887163f2c34f6468dd69d9aca457d6
+      internalID: 256590115
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformCloudSprites_2
+      name: PlatformCloud1_2
       rect:
         serializedVersion: 2
         x: 512
-        y: 514
+        y: 518
         width: 256
         height: 256
       alignment: 0
@@ -192,18 +192,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b36530e6b97cf4244b207a2c776f7077
-      internalID: 1596605655
+      spriteID: 4fe469f36a1a09f43be9549d027e5202
+      internalID: 1823730421
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformCloudSprites_3
+      name: PlatformCloud1_3
       rect:
         serializedVersion: 2
         x: 0
-        y: 258
+        y: 262
         width: 256
         height: 256
       alignment: 0
@@ -213,18 +213,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 85b2f8b0795aa804caa2dca07e3e6c37
-      internalID: 616658596
+      spriteID: 274e22ca090279f428344eadea55c538
+      internalID: 1821839742
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformCloudSprites_4
+      name: PlatformCloud1_4
       rect:
         serializedVersion: 2
         x: 256
-        y: 258
+        y: 262
         width: 256
         height: 256
       alignment: 0
@@ -234,18 +234,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac5cf6228592184478e68a23b2295c8a
-      internalID: -1837820550
+      spriteID: 79bde847ed30c714e9e5c1b96f986997
+      internalID: 1811774165
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformCloudSprites_5
+      name: PlatformCloud1_5
       rect:
         serializedVersion: 2
         x: 512
-        y: 258
+        y: 262
         width: 256
         height: 256
       alignment: 0
@@ -255,18 +255,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1999137370218e34ab0a1fe7157aec6a
-      internalID: -164283687
+      spriteID: 669d1e44247716d409d2a30635362581
+      internalID: 428153007
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformCloudSprites_6
+      name: PlatformCloud1_6
       rect:
         serializedVersion: 2
         x: 0
-        y: 2
+        y: 6
         width: 256
         height: 256
       alignment: 0
@@ -276,18 +276,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55b8fb05850c10746a6fa51d4eeb55ba
-      internalID: 1969983955
+      spriteID: dbd9e57f892733440a0bc8e5131c3bb7
+      internalID: -1687932552
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformCloudSprites_7
+      name: PlatformCloud1_7
       rect:
         serializedVersion: 2
         x: 256
-        y: 2
+        y: 6
         width: 256
         height: 256
       alignment: 0
@@ -297,18 +297,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bbd6cf96407d641409c24bace24eb29e
-      internalID: 1204469069
+      spriteID: 20ea0a6e444ae764f85238179fc1b9a4
+      internalID: -575149876
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformCloudSprites_8
+      name: PlatformCloud1_8
       rect:
         serializedVersion: 2
         x: 512
-        y: 2
+        y: 6
         width: 256
         height: 256
       alignment: 0
@@ -318,8 +318,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2c27b2038f823c439fe81b05495eec8
-      internalID: -655473309
+      spriteID: ac5e4ff85ce70eb41847d2032ee4597d
+      internalID: -354737680
       vertices: []
       indices: 
       edges: []
@@ -335,15 +335,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PlatformCloudSprites_0: 485674867
-      PlatformCloudSprites_1: 1075165948
-      PlatformCloudSprites_2: 1596605655
-      PlatformCloudSprites_3: 616658596
-      PlatformCloudSprites_4: -1837820550
-      PlatformCloudSprites_5: -164283687
-      PlatformCloudSprites_6: 1969983955
-      PlatformCloudSprites_7: 1204469069
-      PlatformCloudSprites_8: -655473309
+      PlatformCloud1_0: -1197524088
+      PlatformCloud1_1: 256590115
+      PlatformCloud1_2: 1823730421
+      PlatformCloud1_3: 1821839742
+      PlatformCloud1_4: 1811774165
+      PlatformCloud1_5: 428153007
+      PlatformCloud1_6: -1687932552
+      PlatformCloud1_7: -575149876
+      PlatformCloud1_8: -354737680
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

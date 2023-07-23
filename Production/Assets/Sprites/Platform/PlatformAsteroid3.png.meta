@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 060cba06346f4db4696dd4f43f54354f
+guid: 2aae289d5271ab645a78cf7b977b938d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 70
+  spritePixelsToUnits: 128
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -136,11 +136,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlatformBranch_0
+      name: PlatformAsteroid3_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 514
+        y: 518
         width: 256
         height: 256
       alignment: 0
@@ -150,18 +150,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b720c1afd79244c49bde7ca7b53a6785
-      internalID: 636907228
+      spriteID: 2cfbc0c0c514b7f4a9a4b8db476b108c
+      internalID: -654892240
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformBranch_1
+      name: PlatformAsteroid3_1
       rect:
         serializedVersion: 2
         x: 256
-        y: 514
+        y: 518
         width: 256
         height: 256
       alignment: 0
@@ -171,18 +171,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a3e876b92c95124ba14eead6490beef
-      internalID: 1489617548
+      spriteID: 9ec87e5a7bf71bc4990f8f4285ee1eea
+      internalID: 1902653023
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformBranch_2
+      name: PlatformAsteroid3_2
       rect:
         serializedVersion: 2
         x: 512
-        y: 514
+        y: 518
         width: 256
         height: 256
       alignment: 0
@@ -192,18 +192,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4599d0f12052694184d22a7e8ef6c42
-      internalID: 514672236
+      spriteID: a6cd447af3d43b5438f2b704bfdcf87b
+      internalID: -1577401463
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformBranch_3
+      name: PlatformAsteroid3_3
       rect:
         serializedVersion: 2
         x: 0
-        y: 258
+        y: 262
         width: 256
         height: 256
       alignment: 0
@@ -213,81 +213,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c092d9d98026cbc4290c581cb71da328
-      internalID: 221397349
+      spriteID: bf23d33f03ddf2443bf0b12b59ed4ec4
+      internalID: 177943717
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformBranch_4
-      rect:
-        serializedVersion: 2
-        x: 254
-        y: 258
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1b3cde42fc1ef47489366a8d0d80ee67
-      internalID: 306400698
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlatformBranch_5
-      rect:
-        serializedVersion: 2
-        x: 514
-        y: 258
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fc02c918a94fdd040a108899ef42b10a
-      internalID: 954036959
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlatformBranch_6
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 2
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b0e7ebfaa5bce4a40bcf5f014eb79de7
-      internalID: 1342314121
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlatformBranch_7
+      name: PlatformAsteroid3_4
       rect:
         serializedVersion: 2
         x: 256
-        y: 2
+        y: 262
         width: 256
         height: 256
       alignment: 0
@@ -297,18 +234,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 556d0f40ff2ca19439552aa442ecbe5f
-      internalID: 1944624805
+      spriteID: 928fa8519a3ab304fa7da086f8d25fbd
+      internalID: -1139427512
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformBranch_8
+      name: PlatformAsteroid3_5
       rect:
         serializedVersion: 2
         x: 512
-        y: 2
+        y: 262
         width: 256
         height: 256
       alignment: 0
@@ -318,8 +255,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f372d07f204cd34184ba79fc99b14c4
-      internalID: 303581517
+      spriteID: ae46c893d6ce34c488d642c1a36c2b28
+      internalID: 1732071541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlatformAsteroid3_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 6
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 435f4732177484543923628389195e59
+      internalID: -1521918142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlatformAsteroid3_7
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 6
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 760a3f2dcb55c9844982ed87bd247147
+      internalID: -172741544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlatformAsteroid3_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 6
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f61783538942b8345aed2ef37c4b2852
+      internalID: 925694805
       vertices: []
       indices: 
       edges: []
@@ -335,15 +335,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PlatformBranch_0: 636907228
-      PlatformBranch_1: 1489617548
-      PlatformBranch_2: 514672236
-      PlatformBranch_3: 221397349
-      PlatformBranch_4: 306400698
-      PlatformBranch_5: 954036959
-      PlatformBranch_6: 1342314121
-      PlatformBranch_7: 1944624805
-      PlatformBranch_8: 303581517
+      PlatformAsteroid3_0: -654892240
+      PlatformAsteroid3_1: 1902653023
+      PlatformAsteroid3_2: -1577401463
+      PlatformAsteroid3_3: 177943717
+      PlatformAsteroid3_4: -1139427512
+      PlatformAsteroid3_5: 1732071541
+      PlatformAsteroid3_6: -1521918142
+      PlatformAsteroid3_7: -172741544
+      PlatformAsteroid3_8: 925694805
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
