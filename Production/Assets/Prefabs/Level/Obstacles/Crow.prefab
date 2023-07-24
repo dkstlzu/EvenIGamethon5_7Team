@@ -167,11 +167,14 @@ MonoBehaviour:
   InvokeOnCollision: 1
   _type: 0
   _renderer: {fileID: 915102327818019555}
-  _audioClip: {fileID: 0}
+  _audioClip: {fileID: 8300000, guid: b68e2ed4335ae4242a1c7be5964906fc, type: 3}
   FlySpeed: 5
+  CoolTime: 10
+  CoolTimeColor: {r: 1, g: 1, b: 1, a: 0.47843137}
   _rigidbody: {fileID: 5877526524361088950}
   _pickingPoint: {fileID: 3065762815980239553}
   _animator: {fileID: 328350423277327692}
+  _invoker: {fileID: 7319791046558711406}
 --- !u!61 &7654082840996625779
 BoxCollider2D:
   m_ObjectHideFlags: 0

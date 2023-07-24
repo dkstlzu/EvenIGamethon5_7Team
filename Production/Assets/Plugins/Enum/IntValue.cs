@@ -1,9 +1,10 @@
 using System;
 using System.Reflection;
+using UnityEngine;
+using Object = System.Object;
 
 namespace dkstlzu.Utility
 {
-    [AttributeUsage(AttributeTargets.Field)]
     public class IntValue : System.Attribute
     {
         private int _value; 
@@ -23,7 +24,7 @@ namespace dkstlzu.Utility
             int output = 0;
             
             Type type = value.GetType();
-            
+
             FieldInfo fi = type.GetField(value.ToString());
             IntValue[] attrs = fi.GetCustomAttributes(typeof(IntValue), false) as IntValue[];
             

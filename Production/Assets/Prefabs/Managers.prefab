@@ -117,14 +117,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BouncyPlatformSpriteList:
   - {fileID: 1716044973, guid: b1cfc125f45de3346a986a971eae97ac, type: 3}
-  - {fileID: 636907228, guid: 060cba06346f4db4696dd4f43f54354f, type: 3}
-  - {fileID: 485674867, guid: d2bbf7b6a7b1fc14090e171dcefd23b6, type: 3}
+  - {fileID: 320736846, guid: 2bca249ba59a8784d939256aee1d2f53, type: 3}
+  - {fileID: 320736846, guid: 2bca249ba59a8784d939256aee1d2f53, type: 3}
+  - {fileID: 1249493385, guid: d039feb2b7dcdda48a894bc88352a5fd, type: 3}
+  - {fileID: 1793141846, guid: 371769e69b7f86d439d593a9506774a2, type: 3}
+  - {fileID: -1123422863, guid: 59db8da130512414ca5fea33c56dddf9, type: 3}
+  - {fileID: -1197524088, guid: 79815079d665b3d49ad806f08183b68b, type: 3}
+  - {fileID: 551584864, guid: c6c5439bf2ab43244b46f69fdd05d691, type: 3}
+  - {fileID: -586877239, guid: b5a1c85e38e90c445af740276799096a, type: 3}
+  - {fileID: 1054428713, guid: 18b7245888f5b8546b9eba5918898500, type: 3}
+  - {fileID: 1466362949, guid: 294ec9b0e8ebb1747a178d8a85e5e9ef, type: 3}
+  - {fileID: 1175012238, guid: dc9cace2ae4d18a43bc05e7dd30a34cb, type: 3}
+  - {fileID: -19304570, guid: 46f35db5258347740a8dfae7c73c4b99, type: 3}
+  - {fileID: -961121361, guid: edf391cc6d5eacf4d93b51c805d8d365, type: 3}
+  - {fileID: -654892240, guid: 2aae289d5271ab645a78cf7b977b938d, type: 3}
   BouncyPlatformAnimatorControllerList:
   - {fileID: 9100000, guid: ef84a13ce8bdbb749934b701325899cd, type: 2}
   - {fileID: 22100000, guid: e334c6d11ca58804695bb76d90254a74, type: 2}
   - {fileID: 22100000, guid: 4bb068285fcb64642b0da2707ed2c17d, type: 2}
+  - {fileID: 22100000, guid: de0692b42b4dbf84da0c632f5ab10d02, type: 2}
+  - {fileID: 22100000, guid: 89def2f6a1b26ae448b0123caf81609c, type: 2}
   BouncyPlatformSound: {fileID: 8300000, guid: 3e35fa72656a4594e99720107582a5dd, type: 3}
   OpenStageAudioClip: {fileID: 8300000, guid: 1fdb7f1560016034698d3e970589b4ca, type: 3}
+  SpiderWebDebuffSprite: {fileID: 0}
+  CannibalismEffectPrefab: {fileID: 9127653965126434405, guid: b99b72f4a9666904fbe5e99b58090b10, type: 3}
   StarCandyEffectPrefab: {fileID: 3072994387487185058, guid: 7f997d2f0cc923545a16cd1f37627173, type: 3}
   ThunderEffectPrefab: {fileID: 13301048646092075, guid: 99e78b6b4035d884a8534bf10f2a8096, type: 3}
   WarningEffectPrefab: {fileID: 5105176418460448878, guid: d9d01206de179ba4d912ab7cfb2d3a54, type: 3}
@@ -145,11 +161,11 @@ MonoBehaviour:
   _audioSourceParent: {fileID: 9168371452221604120}
   _bgmAudioSource: {fileID: 1519028595631678618}
   LobbyBGM: {fileID: 8300000, guid: 6e778b339a99a8348b10b394db2f9f6e, type: 3}
-  Stage1BGM: {fileID: 0}
+  Stage1BGM: {fileID: 8300000, guid: 5f4c2144e39b34740b703887faa0048e, type: 3}
   Stage2BGM: {fileID: 8300000, guid: edd0afde7b757de459f2b4e78a3db2f6, type: 3}
-  Stage3BGM: {fileID: 0}
-  Stage4BGM: {fileID: 0}
-  Stage5BGM: {fileID: 0}
+  Stage3BGM: {fileID: 8300000, guid: 06ac2b5a71eb50c4ba180d4fc4457e15, type: 3}
+  Stage4BGM: {fileID: 8300000, guid: bf02c4435319730458e23e2a3348c122, type: 3}
+  Stage5BGM: {fileID: 8300000, guid: 4be4e9f5371e4234388cadb644050740, type: 3}
   StageChallengeBGM: {fileID: 0}
 --- !u!114 &7181178156869599547
 MonoBehaviour:

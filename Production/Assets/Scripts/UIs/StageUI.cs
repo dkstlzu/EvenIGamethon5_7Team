@@ -35,6 +35,7 @@ namespace MoonBunny.UIs
         [SerializeField] private Sprite _brokenHeartSprite;
         
         private Character _character;
+        public event Action OnDirectionChangeButtonClicked;
         
         private void Start()
         {
@@ -83,8 +84,7 @@ namespace MoonBunny.UIs
 
         public void ChangeDirectionButtonClicked()
         {
-            if (!_character.FirstJumped) _character.StartJump();
-            else _character.FlipDirection();
+            OnDirectionChangeButtonClicked?.Invoke();
         }
 
         public void Clear()
@@ -103,7 +103,10 @@ namespace MoonBunny.UIs
 
         public void GoToLobbyButtonClicked()
         {
-            SceneManager.LoadScene(SceneName.Start);
+            SceneManager.LoadSceneAsync(SceneName.Start).completed += (ao) =>
+            {
+                GameManager.instance.StartSceneUI.OnGoToStageSelectButtonClicked();
+            };
         }
 
         public void LoseHP()

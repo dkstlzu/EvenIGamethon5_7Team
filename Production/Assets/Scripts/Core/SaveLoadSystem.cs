@@ -183,6 +183,8 @@ namespace MoonBunny
             "Value6",
         };
 
+        private static string NoData = "-";
+
         public static void CreateDefaultMapData(string fileName)
         {
             string directory = Path.Combine(Application.streamingAssetsPath, "MapData");
@@ -232,23 +234,17 @@ namespace MoonBunny
             setting.logInfo = false;
             setting.componentsNotMatchedBecomesOverride = true;
             setting.gameObjectsNotMatchedBecomesOverride = true;
-
-            // Gimmick[] gimmicksInSceneAlready = GameObject.FindObjectsByType<Gimmick>(FindObjectsInactive.Include, FindObjectsSortMode.None);
-            //
-            // foreach (Gimmick platform in gimmicksInSceneAlready)
-            // {
-            //     MonoBehaviour.DestroyImmediate(platform.gameObject);
-            // }
             
+            Debug.Log("DB" + SaveDataFilePath);
             string[] fileContents = File.ReadAllLines(SaveDataFilePath);
 
+            int noIndex = Array.IndexOf(CSVHeader, "No");
             int typeIndex = Array.IndexOf(CSVHeader, "Type");
             int xIndex = Array.IndexOf(CSVHeader, "X");
             int yIndex = Array.IndexOf(CSVHeader, "Y");
             int bouncyPlatformPowerIndex = Array.IndexOf(CSVHeader, "Value1");
             int bouncyPlatformHorizontalMoveIndex = Array.IndexOf(CSVHeader, "Value2");
             int bouncyPlatformVerticalMoveIndex = Array.IndexOf(CSVHeader, "Value3");
-            int bouncyPlatformCycleLegnthIndex = Array.IndexOf(CSVHeader, "Value4");
             int randomSpawnerType1Index = Array.IndexOf(CSVHeader, "Value1");
             int randomSpawnerValue1Index = Array.IndexOf(CSVHeader, "Value2");
             int randomSpawnerType2Index = Array.IndexOf(CSVHeader, "Value3");
@@ -264,8 +260,8 @@ namespace MoonBunny
 
             for (int i = 1; i < fileContents.Length; i++)
             {
-                try
-                {
+                // try
+                // {
                     string[] lineContent = fileContents[i].Split(CSVSeperator);
 
                     if (lineContent.Length == 0)
@@ -323,10 +319,35 @@ namespace MoonBunny
                     {
                         case "BouncyPlatform":
                             BouncyPlatform platform = instantiatedGo.GetComponent<BouncyPlatform>();
+
+                            platform.Index = int.Parse(lineContent[noIndex]);
                             platform.JumpPower = int.Parse(lineContent[bouncyPlatformPowerIndex]);
-                            platform.VerticalMoveRange = int.Parse(lineContent[bouncyPlatformVerticalMoveIndex]);
-                            platform.HorizontalMoveRange = int.Parse(lineContent[bouncyPlatformHorizontalMoveIndex]);
-                            platform.LoopCycleLength = float.Parse(lineContent[bouncyPlatformCycleLegnthIndex]);
+
+                            string verticalMoveDataStr = lineContent[bouncyPlatformVerticalMoveIndex];
+                            
+                            if (verticalMoveDataStr != NoData)
+                            {
+                                int verticalMoveData = int.Parse(lineContent[bouncyPlatformVerticalMoveIndex]);
+
+                                platform.DownMoveRange = verticalMoveData % 10;
+                                verticalMoveData /= 10;
+                                platform.UpMoveRange = verticalMoveData % 10;
+                                verticalMoveData /= 10;
+                                platform.UpFirst = verticalMoveData > 0;
+                            }
+
+                            string horizontalMoveDataStr = lineContent[bouncyPlatformHorizontalMoveIndex];
+                            if (horizontalMoveDataStr != NoData)
+                            {
+                                int horizontalMoveData = int.Parse(lineContent[bouncyPlatformHorizontalMoveIndex]);
+
+                                platform.LeftMoveRange = horizontalMoveData % 10;
+                                horizontalMoveData /= 10;
+                                platform.RightMoveRange = horizontalMoveData % 10;
+                                horizontalMoveData /= 10;
+                                platform.RightFirst = horizontalMoveData > 0;
+                            }
+
                             break;
                     }
 
@@ -334,53 +355,16 @@ namespace MoonBunny
                     {
                         PrefabUtility.ConvertToPrefabInstance(instantiatedGo, targetPrefab, setting, InteractionMode.UserAction);
                     }
-                }
-                catch (Exception e)
-                {
-                    Debug.LogError(e + $"\nError accured while loading csv data line : {i}");
-                }
+                // }
+                // catch (Exception e)
+                // {
+                //     Debug.LogError(e + $"\nError accured while loading csv data line : {i}");
+                // }
             }
 
             RandomSpawner.Uninit();
         }
 
-        private string GetTypeInCSV(GridObject obj)
-        {
-            string result = string.Empty;
-            
-            switch (obj)
-            {
-                case BouncyPlatform platform:
-                    break;
-                case CrackPlatform platform:
-                    break;
-                case Rocket rocket:
-                    break;
-                case Magnet magnet:
-                    break;
-                case RandomSpawner spawner:
-                    break;
-                case ItemBox itemBox:
-                    break;
-                case ShootingStar shootingStar:
-                    break;
-            }
-
-            return result;
-        }
-
-        private Type GetTypeFromCSV(string typeStr)
-        {
-            Type type = null;
-            
-            switch (typeStr)
-            {
-                
-            }
-
-            return type;
-        }
-        
         private string GetTargetTag(string type)
         {
             string result = "Level";
@@ -394,9 +378,16 @@ namespace MoonBunny
                 case "Rocket":
                 case "Magnet":
                 case "ItemBox":
+                case "Heart":
                     result = "Items";        
                     break;
                 case "ShootingStar":
+                case "Bee":
+                case "Crow":
+                case "Cannibalism":
+                case "Thunderbolt":
+                case "SpiderWeb":
+                case "PinWheel":
                     result = "Obstacles";    
                     break;
             }
@@ -425,6 +416,7 @@ namespace MoonBunny
                 case "PinWheel":
                 case "ShootingStar":
                 case "SpiderWeb":
+                case "Thunderbolt":
                     result = Path.Combine(GimmickPath, "Obstacles", type + ".prefab");
                     break;
                 default:

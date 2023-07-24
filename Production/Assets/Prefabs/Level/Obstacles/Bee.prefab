@@ -138,7 +138,7 @@ MonoBehaviour:
   InvokeOnCollision: 1
   _type: 0
   _renderer: {fileID: 5804303894752395474}
-  _audioClip: {fileID: 0}
+  _audioClip: {fileID: 8300000, guid: b68e2ed4335ae4242a1c7be5964906fc, type: 3}
   FlySpeed: 3
   _rigidbody: {fileID: 5713561271783655176}
 --- !u!114 &5713561271783655176

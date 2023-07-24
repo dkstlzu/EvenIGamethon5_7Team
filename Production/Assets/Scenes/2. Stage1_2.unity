@@ -177,9 +177,13 @@ MonoBehaviour:
   _animator: {fileID: 7513109}
   _renderer: {fileID: 275532172}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &7513109
 Animator:
   serializedVersion: 5
@@ -300,9 +304,13 @@ MonoBehaviour:
   _animator: {fileID: 49467592}
   _renderer: {fileID: 2082581733}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &49467592
 Animator:
   serializedVersion: 5
@@ -450,7 +458,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &93262982
@@ -534,7 +542,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &93652439
@@ -618,7 +626,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &131846346
@@ -702,7 +710,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &132085413
@@ -857,9 +865,13 @@ MonoBehaviour:
   _animator: {fileID: 147805966}
   _renderer: {fileID: 1517122573}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &147805966
 Animator:
   serializedVersion: 5
@@ -980,9 +992,13 @@ MonoBehaviour:
   _animator: {fileID: 159730575}
   _renderer: {fileID: 1832953227}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &159730575
 Animator:
   serializedVersion: 5
@@ -1103,9 +1119,13 @@ MonoBehaviour:
   _animator: {fileID: 165020476}
   _renderer: {fileID: 168502427}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &165020476
 Animator:
   serializedVersion: 5
@@ -1253,7 +1273,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &199143020
@@ -1310,9 +1330,13 @@ MonoBehaviour:
   _animator: {fileID: 199143023}
   _renderer: {fileID: 1403078442}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &199143023
 Animator:
   serializedVersion: 5
@@ -1460,7 +1484,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &205746795
@@ -1517,9 +1541,13 @@ MonoBehaviour:
   _animator: {fileID: 205746798}
   _renderer: {fileID: 93652441}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &205746798
 Animator:
   serializedVersion: 5
@@ -1706,9 +1734,13 @@ MonoBehaviour:
   _animator: {fileID: 221562362}
   _renderer: {fileID: 546844310}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &221562362
 Animator:
   serializedVersion: 5
@@ -1829,9 +1861,13 @@ MonoBehaviour:
   _animator: {fileID: 253034981}
   _renderer: {fileID: 1208321195}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &253034981
 Animator:
   serializedVersion: 5
@@ -1979,7 +2015,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &275532170
@@ -2063,7 +2099,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &291624776
@@ -2120,9 +2156,13 @@ MonoBehaviour:
   _animator: {fileID: 291624779}
   _renderer: {fileID: 205207640}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &291624779
 Animator:
   serializedVersion: 5
@@ -2243,9 +2283,13 @@ MonoBehaviour:
   _animator: {fileID: 293686230}
   _renderer: {fileID: 1872436254}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &293686230
 Animator:
   serializedVersion: 5
@@ -2366,9 +2410,13 @@ MonoBehaviour:
   _animator: {fileID: 310891299}
   _renderer: {fileID: 1720566591}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &310891299
 Animator:
   serializedVersion: 5
@@ -2582,7 +2630,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &338252154
@@ -2639,9 +2687,13 @@ MonoBehaviour:
   _animator: {fileID: 338252157}
   _renderer: {fileID: 1471242040}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &338252157
 Animator:
   serializedVersion: 5
@@ -2789,7 +2841,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &343317134
@@ -2873,7 +2925,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &375711333
@@ -2930,9 +2982,13 @@ MonoBehaviour:
   _animator: {fileID: 375711336}
   _renderer: {fileID: 891159139}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &375711336
 Animator:
   serializedVersion: 5
@@ -3053,9 +3109,13 @@ MonoBehaviour:
   _animator: {fileID: 380859196}
   _renderer: {fileID: 1122997365}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &380859196
 Animator:
   serializedVersion: 5
@@ -3176,9 +3236,13 @@ MonoBehaviour:
   _animator: {fileID: 389393423}
   _renderer: {fileID: 860538548}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &389393423
 Animator:
   serializedVersion: 5
@@ -3326,7 +3390,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &395224821
@@ -3476,7 +3540,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &416282887
@@ -3560,7 +3624,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &424315981
@@ -3644,7 +3708,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &439326415
@@ -3728,7 +3792,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &462623953
@@ -3785,9 +3849,13 @@ MonoBehaviour:
   _animator: {fileID: 462623956}
   _renderer: {fileID: 1873902506}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &462623956
 Animator:
   serializedVersion: 5
@@ -3908,9 +3976,13 @@ MonoBehaviour:
   _animator: {fileID: 493447298}
   _renderer: {fileID: 567295918}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &493447298
 Animator:
   serializedVersion: 5
@@ -4058,7 +4130,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &509675805
@@ -4142,7 +4214,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &511820276
@@ -4199,9 +4271,13 @@ MonoBehaviour:
   _animator: {fileID: 511820279}
   _renderer: {fileID: 900837834}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &511820279
 Animator:
   serializedVersion: 5
@@ -4349,7 +4425,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &562119754
@@ -4433,7 +4509,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &564002087
@@ -4583,7 +4659,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &597531899
@@ -4640,9 +4716,13 @@ MonoBehaviour:
   _animator: {fileID: 597531902}
   _renderer: {fileID: 953784290}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &597531902
 Animator:
   serializedVersion: 5
@@ -4763,9 +4843,13 @@ MonoBehaviour:
   _animator: {fileID: 603681101}
   _renderer: {fileID: 416282889}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &603681101
 Animator:
   serializedVersion: 5
@@ -4886,9 +4970,13 @@ MonoBehaviour:
   _animator: {fileID: 633438065}
   _renderer: {fileID: 633755605}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &633438065
 Animator:
   serializedVersion: 5
@@ -5036,7 +5124,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &635447152
@@ -5093,9 +5181,13 @@ MonoBehaviour:
   _animator: {fileID: 635447155}
   _renderer: {fileID: 343195560}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &635447155
 Animator:
   serializedVersion: 5
@@ -5216,9 +5308,13 @@ MonoBehaviour:
   _animator: {fileID: 636554769}
   _renderer: {fileID: 973071668}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &636554769
 Animator:
   serializedVersion: 5
@@ -5366,7 +5462,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &648823701
@@ -5450,7 +5546,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &654787745
@@ -5507,9 +5603,13 @@ MonoBehaviour:
   _animator: {fileID: 654787748}
   _renderer: {fileID: 711002403}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &654787748
 Animator:
   serializedVersion: 5
@@ -5630,9 +5730,13 @@ MonoBehaviour:
   _animator: {fileID: 678134465}
   _renderer: {fileID: 439326417}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &678134465
 Animator:
   serializedVersion: 5
@@ -5780,7 +5884,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &725103345
@@ -5864,7 +5968,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &740114432
@@ -5921,9 +6025,13 @@ MonoBehaviour:
   _animator: {fileID: 740114435}
   _renderer: {fileID: 725103347}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &740114435
 Animator:
   serializedVersion: 5
@@ -6071,7 +6179,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &758395355
@@ -6128,9 +6236,13 @@ MonoBehaviour:
   _animator: {fileID: 758395358}
   _renderer: {fileID: 857578933}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &758395358
 Animator:
   serializedVersion: 5
@@ -6251,9 +6363,13 @@ MonoBehaviour:
   _animator: {fileID: 764895434}
   _renderer: {fileID: 393804778}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &764895434
 Animator:
   serializedVersion: 5
@@ -6401,7 +6517,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &800349167
@@ -6458,9 +6574,13 @@ MonoBehaviour:
   _animator: {fileID: 800349170}
   _renderer: {fileID: 746776372}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &800349170
 Animator:
   serializedVersion: 5
@@ -6581,9 +6701,13 @@ MonoBehaviour:
   _animator: {fileID: 807765744}
   _renderer: {fileID: 1016177172}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &807765744
 Animator:
   serializedVersion: 5
@@ -6704,9 +6828,13 @@ MonoBehaviour:
   _animator: {fileID: 825032748}
   _renderer: {fileID: 2129179300}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &825032748
 Animator:
   serializedVersion: 5
@@ -6854,7 +6982,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &860538546
@@ -6938,7 +7066,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &861697018
@@ -6995,9 +7123,13 @@ MonoBehaviour:
   _animator: {fileID: 861697021}
   _renderer: {fileID: 562119756}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &861697021
 Animator:
   serializedVersion: 5
@@ -7145,7 +7277,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &891159137
@@ -7229,7 +7361,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &895993969
@@ -7379,7 +7511,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &904342518
@@ -7436,9 +7568,13 @@ MonoBehaviour:
   _animator: {fileID: 904342521}
   _renderer: {fileID: 424315983}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &904342521
 Animator:
   serializedVersion: 5
@@ -7625,9 +7761,13 @@ MonoBehaviour:
   _animator: {fileID: 913767049}
   _renderer: {fileID: 501813275}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &913767049
 Animator:
   serializedVersion: 5
@@ -7841,7 +7981,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &957340432
@@ -7898,9 +8038,13 @@ MonoBehaviour:
   _animator: {fileID: 957340435}
   _renderer: {fileID: 131846348}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &957340435
 Animator:
   serializedVersion: 5
@@ -8021,9 +8165,13 @@ MonoBehaviour:
   _animator: {fileID: 963686082}
   _renderer: {fileID: 1776534492}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &963686082
 Animator:
   serializedVersion: 5
@@ -8237,7 +8385,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &987333153
@@ -8321,7 +8469,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1016177170
@@ -8405,7 +8553,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &1021358207
@@ -8560,9 +8708,13 @@ MonoBehaviour:
   _animator: {fileID: 1029726531}
   _renderer: {fileID: 1493476990}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1029726531
 Animator:
   serializedVersion: 5
@@ -8812,6 +8964,10 @@ PrefabInstance:
     - target: {fileID: 8925414841234326103, guid: 444ca5ca609f794419dd299a9fe4cebf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8967351194144355069, guid: 444ca5ca609f794419dd299a9fe4cebf, type: 3}
+      propertyPath: Name
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9178,9 +9334,13 @@ MonoBehaviour:
   _animator: {fileID: 1103678790}
   _renderer: {fileID: 415087159}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1103678790
 Animator:
   serializedVersion: 5
@@ -9328,7 +9488,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1119620491
@@ -9385,9 +9545,13 @@ MonoBehaviour:
   _animator: {fileID: 1119620494}
   _renderer: {fileID: 1434185063}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1119620494
 Animator:
   serializedVersion: 5
@@ -9508,9 +9672,13 @@ MonoBehaviour:
   _animator: {fileID: 1122725084}
   _renderer: {fileID: 987333155}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1122725084
 Animator:
   serializedVersion: 5
@@ -9658,7 +9826,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &1137073903
@@ -9808,7 +9976,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1155468809
@@ -9892,7 +10060,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1159632759
@@ -9949,9 +10117,13 @@ MonoBehaviour:
   _animator: {fileID: 1159632762}
   _renderer: {fileID: 1931318534}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1159632762
 Animator:
   serializedVersion: 5
@@ -10099,7 +10271,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1181826913
@@ -10156,9 +10328,13 @@ MonoBehaviour:
   _animator: {fileID: 1181826916}
   _renderer: {fileID: 2005915897}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1181826916
 Animator:
   serializedVersion: 5
@@ -10279,9 +10455,13 @@ MonoBehaviour:
   _animator: {fileID: 1197157785}
   _renderer: {fileID: 1342279266}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1197157785
 Animator:
   serializedVersion: 5
@@ -10429,7 +10609,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1208321193
@@ -10513,7 +10693,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1217046960
@@ -10570,9 +10750,13 @@ MonoBehaviour:
   _animator: {fileID: 1217046963}
   _renderer: {fileID: 1153233431}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1217046963
 Animator:
   serializedVersion: 5
@@ -10720,7 +10904,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &1232206374
@@ -10936,7 +11120,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1330572090
@@ -11020,7 +11204,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1332037512
@@ -11104,7 +11288,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1340897522
@@ -11161,9 +11345,13 @@ MonoBehaviour:
   _animator: {fileID: 1340897525}
   _renderer: {fileID: 1112269115}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1340897525
 Animator:
   serializedVersion: 5
@@ -11311,7 +11499,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1362944313
@@ -11368,9 +11556,13 @@ MonoBehaviour:
   _animator: {fileID: 1362944316}
   _renderer: {fileID: 2106467197}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1362944316
 Animator:
   serializedVersion: 5
@@ -11623,9 +11815,13 @@ MonoBehaviour:
   _animator: {fileID: 1381638284}
   _renderer: {fileID: 1332037514}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1381638284
 Animator:
   serializedVersion: 5
@@ -11773,7 +11969,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1404085091
@@ -11830,9 +12026,13 @@ MonoBehaviour:
   _animator: {fileID: 1404085094}
   _renderer: {fileID: 88873255}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1404085094
 Animator:
   serializedVersion: 5
@@ -12019,9 +12219,13 @@ MonoBehaviour:
   _animator: {fileID: 1413269848}
   _renderer: {fileID: 1981695623}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1413269848
 Animator:
   serializedVersion: 5
@@ -12169,7 +12373,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1448795054
@@ -12226,9 +12430,13 @@ MonoBehaviour:
   _animator: {fileID: 1448795057}
   _renderer: {fileID: 1330572092}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1448795057
 Animator:
   serializedVersion: 5
@@ -12349,9 +12557,13 @@ MonoBehaviour:
   _animator: {fileID: 1453492761}
   _renderer: {fileID: 1707436520}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1453492761
 Animator:
   serializedVersion: 5
@@ -12499,7 +12711,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1493476988
@@ -12583,7 +12795,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1498844035
@@ -12640,9 +12852,13 @@ MonoBehaviour:
   _animator: {fileID: 1498844038}
   _renderer: {fileID: 262904496}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1498844038
 Animator:
   serializedVersion: 5
@@ -12790,7 +13006,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &1523034445
@@ -12940,7 +13156,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1531160255
@@ -12997,9 +13213,13 @@ MonoBehaviour:
   _animator: {fileID: 1531160258}
   _renderer: {fileID: 343317136}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1531160258
 Animator:
   serializedVersion: 5
@@ -13147,7 +13367,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1562024102
@@ -13204,9 +13424,13 @@ MonoBehaviour:
   _animator: {fileID: 1562024105}
   _renderer: {fileID: 1555688319}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1562024105
 Animator:
   serializedVersion: 5
@@ -13327,9 +13551,13 @@ MonoBehaviour:
   _animator: {fileID: 1579239189}
   _renderer: {fileID: 640160702}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1579239189
 Animator:
   serializedVersion: 5
@@ -13543,7 +13771,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1625585637
@@ -13600,9 +13828,13 @@ MonoBehaviour:
   _animator: {fileID: 1625585640}
   _renderer: {fileID: 1205429487}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1625585640
 Animator:
   serializedVersion: 5
@@ -13723,9 +13955,13 @@ MonoBehaviour:
   _animator: {fileID: 1679597423}
   _renderer: {fileID: 648823703}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1679597423
 Animator:
   serializedVersion: 5
@@ -13873,7 +14109,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1711837458
@@ -13930,9 +14166,13 @@ MonoBehaviour:
   _animator: {fileID: 1711837461}
   _renderer: {fileID: 336460697}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1711837461
 Animator:
   serializedVersion: 5
@@ -14080,7 +14320,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1720566589
@@ -14164,7 +14404,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &1727417236
@@ -14385,9 +14625,13 @@ MonoBehaviour:
   _animator: {fileID: 1751682346}
   _renderer: {fileID: 93262984}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1751682346
 Animator:
   serializedVersion: 5
@@ -14535,7 +14779,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1783309299
@@ -14592,9 +14836,13 @@ MonoBehaviour:
   _animator: {fileID: 1783309302}
   _renderer: {fileID: 1155468811}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1783309302
 Animator:
   serializedVersion: 5
@@ -14840,7 +15088,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1832953225
@@ -14924,7 +15172,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1836016389
@@ -14981,9 +15229,13 @@ MonoBehaviour:
   _animator: {fileID: 1836016392}
   _renderer: {fileID: 1915433377}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1836016392
 Animator:
   serializedVersion: 5
@@ -15104,9 +15356,13 @@ MonoBehaviour:
   _animator: {fileID: 1865902067}
   _renderer: {fileID: 2035696790}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1865902067
 Animator:
   serializedVersion: 5
@@ -15254,7 +15510,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1873902504
@@ -15338,7 +15594,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1874033835
@@ -15395,9 +15651,13 @@ MonoBehaviour:
   _animator: {fileID: 1874033838}
   _renderer: {fileID: 1296163039}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1874033838
 Animator:
   serializedVersion: 5
@@ -15518,9 +15778,13 @@ MonoBehaviour:
   _animator: {fileID: 1903456408}
   _renderer: {fileID: 1905489462}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1903456408
 Animator:
   serializedVersion: 5
@@ -15668,7 +15932,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1911732847
@@ -15725,9 +15989,13 @@ MonoBehaviour:
   _animator: {fileID: 1911732850}
   _renderer: {fileID: 797871207}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1911732850
 Animator:
   serializedVersion: 5
@@ -15848,9 +16116,13 @@ MonoBehaviour:
   _animator: {fileID: 1914381826}
   _renderer: {fileID: 875236253}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1914381826
 Animator:
   serializedVersion: 5
@@ -15998,7 +16270,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1927466064
@@ -16055,9 +16327,13 @@ MonoBehaviour:
   _animator: {fileID: 1927466067}
   _renderer: {fileID: 1719819455}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1927466067
 Animator:
   serializedVersion: 5
@@ -16205,7 +16481,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1972536031
@@ -16262,9 +16538,13 @@ MonoBehaviour:
   _animator: {fileID: 1972536034}
   _renderer: {fileID: 1624635621}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1972536034
 Animator:
   serializedVersion: 5
@@ -16412,7 +16692,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &1991019628
@@ -16562,7 +16842,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2007602368
@@ -16619,9 +16899,13 @@ MonoBehaviour:
   _animator: {fileID: 2007602371}
   _renderer: {fileID: 1529760961}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &2007602371
 Animator:
   serializedVersion: 5
@@ -16742,9 +17026,13 @@ MonoBehaviour:
   _animator: {fileID: 2020467717}
   _renderer: {fileID: 1225487498}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &2020467717
 Animator:
   serializedVersion: 5
@@ -16892,7 +17180,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &2036878739
@@ -17015,9 +17303,13 @@ MonoBehaviour:
   _animator: {fileID: 2073079429}
   _renderer: {fileID: 1830251201}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &2073079429
 Animator:
   serializedVersion: 5
@@ -17165,7 +17457,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2084155073
@@ -17222,9 +17514,13 @@ MonoBehaviour:
   _animator: {fileID: 2084155076}
   _renderer: {fileID: 1162850972}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &2084155076
 Animator:
   serializedVersion: 5
@@ -17372,7 +17668,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2129179298
@@ -17456,7 +17752,7 @@ SpriteRenderer:
   m_Size: {x: 2.015625, y: 2.015625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2139415668
@@ -17513,9 +17809,13 @@ MonoBehaviour:
   _animator: {fileID: 2139415671}
   _renderer: {fileID: 509675807}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &2139415671
 Animator:
   serializedVersion: 5
@@ -17640,7 +17940,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3513748536211597182, guid: f647621381cdb9943ae2e1748a614ae0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.659999
+      value: -0.84000015
       objectReference: {fileID: 0}
     - target: {fileID: 4673129962269354994, guid: f647621381cdb9943ae2e1748a614ae0, type: 3}
       propertyPath: Character
@@ -17676,7 +17976,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8497463935873801538, guid: f647621381cdb9943ae2e1748a614ae0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.659999
+      value: -0.84000015
       objectReference: {fileID: 0}
     - target: {fileID: 8497463935873801538, guid: f647621381cdb9943ae2e1748a614ae0, type: 3}
       propertyPath: m_LocalPosition.z

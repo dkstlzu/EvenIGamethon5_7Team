@@ -21,6 +21,8 @@ namespace MoonBunny
         public CircleCollider2D MagneticField;
 
         [SerializeField] private int _currentHP;
+        public SpriteRenderer DebuffSpriteRenderer;
+        
         public int CurrentHp
         {
             get => _currentHP;
@@ -33,9 +35,11 @@ namespace MoonBunny
                 }
             }
         }
-
+ 
         public float InvincibleDuration = 3;
         public AnimationCurve InvincibleEffectCurve;
+        
+        public bool isCanniblismEaten { get; set; }
 
         public bool LookingRight => !Renderer.flipX;
 
@@ -57,6 +61,7 @@ namespace MoonBunny
 #if UNITY_EDITOR
             if (!UnityEditor.EditorApplication.isPlaying) return;
 #endif
+            GameManager.instance.Stage.UI.OnDirectionChangeButtonClicked += OnButtonClicked;
         }
 
         protected override void Update()
@@ -74,6 +79,14 @@ namespace MoonBunny
                 Renderer.flipX = false;
             }
             _animator.SetBool(_fallingHash, _rigidbody.isFalling);
+        }
+
+        private void OnButtonClicked()
+        {
+            if (isCanniblismEaten) return;
+            
+            if (!FirstJumped) StartJump();
+            else FlipDirection();
         }
 
         public void StartJump()

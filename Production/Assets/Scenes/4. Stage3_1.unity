@@ -177,9 +177,13 @@ MonoBehaviour:
   _animator: {fileID: 13637839}
   _renderer: {fileID: 1039773775}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &13637839
 Animator:
   serializedVersion: 5
@@ -300,9 +304,13 @@ MonoBehaviour:
   _animator: {fileID: 30878559}
   _renderer: {fileID: 1007714504}
   JumpPower: 4
-  VerticalMoveRange: 3
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &30878559
 Animator:
   serializedVersion: 5
@@ -423,9 +431,13 @@ MonoBehaviour:
   _animator: {fileID: 53539082}
   _renderer: {fileID: 290748092}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &53539082
 Animator:
   serializedVersion: 5
@@ -714,9 +726,13 @@ MonoBehaviour:
   _animator: {fileID: 93920556}
   _renderer: {fileID: 93283118}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &93920556
 Animator:
   serializedVersion: 5
@@ -921,9 +937,13 @@ MonoBehaviour:
   _animator: {fileID: 98459169}
   _renderer: {fileID: 281909665}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &98459169
 Animator:
   serializedVersion: 5
@@ -1362,9 +1382,13 @@ MonoBehaviour:
   _animator: {fileID: 142671338}
   _renderer: {fileID: 1168704503}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &142671338
 Animator:
   serializedVersion: 5
@@ -1485,9 +1509,13 @@ MonoBehaviour:
   _animator: {fileID: 175359654}
   _renderer: {fileID: 1911529756}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &175359654
 Animator:
   serializedVersion: 5
@@ -1640,7 +1668,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8497463935873801538, guid: f647621381cdb9943ae2e1748a614ae0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.659999
+      value: 0.15999985
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1767,9 +1795,13 @@ MonoBehaviour:
   _animator: {fileID: 210209839}
   _renderer: {fileID: 1907063207}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &210209839
 Animator:
   serializedVersion: 5
@@ -1890,9 +1922,13 @@ MonoBehaviour:
   _animator: {fileID: 217760768}
   _renderer: {fileID: 1926412145}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &217760768
 Animator:
   serializedVersion: 5
@@ -2079,9 +2115,13 @@ MonoBehaviour:
   _animator: {fileID: 225195973}
   _renderer: {fileID: 1506264044}
   JumpPower: 5
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &225195973
 Animator:
   serializedVersion: 5
@@ -2370,9 +2410,13 @@ MonoBehaviour:
   _animator: {fileID: 237610947}
   _renderer: {fileID: 94565516}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &237610947
 Animator:
   serializedVersion: 5
@@ -2577,9 +2621,13 @@ MonoBehaviour:
   _animator: {fileID: 255468599}
   _renderer: {fileID: 1934008445}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &255468599
 Animator:
   serializedVersion: 5
@@ -3036,9 +3084,13 @@ MonoBehaviour:
   _animator: {fileID: 303203194}
   _renderer: {fileID: 1486212769}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &303203194
 Animator:
   serializedVersion: 5
@@ -3327,9 +3379,13 @@ MonoBehaviour:
   _animator: {fileID: 361342679}
   _renderer: {fileID: 404135467}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &361342679
 Animator:
   serializedVersion: 5
@@ -3450,9 +3506,13 @@ MonoBehaviour:
   _animator: {fileID: 373037999}
   _renderer: {fileID: 1634047794}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &373037999
 Animator:
   serializedVersion: 5
@@ -3891,9 +3951,13 @@ MonoBehaviour:
   _animator: {fileID: 406979597}
   _renderer: {fileID: 274216794}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &406979597
 Animator:
   serializedVersion: 5
@@ -4116,9 +4180,13 @@ MonoBehaviour:
   _animator: {fileID: 496559232}
   _renderer: {fileID: 1130197928}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &496559232
 Animator:
   serializedVersion: 5
@@ -4323,9 +4391,13 @@ MonoBehaviour:
   _animator: {fileID: 530112283}
   _renderer: {fileID: 56501181}
   JumpPower: 4
-  VerticalMoveRange: 3
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &530112283
 Animator:
   serializedVersion: 5
@@ -4446,9 +4518,13 @@ MonoBehaviour:
   _animator: {fileID: 544376028}
   _renderer: {fileID: 279219215}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &544376028
 Animator:
   serializedVersion: 5
@@ -4821,9 +4897,13 @@ MonoBehaviour:
   _animator: {fileID: 590169619}
   _renderer: {fileID: 1967599402}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &590169619
 Animator:
   serializedVersion: 5
@@ -5514,9 +5594,13 @@ MonoBehaviour:
   _animator: {fileID: 686528031}
   _renderer: {fileID: 2023880246}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &686528031
 Animator:
   serializedVersion: 5
@@ -5637,9 +5721,13 @@ MonoBehaviour:
   _animator: {fileID: 687004811}
   _renderer: {fileID: 719719915}
   JumpPower: 5
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &687004811
 Animator:
   serializedVersion: 5
@@ -5844,9 +5932,13 @@ MonoBehaviour:
   _animator: {fileID: 693732114}
   _renderer: {fileID: 545354668}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &693732114
 Animator:
   serializedVersion: 5
@@ -5967,9 +6059,13 @@ MonoBehaviour:
   _animator: {fileID: 709105068}
   _renderer: {fileID: 309412210}
   JumpPower: 4
-  VerticalMoveRange: 3
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &709105068
 Animator:
   serializedVersion: 5
@@ -6090,9 +6186,13 @@ MonoBehaviour:
   _animator: {fileID: 710931024}
   _renderer: {fileID: 1936102184}
   JumpPower: 4
-  VerticalMoveRange: 2
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &710931024
 Animator:
   serializedVersion: 5
@@ -6213,9 +6313,13 @@ MonoBehaviour:
   _animator: {fileID: 711264856}
   _renderer: {fileID: 545696435}
   JumpPower: 4
-  VerticalMoveRange: 3
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &711264856
 Animator:
   serializedVersion: 5
@@ -6420,9 +6524,13 @@ MonoBehaviour:
   _animator: {fileID: 717896844}
   _renderer: {fileID: 679459955}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &717896844
 Animator:
   serializedVersion: 5
@@ -6627,9 +6735,13 @@ MonoBehaviour:
   _animator: {fileID: 734341746}
   _renderer: {fileID: 1754367772}
   JumpPower: 5
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &734341746
 Animator:
   serializedVersion: 5
@@ -6816,9 +6928,13 @@ MonoBehaviour:
   _animator: {fileID: 740360894}
   _renderer: {fileID: 635301527}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &740360894
 Animator:
   serializedVersion: 5
@@ -6939,9 +7055,13 @@ MonoBehaviour:
   _animator: {fileID: 746524675}
   _renderer: {fileID: 1705756517}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &746524675
 Animator:
   serializedVersion: 5
@@ -7128,9 +7248,13 @@ MonoBehaviour:
   _animator: {fileID: 795358518}
   _renderer: {fileID: 654444431}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &795358518
 Animator:
   serializedVersion: 5
@@ -7503,9 +7627,13 @@ MonoBehaviour:
   _animator: {fileID: 900449696}
   _renderer: {fileID: 232507162}
   JumpPower: 4
-  VerticalMoveRange: 3
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &900449696
 Animator:
   serializedVersion: 5
@@ -7710,9 +7838,13 @@ MonoBehaviour:
   _animator: {fileID: 918003744}
   _renderer: {fileID: 1644661864}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &918003744
 Animator:
   serializedVersion: 5
@@ -7833,9 +7965,13 @@ MonoBehaviour:
   _animator: {fileID: 954467871}
   _renderer: {fileID: 1836862566}
   JumpPower: 4
-  VerticalMoveRange: 3
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &954467871
 Animator:
   serializedVersion: 5
@@ -8190,9 +8326,13 @@ MonoBehaviour:
   _animator: {fileID: 988331175}
   _renderer: {fileID: 1045744290}
   JumpPower: 5
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &988331175
 Animator:
   serializedVersion: 5
@@ -8313,9 +8453,13 @@ MonoBehaviour:
   _animator: {fileID: 1004670525}
   _renderer: {fileID: 1336659877}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1004670525
 Animator:
   serializedVersion: 5
@@ -8604,9 +8748,13 @@ MonoBehaviour:
   _animator: {fileID: 1027164744}
   _renderer: {fileID: 628452371}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1027164744
 Animator:
   serializedVersion: 5
@@ -9147,9 +9295,13 @@ MonoBehaviour:
   _animator: {fileID: 1081681171}
   _renderer: {fileID: 1327072979}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1081681171
 Animator:
   serializedVersion: 5
@@ -9270,9 +9422,13 @@ MonoBehaviour:
   _animator: {fileID: 1095317271}
   _renderer: {fileID: 2095839651}
   JumpPower: 4
-  VerticalMoveRange: 3
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1095317271
 Animator:
   serializedVersion: 5
@@ -9393,9 +9549,13 @@ MonoBehaviour:
   _animator: {fileID: 1117950942}
   _renderer: {fileID: 105281984}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1117950942
 Animator:
   serializedVersion: 5
@@ -9684,9 +9844,13 @@ MonoBehaviour:
   _animator: {fileID: 1180285744}
   _renderer: {fileID: 711412614}
   JumpPower: 5
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1180285744
 Animator:
   serializedVersion: 5
@@ -9941,6 +10105,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8967351194144355069, guid: 444ca5ca609f794419dd299a9fe4cebf, type: 3}
+      propertyPath: Name
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8967351194144355069, guid: 444ca5ca609f794419dd299a9fe4cebf, type: 3}
+      propertyPath: _spec
+      value: 
+      objectReference: {fileID: 11400000, guid: b4516bf5aa811ab449741e9ab2bd4e1d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -10312,9 +10484,13 @@ MonoBehaviour:
   _animator: {fileID: 1200223101}
   _renderer: {fileID: 1936323972}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1200223101
 Animator:
   serializedVersion: 5
@@ -10435,9 +10611,13 @@ MonoBehaviour:
   _animator: {fileID: 1200926530}
   _renderer: {fileID: 1277712881}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1200926530
 Animator:
   serializedVersion: 5
@@ -10558,9 +10738,13 @@ MonoBehaviour:
   _animator: {fileID: 1201261979}
   _renderer: {fileID: 954944447}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1201261979
 Animator:
   serializedVersion: 5
@@ -11017,9 +11201,13 @@ MonoBehaviour:
   _animator: {fileID: 1297619289}
   _renderer: {fileID: 1261614181}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1297619289
 Animator:
   serializedVersion: 5
@@ -11140,9 +11328,13 @@ MonoBehaviour:
   _animator: {fileID: 1311500900}
   _renderer: {fileID: 497984940}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1311500900
 Animator:
   serializedVersion: 5
@@ -11617,9 +11809,13 @@ MonoBehaviour:
   _animator: {fileID: 1374325201}
   _renderer: {fileID: 633712670}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1374325201
 Animator:
   serializedVersion: 5
@@ -11740,9 +11936,13 @@ MonoBehaviour:
   _animator: {fileID: 1374698828}
   _renderer: {fileID: 1075425227}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1374698828
 Animator:
   serializedVersion: 5
@@ -11947,9 +12147,13 @@ MonoBehaviour:
   _animator: {fileID: 1386409005}
   _renderer: {fileID: 2080513515}
   JumpPower: 5
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1386409005
 Animator:
   serializedVersion: 5
@@ -12070,9 +12274,13 @@ MonoBehaviour:
   _animator: {fileID: 1391056497}
   _renderer: {fileID: 1519434689}
   JumpPower: 4
-  VerticalMoveRange: 3
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1391056497
 Animator:
   serializedVersion: 5
@@ -12193,9 +12401,13 @@ MonoBehaviour:
   _animator: {fileID: 1397605787}
   _renderer: {fileID: 617728039}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1397605787
 Animator:
   serializedVersion: 5
@@ -12316,9 +12528,13 @@ MonoBehaviour:
   _animator: {fileID: 1432156259}
   _renderer: {fileID: 1005818754}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1432156259
 Animator:
   serializedVersion: 5
@@ -12841,9 +13057,13 @@ MonoBehaviour:
   _animator: {fileID: 1507280046}
   _renderer: {fileID: 1566142805}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1507280046
 Animator:
   serializedVersion: 5
@@ -13048,9 +13268,13 @@ MonoBehaviour:
   _animator: {fileID: 1523717092}
   _renderer: {fileID: 401552482}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1523717092
 Animator:
   serializedVersion: 5
@@ -13171,9 +13395,13 @@ MonoBehaviour:
   _animator: {fileID: 1556887265}
   _renderer: {fileID: 236304332}
   JumpPower: 4
-  VerticalMoveRange: 3
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1556887265
 Animator:
   serializedVersion: 5
@@ -13528,9 +13756,13 @@ MonoBehaviour:
   _animator: {fileID: 1584168553}
   _renderer: {fileID: 1250976572}
   JumpPower: 4
-  VerticalMoveRange: 3
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1584168553
 Animator:
   serializedVersion: 5
@@ -13651,9 +13883,13 @@ MonoBehaviour:
   _animator: {fileID: 1597203066}
   _renderer: {fileID: 690285958}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1597203066
 Animator:
   serializedVersion: 5
@@ -13774,9 +14010,13 @@ MonoBehaviour:
   _animator: {fileID: 1600946229}
   _renderer: {fileID: 1960100686}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1600946229
 Animator:
   serializedVersion: 5
@@ -14065,9 +14305,13 @@ MonoBehaviour:
   _animator: {fileID: 1651281950}
   _renderer: {fileID: 122173960}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1651281950
 Animator:
   serializedVersion: 5
@@ -14282,9 +14526,13 @@ MonoBehaviour:
   _animator: {fileID: 1664732208}
   _renderer: {fileID: 1483713028}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1664732208
 Animator:
   serializedVersion: 5
@@ -14405,9 +14653,13 @@ MonoBehaviour:
   _animator: {fileID: 1689598520}
   _renderer: {fileID: 1045731984}
   JumpPower: 5
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1689598520
 Animator:
   serializedVersion: 5
@@ -14528,9 +14780,13 @@ MonoBehaviour:
   _animator: {fileID: 1695796893}
   _renderer: {fileID: 915609540}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1695796893
 Animator:
   serializedVersion: 5
@@ -14885,9 +15141,13 @@ MonoBehaviour:
   _animator: {fileID: 1760398570}
   _renderer: {fileID: 852644973}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1760398570
 Animator:
   serializedVersion: 5
@@ -15074,9 +15334,13 @@ MonoBehaviour:
   _animator: {fileID: 1770503298}
   _renderer: {fileID: 975198630}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1770503298
 Animator:
   serializedVersion: 5
@@ -15263,9 +15527,13 @@ MonoBehaviour:
   _animator: {fileID: 1782004873}
   _renderer: {fileID: 1475039976}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1782004873
 Animator:
   serializedVersion: 5
@@ -15770,9 +16038,13 @@ MonoBehaviour:
   _animator: {fileID: 1901890382}
   _renderer: {fileID: 2144081050}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1901890382
 Animator:
   serializedVersion: 5
@@ -16247,9 +16519,13 @@ MonoBehaviour:
   _animator: {fileID: 1930555968}
   _renderer: {fileID: 250715448}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1930555968
 Animator:
   serializedVersion: 5
@@ -16622,9 +16898,13 @@ MonoBehaviour:
   _animator: {fileID: 1936703031}
   _renderer: {fileID: 1578781056}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1936703031
 Animator:
   serializedVersion: 5
@@ -16913,9 +17193,13 @@ MonoBehaviour:
   _animator: {fileID: 1967876278}
   _renderer: {fileID: 1273228253}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1967876278
 Animator:
   serializedVersion: 5
@@ -17036,9 +17320,13 @@ MonoBehaviour:
   _animator: {fileID: 1971395097}
   _renderer: {fileID: 1889556791}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1971395097
 Animator:
   serializedVersion: 5
@@ -17159,9 +17447,13 @@ MonoBehaviour:
   _animator: {fileID: 1971641868}
   _renderer: {fileID: 378876526}
   JumpPower: 5
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1971641868
 Animator:
   serializedVersion: 5
@@ -17282,9 +17574,13 @@ MonoBehaviour:
   _animator: {fileID: 1982926055}
   _renderer: {fileID: 1386342611}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &1982926055
 Animator:
   serializedVersion: 5
@@ -17405,9 +17701,13 @@ MonoBehaviour:
   _animator: {fileID: 2020426615}
   _renderer: {fileID: 1030433617}
   JumpPower: 5
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &2020426615
 Animator:
   serializedVersion: 5
@@ -17612,9 +17912,13 @@ MonoBehaviour:
   _animator: {fileID: 2031449040}
   _renderer: {fileID: 318360356}
   JumpPower: 4
-  VerticalMoveRange: 3
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &2031449040
 Animator:
   serializedVersion: 5
@@ -17735,9 +18039,13 @@ MonoBehaviour:
   _animator: {fileID: 2055551591}
   _renderer: {fileID: 576886780}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &2055551591
 Animator:
   serializedVersion: 5
@@ -17858,9 +18166,13 @@ MonoBehaviour:
   _animator: {fileID: 2072040377}
   _renderer: {fileID: 1867662883}
   JumpPower: 3
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &2072040377
 Animator:
   serializedVersion: 5
@@ -18149,9 +18461,13 @@ MonoBehaviour:
   _animator: {fileID: 2097677208}
   _renderer: {fileID: 1327857131}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &2097677208
 Animator:
   serializedVersion: 5
@@ -18272,9 +18588,13 @@ MonoBehaviour:
   _animator: {fileID: 2110864796}
   _renderer: {fileID: 109344694}
   JumpPower: 4
-  VerticalMoveRange: 0
-  HorizontalMoveRange: 0
-  LoopCycleLength: 0
+  UpMoveRange: 0
+  DownMoveRange: 0
+  LeftMoveRange: 0
+  RightMoveRange: 0
+  UpFirst: 0
+  RightFirst: 0
+  LoopCycleSpeed: 0
 --- !u!95 &2110864796
 Animator:
   serializedVersion: 5

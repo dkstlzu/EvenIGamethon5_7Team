@@ -193,6 +193,8 @@ namespace MoonBunny.Effects
 
     public class SlowEffect : IEffect
     {
+        public static Sprite SpiderWebDebuffSprite;
+
         private MoonBunnyRigidbody _target;
         private float _slow;
         private float _duration;
@@ -207,6 +209,17 @@ namespace MoonBunny.Effects
         public void Effect()
         {
             _target.ChangeDelta(_slow, _duration);
+
+            Character character;
+            if (_target.TryGetComponent(out character))
+            {
+                character.DebuffSpriteRenderer.sprite = SpiderWebDebuffSprite;
+                
+                CoroutineHelper.Delay(() =>
+                {
+                    character.DebuffSpriteRenderer.sprite = null;
+                }, _duration);
+            }
         }
     }
 
