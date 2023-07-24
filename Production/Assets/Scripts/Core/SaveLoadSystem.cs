@@ -8,6 +8,7 @@ using UnityEngine.Networking;
 #if UNITY_EDITOR
 using System.Globalization;
 using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 #endif
 
 namespace MoonBunny
@@ -245,6 +246,9 @@ namespace MoonBunny
             int bouncyPlatformPowerIndex = Array.IndexOf(CSVHeader, "Value1");
             int bouncyPlatformHorizontalMoveIndex = Array.IndexOf(CSVHeader, "Value2");
             int bouncyPlatformVerticalMoveIndex = Array.IndexOf(CSVHeader, "Value3");
+            int bouncyPlatformSpeedIndex = Array.IndexOf(CSVHeader, "Value4");
+            int bouncyPlatformPattern1Index = Array.IndexOf(CSVHeader, "Value5");
+            int bouncyPlatformPattern2Index = Array.IndexOf(CSVHeader, "Value6");
             int randomSpawnerType1Index = Array.IndexOf(CSVHeader, "Value1");
             int randomSpawnerValue1Index = Array.IndexOf(CSVHeader, "Value2");
             int randomSpawnerType2Index = Array.IndexOf(CSVHeader, "Value3");
@@ -319,33 +323,27 @@ namespace MoonBunny
                     {
                         case "BouncyPlatform":
                             BouncyPlatform platform = instantiatedGo.GetComponent<BouncyPlatform>();
-
-                            platform.Index = int.Parse(lineContent[noIndex]);
                             platform.JumpPower = int.Parse(lineContent[bouncyPlatformPowerIndex]);
 
-                            string verticalMoveDataStr = lineContent[bouncyPlatformVerticalMoveIndex];
-                            
-                            if (verticalMoveDataStr != NoData)
-                            {
-                                int verticalMoveData = int.Parse(lineContent[bouncyPlatformVerticalMoveIndex]);
+                            string verticalRangeStr = lineContent[bouncyPlatformVerticalMoveIndex];
 
-                                platform.DownMoveRange = verticalMoveData % 10;
-                                verticalMoveData /= 10;
-                                platform.UpMoveRange = verticalMoveData % 10;
-                                verticalMoveData /= 10;
-                                platform.UpFirst = verticalMoveData > 0;
+                            if (verticalRangeStr != NoData)
+                            {
+                                platform.VerticalMoveRange = int.Parse(verticalRangeStr);
                             }
 
-                            string horizontalMoveDataStr = lineContent[bouncyPlatformHorizontalMoveIndex];
-                            if (horizontalMoveDataStr != NoData)
-                            {
-                                int horizontalMoveData = int.Parse(lineContent[bouncyPlatformHorizontalMoveIndex]);
+                            string horizontalRangeStr = lineContent[bouncyPlatformHorizontalMoveIndex];
 
-                                platform.LeftMoveRange = horizontalMoveData % 10;
-                                horizontalMoveData /= 10;
-                                platform.RightMoveRange = horizontalMoveData % 10;
-                                horizontalMoveData /= 10;
-                                platform.RightFirst = horizontalMoveData > 0;
+                            if (horizontalRangeStr != NoData)
+                            {
+                                platform.HorizontalMoveRange = int.Parse(horizontalRangeStr);
+                            }
+
+                            string speedStr = lineContent[bouncyPlatformSpeedIndex];
+
+                            if (speedStr != NoData)
+                            {
+                                platform.LoopCycleSpeed = float.Parse(speedStr);
                             }
 
                             break;
