@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FairyForestPlatformIdle
+  m_Name: AsteroidPlatformIdleHigh
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,7 +21,7 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 636907228, guid: 060cba06346f4db4696dd4f43f54354f, type: 3}
+      value: {fileID: -654892240, guid: 2aae289d5271ab645a78cf7b977b938d, type: 3}
     attribute: m_Sprite
     path: Sprite
     classID: 212
@@ -44,7 +44,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 636907228, guid: 060cba06346f4db4696dd4f43f54354f, type: 3}
+    - {fileID: -654892240, guid: 2aae289d5271ab645a78cf7b977b938d, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

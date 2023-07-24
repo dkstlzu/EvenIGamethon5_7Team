@@ -6,18 +6,18 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CloudPlatformAnimator
+  m_Name: CushionPlatformAnimator
   m_Controller: {fileID: 9100000, guid: ef84a13ce8bdbb749934b701325899cd, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 7400000, guid: a5cd39fe8ee7cb648aaf6ebaf593eaf4, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 7bfb35c47f80be44e859a1b2bea1e59a, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 23cd92d344c315a47922ac8bdca333d0, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 609891440bd338844b7afafc9d922a80, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 0a1b2f10b1414d941964d70d5b74eff4, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 50c0799f70aebdb47bc07f38ad0d198a, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 4880449d88d16884facc2182e0dccf50, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 934649f0395c73f47aa31e93bf526ae3, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: a5cd39fe8ee7cb648aaf6ebaf593eaf4, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d06015c96aa81fd40a8730eeef1b5c1c, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 8877e63d27beaf24e92028f60d8b5a0d, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 7d9faf7581c567e4ca38de4bfd9b1609, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: eed55ea7325631e418e8c84fa37e4edc, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 7bc956a6fc4c3194093b02c5514eb5ba, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 7d9faf7581c567e4ca38de4bfd9b1609, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 8fca264f43bebd64fba19cafd85e97d1, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 89846fea7b3320f41b384140ded1d25e, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 0a61039a3df132146bf95cb7803b0d96, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 572dbcf2bd8d05744af7e79a41a6db7f, type: 2}

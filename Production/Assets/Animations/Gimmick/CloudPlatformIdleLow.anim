@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CloudPlatformIdle
+  m_Name: CloudPlatformIdleLow
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,7 +21,7 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 485674867, guid: d2bbf7b6a7b1fc14090e171dcefd23b6, type: 3}
+      value: {fileID: -1197524088, guid: 79815079d665b3d49ad806f08183b68b, type: 3}
     attribute: m_Sprite
     path: Sprite
     classID: 212
@@ -44,7 +44,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 485674867, guid: d2bbf7b6a7b1fc14090e171dcefd23b6, type: 3}
+    - {fileID: -1197524088, guid: 79815079d665b3d49ad806f08183b68b, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

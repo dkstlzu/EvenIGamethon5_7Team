@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -12,22 +13,31 @@ namespace MoonBunny
         public static AudioClip S_JumpAudioClip;
         private static readonly int BounceHash = Animator.StringToHash("Bounce");
 
+        public bool Enabled = true;
         [SerializeField] private Animator _animator;
         [SerializeField] private SpriteRenderer _renderer;
         public int JumpPower;
-        public int VerticalMoveRange;
-        public int HorizontalMoveRange;
+        public int UpMoveRange;
+        public int DownMoveRange;
+        public int LeftMoveRange;
+        public int RightMoveRange;
+        public bool UpFirst;
+        public bool RightFirst;
 
-        public float LoopCycleLength;
+        public int Index;
+        public List<BouncyPlatform> Pattern1PlatformList;
+        public List<BouncyPlatform> Pattern2PlatformList;
+        public int CurrentPattern = 1;
+
+        public float LoopCycleSpeed;
 
         private Vector3 _loopStartPosition;
-        private Vector3 _loopEndPosition;
-        private Vector3 _loopCenterPosition;
-        private float _loopXDelta;
-        private float _loopYDelta;
+        private Vector3 _loopForwardPosition;
+        private Vector3 _loopBackwardPosition;
+        private Vector2 _loopDelta;
+        private Vector2 _currentLoopDelta;
         float multiplier;
 
-        private float _timer;
         private bool _doLoop = false;
         
         protected void Start()
@@ -35,48 +45,103 @@ namespace MoonBunny
 #if UNITY_EDITOR
             if (!EditorApplication.isPlaying) return;
 #endif
-            _renderer.sprite = PreloadedResources.instance.BouncyPlatformSpriteList[GameManager.instance.Stage.StageLevel - 1];
+            int bounceLevel = JumpPower == 3 ? -1 : JumpPower == 4 ? 0 : JumpPower == 5 ? 1 : 0;
             _animator.runtimeAnimatorController =
                 PreloadedResources.instance.BouncyPlatformAnimatorControllerList[GameManager.instance.Stage.StageLevel - 1];
-
-            Vector2Int loopEndPosition = GridTransform.GridPosition + new Vector2Int(HorizontalMoveRange, VerticalMoveRange);
+            _animator.SetInteger("BounceLevel", bounceLevel);
+            _animator.SetTrigger("Set");
+            _renderer.sprite = PreloadedResources.instance.BouncyPlatformSpriteList[(GameManager.instance.Stage.StageLevel - 1) * 3 + bounceLevel + 1];
 
             _loopStartPosition = transform.position;
-            _loopEndPosition = GridTransform.ToReal(loopEndPosition);
-            _loopCenterPosition = (_loopStartPosition + _loopEndPosition) / 2;
-            _loopXDelta = (_loopEndPosition.x - _loopStartPosition.x) / 2;
-            _loopYDelta = (_loopEndPosition.y - _loopStartPosition.y) / 2;
-            multiplier = 2 * Mathf.PI / LoopCycleLength;
 
-            if ((HorizontalMoveRange != 0 || VerticalMoveRange != 0) && LoopCycleLength > 0)
+            if (UpFirst && RightFirst)
+            {
+                _loopForwardPosition = GridTransform.ToReal(GridTransform.GridPosition + new Vector2Int(UpMoveRange, RightMoveRange));
+                _loopBackwardPosition = GridTransform.ToReal(GridTransform.GridPosition + new Vector2Int(DownMoveRange, LeftMoveRange));
+            } else if (UpFirst && !RightFirst)
+            {
+                _loopForwardPosition = GridTransform.ToReal(GridTransform.GridPosition + new Vector2Int(UpMoveRange, LeftMoveRange));
+                _loopBackwardPosition = GridTransform.ToReal(GridTransform.GridPosition + new Vector2Int(DownMoveRange, RightMoveRange));
+            } else if (!UpFirst && RightFirst)
+            {
+                _loopForwardPosition = GridTransform.ToReal(GridTransform.GridPosition + new Vector2Int(DownMoveRange, RightMoveRange));
+                _loopBackwardPosition = GridTransform.ToReal(GridTransform.GridPosition + new Vector2Int(UpMoveRange, LeftMoveRange));
+            } else if (!UpFirst && !RightFirst)
+            {
+                _loopForwardPosition = GridTransform.ToReal(GridTransform.GridPosition + new Vector2Int(DownMoveRange, LeftMoveRange));
+                _loopBackwardPosition = GridTransform.ToReal(GridTransform.GridPosition + new Vector2Int(UpMoveRange, RightMoveRange));
+            }
+
+            _loopDelta = (_loopForwardPosition - _loopBackwardPosition).normalized * LoopCycleSpeed;
+            _currentLoopDelta = _loopDelta;
+
+            if ((UpMoveRange != 0 || DownMoveRange != 0 || LeftMoveRange != 0 || RightMoveRange != 0) && LoopCycleSpeed > 0)
             {
                 _doLoop = true;
             }
         }
 
-        protected override void Update()
+        protected void FixedUpdate()
         {
-            base.Update();
 #if UNITY_EDITOR
             if (!EditorApplication.isPlaying) return;
 #endif
             
             if (!_doLoop) return;
             
-            _timer += Time.deltaTime;
+            transform.Translate(_currentLoopDelta * Time.deltaTime);
 
-            float x = _loopXDelta * Mathf.Sin(_timer * multiplier);
-            float y = _loopYDelta * Mathf.Sin(_timer * multiplier);
-
-            transform.position = new Vector3(x, y, transform.position.z) + _loopCenterPosition;
+            if (UpFirst)
+            {
+                // Forward
+                if ((transform.position.y >= _loopForwardPosition.y))
+                {
+                    _currentLoopDelta = -_loopDelta;
+                }
+            } else
+            {
+                // Backward
+                if (transform.position.y <= _loopForwardPosition.y)
+                {
+                    _currentLoopDelta = _loopDelta;
+                }
+            }
         }
         
         public override void Invoke(MoonBunnyRigidbody with)
         {
+            if (!Enabled) return;
+            
             base.Invoke(with);
             
             _animator.SetTrigger(BounceHash);
             SoundManager.instance.PlayClip(S_JumpAudioClip);
+
+            if (CurrentPattern == 1)
+            {
+                CurrentPattern = 2;
+                foreach (BouncyPlatform platform in Pattern1PlatformList)
+                {
+                    platform.Enabled = false;
+                }
+
+                foreach (BouncyPlatform platform in Pattern2PlatformList)
+                {
+                    platform.Enabled = true;
+                }
+            } else if (CurrentPattern == 2)
+            {
+                CurrentPattern = 1;
+                foreach (BouncyPlatform platform in Pattern1PlatformList)
+                {
+                    platform.Enabled = true;
+                }
+
+                foreach (BouncyPlatform platform in Pattern2PlatformList)
+                {
+                    platform.Enabled = false;
+                }
+            }
         }
     }
 }

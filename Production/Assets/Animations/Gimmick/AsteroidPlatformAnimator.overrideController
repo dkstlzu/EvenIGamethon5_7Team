@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AsteroidPlatformAnimator
+  m_Controller: {fileID: 9100000, guid: ef84a13ce8bdbb749934b701325899cd, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 23cd92d344c315a47922ac8bdca333d0, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 844493594c00d2d4384f97c9764e7790, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 50c0799f70aebdb47bc07f38ad0d198a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 1f6e6605c0ddc384fa18ac139467a8e0, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: a5cd39fe8ee7cb648aaf6ebaf593eaf4, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: b446d255202972b47bd287380e7afceb, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 7bc956a6fc4c3194093b02c5514eb5ba, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c6362ec1c9b7b7d409047afa66e1186c, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 89846fea7b3320f41b384140ded1d25e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: b0e088a16e09bc34d9a2074e913c1af5, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 8877e63d27beaf24e92028f60d8b5a0d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 1931e560b246a0f4f8ea69f30ecac75f, type: 2}
