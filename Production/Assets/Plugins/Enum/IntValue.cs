@@ -45,14 +45,17 @@ namespace dkstlzu.Utility
             foreach (T t in TArr)
             {
                 FieldInfo Tfi = type.GetField(t.ToString());
-                
-                IntValue attr = Tfi.GetCustomAttribute<IntValue>();
 
-                if (attr == null) continue;
+                IntValue[] attrs = Tfi.GetCustomAttributes<IntValue>(false) as IntValue[];
 
-                if (attr.Value == value)
+                if (attrs.Length <= 0) continue;
+
+                foreach (IntValue intValue in attrs)
                 {
-                    return t;
+                    if (intValue.Value == value)
+                    {
+                        return t;
+                    }
                 }
             }
             

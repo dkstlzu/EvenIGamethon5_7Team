@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7499688134873762586}
-  - component: {fileID: 1358182683715893375}
   - component: {fileID: 1391070960587079352}
+  - component: {fileID: 1358182683715893375}
   m_Layer: 7
   m_Name: Heart
   m_TagString: Untagged
@@ -34,6 +34,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1391070960587079352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2720095451388572036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 408dd40549f04f34b0aa630504b1c885, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GridTransform:
+    transform: {fileID: 7499688134873762586}
+    GridPosition: {x: 0, y: 0}
+  InvokeOnCollision: 1
+  Score: 10
+  _renderer: {fileID: 5987550671068724122}
+  _audioClip: {fileID: 8300000, guid: cb30f248fcf4cbb48a99c85a9d1e645a, type: 3}
 --- !u!58 &1358182683715893375
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -69,26 +88,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &1391070960587079352
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2720095451388572036}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 408dd40549f04f34b0aa630504b1c885, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GridTransform:
-    transform: {fileID: 7499688134873762586}
-    GridPosition: {x: 0, y: 0}
-  InvokeOnCollision: 1
-  _type: 7
-  Score: 10
-  _renderer: {fileID: 5987550671068724122}
-  _audioClip: {fileID: 8300000, guid: cb30f248fcf4cbb48a99c85a9d1e645a, type: 3}
 --- !u!1 &4435365432472128450
 GameObject:
   m_ObjectHideFlags: 0

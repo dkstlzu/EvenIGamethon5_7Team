@@ -39,44 +39,37 @@ namespace MoonBunny.UIs
         public TextMeshProUGUI GoldText1;
         public TextMeshProUGUI GoldText2;
 
-        [Header("Stage Buttons")]
-        public Button Stage1Button;
-        public Image Stage1StarImage;
-        public Button Stage2Button;
-        public Image Stage2LockImage;
-        public Image Stage2StarImage;
-        public Button Stage3Button;
-        public Image Stage3LockImage;
-        public Image Stage3StarImage;
-        public Button Stage4Button;
-        public Image Stage4LockImage;
-        public Image Stage4StarImage;
-        public Button Stage5Button;
-        public Image Stage5LockImage;
-        public Image Stage5StarImage;
-        public Button StageChallengeButton;
-        public Image StageChallengeLockImage;
-
+        [Serializable]
+        public class StageButtonUI
+        {
+            public Button Button;
+            public Image StarImage;
+            public Image LockImage;
+        }
+        
+        [Header("Stage Buttons")] 
+        public List<StageButtonUI> StageButtonList;
+        
         private StageName _stageName;
         private int _selectingLevel;
-        private int _subLevelIndex = 1;
-        public RectTransform SubLevelContent;
-        public Image SubLevel1Image;
-        public Image SubLevel2Image;
-        public Image SubLevel3Image;
-        public TextMeshProUGUI SubLevel1Text;
-        public TextMeshProUGUI SubLevel2Text;
-        public TextMeshProUGUI SubLevel3Text;
-        private bool _subLevel1Enabled;
-        private bool _subLevel2Enabled;
-        private bool _subLevel3Enabled;
-        public Button StartButton;
+        private int _subLevelIndex;
+
+        [Serializable]
+        public class SubLevelUI
+        {
+            public Image Image;
+            public TextMeshProUGUI Text;
+            public bool Enabled;
+        }
         
-        [Header("Star Sprites")]
-        public Sprite StarNoneSprite;
-        public Sprite StarOneSprite;
-        public Sprite StarTwoSprite;
-        public Sprite StarThreeSprite;
+        public RectTransform SubLevelContent;
+        public float SubLevelSwipeTime;
+        public Sprite LockStageSprite;
+        public List<SubLevelUI> SubLevelList;
+        
+        public Button StartButton;
+
+        [Header("Star Sprites")] public List<Sprite> StarSpriteList;
 
         private GameManager _gameManager;
 
@@ -95,32 +88,18 @@ namespace MoonBunny.UIs
             DiamonText2.text = _gameManager.DiamondNumber.ToString();
             GoldText1.text = _gameManager.GoldNumber.ToString();
             GoldText2.text = _gameManager.GoldNumber.ToString();
-            
-            Stage1StarImage.sprite = _gameManager.Stage1_1Clear
-                ? _gameManager.Stage1_2Clear ? _gameManager.Stage1_3Clear ? StarThreeSprite : StarTwoSprite : StarOneSprite
-                : StarNoneSprite;
-            Stage2Button.interactable = _gameManager.Stage1_3Clear;
-            Stage2LockImage.enabled = !_gameManager.Stage1_3Clear;
-            Stage2StarImage.sprite = _gameManager.Stage2_1Clear
-                ? _gameManager.Stage2_2Clear ? _gameManager.Stage2_3Clear ? StarThreeSprite : StarTwoSprite : StarOneSprite
-                : StarNoneSprite;
-            Stage3Button.interactable = _gameManager.Stage2_3Clear;
-            Stage3LockImage.enabled = !_gameManager.Stage2_3Clear;
-            Stage3StarImage.sprite = _gameManager.Stage3_1Clear
-                ? _gameManager.Stage3_2Clear ? _gameManager.Stage3_3Clear ? StarThreeSprite : StarTwoSprite : StarOneSprite
-                : StarNoneSprite;
-            Stage4Button.interactable = _gameManager.Stage3_3Clear;
-            Stage4LockImage.enabled = !_gameManager.Stage3_3Clear;
-            Stage4StarImage.sprite = _gameManager.Stage4_1Clear
-                ? _gameManager.Stage4_2Clear ? _gameManager.Stage4_3Clear ? StarThreeSprite : StarTwoSprite : StarOneSprite
-                : StarNoneSprite;
-            Stage5Button.interactable = _gameManager.Stage4_3Clear;
-            Stage5LockImage.enabled = !_gameManager.Stage4_3Clear;
-            Stage5StarImage.sprite = _gameManager.Stage5_1Clear
-                ? _gameManager.Stage5_2Clear ? _gameManager.Stage5_3Clear ? StarThreeSprite : StarTwoSprite : StarOneSprite
-                : StarNoneSprite;
-            StageChallengeButton.interactable = _gameManager.Stage5_3Clear;
-            StageChallengeLockImage.enabled = !_gameManager.Stage5_3Clear;
+
+            for (int i = 0; i < StageButtonList.Count; i++)
+            {
+                int subLevelClear = _gameManager.ClearDict[(StageName)i];
+                StageButtonList[i].StarImage.sprite = StarSpriteList[subLevelClear];
+                
+                if (i+1 < StageButtonList.Count)
+                {
+                    StageButtonList[i+1].Button.interactable = subLevelClear > 2;
+                    StageButtonList[i+1].LockImage.enabled = subLevelClear <= 2;
+                }
+            }
         }
 
         private void Start()
@@ -198,23 +177,19 @@ namespace MoonBunny.UIs
         public void OnSubLevelSelecterToLeftButtonClicked()
         {
             _subLevelIndex--;
-            _subLevelIndex = Mathf.Clamp(_subLevelIndex, 1, 3);
-            SubLevelContent.DOAnchorPos(new Vector2((_subLevelIndex - 1) * -250, 0), 1, true);
-            StartButton.interactable = _subLevelIndex == 1 ? _subLevel1Enabled :
-                _subLevelIndex == 2 ? _subLevel2Enabled :
-                _subLevelIndex == 3 && _subLevel3Enabled;
+            _subLevelIndex = Mathf.Clamp(_subLevelIndex, 0, 2);
+            SubLevelContent.DOAnchorPos(new Vector2(_subLevelIndex * -250, 0), SubLevelSwipeTime, true);
+            StartButton.interactable = SubLevelList[_subLevelIndex].Enabled;
         }
 
         public void OnSubLevelSelecterToRightButtonClicked()
         {
             _subLevelIndex++;
-            _subLevelIndex = Mathf.Clamp(_subLevelIndex, 1, 3);
-            SubLevelContent.DOAnchorPos(new Vector2((_subLevelIndex - 1) * -250, 0), 1, true);
-            StartButton.interactable = _subLevelIndex == 1 ? _subLevel1Enabled :
-                _subLevelIndex == 2 ? _subLevel2Enabled :
-                _subLevelIndex == 3 && _subLevel3Enabled;
+            _subLevelIndex = Mathf.Clamp(_subLevelIndex, 0, 2);
+            SubLevelContent.DOAnchorPos(new Vector2(_subLevelIndex * -250, 0), SubLevelSwipeTime, true);
+            StartButton.interactable = SubLevelList[_subLevelIndex].Enabled;
         }
-
+        
         public void OnSubLevelSelecterExitButtonClicked()
         {
             FadeOut(SubLevelSelectCanvasGroup);
@@ -278,60 +253,29 @@ namespace MoonBunny.UIs
 
         public void OnStageButtonClicked(string name)
         {
-            if (!StageName.TryParse(name+"1", true, out _stageName))
+            if (!StageName.TryParse(name, true, out _stageName))
             {
                 Debug.LogError("StageName is wrong while stage button clicked");
                 return;
             }
 
-            _selectingLevel = IntValue.GetEnumIntValue(_stageName);
+            _selectingLevel = (int)_stageName;
+            int selectingLevelText = IntValue.GetEnumIntValue(_stageName);
 
-            if (_selectingLevel == 1)
-            {
-                Sprite sprite = Stage1Button.image.sprite;
-                
-                SubLevel1Image.sprite = sprite;
-                SubLevel2Image.sprite = _gameManager.Stage1_1Clear ? sprite : Stage2LockImage.sprite;
-                SubLevel3Image.sprite = _gameManager.Stage1_2Clear ? sprite : Stage2LockImage.sprite;
-
- ;           } else if (_selectingLevel == 2)
-            {
-                Sprite sprite = Stage2Button.image.sprite;
-
-                SubLevel1Image.sprite = sprite;
-                SubLevel2Image.sprite = _gameManager.Stage2_1Clear ? sprite : Stage2LockImage.sprite;
-                SubLevel3Image.sprite = _gameManager.Stage2_2Clear ? sprite : Stage2LockImage.sprite;
-            } else if (_selectingLevel == 3)
-            {
-                Sprite sprite = Stage3Button.image.sprite;
-
-                SubLevel1Image.sprite = sprite;
-                SubLevel2Image.sprite = _gameManager.Stage3_1Clear ? sprite : Stage2LockImage.sprite;
-                SubLevel3Image.sprite = _gameManager.Stage3_2Clear ? sprite : Stage2LockImage.sprite;
-            } else if (_selectingLevel == 4)
-            {
-                Sprite sprite = Stage4Button.image.sprite;
-
-                SubLevel1Image.sprite = sprite;
-                SubLevel2Image.sprite = _gameManager.Stage4_1Clear ? sprite : Stage2LockImage.sprite;
-                SubLevel3Image.sprite = _gameManager.Stage4_2Clear ? sprite : Stage2LockImage.sprite;
-            } else if (_selectingLevel == 5)
-            {
-                Sprite sprite = Stage5Button.image.sprite;
-
-                SubLevel1Image.sprite = sprite;
-                SubLevel2Image.sprite = _gameManager.Stage5_1Clear ? sprite : Stage2LockImage.sprite;
-                SubLevel3Image.sprite = _gameManager.Stage5_2Clear ? sprite : Stage2LockImage.sprite;
-            }
+            Sprite sprite = StageButtonList[_selectingLevel].Button.image.sprite;
             
-            SubLevel1Text.text = "스테이지 " + _selectingLevel + "-1";
-            SubLevel2Text.text = "스테이지 " + _selectingLevel + "-2";
-            SubLevel3Text.text = "스테이지 " + _selectingLevel + "-3";
+            SubLevelList[0].Enabled = true;
+            SubLevelList[1].Enabled = _gameManager.ClearDict[(StageName)_selectingLevel] >= 1;
+            SubLevelList[2].Enabled = _gameManager.ClearDict[(StageName)_selectingLevel] >= 2;
 
-            _subLevel1Enabled = true;
-            _subLevel2Enabled = SubLevel2Image.sprite != Stage2LockImage.sprite;
-            _subLevel3Enabled = SubLevel3Image.sprite != Stage2LockImage.sprite;
+            SubLevelList[0].Image.sprite = sprite;
+            SubLevelList[1].Image.sprite = SubLevelList[1].Enabled ? sprite : LockStageSprite;
+            SubLevelList[2].Image.sprite = SubLevelList[2].Enabled ? sprite : LockStageSprite;
             
+            SubLevelList[0].Text.text = "스테이지 " + selectingLevelText + "-1";
+            SubLevelList[1].Text.text = "스테이지 " + selectingLevelText + "-2";
+            SubLevelList[2].Text.text = "스테이지 " + selectingLevelText + "-3";
+
             FadeIn(SubLevelSelectCanvasGroup);
         }
 

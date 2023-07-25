@@ -3,6 +3,7 @@ using System.Reflection;
 
 namespace dkstlzu.Utility
 {
+    [AttributeUsage(System.AttributeTargets.Field, AllowMultiple = true)]
     public class StringValue : System.Attribute 
     { 
 
@@ -45,13 +46,16 @@ namespace dkstlzu.Utility
             {
                 FieldInfo Tfi = type.GetField(t.ToString());
                 
-                StringValue attr = Tfi.GetCustomAttribute<StringValue>();
+                StringValue[] attrs = Tfi.GetCustomAttributes<StringValue>(false) as StringValue[];
 
-                if (attr == null) continue;
+                if (attrs.Length <= 0) continue;
 
-                if (attr.Value == value)
+                foreach (StringValue strValue in attrs)
                 {
-                    return t;
+                    if (strValue.Value == value)
+                    {
+                        return t;
+                    }
                 }
             }
             

@@ -17,33 +17,8 @@ namespace MoonBunny
 
         public Stage Stage;
 
-        // private int _score;
-        // public int Score
-        // {
-        //     get => _score;
-        //     set
-        //     {
-        //         _score = value;
-        //         Stage?.UI.SetScore(_score);
-        //     }
-        // }
-        public Transform StartPosition;
-        [HideInInspector] public float GlobalGravity;
-        [HideInInspector] public bool Stage1_1Clear;
-        [HideInInspector] public bool Stage1_2Clear;
-        [HideInInspector] public bool Stage1_3Clear;
-        [HideInInspector] public bool Stage2_1Clear;
-        [HideInInspector] public bool Stage2_2Clear;
-        [HideInInspector] public bool Stage2_3Clear;
-        [HideInInspector] public bool Stage3_1Clear;
-        [HideInInspector] public bool Stage3_2Clear;
-        [HideInInspector] public bool Stage3_3Clear;
-        [HideInInspector] public bool Stage4_1Clear;
-        [HideInInspector] public bool Stage4_2Clear;
-        [HideInInspector] public bool Stage4_3Clear;
-        [HideInInspector] public bool Stage5_1Clear;
-        [HideInInspector] public bool Stage5_2Clear;
-        [HideInInspector] public bool Stage5_3Clear;
+        public FriendNameCollectDictionary CollectDict;
+        public StageNameClearDictionary ClearDict;
 
         public StartSceneUI StartSceneUI;
         private int _diamondNumber;
@@ -128,23 +103,10 @@ namespace MoonBunny
 #endif
             if (!SaveLoadSystem.DataIsLoaded) SaveLoadSystem.LoadDatabase();
 
+            CollectDict = SaveLoadSystem.SaveData.CollectionDict;
+            ClearDict = SaveLoadSystem.SaveData.ClearDict;
+
             GoldNumber = SaveLoadSystem.SaveData.GoldNumber;
-            
-            Stage1_1Clear = SaveLoadSystem.SaveData.Stage1_1Clear;
-            Stage1_2Clear = SaveLoadSystem.SaveData.Stage1_2Clear;
-            Stage1_3Clear = SaveLoadSystem.SaveData.Stage1_3Clear;
-            Stage2_1Clear = SaveLoadSystem.SaveData.Stage2_1Clear;
-            Stage2_2Clear = SaveLoadSystem.SaveData.Stage2_2Clear;
-            Stage2_3Clear = SaveLoadSystem.SaveData.Stage2_3Clear;
-            Stage3_1Clear = SaveLoadSystem.SaveData.Stage3_1Clear;
-            Stage3_2Clear = SaveLoadSystem.SaveData.Stage3_2Clear;
-            Stage3_3Clear = SaveLoadSystem.SaveData.Stage3_3Clear;
-            Stage4_1Clear = SaveLoadSystem.SaveData.Stage4_1Clear;
-            Stage4_2Clear = SaveLoadSystem.SaveData.Stage4_2Clear;
-            Stage4_3Clear = SaveLoadSystem.SaveData.Stage4_3Clear;
-            Stage5_1Clear = SaveLoadSystem.SaveData.Stage5_1Clear;
-            Stage5_2Clear = SaveLoadSystem.SaveData.Stage5_2Clear;
-            Stage5_3Clear = SaveLoadSystem.SaveData.Stage5_3Clear;
         }
 
         public void SaveProgress()
@@ -157,24 +119,8 @@ namespace MoonBunny
                 Debug.LogError("Cannot save progress. SaveLoadsystem never loaded data");
                 return;
             }
-
+            
             SaveLoadSystem.SaveData.GoldNumber = GoldNumber;
-
-            SaveLoadSystem.SaveData.Stage1_1Clear = Stage1_1Clear;
-            SaveLoadSystem.SaveData.Stage1_2Clear = Stage1_2Clear;
-            SaveLoadSystem.SaveData.Stage1_3Clear = Stage1_3Clear;
-            SaveLoadSystem.SaveData.Stage2_1Clear = Stage2_1Clear;
-            SaveLoadSystem.SaveData.Stage2_2Clear = Stage2_2Clear;
-            SaveLoadSystem.SaveData.Stage2_3Clear = Stage2_3Clear;
-            SaveLoadSystem.SaveData.Stage3_1Clear = Stage3_1Clear;
-            SaveLoadSystem.SaveData.Stage3_2Clear = Stage3_2Clear;
-            SaveLoadSystem.SaveData.Stage3_3Clear = Stage3_3Clear;
-            SaveLoadSystem.SaveData.Stage4_1Clear = Stage4_1Clear;
-            SaveLoadSystem.SaveData.Stage4_2Clear = Stage4_2Clear;
-            SaveLoadSystem.SaveData.Stage4_3Clear = Stage4_3Clear;
-            SaveLoadSystem.SaveData.Stage5_1Clear = Stage5_1Clear;
-            SaveLoadSystem.SaveData.Stage5_2Clear = Stage5_2Clear;
-            SaveLoadSystem.SaveData.Stage5_3Clear = Stage5_3Clear;
 
             SaveLoadSystem.SaveDatabase();
         }
@@ -184,12 +130,12 @@ namespace MoonBunny
 #if UNITY_EDITOR
             if (!useSaveSystem) return;
 #endif
-            FriendCollection.Data data = manager[FriendName.First];
-            data.CurrentCollectingNumber = SaveLoadSystem.SaveData.FirstFriendCollectedNumber;
-            data = manager[FriendName.Second];
-            data.CurrentCollectingNumber = SaveLoadSystem.SaveData.SecondFriendCollectedNumber;
-            data = manager[FriendName.Third];
-            data.CurrentCollectingNumber = SaveLoadSystem.SaveData.ThirdFriendCollectedNumber;
+            // FriendCollection.Data data = manager[FriendName.First];
+            // data.CurrentCollectingNumber = SaveLoadSystem.SaveData.FirstFriendCollectedNumber;
+            // data = manager[FriendName.Second];
+            // data.CurrentCollectingNumber = SaveLoadSystem.SaveData.SecondFriendCollectedNumber;
+            // data = manager[FriendName.Third];
+            // data.CurrentCollectingNumber = SaveLoadSystem.SaveData.ThirdFriendCollectedNumber;
         }
 
         public void SaveCollection(FriendCollectionManager manager)
@@ -197,9 +143,9 @@ namespace MoonBunny
 #if UNITY_EDITOR
             if (!useSaveSystem) return;
 #endif
-            SaveLoadSystem.SaveData.FirstFriendCollectedNumber = manager[FriendName.First].CurrentCollectingNumber;
-            SaveLoadSystem.SaveData.SecondFriendCollectedNumber = manager[FriendName.Second].CurrentCollectingNumber;
-            SaveLoadSystem.SaveData.ThirdFriendCollectedNumber = manager[FriendName.Third].CurrentCollectingNumber;
+            // SaveLoadSystem.SaveData.FirstFriendCollectedNumber = manager[FriendName.First].CurrentCollectingNumber;
+            // SaveLoadSystem.SaveData.SecondFriendCollectedNumber = manager[FriendName.Second].CurrentCollectingNumber;
+            // SaveLoadSystem.SaveData.ThirdFriendCollectedNumber = manager[FriendName.Third].CurrentCollectingNumber;
         }
 
         public void FirstPlayTutorialOn()

@@ -170,7 +170,7 @@ MonoBehaviour:
   HeartPotential: 0.3
   StarCandyPrefab: {fileID: 7958158822191411938, guid: 52f6842611c0f0949916eb3a77b44ae2, type: 3}
   StarCandyPotential: 0.3
-  RicecakePrefab: {fileID: 6739887548533978570, guid: 7077ee0a6b7a8ce4e9f199dc55d902b3, type: 3}
+  RicecakePrefab: {fileID: 5553466026946515911, guid: 33683233be09cd345bba46a8631556d4, type: 3}
   RicecakePotential: 0.4
   SpawnPoint: {fileID: 5884445767338031052}
   _audioClip: {fileID: 8300000, guid: 5e4c5b77d61becc4d8724279a7b8b5f2, type: 3}

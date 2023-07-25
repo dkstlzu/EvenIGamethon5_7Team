@@ -1,4 +1,7 @@
-﻿using NUnit.Framework.Constraints;
+﻿using System;
+using System.IO;
+using System.Text;
+using NUnit.Framework.Constraints;
 using UnityEditor;
 using UnityEngine;
 
@@ -39,5 +42,28 @@ namespace MoonBunny.Dev.Editor
                 collection.Datas.Add(data);
             }
         }
+        
+        
+#if UNITY_EDITOR
+        [MenuItem("Dev/CreateDefaultSaveData")]
+        public static void CreateDefaultSaveDataFile()
+        {
+            SaveData data = new SaveData();
+            string jsonData = JsonUtility.ToJson(data, true);
+            byte[] byteData = Encoding.UTF8.GetBytes(jsonData);
+
+            string defaultPath = Path.Combine(Application.streamingAssetsPath, "Saves", "Save") + ".txt";
+         
+            File.WriteAllText(defaultPath, String.Empty);
+
+            using (FileStream fs = File.OpenWrite(defaultPath))
+            {
+                fs.Write(byteData);
+                fs.Flush();
+            }
+
+            AssetDatabase.Refresh();
+        }
+#endif
     }
 }

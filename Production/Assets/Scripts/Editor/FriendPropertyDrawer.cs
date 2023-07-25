@@ -1,9 +1,5 @@
-﻿using System;
-using System.IO;
-using dkstlzu.Utility;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEditor.UIElements;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace MoonBunny.CustomEditors
@@ -24,7 +20,6 @@ namespace MoonBunny.CustomEditors
             foldout.text = "Friend";
 
             PropertyField spec = new PropertyField(property.FindPropertyRelative("_spec"));
-            Label nameSP = new Label("Name" + Space + property.FindPropertyRelative("_name").enumNames[property.FindPropertyRelative("_name").enumValueIndex]);
             Label horizontalSpeed = new Label("Speed" + Space + property.FindPropertyRelative("HorizontalSpeed").intValue);
             Label jumpPower = new Label("JumpPower" + Space + property.FindPropertyRelative("JumpPower").floatValue);
             Label magneticPower = new Label("MagneticPower" + Space + property.FindPropertyRelative("MagneticPower").floatValue);
@@ -32,7 +27,6 @@ namespace MoonBunny.CustomEditors
             spec.RegisterValueChangeCallback((evt) => OnSpecChanged((FriendSpec)evt.changedProperty.objectReferenceValue, property));
 
             foldout.Add(spec);
-            foldout.Add(nameSP);
             foldout.Add(horizontalSpeed);
             foldout.Add(jumpPower);
             foldout.Add(magneticPower);
@@ -45,7 +39,6 @@ namespace MoonBunny.CustomEditors
         {
             if (changedSpec == null) return;
             
-            property.FindPropertyRelative("_name").intValue = (int)(changedSpec.Name);
             property.FindPropertyRelative("HorizontalSpeed").intValue = changedSpec.HorizontalJumpSpeed;
             property.FindPropertyRelative("JumpPower").floatValue = changedSpec.VerticalJumpSpeed;
             property.FindPropertyRelative("MagneticPower").floatValue = changedSpec.MagneticPower;

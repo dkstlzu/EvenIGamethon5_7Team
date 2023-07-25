@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using MoonBunny.Effects;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -21,6 +22,8 @@ namespace MoonBunny
         public CircleCollider2D MagneticField;
 
         [SerializeField] private int _currentHP;
+
+        public List<Buff> BuffList = new List<Buff>();
         public SpriteRenderer DebuffSpriteRenderer;
         
         public int CurrentHp

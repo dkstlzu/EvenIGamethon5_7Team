@@ -14,6 +14,7 @@ namespace MoonBunny
         [SerializeField] private Vector2Int _spittingVelocity;
         private bool _wasLeft;
         [SerializeField] private CinemachineImpulseSource _impulseSource;
+        [SerializeField] private GameObject TapTextGo;
 
         public override void Invoke(MoonBunnyRigidbody with)
         {
@@ -25,7 +26,8 @@ namespace MoonBunny
             _rigidbody.Disable();
             _rigidbody.GetComponentInChildren<SpriteRenderer>().enabled = false;
             _rigidbody.GetComponent<Character>().isCanniblismEaten = true;
-
+            TapTextGo.SetActive(true);
+            
             _currentRemainingNumberToEscape = ClickNumberToEscape;
 
             GameManager.instance.Stage.UI.OnDirectionChangeButtonClicked += OnButtonClicked;
@@ -42,6 +44,8 @@ namespace MoonBunny
                 _rigidbody.Enable();
                 _rigidbody.GetComponentInChildren<SpriteRenderer>().enabled = true;
                 _rigidbody.GetComponent<Character>().isCanniblismEaten = false;
+                TapTextGo.SetActive(false);
+
                 if (_wasLeft)
                 {
                     _rigidbody.Move(_spittingVelocity);

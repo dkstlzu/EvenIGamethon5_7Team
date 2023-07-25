@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8124042349635491868}
-  - component: {fileID: 9141902299460575830}
   - component: {fileID: 2720314142278913801}
+  - component: {fileID: 9141902299460575830}
   m_Layer: 7
   m_Name: Magnet
   m_TagString: Untagged
@@ -34,6 +34,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2720314142278913801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174511902059223952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f910ff6214964e8d9454779fdce369d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GridTransform:
+    transform: {fileID: 8124042349635491868}
+    GridPosition: {x: 0, y: 0}
+  InvokeOnCollision: 1
+  Score: 10
+  _renderer: {fileID: 7581157464681463720}
+  _audioClip: {fileID: 8300000, guid: 8d4cc197b31d5d2489ea7213839e6d9b, type: 3}
+  MagnetPower: 2
+  Duration: 8
 --- !u!61 &9141902299460575830
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -79,28 +100,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &2720314142278913801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 174511902059223952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f910ff6214964e8d9454779fdce369d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GridTransform:
-    transform: {fileID: 8124042349635491868}
-    GridPosition: {x: 0, y: 0}
-  InvokeOnCollision: 1
-  _type: 6
-  Score: 10
-  _renderer: {fileID: 7581157464681463720}
-  _audioClip: {fileID: 8300000, guid: 8d4cc197b31d5d2489ea7213839e6d9b, type: 3}
-  MagnetPower: 2
-  Duration: 8
 --- !u!1 &544844447527849769
 GameObject:
   m_ObjectHideFlags: 0

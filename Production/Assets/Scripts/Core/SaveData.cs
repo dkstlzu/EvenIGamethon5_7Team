@@ -4,28 +4,37 @@ using UnityEngine;
 namespace MoonBunny
 {
     [Serializable]
+    public class FriendNameCollectDictionary : SerializableDictionary<FriendName, int>
+    {
+
+    }
+
+    [Serializable]
+    public class StageNameClearDictionary : SerializableDictionary<StageName, int>
+    {
+    }
+    
+    [Serializable]
     public class SaveData
     {
-        public int FirstFriendCollectedNumber;
-        public int SecondFriendCollectedNumber;
-        public int ThirdFriendCollectedNumber;
+        public FriendNameCollectDictionary CollectionDict = new FriendNameCollectDictionary();
+        public StageNameClearDictionary ClearDict = new StageNameClearDictionary();
 
         public int GoldNumber;
 
-        public bool Stage1_1Clear;
-        public bool Stage1_2Clear;
-        public bool Stage1_3Clear;
-        public bool Stage2_1Clear;
-        public bool Stage2_2Clear;
-        public bool Stage2_3Clear;
-        public bool Stage3_1Clear;
-        public bool Stage3_2Clear;
-        public bool Stage3_3Clear;
-        public bool Stage4_1Clear;
-        public bool Stage4_2Clear;
-        public bool Stage4_3Clear;
-        public bool Stage5_1Clear;
-        public bool Stage5_2Clear;
-        public bool Stage5_3Clear;
+        public SaveData()
+        {
+            foreach (FriendName friendName in (FriendName[])Enum.GetValues(typeof(FriendName)))
+            {
+                CollectionDict.Add(friendName, 0);
+            }
+
+            foreach (StageName stageName in (StageName[])Enum.GetValues(typeof(StageName)))
+            {
+                ClearDict.Add(stageName, 0);
+            }
+
+            GoldNumber = 0;
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MoonBunny.Effects;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -16,6 +17,15 @@ namespace MoonBunny
         [Range(0, 1)] public float RainbowRicecakeRatio;
         public int CoinNumber;
 
+        public bool SummonThunderEnabled;
+        public float SummonThunderInterval;
+        private float _thunderTimer;
+        public float ThunderWarningTime;
+        
+        public bool SummonShootingStarEnabled;
+        public float SummonShootingStarInterval;
+        private float _shoootingStarTimer;
+
         private Character _player;
         private Stage _stage;
         private List<Vector2Int> _summonPositionList = new List<Vector2Int>();
@@ -26,6 +36,39 @@ namespace MoonBunny
             _stage = GetComponent<Stage>();
         }
 
+        private void Update()
+        {
+            if (SummonThunderEnabled)
+            {
+                SummonThunder(Time.deltaTime);
+            }
+
+            if (SummonShootingStarEnabled)
+            {
+                SummonShootingStar(Time.deltaTime);
+            }
+        }
+
+        private void SummonThunder(float deltaTime)
+        {
+            _thunderTimer += deltaTime;
+
+            if (_thunderTimer >= SummonThunderInterval)
+            {
+                new ThunderEffect(Random.Range(GridTransform.GridXMin, GridTransform.GridXMax), ThunderWarningTime).Effect();
+            }
+        }
+
+        private void SummonShootingStar(float deltaTime)
+        {
+            _shoootingStarTimer += deltaTime;
+
+            if (_shoootingStarTimer >= SummonShootingStarInterval)
+            {
+                new ShootingStarEffect(_stage.Spec.Height, Random.Range(GridTransform.GridXMin + 1, GridTransform.GridXMax - 1)).Effect();
+            }
+        }
+        
         public void SummonRicecakes()
         {
             int xmin = GridTransform.GridXMin;

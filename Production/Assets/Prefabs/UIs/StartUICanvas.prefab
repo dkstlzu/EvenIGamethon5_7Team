@@ -10005,34 +10005,44 @@ MonoBehaviour:
   DiamonText2: {fileID: 5274786461726775513}
   GoldText1: {fileID: 5930256871186895922}
   GoldText2: {fileID: 7498398225572825008}
-  Stage1Button: {fileID: 5518387241385726568}
-  Stage1StarImage: {fileID: 606207949841273092}
-  Stage2Button: {fileID: 2043042408510846950}
-  Stage2LockImage: {fileID: 5720617944365573525}
-  Stage2StarImage: {fileID: 6388014263126881418}
-  Stage3Button: {fileID: 848924907807741879}
-  Stage3LockImage: {fileID: 6412584069370398148}
-  Stage3StarImage: {fileID: 5709277532810515675}
-  Stage4Button: {fileID: 7806079297833835684}
-  Stage4LockImage: {fileID: 4570357900606754519}
-  Stage4StarImage: {fileID: 2929682667324317640}
-  Stage5Button: {fileID: 2933151191842121340}
-  Stage5LockImage: {fileID: 8902854497588032527}
-  Stage5StarImage: {fileID: 7802543982677189904}
-  StageChallengeButton: {fileID: 2283544243235944477}
-  StageChallengeLockImage: {fileID: 5514984208995265134}
+  StageButtonList:
+  - Button: {fileID: 5518387241385726568}
+    StarImage: {fileID: 606207949841273092}
+    LockImage: {fileID: 2282428349649403931}
+  - Button: {fileID: 2043042408510846950}
+    StarImage: {fileID: 6388014263126881418}
+    LockImage: {fileID: 5720617944365573525}
+  - Button: {fileID: 848924907807741879}
+    StarImage: {fileID: 5709277532810515675}
+    LockImage: {fileID: 6412584069370398148}
+  - Button: {fileID: 7806079297833835684}
+    StarImage: {fileID: 2929682667324317640}
+    LockImage: {fileID: 4570357900606754519}
+  - Button: {fileID: 2933151191842121340}
+    StarImage: {fileID: 7802543982677189904}
+    LockImage: {fileID: 8902854497588032527}
+  - Button: {fileID: 2283544243235944477}
+    StarImage: {fileID: 6578728252823698289}
+    LockImage: {fileID: 5514984208995265134}
   SubLevelContent: {fileID: 4704852716732870821}
-  SubLevel1Image: {fileID: 7898819759612177132}
-  SubLevel2Image: {fileID: 2955037794607017439}
-  SubLevel3Image: {fileID: 3801331203850832502}
-  SubLevel1Text: {fileID: 6323873530951559332}
-  SubLevel2Text: {fileID: 94998624776179865}
-  SubLevel3Text: {fileID: 2108622730835492188}
+  SubLevelSwipeTime: 1
+  LockStageSprite: {fileID: 1916047239, guid: 678b4acebbd2e7c4a9027dc0aef71088, type: 3}
+  SubLevelList:
+  - Image: {fileID: 7898819759612177132}
+    Text: {fileID: 6323873530951559332}
+    Enabled: 0
+  - Image: {fileID: 2955037794607017439}
+    Text: {fileID: 94998624776179865}
+    Enabled: 0
+  - Image: {fileID: 3801331203850832502}
+    Text: {fileID: 2108622730835492188}
+    Enabled: 0
   StartButton: {fileID: 6325751966344029457}
-  StarNoneSprite: {fileID: 657237849, guid: 579a854c0b6dcca4aa51c4d501a40778, type: 3}
-  StarOneSprite: {fileID: -1487664468, guid: 579a854c0b6dcca4aa51c4d501a40778, type: 3}
-  StarTwoSprite: {fileID: -1972003795, guid: 579a854c0b6dcca4aa51c4d501a40778, type: 3}
-  StarThreeSprite: {fileID: -1357321682, guid: 579a854c0b6dcca4aa51c4d501a40778, type: 3}
+  StarSpriteList:
+  - {fileID: 657237849, guid: 579a854c0b6dcca4aa51c4d501a40778, type: 3}
+  - {fileID: -1487664468, guid: 579a854c0b6dcca4aa51c4d501a40778, type: 3}
+  - {fileID: -1972003795, guid: 579a854c0b6dcca4aa51c4d501a40778, type: 3}
+  - {fileID: -1357321682, guid: 579a854c0b6dcca4aa51c4d501a40778, type: 3}
 --- !u!95 &7250976397053424406
 Animator:
   serializedVersion: 5
@@ -11621,6 +11631,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7364872246685539465, guid: 309ef59a018b81c409c48b221f7c22ed, type: 3}
   m_PrefabInstance: {fileID: 3849936554016841832}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6578728252823698289 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7935886356660017945, guid: 309ef59a018b81c409c48b221f7c22ed, type: 3}
+  m_PrefabInstance: {fileID: 3849936554016841832}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3929152875147079571
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12588,6 +12609,17 @@ RectTransform:
 --- !u!114 &606207949841273092 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7935886356660017945, guid: 309ef59a018b81c409c48b221f7c22ed, type: 3}
+  m_PrefabInstance: {fileID: 7370211654012258845}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2282428349649403931 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8783303567293942278, guid: 309ef59a018b81c409c48b221f7c22ed, type: 3}
   m_PrefabInstance: {fileID: 7370211654012258845}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

@@ -1,21 +1,43 @@
 {
-    "FirstFriendCollectedNumber": 0,
-    "SecondFriendCollectedNumber": 0,
-    "ThirdFriendCollectedNumber": 0,
-    "GoldNumber": 72,
-    "Stage1_1Clear": false,
-    "Stage1_2Clear": false,
-    "Stage1_3Clear": true,
-    "Stage2_1Clear": false,
-    "Stage2_2Clear": false,
-    "Stage2_3Clear": true,
-    "Stage3_1Clear": false,
-    "Stage3_2Clear": false,
-    "Stage3_3Clear": true,
-    "Stage4_1Clear": false,
-    "Stage4_2Clear": false,
-    "Stage4_3Clear": true,
-    "Stage5_1Clear": false,
-    "Stage5_2Clear": false,
-    "Stage5_3Clear": false
+    "CollectionDict": {
+        "m_keys": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            -1
+        ],
+        "m_values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    "ClearDict": {
+        "m_keys": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "m_values": [
+            3,
+            3,
+            3,
+            3,
+            3,
+            3
+        ]
+    },
+    "GoldNumber": 1
 }

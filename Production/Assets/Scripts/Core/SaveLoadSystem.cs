@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 #if UNITY_EDITOR
+using System.Collections.Generic;
 using System.Globalization;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
@@ -33,28 +34,6 @@ namespace MoonBunny
             DataSavingFileName = fileName;
             DataSavingExtension = "." + extension;
         }
-
-#if UNITY_EDITOR
-        [MenuItem("Dev/CreateDefaultSaveData")]
-        public static void CreateDefaultSaveDataFile()
-        {
-            SaveData data = new SaveData();
-            string jsonData = JsonUtility.ToJson(data, true);
-            byte[] byteData = Encoding.UTF8.GetBytes(jsonData);
-
-            string defaultPath = Path.Combine(Application.streamingAssetsPath, "Saves", "Save") + ".txt";
-         
-            File.WriteAllText(defaultPath, String.Empty);
-
-            using (FileStream fs = File.OpenWrite(defaultPath))
-            {
-                fs.Write(byteData);
-                fs.Flush();
-            }
-
-            AssetDatabase.Refresh();
-        }
-#endif
             
         public void SaveJson(object data)
         {
@@ -67,14 +46,6 @@ namespace MoonBunny
             string jsonData = JsonUtility.ToJson(data, true);
             byte[] byteData = Encoding.UTF8.GetBytes(jsonData);
 
-// #if UNITY_ANDROID
-            // UnityWebRequest request = UnityWebRequest.PostWwwForm(SaveDataFilePath, jsonData);
-            // request.SendWebRequest().completed += (ao) =>
-            // {
-            //     MoonBunnyLog.print("Save Data successfully : is Android");
-            // };
-            //
-// #else
             File.WriteAllText(SaveDataFilePath, String.Empty);
 
             using (FileStream fs = File.OpenWrite(SaveDataFilePath))
@@ -83,8 +54,6 @@ namespace MoonBunny
                 fs.Flush();
                 MoonBunnyLog.print("Save Data successfully");
             }
-// #endif
-
 
 #if UNITY_EDITOR
             AssetDatabase.Refresh();
@@ -262,6 +231,10 @@ namespace MoonBunny
             
             Debug.Log($"Load CSV Data total line : {fileContents.Length}");
 
+            Dictionary<int, BouncyPlatform> bouncyPlatformDict = new Dictionary<int, BouncyPlatform>();
+            Dictionary<int, List<int>> bouncyPlatformPattern1Dict = new Dictionary<int, List<int>>();
+            Dictionary<int, List<int>> bouncyPlatformPattern2Dict = new Dictionary<int, List<int>>();
+
             for (int i = 1; i < fileContents.Length; i++)
             {
                 // try
@@ -346,6 +319,43 @@ namespace MoonBunny
                                 platform.LoopCycleSpeed = float.Parse(speedStr);
                             }
 
+                            int index = int.Parse(lineContent[noIndex]);
+                            bouncyPlatformDict.Add(index, platform);
+
+                            string[] pattern1Str = lineContent[bouncyPlatformPattern1Index].Split(":");
+                            string[] pattern2Str = lineContent[bouncyPlatformPattern2Index].Split(":");
+
+                            if (pattern1Str.Length > 0)
+                            {
+                                List<int> pattern1List = new List<int>();
+                                
+                                foreach (var str in pattern1Str)
+                                {
+                                    if (str != NoData)
+                                    {
+                                        pattern1List.Add(int.Parse(str));
+                                    }
+                                }
+                                
+                                bouncyPlatformPattern1Dict.Add(index, pattern1List);
+                            }
+                            
+                            if (pattern2Str.Length > 0)
+                            {
+                                List<int> pattern2List = new List<int>();
+                                
+                                foreach (var str in pattern2Str)
+                                {
+                                    if (str != NoData)
+                                    {
+                                        pattern2List.Add(int.Parse(str));
+                                    }
+                                }
+                                
+                                bouncyPlatformPattern2Dict.Add(index, pattern2List);
+                            }
+                            
+
                             break;
                     }
 
@@ -358,6 +368,26 @@ namespace MoonBunny
                 // {
                 //     Debug.LogError(e + $"\nError accured while loading csv data line : {i}");
                 // }
+            }
+
+            foreach (var pair in bouncyPlatformPattern1Dict)
+            {
+                BouncyPlatform platform = bouncyPlatformDict[pair.Key];
+
+                foreach (int index in pair.Value)
+                {
+                    platform.Pattern1PlatformList.Add(bouncyPlatformDict[index]);
+                }
+            }
+            
+            foreach (var pair in bouncyPlatformPattern2Dict)
+            {
+                BouncyPlatform platform = bouncyPlatformDict[pair.Key];
+
+                foreach (int index in pair.Value)
+                {
+                    platform.Pattern2PlatformList.Add(bouncyPlatformDict[index]);
+                }
             }
 
             RandomSpawner.Uninit();

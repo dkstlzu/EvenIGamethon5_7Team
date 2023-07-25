@@ -27,12 +27,17 @@ namespace MoonBunny.UIs
         [SerializeField] private Image _firstChecker;
         [SerializeField] private Image _secondChecker;
         [SerializeField] private Image _thirdChecker;
+        private int _gainedStarNumber => _thirdChecker.enabled ? 3 : _secondChecker.enabled ? 2 : _firstChecker.enabled ? 1 : 0;
 
         [Header("Hearts")]
         [SerializeField] private List<Image> _heartImagelist;
         private int _currentHP;
         [SerializeField] private Sprite _fullHeartSprite;
         [SerializeField] private Sprite _brokenHeartSprite;
+
+        [Header("Clear")] public Image ClearStarImage;
+        public List<Sprite> StarSpriteList;
+        public TextMeshProUGUI ClearScoreText;
         
         private Character _character;
         public event Action OnDirectionChangeButtonClicked;
@@ -91,6 +96,10 @@ namespace MoonBunny.UIs
         {
             ClearUI.DOFade(1, 2);
             ClearUI.blocksRaycasts = true;
+
+            ClearStarImage.sprite = StarSpriteList[_gainedStarNumber];
+            ClearScoreText.text = _scoreText.text;
+                
             SoundManager.instance.PlayClip(_clearAudioClip);
         }
 
@@ -101,11 +110,19 @@ namespace MoonBunny.UIs
             SoundManager.instance.PlayClip(_failAudioClip);
         }
 
+        public void RetryButtonClicked()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
         public void GoToLobbyButtonClicked()
         {
             SceneManager.LoadSceneAsync(SceneName.Start).completed += (ao) =>
             {
-                GameManager.instance.StartSceneUI.OnGoToStageSelectButtonClicked();
+                GameManager.instance.StartSceneUI.FriendSelectCanvasGroup.alpha = 0;
+                GameManager.instance.StartSceneUI.FriendSelectCanvasGroup.blocksRaycasts = false;
+                GameManager.instance.StartSceneUI.StageSelectCanvasGroup.alpha = 1;
+                GameManager.instance.StartSceneUI.StageSelectCanvasGroup.blocksRaycasts = true;
             };
         }
 

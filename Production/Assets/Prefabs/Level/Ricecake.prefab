@@ -53,8 +53,8 @@ MonoBehaviour:
   Score: 10
   _renderer: {fileID: 4145454322699530505}
   _audioClip: {fileID: 8300000, guid: a5c3d5b4275dd2545b1e5283da173835, type: 3}
-  _normalRiceCakeSprite: {fileID: 2067317039, guid: 817ca13ce770c8943812b294e89dbf2c, type: 3}
-  _rainBowRiceCakeSprite: {fileID: 2065294090, guid: 817ca13ce770c8943812b294e89dbf2c, type: 3}
+  _normalRiceCakeSprite: {fileID: 21300000, guid: b41324392ce32984bbfb59290d386868, type: 3}
+  _rainBowRiceCakeSprite: {fileID: 21300000, guid: a8e904a56c04e7b41bcad19534e17a51, type: 3}
 --- !u!61 &631841575972533013
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -173,7 +173,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2067317039, guid: 817ca13ce770c8943812b294e89dbf2c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b41324392ce32984bbfb59290d386868, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

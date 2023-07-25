@@ -17,12 +17,8 @@ namespace MoonBunny
         [SerializeField] private Animator _animator;
         [SerializeField] private SpriteRenderer _renderer;
         public int JumpPower;
-        public int UpMoveRange;
-        public int DownMoveRange;
-        public int LeftMoveRange;
-        public int RightMoveRange;
-        public bool UpFirst;
-        public bool RightFirst;
+        public int VerticalMoveRange;
+        public int HorizontalMoveRange;
 
         public int Index;
         public List<BouncyPlatform> Pattern1PlatformList;
@@ -33,7 +29,6 @@ namespace MoonBunny
 
         private Vector3 _loopStartPosition;
         private Vector3 _loopForwardPosition;
-        private Vector3 _loopBackwardPosition;
         private Vector2 _loopDelta;
         private Vector2 _currentLoopDelta;
         float multiplier;
@@ -53,29 +48,12 @@ namespace MoonBunny
             _renderer.sprite = PreloadedResources.instance.BouncyPlatformSpriteList[(GameManager.instance.Stage.StageLevel - 1) * 3 + bounceLevel + 1];
 
             _loopStartPosition = transform.position;
+            _loopForwardPosition = GridTransform.ToReal(GridTransform.GridPosition + new Vector2Int(VerticalMoveRange, HorizontalMoveRange));
 
-            if (UpFirst && RightFirst)
-            {
-                _loopForwardPosition = GridTransform.ToReal(GridTransform.GridPosition + new Vector2Int(UpMoveRange, RightMoveRange));
-                _loopBackwardPosition = GridTransform.ToReal(GridTransform.GridPosition + new Vector2Int(DownMoveRange, LeftMoveRange));
-            } else if (UpFirst && !RightFirst)
-            {
-                _loopForwardPosition = GridTransform.ToReal(GridTransform.GridPosition + new Vector2Int(UpMoveRange, LeftMoveRange));
-                _loopBackwardPosition = GridTransform.ToReal(GridTransform.GridPosition + new Vector2Int(DownMoveRange, RightMoveRange));
-            } else if (!UpFirst && RightFirst)
-            {
-                _loopForwardPosition = GridTransform.ToReal(GridTransform.GridPosition + new Vector2Int(DownMoveRange, RightMoveRange));
-                _loopBackwardPosition = GridTransform.ToReal(GridTransform.GridPosition + new Vector2Int(UpMoveRange, LeftMoveRange));
-            } else if (!UpFirst && !RightFirst)
-            {
-                _loopForwardPosition = GridTransform.ToReal(GridTransform.GridPosition + new Vector2Int(DownMoveRange, LeftMoveRange));
-                _loopBackwardPosition = GridTransform.ToReal(GridTransform.GridPosition + new Vector2Int(UpMoveRange, RightMoveRange));
-            }
-
-            _loopDelta = (_loopForwardPosition - _loopBackwardPosition).normalized * LoopCycleSpeed;
+            _loopDelta = (_loopForwardPosition - _loopStartPosition).normalized * LoopCycleSpeed;
             _currentLoopDelta = _loopDelta;
 
-            if ((UpMoveRange != 0 || DownMoveRange != 0 || LeftMoveRange != 0 || RightMoveRange != 0) && LoopCycleSpeed > 0)
+            if ((VerticalMoveRange != 0 || HorizontalMoveRange != 0) && LoopCycleSpeed > 0)
             {
                 _doLoop = true;
             }
@@ -91,20 +69,15 @@ namespace MoonBunny
             
             transform.Translate(_currentLoopDelta * Time.deltaTime);
 
-            if (UpFirst)
+            // Forward
+            if ((transform.position.y >= _loopForwardPosition.y))
             {
-                // Forward
-                if ((transform.position.y >= _loopForwardPosition.y))
-                {
-                    _currentLoopDelta = -_loopDelta;
-                }
-            } else
+                _currentLoopDelta = -_loopDelta;
+            }
+            // Backward
+            if (transform.position.y <= _loopStartPosition.y)
             {
-                // Backward
-                if (transform.position.y <= _loopForwardPosition.y)
-                {
-                    _currentLoopDelta = _loopDelta;
-                }
+                _currentLoopDelta = _loopDelta;
             }
         }
         

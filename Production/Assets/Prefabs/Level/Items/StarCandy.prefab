@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 511804839
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 341d24db5c13444afb87c02c09b2bfa6, type: 3}
+  m_Sprite: {fileID: -1460726861, guid: 36bca5e8a95967246acdf91d424c8f13, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -93,8 +93,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4098716478257111765}
-  - component: {fileID: 4260369774384771533}
   - component: {fileID: -4927606790433811712}
+  - component: {fileID: 4260369774384771533}
   m_Layer: 7
   m_Name: StarCandy
   m_TagString: Untagged
@@ -119,6 +119,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-4927606790433811712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7958158822191411938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05d373662c784c10a1c59cf3876e724e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GridTransform:
+    transform: {fileID: 4098716478257111765}
+    GridPosition: {x: 0, y: 0}
+  InvokeOnCollision: 1
+  Score: 10
+  _renderer: {fileID: 8437287934650690104}
+  _audioClip: {fileID: 0}
+  TargetLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  TargetArea: {fileID: 1373961581373845913}
 --- !u!61 &4260369774384771533
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -164,31 +187,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-4927606790433811712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7958158822191411938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05d373662c784c10a1c59cf3876e724e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GridTransform:
-    transform: {fileID: 4098716478257111765}
-    GridPosition: {x: 0, y: 0}
-  InvokeOnCollision: 1
-  _type: 8
-  Score: 10
-  _renderer: {fileID: 8437287934650690104}
-  _audioClip: {fileID: 0}
-  TargetLayerMask:
-    serializedVersion: 2
-    m_Bits: 256
-  TargetArea: {fileID: 1373961581373845913}
-  MaxDestroyNumber: 10
 --- !u!1 &8879759227752538461
 GameObject:
   m_ObjectHideFlags: 0

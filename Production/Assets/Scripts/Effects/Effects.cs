@@ -252,7 +252,7 @@ namespace MoonBunny.Effects
             {
                 Vector3 thunderPosition = new Vector3(_targetColumn * GridTransform.GridSetting.GridWidth + GridTransform.OriginInReal.x,
                     GameObject.FindWithTag("Player").transform.position.y, 0);
-                MonoBehaviour.Instantiate(S_ThunderEffectPrefab, thunderPosition, Quaternion.identity);
+                MonoBehaviour.Instantiate(S_ThunderEffectPrefab, thunderPosition, Quaternion.identity, GameObject.FindWithTag("Obstacles").transform);
                 Attack();
             }, _warningDuration);
         }
@@ -293,6 +293,29 @@ namespace MoonBunny.Effects
             Warning warning = MonoBehaviour.Instantiate(S_WarningEffectPrefab, _area.center, Quaternion.identity).GetComponent<Warning>();
             warning.Size = _area.size;
             warning.Duration = _duration;
+        }
+    }
+
+    public class ShootingStarEffect : IEffect
+    {
+        public static GameObject S_ShootingStarEffectPrefab;
+        
+        private int _targetRow;
+        private int _targetColumn;
+
+        private Vector2 areaMin;
+        private Vector2 areaMax;
+        
+        public ShootingStarEffect(int targetRow, int targetColumn)
+        {
+            _targetRow = targetRow;
+            _targetColumn = targetColumn;
+        }
+
+        public void Effect()
+        {
+            Vector3 shootingStarPosition = GridTransform.ToReal(new Vector2Int(_targetRow, _targetColumn));
+            MonoBehaviour.Instantiate(S_ShootingStarEffectPrefab, shootingStarPosition, Quaternion.identity, GameObject.FindWithTag("Obstacles").transform);
         }
     }
 }
