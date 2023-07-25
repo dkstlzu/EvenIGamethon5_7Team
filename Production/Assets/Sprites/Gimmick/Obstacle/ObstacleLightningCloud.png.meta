@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 070e35ce48beab442a769e34aaa78be2
+guid: 4878bb5c19e37ed47937151ac828583c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 50
+  spritePixelsToUnits: 128
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -136,11 +136,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ObstacleShoothingStar_0
+      name: ObstacleLightningCloud_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 262
+        y: 3
         width: 128
         height: 128
       alignment: 0
@@ -150,18 +150,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fcbafd2395c07744093a9f102d629e66
-      internalID: -520371768
+      spriteID: 69e7ddbfcc78e4d4e9f394668572e08f
+      internalID: -2039611012
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ObstacleShoothingStar_1
+      name: ObstacleLightningCloud_1
       rect:
         serializedVersion: 2
         x: 128
-        y: 262
+        y: 3
         width: 128
         height: 128
       alignment: 0
@@ -171,18 +171,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fadad076377d83f41bdab70f54f49ced
-      internalID: -1279861976
+      spriteID: c7904595e0ae9d04ebe411ccecd469d4
+      internalID: -838786726
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ObstacleShoothingStar_2
+      name: ObstacleLightningCloud_2
       rect:
         serializedVersion: 2
         x: 256
-        y: 262
+        y: 3
         width: 128
         height: 128
       alignment: 0
@@ -192,18 +192,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c04baa2d7048dd140941c630b13a857c
-      internalID: -574688232
+      spriteID: 01c722db14139a54ca7d8a0690ff25fe
+      internalID: 860299828
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ObstacleShoothingStar_3
+      name: ObstacleLightningCloud_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 134
+        x: 384
+        y: 3
         width: 128
         height: 128
       alignment: 0
@@ -213,18 +213,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f029cc63dd0721246942b90aaa8a4162
-      internalID: 1684723194
+      spriteID: 49afd157841d326428eb2f1df74fc602
+      internalID: 443467833
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ObstacleShoothingStar_4
+      name: ObstacleLightningCloud_4
       rect:
         serializedVersion: 2
-        x: 128
-        y: 134
+        x: 512
+        y: 3
         width: 128
         height: 128
       alignment: 0
@@ -234,92 +234,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01bbdbf6fc647124c9aad0443a1c0cd9
-      internalID: 1594120544
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ObstacleShoothingStar_5
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 134
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2a70fbdd73821a94da4eae4e947f5e21
-      internalID: -2092390915
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ObstacleShoothingStar_6
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 6
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e59a01d712b497f45a82f96dffcd90ad
-      internalID: 806898937
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ObstacleShoothingStar_7
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 6
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9dda2f00ce4239640bc70de28f6c10d4
-      internalID: -1863585447
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ObstacleShoothingStar_8
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 6
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0ffe9bb0e108e4648a2e36383d5274b9
-      internalID: 723123253
+      spriteID: a0e58e61e6aa6754a8b461185fa5cf00
+      internalID: 629817099
       vertices: []
       indices: 
       edges: []
@@ -335,15 +251,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ObstacleShoothingStar_0: -520371768
-      ObstacleShoothingStar_1: -1279861976
-      ObstacleShoothingStar_2: -574688232
-      ObstacleShoothingStar_3: 1684723194
-      ObstacleShoothingStar_4: 1594120544
-      ObstacleShoothingStar_5: -2092390915
-      ObstacleShoothingStar_6: 806898937
-      ObstacleShoothingStar_7: -1863585447
-      ObstacleShoothingStar_8: 723123253
+      ObstacleLightningCloud_0: -2039611012
+      ObstacleLightningCloud_1: -838786726
+      ObstacleLightningCloud_2: 860299828
+      ObstacleLightningCloud_3: 443467833
+      ObstacleLightningCloud_4: 629817099
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
