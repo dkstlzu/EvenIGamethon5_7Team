@@ -197,8 +197,7 @@ namespace MoonBunny.UIs
 
         public void OnStartButtonClicked()
         {
-            _stageName = _stageName + _subLevelIndex - 1; 
-            SceneManager.LoadScene(StringValue.GetStringValue(_stageName));
+            SceneManager.LoadScene(StringValue.GetStringValue(_stageName, _subLevelIndex));
         }
 
         public void OnDiamondPlusButtonClicked()

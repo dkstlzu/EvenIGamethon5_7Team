@@ -19,21 +19,14 @@ namespace dkstlzu.Utility
             get {return _value;}
         } 
 
-        public static string GetStringValue(Object value)
+        public static string GetStringValue(Object value, int index = 0)
         {
-            string output = null;
-            
             Type type = value.GetType();
             
             FieldInfo fi = type.GetField(value.ToString());
             StringValue[] attrs = fi.GetCustomAttributes(typeof(StringValue), false) as StringValue[];
-            
-            if(attrs.Length > 0)
-            {
-                output = attrs[0].Value;
-            }
-                
-            return output;
+
+            return attrs[index].Value;
         }
 
         public static T GetEnumValue<T>(string value) where T : Enum
