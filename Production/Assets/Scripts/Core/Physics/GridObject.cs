@@ -2,6 +2,7 @@
 using UnityEngine;
 
 #if UNITY_EDITOR
+using UnityEditor;
 using UnityEditor.SceneManagement;
 #endif
 
@@ -19,6 +20,9 @@ namespace MoonBunny
 
         protected virtual void Awake()
         {
+#if UNITY_EDITOR
+            if (!EditorApplication.isPlaying) return;
+#endif
             if (GridTransform.transform == null)
             {
                 GridTransform.transform = transform;

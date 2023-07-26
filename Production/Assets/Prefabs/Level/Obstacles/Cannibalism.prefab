@@ -85,12 +85,12 @@ MonoBehaviour:
     transform: {fileID: 3327384520515365470}
     GridPosition: {x: 0, y: 0}
   InvokeOnCollision: 1
-  _type: 0
   _renderer: {fileID: 2082156502020886801}
   _audioClip: {fileID: 8300000, guid: b68e2ed4335ae4242a1c7be5964906fc, type: 3}
   _animator: {fileID: 944878243764793647}
   ClickNumberToEscape: 3
   _currentRemainingNumberToEscape: 0
+  CoolTime: 10
   _spittingVelocity: {x: 1, y: 2}
   _impulseSource: {fileID: 3321190865183698641}
   TapTextGo: {fileID: 19415395782077823}

@@ -48,6 +48,10 @@ namespace MoonBunny
             get => IntValue.GetEnumIntValue(Name);
         }
 
+        public int SubLevel;
+
+        [SerializeField] private Transform _startPoint;
+
         [SerializeField] private StageSpec _spec;
         public StageSpec Spec => _spec;
 
@@ -73,6 +77,8 @@ namespace MoonBunny
         [SerializeField] private SpriteRenderer _backgroundSpriteRenderer;
         [SerializeField] private BoxCollider2D _leftWallCollider;
         [SerializeField] private BoxCollider2D _rightWallCollider;
+        [SerializeField] private PolygonCollider2D _levelCollider;
+        public PolygonCollider2D LevelConfiner => _levelCollider;
         
         public void Awake()
         {
@@ -89,21 +95,38 @@ namespace MoonBunny
             _spec = Resources.Load<StageSpec>($"Specs/Stage{StageLevel}Spec");
 
             Vector3 backgroundPosition = _backgroundSpriteRenderer.transform.position;
-            _backgroundSpriteRenderer.transform.position = new Vector3(backgroundPosition.x, _realHeight, backgroundPosition.z);
-            _backgroundSpriteRenderer.size = new Vector2(_backgroundSpriteRenderer.size.x, _realHeight * 2 + 20);
+            _backgroundSpriteRenderer.transform.position = new Vector3(backgroundPosition.x, _realHeight/2, backgroundPosition.z);
+            _backgroundSpriteRenderer.size = new Vector2(_backgroundSpriteRenderer.size.x, _realHeight + 20);
 
             Vector3 leftWallPosition = _leftWallCollider.transform.position;
-            _leftWallCollider.transform.position = new Vector3(leftWallPosition.x, _realHeight, leftWallPosition.z);
-            _leftWallCollider.size = new Vector2(_leftWallCollider.size.x, _realHeight * 2 + 20);
+            _leftWallCollider.transform.position = new Vector3(leftWallPosition.x, _realHeight/2, leftWallPosition.z);
+            _leftWallCollider.size = new Vector2(_leftWallCollider.size.x, _realHeight + 20);
             
             Vector3 rightWallPosition = _rightWallCollider.transform.position;
-            _rightWallCollider.transform.position = new Vector3(rightWallPosition.x, _realHeight, rightWallPosition.z);
-            _rightWallCollider.size = new Vector2(_rightWallCollider.size.x, _realHeight * 2 + 20);
+            _rightWallCollider.transform.position = new Vector3(rightWallPosition.x, _realHeight/2, rightWallPosition.z);
+            _rightWallCollider.size = new Vector2(_rightWallCollider.size.x, _realHeight + 20);
+
+            Vector2 minPoint = GridTransform.ToReal(new Vector2Int(GridTransform.GridXMin, -_spec.Height / 2)) -
+                               GridTransform.GetGridSize() / 2 + Vector2.down * 3;
+            Vector2 maxPoint = GridTransform.ToReal(new Vector2Int(GridTransform.GridXMax, _spec.Height/2)) +
+                               GridTransform.GetGridSize() / 2;
+
+            Vector2[] path = new Vector2[]
+            {
+                new Vector2(minPoint.x, maxPoint.y),
+                minPoint,
+                new Vector2(maxPoint.x, minPoint.y),
+                maxPoint
+            };
+
+            _levelCollider.SetPath(0, path);
         }
 
         private void Start()
         {
             _character = GameObject.FindWithTag("Player").GetComponent<Character>();
+            _character.Rigidbody.ForcePosition(_startPoint.position);
+            _character.Rigidbody.PauseMove();
             _summoner.SummonRicecakes();
             _summoner.SummonCoins();
             _summoner.SummonFriendCollectables();
@@ -111,6 +134,7 @@ namespace MoonBunny
 
         public void CountDownFinish()
         {
+            _character.Rigidbody.UnpauseMove();
             _character.StartJump();
             SoundManager.instance.PlayClip(PreloadedResources.instance.OpenStageAudioClip);
         }
@@ -119,8 +143,12 @@ namespace MoonBunny
         {
             foreach (var element in CollectDict)
             {
-                GameManager.instance.CollectDict[element.Key] += element.Value;
+                FriendCollectionManager.instance.Collect(element.Key, element.Value);
             }
+
+            GameManager.instance.ClearDict[Name] = Mathf.Max(GameManager.instance.ClearDict[Name], SubLevel+1);
+            
+            GameManager.instance.SaveCollection();
             
             UI.Clear();
             MoonBunnyRigidbody.DisableAll();

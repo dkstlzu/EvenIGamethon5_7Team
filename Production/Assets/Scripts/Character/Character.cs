@@ -15,7 +15,7 @@ namespace MoonBunny
 
         [SerializeField] private Animator _animator;
         public SpriteRenderer Renderer;
-        [SerializeField] private MoonBunnyRigidbody _rigidbody;
+        public MoonBunnyRigidbody Rigidbody;
 
         public bool FirstJumped;
         public Friend Friend;
@@ -55,6 +55,8 @@ namespace MoonBunny
 #endif
             CurrentHp = Friend.MaxHp;
             new MagnetEffect(MagneticField, Friend.MagneticPower).Effect();
+
+            isIgnoringFlip = false;
         }
 
         private void Start()
@@ -63,11 +65,11 @@ namespace MoonBunny
             if (!UnityEditor.EditorApplication.isPlaying) return;
 #endif
             GameManager.instance.Stage.UI.OnDirectionChangeButtonClicked += OnButtonClicked;
-            _rigidbody.SetDefaultHorizontalSpeed(Friend.HorizontalSpeed);
-            _rigidbody.SetBounciness(Friend.JumpPower);
+            Rigidbody.SetDefaultHorizontalSpeed(Friend.HorizontalSpeed);
+            Rigidbody.SetBounciness(Friend.JumpPower);
             if (Friend.Name == FriendName.BlackSugar)
             {
-                _rigidbody.CanDestroyObstaclesByStepping = true;
+                Rigidbody.CanDestroyObstaclesByStepping = true;
             }
         }
 
@@ -77,38 +79,38 @@ namespace MoonBunny
 #if UNITY_EDITOR
             if (!UnityEditor.EditorApplication.isPlaying) return;
 #endif
-            if (_rigidbody.isMovingToLeft)
+            if (Rigidbody.isMovingToLeft)
             {
                 Renderer.flipX = true;
             }
-            else if (_rigidbody.isMovingToRight)
+            else if (Rigidbody.isMovingToRight)
             {
                 Renderer.flipX = false;
             }
 
-            _animator.SetBool(_fallingHash, _rigidbody.isFalling);
+            _animator.SetBool(_fallingHash, Rigidbody.isFalling);
         }
 
         private void OnButtonClicked()
         {
             if (isIgnoringFlip) return;
 
-        if (!FirstJumped) StartJump();
+            if (!FirstJumped) StartJump();
             else FlipDirection();
         }
 
         public void StartJump()
         {
-            if (FirstJumped || !_rigidbody.isGrounded) return;
-            
-            _rigidbody.Move(new Vector2Int(1, 4));
+            if (FirstJumped) return;
+
+            Rigidbody.Move(new Vector2Int(1, 4));
             _animator.SetBool(_jumpHash, true);
             FirstJumped = true;
         }
 
         public void FlipDirection()
         {
-            _rigidbody.Move(new Vector2(-_rigidbody.Velocity.x, _rigidbody.Velocity.y));
+            Rigidbody.Move(new Vector2(-Rigidbody.Velocity.x, Rigidbody.Velocity.y));
         }
 
         public void Hit(Obstacle by)

@@ -1,4 +1,5 @@
 ﻿using Cinemachine;
+using dkstlzu.Utility;
 using UnityEngine;
 
 namespace MoonBunny
@@ -10,6 +11,7 @@ namespace MoonBunny
         [SerializeField] private Animator _animator;
         public int ClickNumberToEscape;
         [SerializeField] private int _currentRemainingNumberToEscape;
+        public float CoolTime;
         private MoonBunnyRigidbody _rigidbody;
         [SerializeField] private Vector2Int _spittingVelocity;
         private bool _wasLeft;
@@ -45,6 +47,15 @@ namespace MoonBunny
                 _rigidbody.GetComponentInChildren<SpriteRenderer>().enabled = true;
                 _rigidbody.GetComponent<Character>().isIgnoringFlip = false;
                 TapTextGo.SetActive(false);
+
+                _renderer.color = new Color(1, 1, 1, 0.5f);
+                InvokeOnCollision = false;
+                
+                CoroutineHelper.Delay(() =>
+                {
+                    _renderer.color = Color.white;
+                    InvokeOnCollision = true;
+                }, CoolTime);
 
                 if (_wasLeft)
                 {

@@ -14,11 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Datas:
   - Name: 0
-    TargetCollectingNumber: 5
+    TargetCollectingNumber: 0
     CurrentCollectingNumber: 0
   - Name: 1
     TargetCollectingNumber: 10
     CurrentCollectingNumber: 0
   - Name: 2
     TargetCollectingNumber: 20
+    CurrentCollectingNumber: 0
+  - Name: 3
+    TargetCollectingNumber: 30
+    CurrentCollectingNumber: 0
+  - Name: 4
+    TargetCollectingNumber: 30
+    CurrentCollectingNumber: 0
+  - Name: 5
+    TargetCollectingNumber: 30
+    CurrentCollectingNumber: 0
+  - Name: 6
+    TargetCollectingNumber: 40
     CurrentCollectingNumber: 0

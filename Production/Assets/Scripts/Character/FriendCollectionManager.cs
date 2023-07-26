@@ -43,6 +43,16 @@ namespace MoonBunny
 
         private void Awake()
         {
+            _gameManager = GameManager.instance;
+
+            foreach (FriendCollection.Data data in Collection.Datas)
+            {
+                data.CurrentCollectingNumber = _gameManager.SaveLoadSystem.SaveData.CollectionDict[data.Name];
+            }
+        }
+
+        private void Start()
+        {
             foreach (var collection in Collection.Datas)
             {
                 if (collection.TargetCollectingNumber <= collection.CurrentCollectingNumber)
@@ -54,17 +64,9 @@ namespace MoonBunny
                     CollectingFriendCharacterList.Add(collection);
                 }
             }
-
-            _gameManager = GameManager.instance;
-            if (_gameManager) _gameManager.LoadCollection(this);
         }
 
-        private void OnDestroy()
-        {
-            if (_gameManager) _gameManager.SaveCollection(this);
-        }
-
-        public void Collect(FriendName name)
+        public void Collect(FriendName name, int number)
         {
             if (CollectFinished(name))
             {
@@ -72,7 +74,9 @@ namespace MoonBunny
             }
             
             FriendCollection.Data data = GetCollectingData(name);
-            data.CurrentCollectingNumber += 1;
+            data.CurrentCollectingNumber = Mathf.Clamp(data.CurrentCollectingNumber + number, 0, data.TargetCollectingNumber);
+            
+            _gameManager.SaveLoadSystem.SaveData.CollectionDict[name] = data.CurrentCollectingNumber;
             
             OnCollectFriend?.Invoke(name, data.CurrentCollectingNumber);
             if (data.Finish()) CollectFinish(name);

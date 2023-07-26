@@ -589,6 +589,7 @@ namespace MoonBunny
         public void ForcePosition(Vector3 position)
         {
             _lastPosition = position;
+            _transform.position = position;
         }
     }
 

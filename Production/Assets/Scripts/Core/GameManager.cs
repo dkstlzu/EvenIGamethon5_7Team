@@ -91,6 +91,11 @@ namespace MoonBunny
             }
         }
 
+        private void OnDestroy()
+        {
+            SaveProgress();
+        }
+
         private void OnApplicationQuit()
         {
             SaveProgress();
@@ -125,27 +130,17 @@ namespace MoonBunny
             SaveLoadSystem.SaveDatabase();
         }
 
-        public void LoadCollection(FriendCollectionManager manager)
+        public void SaveCollection()
         {
 #if UNITY_EDITOR
             if (!useSaveSystem) return;
 #endif
-            // FriendCollection.Data data = manager[FriendName.First];
-            // data.CurrentCollectingNumber = SaveLoadSystem.SaveData.FirstFriendCollectedNumber;
-            // data = manager[FriendName.Second];
-            // data.CurrentCollectingNumber = SaveLoadSystem.SaveData.SecondFriendCollectedNumber;
-            // data = manager[FriendName.Third];
-            // data.CurrentCollectingNumber = SaveLoadSystem.SaveData.ThirdFriendCollectedNumber;
-        }
-
-        public void SaveCollection(FriendCollectionManager manager)
-        {
-#if UNITY_EDITOR
-            if (!useSaveSystem) return;
-#endif
-            // SaveLoadSystem.SaveData.FirstFriendCollectedNumber = manager[FriendName.First].CurrentCollectingNumber;
-            // SaveLoadSystem.SaveData.SecondFriendCollectedNumber = manager[FriendName.Second].CurrentCollectingNumber;
-            // SaveLoadSystem.SaveData.ThirdFriendCollectedNumber = manager[FriendName.Third].CurrentCollectingNumber;
+            foreach (var data in FriendCollectionManager.instance.Collection.Datas)
+            {
+                SaveLoadSystem.SaveData.CollectionDict[data.Name] = data.CurrentCollectingNumber;
+            }
+            
+            SaveLoadSystem.SaveDatabase();
         }
 
         public void FirstPlayTutorialOn()

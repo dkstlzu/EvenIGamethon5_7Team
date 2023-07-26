@@ -47,11 +47,16 @@ namespace MoonBunny.UIs
             public Image LockImage;
         }
         
+        [Header("Sub UIs")] 
+        public FriendProfileUI FriendProfileUI;
+        public List<Button> FriendSelectButtonList;
+        public List<TextMeshProUGUI> FriendSelectNameTextList;
+        public List<Sprite> FriendProfileSpriteList;
+        public Image CurrentProfileImage;
+        public FriendName CurrentSelectedFriendName;
+
         [Header("Stage Buttons")] 
         public List<StageButtonUI> StageButtonList;
-
-        [Header("SubUIt")] 
-        public FriendProfileUI FriendProfileUI;
         
         private StageName _stageName;
         private int _selectingLevel;
@@ -113,6 +118,14 @@ namespace MoonBunny.UIs
             }
 
             _showCutScene = false;
+            
+            for (int i = 0; i < FriendSelectButtonList.Count; i++)
+            {
+                if (!FriendCollectionManager.instance.Collection.Datas[i].Finish()) continue;
+                
+                FriendSelectButtonList[i].interactable = true;
+                FriendSelectNameTextList[i].text = FriendCollectionManager.instance.Collection.Datas[i].Name.ToString();
+            }
         }
 
         public void OnSettingButtonClicked()
@@ -133,12 +146,8 @@ namespace MoonBunny.UIs
             {
                 FadeIn(FriendProfileUICanvasGroup);
                 FriendProfileUI.Set(name);
+                FriendProfileUI.Open();
             }
-        }
-
-        public void OnFriendProfileCloseClicked()
-        {
-            FadeOut(FriendProfileUICanvasGroup);
         }
 
         public void OnStoryBookButtonClicked()
@@ -206,7 +215,13 @@ namespace MoonBunny.UIs
 
         public void OnStartButtonClicked()
         {
-            SceneManager.LoadScene(StringValue.GetStringValue(_stageName, _subLevelIndex));
+            SceneManager.LoadSceneAsync(StringValue.GetStringValue(_stageName, _subLevelIndex)).completed += (ao) =>
+            {
+                GameManager.instance.Stage.SubLevel = _subLevelIndex;
+
+                FriendSpec spec = Resources.Load<FriendSpec>($"Specs/Friend/{CurrentSelectedFriendName.ToString()}");
+                GameObject.FindWithTag("Player").GetComponent<Character>().Friend.SetBySpec(spec);
+            };
         }
 
         public void OnDiamondPlusButtonClicked()

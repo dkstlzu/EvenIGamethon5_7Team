@@ -360,6 +360,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 0
+  SubLevel: 0
+  _startPoint: {fileID: 7776708680454044948}
   _spec: {fileID: 11400000, guid: 7e4f134cf9ecf704bbe9353d76d684da, type: 2}
   CollectDict:
     _elementList: []
@@ -367,6 +369,7 @@ MonoBehaviour:
   _backgroundSpriteRenderer: {fileID: 8276122672916568586}
   _leftWallCollider: {fileID: 4627971106425716044}
   _rightWallCollider: {fileID: 6592815337611537684}
+  _levelCollider: {fileID: 8654327696670109377}
 --- !u!1 &3369113203156632384
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,6 +616,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3102898880253987672}
   - component: {fileID: 8276122672916568586}
+  - component: {fileID: 8654327696670109377}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -687,6 +691,55 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &8654327696670109377
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5875656025574300116}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4, y: 4}
+    newSize: {x: 12, y: 236.71729}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 2
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -2, y: 2}
+      - {x: -2, y: -2}
+      - {x: 2, y: -2}
+      - {x: 2, y: 2}
+  m_UseDelaunayMesh: 0
 --- !u!1 &6668240198291614220
 GameObject:
   m_ObjectHideFlags: 0

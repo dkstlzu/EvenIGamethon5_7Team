@@ -213,8 +213,8 @@ namespace MoonBunny
             int xIndex = Array.IndexOf(CSVHeader, "X");
             int yIndex = Array.IndexOf(CSVHeader, "Y");
             int bouncyPlatformPowerIndex = Array.IndexOf(CSVHeader, "Value1");
-            int bouncyPlatformHorizontalMoveIndex = Array.IndexOf(CSVHeader, "Value2");
-            int bouncyPlatformVerticalMoveIndex = Array.IndexOf(CSVHeader, "Value3");
+            int bouncyPlatformVerticalMoveIndex = Array.IndexOf(CSVHeader, "Value2");
+            int bouncyPlatformHorizontalMoveIndex = Array.IndexOf(CSVHeader, "Value3");
             int bouncyPlatformSpeedIndex = Array.IndexOf(CSVHeader, "Value4");
             int bouncyPlatformPattern1Index = Array.IndexOf(CSVHeader, "Value5");
             int bouncyPlatformPattern2Index = Array.IndexOf(CSVHeader, "Value6");

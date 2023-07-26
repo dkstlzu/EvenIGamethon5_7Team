@@ -1,9 +1,12 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Text;
 using NUnit.Framework.Constraints;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace MoonBunny.Dev.Editor
 {
@@ -65,5 +68,24 @@ namespace MoonBunny.Dev.Editor
             AssetDatabase.Refresh();
         }
 #endif
+
+        [MenuItem("Dev/MapData/HorizontalVerticalReverse")]
+        public static void ReverseBouncyPlatformHorizontalVerticalMoveRange()
+        {
+            if (!SceneName.StageNames.Contains(SceneManager.GetActiveScene().name))
+            {
+                EditorUtility.DisplayDialog("Wrong Scene", "스테이지 씬에서만 이 기능을 사용하세요", "확인");
+                return;
+            }
+
+            BouncyPlatform[] bouncyPlatforms = GameObject.FindObjectsByType<BouncyPlatform>(FindObjectsSortMode.None);
+
+            foreach (var bouncyPlatform in bouncyPlatforms)
+            {
+                (bouncyPlatform.HorizontalMoveRange, bouncyPlatform.VerticalMoveRange) = (bouncyPlatform.VerticalMoveRange, bouncyPlatform.HorizontalMoveRange);
+            }
+
+            EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
+        }
     }
 }

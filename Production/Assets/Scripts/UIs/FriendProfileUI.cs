@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +16,10 @@ namespace MoonBunny.UIs
         private int _fullCollectionNumber;
         private int _currentCollectionNumber;
 
+        public StartSceneUI StartSceneUI;
+        public CanvasGroup CanvasGroup;
+        private FriendName _selectingName;
+        
         [Header("References")]
         [SerializeField] private TextMeshProUGUI _horizontalSpeed;
         [SerializeField] private TextMeshProUGUI _bounciness;
@@ -26,11 +31,13 @@ namespace MoonBunny.UIs
         [SerializeField] private Slider _collectionSlider;
         [SerializeField] private Image _profileImage; 
         [SerializeField] private Image _memoryImage; 
+        [SerializeField] private RectTransform _content; 
         
         public void Set(FriendName friendName)
         {
             return;
-            
+
+            _selectingName = friendName;
             int index = (int)friendName;
 
             _horizontalSpeed.text = FriendSpecList[index].HorizontalJumpSpeed.ToString();
@@ -52,6 +59,37 @@ namespace MoonBunny.UIs
                 _memoryText.text += FriendProfileTextList[index].MemoryTexts[i] + "\n";
             }
             _storyText.text = FriendProfileTextList[index].StoryText;
+        }
+
+        public void Open()
+        {
+            CanvasGroup.DOFade(1, 1);
+            CanvasGroup.blocksRaycasts = true;
+        }
+
+        public void OnExitButtonClicked()
+        {
+            CanvasGroup.DOFade(0, 1);
+            CanvasGroup.blocksRaycasts = false;
+            _content.DOPivot(new Vector2(0.5f, 0.5f), 1);
+        }
+
+        public void OnLeftButtonClicked()
+        {
+            float xTarget = Mathf.Clamp01(_content.pivot.x - 0.5f);
+            _content.DOPivot(new Vector2(xTarget, 0f), 1);
+        }
+        
+        public void OnRightButtonClicked()
+        {
+            float xTarget = Mathf.Clamp01(_content.pivot.x + 0.5f);
+            _content.DOPivot(new Vector2(xTarget, 0.5f), 1);
+        }
+
+        public void OnConfirmButtonClicked()
+        {
+            StartSceneUI.CurrentSelectedFriendName = _selectingName;
+            StartSceneUI.CurrentProfileImage.sprite = StartSceneUI.FriendProfileSpriteList[(int)_selectingName];
         }
     }
 }
