@@ -17,13 +17,13 @@ namespace MoonBunny
         public float MagnetPower;
         public float Duration;
 
-        public override void Invoke(MoonBunnyRigidbody with)
+        public override bool Invoke(MoonBunnyRigidbody with)
         {
-            base.Invoke(with);
-            
+            if (!base.Invoke(with)) return false;
+
             new MagnetEffect(with.GetComponentInChildren<CircleCollider2D>(), MagnetPower, Duration).Effect();
             OnMangetItemTaken?.Invoke(MagnetPower, Duration);
-
+            return true;
         }
     }
 }

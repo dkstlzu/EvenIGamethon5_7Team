@@ -7,11 +7,12 @@ namespace MoonBunny
         [SerializeField] private Animator _animator;
         private static readonly int Crack = Animator.StringToHash("Crack");
 
-        public override void Invoke(MoonBunnyRigidbody rigidbody)
+        public override bool Invoke(MoonBunnyRigidbody with)
         {
-            base.Invoke(rigidbody);
-            
+            if (!base.Invoke(with)) return false;
+
             _animator.SetTrigger(Crack);
+            return true;
         }
 
         public void Destroy()

@@ -24,13 +24,14 @@ namespace MoonBunny
             }
         }
 
-        public override void Invoke(MoonBunnyRigidbody with)
+        public override bool Invoke(MoonBunnyRigidbody with)
         {
-            base.Invoke(with);
+            if (!base.Invoke(with)) return false;
             
             SoundManager.instance.PlayClip(S_FriendCollectedAudioClip);
             GameManager.instance.Stage.CollectDict[Name]++;
             Destroy(gameObject);
+            return true;
         }
     }
 }

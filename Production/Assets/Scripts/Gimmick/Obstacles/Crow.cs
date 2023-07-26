@@ -67,16 +67,17 @@ namespace MoonBunny
             }
         }
 
-        public override void Invoke(MoonBunnyRigidbody with)
+        public override bool Invoke(MoonBunnyRigidbody with)
         {
-            if (!_enabled) return;
+            if (!_enabled) return false;
             
-            base.Invoke(with);
+            if (!base.Invoke(with)) return false;
 
             with.PauseMove();
             _picker = new TransformForceEffect(with.transform, _pickingPoint);
             _picker.Effect();
             _pickingRigidbody = with;
+            return true;
         }
 
         public void Fly()

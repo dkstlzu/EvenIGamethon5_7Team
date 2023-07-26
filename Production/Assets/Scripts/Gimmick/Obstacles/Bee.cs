@@ -28,12 +28,14 @@ namespace MoonBunny
             _renderer.flipX = _rigidbody.isMovingToLeft;
         }
 
-        public override void Invoke(MoonBunnyRigidbody with)
+        public override bool Invoke(MoonBunnyRigidbody with)
         {
-            base.Invoke(with);
+            if (!base.Invoke(with)) return false;
             
             Character target = with.GetComponent<Character>();
-            new InvincibleEffect(with, LayerMask.GetMask("Obstacle"), target.Renderer, target.InvincibleDuration, target.InvincibleEffectCurve).Effect();
+            new InvincibleEffect(with, LayerMask.GetMask("Obstacle"), target.Renderer, target.InvincibleDuration, target.InvincibleEffectCurve)
+                .Effect();
+            return true;
         }
     }
 }

@@ -6,8 +6,9 @@ namespace MoonBunny
     {
         public bool InvokeOnCollision = true;
 
-        public virtual void Invoke(MoonBunnyRigidbody with)
+        public virtual bool Invoke(MoonBunnyRigidbody with)
         {
+            return true;
         }
     }
 }

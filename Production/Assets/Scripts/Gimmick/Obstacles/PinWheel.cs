@@ -5,9 +5,9 @@ namespace MoonBunny
 {
     public class PinWheel : Obstacle
     {
-        public override void Invoke(MoonBunnyRigidbody with)
+        public override bool Invoke(MoonBunnyRigidbody with)
         {
-            base.Invoke(with);
+            if (!base.Invoke(with)) return false;
             
             Character target = with.GetComponent<Character>();
             new InvincibleEffect(with, LayerMask.GetMask("Obstacle"), target.Renderer, target.InvincibleDuration, target.InvincibleEffectCurve).Effect();
@@ -16,6 +16,8 @@ namespace MoonBunny
             {
                 new StarCandyEffect(LayerMask.GetMask("Obstacle"), new Rect(transform.position, new Vector2(50, 3 * GridTransform.GridSetting.GridHeight))).Effect();
             }
+
+            return true;
         }
     }
 }

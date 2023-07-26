@@ -397,7 +397,7 @@ namespace MoonBunny
             if (other.TryGetComponent<FieldObject>(out fieldObject))
             {
                 collision = null;
-                
+
                 if (fieldObject is Platform platform)
                 {
                     collision = new PlatformCollision(_rigidbody, platform);

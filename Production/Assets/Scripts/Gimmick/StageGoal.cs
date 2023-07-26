@@ -7,11 +7,12 @@ namespace MoonBunny
     {
         public Stage Stage;
 
-        public override void Invoke(MoonBunnyRigidbody with)
+        public override bool Invoke(MoonBunnyRigidbody with)
         {
-            base.Invoke(with);
-            
+            if (!base.Invoke(with)) return false;
+
             Stage.Clear();
+            return true;
         }
     }
 }

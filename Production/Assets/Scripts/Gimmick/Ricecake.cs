@@ -14,9 +14,7 @@ namespace MoonBunny
 
         [SerializeField] private Sprite _normalRiceCakeSprite;
         [SerializeField] private Sprite _rainBowRiceCakeSprite;
-            
-            
-
+        
         public void MakeRainbow()
         {
             _renderer.sprite = _rainBowRiceCakeSprite;
@@ -24,13 +22,14 @@ namespace MoonBunny
             Score = RainbowCakeScore;
         }
 
-        public override void Invoke(MoonBunnyRigidbody rigidbody)
+        public override bool Invoke(MoonBunnyRigidbody with)
         {
-            base.Invoke(rigidbody);
-            
+            if (!base.Invoke(with)) return false;
+
             GameManager.instance.Stage.Score += Score;
             SoundManager.instance.PlayClip(_audioClip);
             Destroy(gameObject);
+            return true;
         }
     }
 }

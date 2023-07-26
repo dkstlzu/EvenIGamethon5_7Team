@@ -4,11 +4,12 @@ namespace MoonBunny
 {
     public class Coin : Item
     {
-        public override void Invoke(MoonBunnyRigidbody with)
+        public override bool Invoke(MoonBunnyRigidbody with)
         {
-            base.Invoke(with);
+            if (!base.Invoke(with)) return false;
 
             GameManager.instance.GoldNumber += 1;
+            return true;
         }
     }
 }

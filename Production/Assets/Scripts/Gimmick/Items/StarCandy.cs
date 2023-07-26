@@ -8,13 +8,14 @@ namespace MoonBunny
         public LayerMask TargetLayerMask;
         public Collider2D TargetArea;
             
-        public override void Invoke(MoonBunnyRigidbody with)
+        public override bool Invoke(MoonBunnyRigidbody with)
         {
-            base.Invoke(with);
+            if (!base.Invoke(with)) return false;
 
             Vector2 _2dPosition = transform.position;
 
             new StarCandyEffect(TargetLayerMask, new Rect(_2dPosition + TargetArea.offset, TargetArea.bounds.size)).Effect();
+            return true;
         }
     }
 }

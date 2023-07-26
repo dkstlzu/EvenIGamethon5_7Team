@@ -9,16 +9,17 @@ namespace MoonBunny
         public bool UseUnityEventInsteadOfInvoke;
         public UnityEvent Events;
 
-        public override void Invoke(MoonBunnyRigidbody with)
+        public override bool Invoke(MoonBunnyRigidbody with)
         {
-            base.Invoke(with);
-
+            if (!base.Invoke(with)) return false;
+            
             if (!UseUnityEventInsteadOfInvoke)
             {
-                TargetGimmick.Invoke(with);
+                return TargetGimmick.Invoke(with);
             }
             
             Events.Invoke();
+            return true;
         }
     }
 }

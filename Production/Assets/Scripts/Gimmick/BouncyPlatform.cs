@@ -83,12 +83,12 @@ namespace MoonBunny
             }
         }
         
-        public override void Invoke(MoonBunnyRigidbody with)
+        public override bool Invoke(MoonBunnyRigidbody with)
         {
-            if (!Enabled) return;
+            if (!Enabled) return false;
             
-            base.Invoke(with);
-            
+            if (!base.Invoke(with)) return false;
+
             _animator.SetTrigger(BounceHash);
             SoundManager.instance.PlayClip(S_JumpAudioClip);
 
@@ -117,6 +117,8 @@ namespace MoonBunny
                     platform.Enabled = false;
                 }
             }
+
+            return true;
         }
     }
 }

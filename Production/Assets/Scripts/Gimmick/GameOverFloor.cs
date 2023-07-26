@@ -6,18 +6,21 @@ namespace MoonBunny
 {
     public class GameOverFloor : Platform
     {
-        public override void Invoke(MoonBunnyRigidbody with)
+        public override bool Invoke(MoonBunnyRigidbody with)
         {
-            base.Invoke(with);
-            
+            if (!base.Invoke(with)) return false;
+
             if (with.tag == "Player")
             {
                 Character character = with.GetComponent<Character>();
                 if (character.FirstJumped)
                 {
                     GameManager.instance.Stage.Fail();
+                    return true;
                 }
             }
+
+            return false;
         }
     }
 }

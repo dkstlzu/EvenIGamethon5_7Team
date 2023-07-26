@@ -67,24 +67,7 @@ public class GimmickCollision : GridObjectCollision
         }
     }
 }
-//
-// public class ItemCollision : GimmickCollision
-// {
-//     public Item Item => (Item)Other;
-//     public ItemCollision(MoonBunnyRigidbody rigidbody, Item item) : base(rigidbody, item)
-//     {
-//     }
-// }
-//
-// public class ObstacleCollision : GimmickCollision
-// {
-//     public Obstacle Obstacle => (Obstacle)Other;
-//     public ObstacleCollision(MoonBunnyRigidbody rigidbody, Obstacle obstacle) : base(rigidbody, obstacle)
-//     {
-//     }
-// }
-//
-//
+
 public class PlatformCollision : GimmickCollision
 {
     public Platform Platform => (Platform)Other;
@@ -92,13 +75,3 @@ public class PlatformCollision : GimmickCollision
     {
     }
 }
-//
-// public class BouncyPlatformCollision : PlatformCollision
-// {
-//     public static AudioClip JumpAudioClip;
-//     public BouncyPlatform BouncyPlatform => (BouncyPlatform)Other;
-//     public BouncyPlatformCollision(MoonBunnyRigidbody rigidbody, BouncyPlatform platform) : base(rigidbody, platform)
-//     {
-//         SoundManager.instance.PlayClip(JumpAudioClip);
-//     }
-// }

@@ -18,12 +18,13 @@ namespace MoonBunny
         public float UpSpeed;
         public float Duration;
 
-        public override void Invoke(MoonBunnyRigidbody with)
+        public override bool Invoke(MoonBunnyRigidbody with)
         {
-            base.Invoke(with);
+            if (!base.Invoke(with)) return false;
 
             new RocketEffect(with, UpSpeed, Duration).Effect();
             OnRocketItemTaken?.Invoke(UpSpeed, Duration);
+            return true;
         }
     }
 }

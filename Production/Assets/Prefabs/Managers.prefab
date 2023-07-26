@@ -55,23 +55,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Stage: {fileID: 0}
-  StartPosition: {fileID: 0}
-  GlobalGravity: 0
-  Stage1_1Clear: 0
-  Stage1_2Clear: 0
-  Stage1_3Clear: 0
-  Stage2_1Clear: 0
-  Stage2_2Clear: 0
-  Stage2_3Clear: 0
-  Stage3_1Clear: 0
-  Stage3_2Clear: 0
-  Stage3_3Clear: 0
-  Stage4_1Clear: 0
-  Stage4_2Clear: 0
-  Stage4_3Clear: 0
-  Stage5_1Clear: 0
-  Stage5_2Clear: 0
-  Stage5_3Clear: 0
+  CollectDict:
+    _elementList: []
+  ClearDict:
+    _elementList: []
   StartSceneUI: {fileID: 0}
   isFirstPlay: 0
   _tutorialUIGO: {fileID: 1381214040629822484, guid: 318cac4417a8d9f46838e50ec5e04e7f, type: 3}
@@ -199,7 +186,7 @@ MonoBehaviour:
   Uniqueness: 1
   TargetComponent: {fileID: 5611170586294499107}
   HashID: 
-  DestroyGameObject: {fileID: 0}
+  DestroyGameObject: {fileID: 1386506531079968234}
   ReplacePreviousOne: 0
 --- !u!114 &4755970094666209831
 MonoBehaviour:

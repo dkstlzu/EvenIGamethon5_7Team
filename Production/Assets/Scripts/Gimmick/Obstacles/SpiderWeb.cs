@@ -18,9 +18,9 @@ namespace MoonBunny
         [Range(0, 1)] public float Slow;
         public float Duration;
         
-        public override void Invoke(MoonBunnyRigidbody with)
+        public override bool Invoke(MoonBunnyRigidbody with)
         {
-            base.Invoke(with);
+            if (!base.Invoke(with)) return false;
 
             float targetSlow = Slow;
 
@@ -34,6 +34,7 @@ namespace MoonBunny
             OnSpiderwebObstacleTaken?.Invoke(Slow, Duration);
             
             Destroy(gameObject);
+            return true;
         }
     }
 }

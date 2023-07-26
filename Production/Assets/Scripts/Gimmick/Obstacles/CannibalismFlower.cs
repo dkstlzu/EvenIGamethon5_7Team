@@ -18,9 +18,9 @@ namespace MoonBunny
         [SerializeField] private CinemachineImpulseSource _impulseSource;
         [SerializeField] private GameObject TapTextGo;
 
-        public override void Invoke(MoonBunnyRigidbody with)
+        public override bool Invoke(MoonBunnyRigidbody with)
         {
-            base.Invoke(with);
+            if (!base.Invoke(with)) return false;
 
             Instantiate(S_EffectPrefab, transform.position, Quaternion.identity);
             _rigidbody = with;
@@ -33,6 +33,7 @@ namespace MoonBunny
             _currentRemainingNumberToEscape = ClickNumberToEscape;
 
             GameManager.instance.Stage.UI.OnDirectionChangeButtonClicked += OnButtonClicked;
+            return true;
         }
 
         private void OnButtonClicked()
