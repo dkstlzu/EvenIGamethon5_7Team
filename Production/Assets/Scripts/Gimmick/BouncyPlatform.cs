@@ -48,11 +48,11 @@ namespace MoonBunny
             _renderer.sprite = PreloadedResources.instance.BouncyPlatformSpriteList[(GameManager.instance.Stage.StageLevel - 1) * 3 + bounceLevel + 1];
 
             _loopStartPosition = transform.position;
-            _loopForwardPosition = GridTransform.ToReal(GridTransform.GridPosition + new Vector2Int(VerticalMoveRange, HorizontalMoveRange));
+            _loopForwardPosition = GridTransform.ToReal(GridTransform.ToGrid(_loopStartPosition) + new Vector2Int(HorizontalMoveRange, VerticalMoveRange));
 
             _loopDelta = (_loopForwardPosition - _loopStartPosition).normalized * LoopCycleSpeed;
             _currentLoopDelta = _loopDelta;
-
+            
             if ((VerticalMoveRange != 0 || HorizontalMoveRange != 0) && LoopCycleSpeed > 0)
             {
                 _doLoop = true;
@@ -70,14 +70,16 @@ namespace MoonBunny
             transform.Translate(_currentLoopDelta * Time.deltaTime);
 
             // Forward
-            if ((transform.position.y >= _loopForwardPosition.y))
+            if ((transform.position.y > _loopForwardPosition.y || transform.position.x > _loopForwardPosition.x))
             {
                 _currentLoopDelta = -_loopDelta;
+                transform.position = _loopForwardPosition;
             }
             // Backward
-            if (transform.position.y <= _loopStartPosition.y)
+            if (transform.position.y < _loopStartPosition.y || transform.position.x < _loopStartPosition.x)
             {
                 _currentLoopDelta = _loopDelta;
+                transform.position = _loopStartPosition;
             }
         }
         

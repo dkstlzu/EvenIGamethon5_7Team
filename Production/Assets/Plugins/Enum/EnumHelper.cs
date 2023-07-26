@@ -43,67 +43,40 @@ namespace dkstlzu.Utility
         
         public static string[] ClapNamesOfEnum<EnumType>(int from, int to = Int32.MaxValue) where EnumType : Enum
         {
-            throw new System.NotImplementedException();
-            //
-            // string[] names = Enum.GetNames(typeof(EnumType));
-            //
-            // for (int i = 0; i < names.Length; i++)
-            // {
-            //     Debug.Log(names[i]);
-            // }
-            //
-            // return names;
+            List<string> enumList = new List<string>();
+            string[] enumNames = Enum.GetNames(typeof(EnumType));
+            List<string> result = new List<string>();
+
+            for (int i = from; i < to; i++)
+            {
+                object value;
+                if (Enum.TryParse(typeof(EnumType), enumNames[i], true, out value))
+                {
+                    if ((int)value >= from && (int)value <= to)
+                    {
+                        result.Add(enumNames[i]);
+                    }
+                }
+            }
+            
+            return result.ToArray();
         }
 
         public static EnumType[] ClapValuesOfEnum<EnumType>(int from, int to = Int32.MaxValue) where EnumType : Enum
         {
-            int[] values = (int[])Enum.GetValues(typeof(EnumType));
+            List<EnumType> enumList = new List<EnumType>();
+            enumList.AddRange((EnumType[])Enum.GetValues(typeof(EnumType)));
+            List<EnumType> result = new List<EnumType>();
 
-            for (int i = 0; i < values.Length; i++)
+            foreach (EnumType value in enumList)
             {
-                Debug.Log(values[i]);
-            }
-            
-            Array.Sort(values);
-
-            for (int i = 0; i < values.Length; i++)
-            {
-                Debug.Log(values[i]);
-            }
-            
-            int startIndex = 0, length = 0;
-            bool startIndexSet = false;
-            
-            for (int i = 0; i < values.Length; i++)
-            {
-                if (values[i] < from) continue;
-
-                if (!startIndexSet)
+                if ((int)(object)value >= from && (int)(object)value <= to)
                 {
-                    startIndex = i;
-                    startIndexSet = true;
+                    result.Add(value);
                 }
-
-                if (values[i] > to)
-                {
-                    length = i - startIndex;
-                    break;
-                }
-
             }
             
-            int[] clapedValues = new int[length];
-
-            Array.Copy(values, startIndex, clapedValues, 0, length);
-
-            EnumType[] result = new EnumType[length];
-
-            for (int i = 0; i < length; i++)
-            {
-                result[i] = (EnumType)(object)clapedValues[i];
-            }
-            
-            return result;
+            return result.ToArray();
         }
         
         

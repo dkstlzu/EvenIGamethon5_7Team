@@ -16,7 +16,15 @@ namespace MoonBunny
         {
             base.Invoke(with);
 
-            new SlowEffect(with, Slow, Duration).Effect();
+            float targetSlow = Slow;
+
+            Character character;
+            if (with.TryGetComponent(out character))
+            {
+                if (character.Friend.Name == FriendName.Sprout) targetSlow /= 2;
+            }
+            
+            new SlowEffect(with, targetSlow, Duration).Effect();
             OnSpiderwebObstacleTaken?.Invoke(Slow, Duration);
             
             Destroy(gameObject);

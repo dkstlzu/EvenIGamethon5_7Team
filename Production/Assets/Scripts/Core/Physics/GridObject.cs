@@ -19,10 +19,7 @@ namespace MoonBunny
 
         protected virtual void Awake()
         {
-            if (GridTransform == null)
-            {
-                GridTransform = new GridTransform(transform);
-            } else if (GridTransform.transform == null)
+            if (GridTransform.transform == null)
             {
                 GridTransform.transform = transform;
             }

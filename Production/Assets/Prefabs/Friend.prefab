@@ -46,7 +46,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8140ba48be8a42b1ac4a817a3f42f536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GridTransform:
+    transform: {fileID: 3293535228163283247}
+    GridPosition: {x: 0, y: 0}
+  InvokeOnCollision: 1
   Name: 0
+  _audioClip: {fileID: 0}
 --- !u!61 &1980661225399528701
 BoxCollider2D:
   m_ObjectHideFlags: 0

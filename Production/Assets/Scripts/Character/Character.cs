@@ -53,8 +53,6 @@ namespace MoonBunny
 #if UNITY_EDITOR
             if (!UnityEditor.EditorApplication.isPlaying) return;
 #endif
-            _rigidbody.DefaultHorizontalSpeed = Friend.HorizontalSpeed;
-            _rigidbody.BouncyRatio = Friend.JumpPower;
             CurrentHp = Friend.MaxHp;
             new MagnetEffect(MagneticField, Friend.MagneticPower).Effect();
         }
@@ -65,6 +63,12 @@ namespace MoonBunny
             if (!UnityEditor.EditorApplication.isPlaying) return;
 #endif
             GameManager.instance.Stage.UI.OnDirectionChangeButtonClicked += OnButtonClicked;
+            _rigidbody.SetDefaultHorizontalSpeed(Friend.HorizontalSpeed);
+            _rigidbody.SetBounciness(Friend.JumpPower);
+            if (Friend.Name == FriendName.BlackSugar)
+            {
+                _rigidbody.CanDestroyObstaclesByStepping = true;
+            }
         }
 
         protected override void Update()

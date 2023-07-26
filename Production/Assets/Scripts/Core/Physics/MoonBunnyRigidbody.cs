@@ -59,8 +59,18 @@ namespace MoonBunny
             
         private List<MoonBunnyCollider> _colliderList;
         [SerializeField] private MoonBunnyMovement _movement;
-        public int DefaultHorizontalSpeed = 1;
-        public float BouncyRatio = 0.3f;
+        private bool _canDestroyObstaclesByStepping;
+
+        public bool CanDestroyObstaclesByStepping
+        {
+            get => _canDestroyObstaclesByStepping;
+            set
+            {
+                _canDestroyObstaclesByStepping = value;
+                _movement.CanDestroyObstacleByStepping = value;
+            }
+        }
+        
 
         private List<Collision> _currentCollision = new List<Collision>();
         private List<Collision> _previousCollision = new List<Collision>();
@@ -81,8 +91,7 @@ namespace MoonBunny
             }
                         
             _movement = new MoonBunnyMovement(GridObject.GridTransform, Gravity);
-            _movement.DefaultHorizontalSpeedOnCollide = DefaultHorizontalSpeed;
-            _movement.Bounciness = BouncyRatio;
+            _movement.CanDestroyObstacleByStepping = CanDestroyObstaclesByStepping;
             
             _colliderList = new List<MoonBunnyCollider>();
             
@@ -186,6 +195,16 @@ namespace MoonBunny
             }
             
             MoveSacle = delta;
+        }
+
+        public void SetDefaultHorizontalSpeed(int gridSpeed)
+        {
+            _movement.DefaultHorizontalSpeedOnCollide = gridSpeed;
+        }
+
+        public void SetBounciness(float bouncy)
+        {
+            _movement.Bounciness = bouncy;
         }
         
         public void Move(Vector2 velocity)
@@ -422,6 +441,8 @@ namespace MoonBunny
         
         private MoonBunnyGravity _gravity;
 
+        public bool CanDestroyObstacleByStepping { get; set; }
+
         public MoonBunnyMovement(GridTransform transform, float gravity)
         {
             _transform = transform;
@@ -483,6 +504,22 @@ namespace MoonBunny
             if (collision is PlatformCollision platformCollision)
             {
                 StopMove();
+                return;
+            }
+
+            if (CanDestroyObstacleByStepping && collision.Other is Obstacle obstacle)
+            {
+                float relativeSpeedByHeight = GridTransform.GetVelocityByRelativeHeight(-Velocity.y, _gravity.GravityValue, Bounciness);
+                Vector2Int fallingGridVelocity = GridTransform.GetGridByVelocity(0, relativeSpeedByHeight, _gravity.GravityValue);
+
+                int targetGridVelocityX = Velocity.x >= 0 ? DefaultHorizontalSpeedOnCollide : -DefaultHorizontalSpeedOnCollide;
+                int targetGridVelocityY = fallingGridVelocity.y;
+
+                Vector2Int bouncyGridVelocity =  new Vector2Int(targetGridVelocityX, Mathf.Min(targetGridVelocityY, MaxGridVelocityY));
+                    
+                var gridVel = GridTransform.GetVelocityByGrid(bouncyGridVelocity, _gravity.GravityValue);
+                
+                StartMove(gridVel);
                 return;
             }
 

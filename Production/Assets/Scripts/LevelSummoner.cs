@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using dkstlzu.Utility;
 using MoonBunny.Effects;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -16,6 +17,7 @@ namespace MoonBunny
         public int RicecakeNumber;
         [Range(0, 1)] public float RainbowRicecakeRatio;
         public int CoinNumber;
+        public int FriendCollectableNumber;
 
         public bool SummonThunderEnabled;
         public float SummonThunderInterval;
@@ -150,6 +152,50 @@ namespace MoonBunny
                     _summonPositionList.Add(randomGridPosition);
                     summonNumber++;
                     Coin coin = Instantiate(CoinPrefab, GridTransform.ToReal(randomGridPosition), Quaternion.identity, parent.transform).GetComponent<Coin>();
+                }
+
+                nowTime = Time.realtimeSinceStartup;
+
+                if (nowTime - startTime > crash)
+                {
+                    Debug.LogWarning($"LevelSummoner coin summon failed by timeover {nowTime - startTime}");
+                    break;
+                }
+            }
+        }
+
+        public void SummonFriendCollectables()
+        {
+            int xmin = GridTransform.GridXMin;
+            int xmax = GridTransform.GridXMax;
+            int ymin = 0;
+            int ymax = _stage.Spec.Height;
+            
+            int summonNumber = 0;
+
+            float startTime = Time.realtimeSinceStartup;
+            float nowTime = Time.realtimeSinceStartup;
+            float crash = 2f;
+            
+            GameObject parent = GameObject.FindWithTag("Friends");
+
+            if (parent == null)
+            {
+                parent = new GameObject("FriendCollectables");
+            }
+            
+            while (summonNumber < FriendCollectableNumber)
+            {
+                int randomX = Random.Range(xmin, xmax + 1);
+                int randomY = Random.Range(ymin, ymax + 1);
+
+                Vector2Int randomGridPosition = new Vector2Int(randomX, randomY);
+
+                if (!_summonPositionList.Contains(randomGridPosition) && !GridTransform.HasGridObject(randomGridPosition))
+                {
+                    _summonPositionList.Add(randomGridPosition);
+                    summonNumber++;
+                    FriendCollectable collectable = Instantiate(FriendPrefab, GridTransform.ToReal(randomGridPosition), Quaternion.identity, parent.transform).GetComponent<FriendCollectable>();
                 }
 
                 nowTime = Time.realtimeSinceStartup;

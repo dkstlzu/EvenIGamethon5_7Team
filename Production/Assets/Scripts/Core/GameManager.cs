@@ -17,8 +17,8 @@ namespace MoonBunny
 
         public Stage Stage;
 
-        public FriendNameCollectDictionary CollectDict;
-        public StageNameClearDictionary ClearDict;
+        public ReadOnlyEnumDict<FriendName, int> CollectDict;
+        public ReadOnlyEnumDict<StageName, int> ClearDict;
 
         public StartSceneUI StartSceneUI;
         private int _diamondNumber;

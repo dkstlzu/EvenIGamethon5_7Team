@@ -22,6 +22,7 @@ namespace MoonBunny
 
         [SerializeField] private FriendSpec _spec;
         public FriendSpec Spec => _spec;
+        public FriendName Name;
         
         public int HorizontalSpeed;
         public float JumpPower;
@@ -34,6 +35,11 @@ namespace MoonBunny
                 _spec = spec;
             }
 
+            FriendName name;
+            if (Enum.TryParse(spec.name, out name))
+            {
+                Name = name;
+            }
             HorizontalSpeed = _spec.HorizontalJumpSpeed;
             JumpPower = _spec.VerticalJumpSpeed;
             MagneticPower = _spec.MagneticPower;

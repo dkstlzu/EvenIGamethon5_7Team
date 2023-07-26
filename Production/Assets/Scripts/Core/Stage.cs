@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using dkstlzu.Utility;
 using MoonBunny.UIs;
 using UnityEngine;
@@ -50,7 +51,7 @@ namespace MoonBunny
         [SerializeField] private StageSpec _spec;
         public StageSpec Spec => _spec;
 
-        public FriendNameCollectDictionary CollectDict;
+        public ReadOnlyEnumDict<FriendName, int> CollectDict;
 
         private LevelSummoner _summoner;
 
@@ -72,6 +73,11 @@ namespace MoonBunny
         
         public void Awake()
         {
+            foreach (var friendName in EnumHelper.ClapValuesOfEnum<FriendName>(0))
+            {
+                CollectDict.Add(friendName, 0);    
+            }
+            
             GameManager.instance.Stage = this;
             UI.Stage = this;
             _summoner = GetComponent<LevelSummoner>();
@@ -83,6 +89,7 @@ namespace MoonBunny
             _character = GameObject.FindWithTag("Player").GetComponent<Character>();
             _summoner.SummonRicecakes();
             _summoner.SummonCoins();
+            _summoner.SummonFriendCollectables();
             _realHeight = GridTransform.GridSetting.GridHeight * _spec.Height;
         }
 
@@ -94,6 +101,11 @@ namespace MoonBunny
 
         public void Clear()
         {
+            foreach (var element in CollectDict)
+            {
+                GameManager.instance.CollectDict[element.Key] += element.Value;
+            }
+            
             UI.Clear();
             MoonBunnyRigidbody.DisableAll();
         }

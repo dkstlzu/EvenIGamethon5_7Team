@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System;
+using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
@@ -38,7 +39,12 @@ namespace MoonBunny.CustomEditors
         private void OnSpecChanged(FriendSpec changedSpec, SerializedProperty property)
         {
             if (changedSpec == null) return;
-            
+
+            FriendName name;
+            if (Enum.TryParse(changedSpec.name, out name))
+            {
+                property.FindPropertyRelative("Name").intValue = (int)name;
+            }
             property.FindPropertyRelative("HorizontalSpeed").intValue = changedSpec.HorizontalJumpSpeed;
             property.FindPropertyRelative("JumpPower").floatValue = changedSpec.VerticalJumpSpeed;
             property.FindPropertyRelative("MagneticPower").floatValue = changedSpec.MagneticPower;

@@ -341,6 +341,12 @@ MonoBehaviour:
   RicecakeNumber: 100
   RainbowRicecakeRatio: 0.2
   CoinNumber: 50
+  FriendCollectableNumber: 2
+  SummonThunderEnabled: 0
+  SummonThunderInterval: 0
+  ThunderWarningTime: 0
+  SummonShootingStarEnabled: 0
+  SummonShootingStarInterval: 0
 --- !u!114 &8967351194144355069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,6 +361,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 0
   _spec: {fileID: 11400000, guid: 7e4f134cf9ecf704bbe9353d76d684da, type: 2}
+  CollectDict:
+    _elementList: []
   UI: {fileID: 2628499118603251068}
 --- !u!1 &3369113203156632384
 GameObject:
