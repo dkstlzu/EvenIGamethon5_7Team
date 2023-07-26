@@ -7,6 +7,12 @@ namespace MoonBunny
     public class Magnet : Item
     {
         public static event Action<float, float> OnMangetItemTaken;
+
+        [RuntimeInitializeOnLoadMethod]
+        static void ClearEventListeners()
+        {
+            OnMangetItemTaken = null;
+        }
         
         public float MagnetPower;
         public float Duration;

@@ -25,7 +25,7 @@ namespace MoonBunny
             _wasLeft = _rigidbody.isMovingToLeft;
             _rigidbody.Disable();
             _rigidbody.GetComponentInChildren<SpriteRenderer>().enabled = false;
-            _rigidbody.GetComponent<Character>().isCanniblismEaten = true;
+            _rigidbody.GetComponent<Character>().isIgnoringFlip = true;
             TapTextGo.SetActive(true);
             
             _currentRemainingNumberToEscape = ClickNumberToEscape;
@@ -43,7 +43,7 @@ namespace MoonBunny
                 GameManager.instance.Stage.UI.OnDirectionChangeButtonClicked -= OnButtonClicked;
                 _rigidbody.Enable();
                 _rigidbody.GetComponentInChildren<SpriteRenderer>().enabled = true;
-                _rigidbody.GetComponent<Character>().isCanniblismEaten = false;
+                _rigidbody.GetComponent<Character>().isIgnoringFlip = false;
                 TapTextGo.SetActive(false);
 
                 if (_wasLeft)

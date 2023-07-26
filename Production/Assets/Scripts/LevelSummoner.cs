@@ -58,6 +58,7 @@ namespace MoonBunny
             if (_thunderTimer >= SummonThunderInterval)
             {
                 new ThunderEffect(Random.Range(GridTransform.GridXMin, GridTransform.GridXMax), ThunderWarningTime).Effect();
+                _thunderTimer = 0;
             }
         }
 
@@ -67,7 +68,9 @@ namespace MoonBunny
 
             if (_shoootingStarTimer >= SummonShootingStarInterval)
             {
-                new ShootingStarEffect(_stage.Spec.Height, Random.Range(GridTransform.GridXMin + 1, GridTransform.GridXMax - 1)).Effect();
+                Vector2Int targetGrid = GridTransform.ToGrid(_player.transform.position + Vector3.up * Camera.main.orthographicSize);
+                new ShootingStarEffect(targetGrid.y, Random.Range(GridTransform.GridXMin + 1, GridTransform.GridXMax - 1)).Effect();
+                _shoootingStarTimer = 0;
             }
         }
         

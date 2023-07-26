@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using DG.Tweening;
+using dkstlzu.Utility;
 using MoonBunny.Dev;
+using MoonBunny.Effects;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -19,10 +21,11 @@ namespace MoonBunny.UIs
         [SerializeField] private AudioClip _failAudioClip;
 
         public Stage Stage;
-        [SerializeField] private TextMeshProUGUI _scoreText;
-        
+        [SerializeField] private Button _changeDirectionButton;
+
         [Header("Progress")]
         [SerializeField] private Slider _progressBar;
+        [SerializeField] private TextMeshProUGUI _scoreText;
 
         [SerializeField] private Image _firstChecker;
         [SerializeField] private Image _secondChecker;
@@ -46,6 +49,12 @@ namespace MoonBunny.UIs
         {
             _character = GameObject.FindWithTag("Player").GetComponent<Character>();
             _currentHP = _character.CurrentHp;
+
+            ThunderEffect.OnThunderAttack += (duration) =>
+            {
+                _changeDirectionButton.interactable = false;
+                CoroutineHelper.Delay(() => _changeDirectionButton.interactable = true, duration);
+            };
         }
 
         public void CountDownFinish()

@@ -12,11 +12,11 @@ namespace MoonBunny
         // Hard Caching
         private static readonly int _jumpHash = Animator.StringToHash("FirstJumped");
         private static readonly int _fallingHash = Animator.StringToHash("isFalling");
-        
+
         [SerializeField] private Animator _animator;
         public SpriteRenderer Renderer;
         [SerializeField] private MoonBunnyRigidbody _rigidbody;
-        
+
         public bool FirstJumped;
         public Friend Friend;
         public CircleCollider2D MagneticField;
@@ -25,7 +25,7 @@ namespace MoonBunny
 
         public List<Buff> BuffList = new List<Buff>();
         public SpriteRenderer DebuffSpriteRenderer;
-        
+
         public int CurrentHp
         {
             get => _currentHP;
@@ -38,18 +38,18 @@ namespace MoonBunny
                 }
             }
         }
- 
+
         public float InvincibleDuration = 3;
         public AnimationCurve InvincibleEffectCurve;
-        
-        public bool isCanniblismEaten { get; set; }
+
+        public bool isIgnoringFlip { get; set; }
 
         public bool LookingRight => !Renderer.flipX;
 
         protected override void Awake()
         {
             base.Awake();
-            
+
 #if UNITY_EDITOR
             if (!UnityEditor.EditorApplication.isPlaying) return;
 #endif
@@ -85,14 +85,15 @@ namespace MoonBunny
             {
                 Renderer.flipX = false;
             }
+
             _animator.SetBool(_fallingHash, _rigidbody.isFalling);
         }
 
         private void OnButtonClicked()
         {
-            if (isCanniblismEaten) return;
-            
-            if (!FirstJumped) StartJump();
+            if (isIgnoringFlip) return;
+
+        if (!FirstJumped) StartJump();
             else FlipDirection();
         }
 

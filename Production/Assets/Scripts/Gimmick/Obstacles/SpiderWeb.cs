@@ -8,6 +8,12 @@ namespace MoonBunny
     public class SpiderWeb : Obstacle
     {
         public static event Action<float, float> OnSpiderwebObstacleTaken;
+        
+        [RuntimeInitializeOnLoadMethod]
+        static void ClearEventListeners()
+        {
+            OnSpiderwebObstacleTaken = null;
+        }
             
         [Range(0, 1)] public float Slow;
         public float Duration;

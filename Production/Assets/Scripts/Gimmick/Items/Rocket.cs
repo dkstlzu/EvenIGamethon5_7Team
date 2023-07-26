@@ -9,6 +9,12 @@ namespace MoonBunny
     {
         public static event Action<float, float> OnRocketItemTaken;
         
+        [RuntimeInitializeOnLoadMethod]
+        static void ClearEventListeners()
+        {
+            OnRocketItemTaken = null;
+        }
+        
         public float UpSpeed;
         public float Duration;
 

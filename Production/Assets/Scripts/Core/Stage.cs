@@ -69,7 +69,10 @@ namespace MoonBunny
         }
 
         private Character _character;
-        private float _realHeight;
+        private float _realHeight =>  GridTransform.GridSetting.GridHeight *  _spec.Height;
+        [SerializeField] private SpriteRenderer _backgroundSpriteRenderer;
+        [SerializeField] private BoxCollider2D _leftWallCollider;
+        [SerializeField] private BoxCollider2D _rightWallCollider;
         
         public void Awake()
         {
@@ -82,6 +85,20 @@ namespace MoonBunny
             UI.Stage = this;
             _summoner = GetComponent<LevelSummoner>();
             Name = StringValue.GetEnumValue<StageName>(SceneManager.GetActiveScene().name);
+
+            _spec = Resources.Load<StageSpec>($"Specs/Stage{StageLevel}Spec");
+
+            Vector3 backgroundPosition = _backgroundSpriteRenderer.transform.position;
+            _backgroundSpriteRenderer.transform.position = new Vector3(backgroundPosition.x, _realHeight, backgroundPosition.z);
+            _backgroundSpriteRenderer.size = new Vector2(_backgroundSpriteRenderer.size.x, _realHeight * 2 + 20);
+
+            Vector3 leftWallPosition = _leftWallCollider.transform.position;
+            _leftWallCollider.transform.position = new Vector3(leftWallPosition.x, _realHeight, leftWallPosition.z);
+            _leftWallCollider.size = new Vector2(_leftWallCollider.size.x, _realHeight * 2 + 20);
+            
+            Vector3 rightWallPosition = _rightWallCollider.transform.position;
+            _rightWallCollider.transform.position = new Vector3(rightWallPosition.x, _realHeight, rightWallPosition.z);
+            _rightWallCollider.size = new Vector2(_rightWallCollider.size.x, _realHeight * 2 + 20);
         }
 
         private void Start()
@@ -90,7 +107,6 @@ namespace MoonBunny
             _summoner.SummonRicecakes();
             _summoner.SummonCoins();
             _summoner.SummonFriendCollectables();
-            _realHeight = GridTransform.GridSetting.GridHeight * _spec.Height;
         }
 
         public void CountDownFinish()

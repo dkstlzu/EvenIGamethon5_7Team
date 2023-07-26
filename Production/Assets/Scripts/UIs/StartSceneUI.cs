@@ -49,6 +49,9 @@ namespace MoonBunny.UIs
         
         [Header("Stage Buttons")] 
         public List<StageButtonUI> StageButtonList;
+
+        [Header("SubUIt")] 
+        public FriendProfileUI FriendProfileUI;
         
         private StageName _stageName;
         private int _selectingLevel;
@@ -122,9 +125,15 @@ namespace MoonBunny.UIs
             FadeOut(SettingUICanvasGroup);
         }
 
-        public void OnFriendButtonClicked()
+        public void OnFriendButtonClicked(string friendName)
         {
-            FadeIn(FriendProfileUICanvasGroup);
+            FriendName name;
+
+            if (Enum.TryParse(friendName, out name))
+            {
+                FadeIn(FriendProfileUICanvasGroup);
+                FriendProfileUI.Set(name);
+            }
         }
 
         public void OnFriendProfileCloseClicked()

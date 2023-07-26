@@ -93,7 +93,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 86.55
+  m_fontSize: 93.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1516,7 +1516,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 0
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1537,7 +1537,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 2352899029301816675}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -4311,8 +4311,9 @@ MonoBehaviour:
   _clearAudioClip: {fileID: 8300000, guid: ecdbb0a145f3dcf4799ab0a5b78ce7f2, type: 3}
   _failAudioClip: {fileID: 8300000, guid: e1dd7c957f2d8fe48b28765a9e2bacdb, type: 3}
   Stage: {fileID: 0}
-  _scoreText: {fileID: 3443909609328036117}
+  _changeDirectionButton: {fileID: 73528981312870230}
   _progressBar: {fileID: 2231172796606403176}
+  _scoreText: {fileID: 3443909609328036117}
   _firstChecker: {fileID: 4108143110707905515}
   _secondChecker: {fileID: 505883998931410050}
   _thirdChecker: {fileID: 2187006578817807884}

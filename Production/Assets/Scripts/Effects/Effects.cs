@@ -81,13 +81,13 @@ namespace MoonBunny.Effects
             Vector2 previousVelocity = _rigidbody.Velocity;
             float previousGravity = _rigidbody.Gravity;
             
-            _rigidbody.DisableCollision();
+            _rigidbody.IgnoreCollision(LayerMask.GetMask("Obstacle"));
             _rigidbody.Move(new Vector2(0, _upSpeed));
             _rigidbody.Gravity = 0;
             
             CoroutineHelper.Delay(() =>
             {
-                _rigidbody.EnableCollision();
+                _rigidbody.DontIgnoreCollision(LayerMask.GetMask("Obstacle"));
                 _rigidbody.Move(previousVelocity);
                 _rigidbody.Gravity = previousGravity;
             }, _duration);
@@ -227,8 +227,17 @@ namespace MoonBunny.Effects
     {
         public static GameObject S_ThunderEffectPrefab;
         private static LayerMask S_characterLayerMask = LayerMask.GetMask("Character");
-        
-        private int _targetColumn;
+        private static float S_duration = 3;
+
+        public static event Action<float> OnThunderAttack;
+
+        [RuntimeInitializeOnLoadMethod]
+        static void ClearEvents()
+        {
+            OnThunderAttack = null;
+        }
+
+    private int _targetColumn;
         private float _warningDuration;
 
         private Vector2 areaMin;
@@ -271,6 +280,13 @@ namespace MoonBunny.Effects
             if (character)
             {
                 character.Hit(null);
+                character.isIgnoringFlip = true;
+                OnThunderAttack?.Invoke(S_duration);
+                
+                CoroutineHelper.Delay(() =>
+                {
+                    character.isIgnoringFlip = false;
+                }, S_duration);
             }
         }
     }
@@ -314,7 +330,7 @@ namespace MoonBunny.Effects
 
         public void Effect()
         {
-            Vector3 shootingStarPosition = GridTransform.ToReal(new Vector2Int(_targetRow, _targetColumn));
+            Vector3 shootingStarPosition = GridTransform.ToReal(new Vector2Int(_targetColumn, _targetRow));
             MonoBehaviour.Instantiate(S_ShootingStarEffectPrefab, shootingStarPosition, Quaternion.identity, GameObject.FindWithTag("Obstacles").transform);
         }
     }

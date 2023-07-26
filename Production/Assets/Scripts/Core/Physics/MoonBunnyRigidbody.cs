@@ -89,9 +89,11 @@ namespace MoonBunny
             {
                 TryGetComponent<GridObject>(out GridObject);
             }
-                        
+
+            Vector2 serializedInitialVelocity = _movement.Velocity;
             _movement = new MoonBunnyMovement(GridObject.GridTransform, Gravity);
             _movement.CanDestroyObstacleByStepping = CanDestroyObstaclesByStepping;
+            _movement.StartMove(serializedInitialVelocity);
             
             _colliderList = new List<MoonBunnyCollider>();
             
@@ -103,7 +105,7 @@ namespace MoonBunny
             S_RigidbodyList.Add(this);
         }
 
-        public void Update()
+        public void FixedUpdate()
         {
             if (!enabled) return;
             
@@ -256,11 +258,20 @@ namespace MoonBunny
             _movement.ForcePosition(transform.position);
         }
 
+
         public void IgnoreCollision(LayerMask ignore)
         {
             foreach (MoonBunnyCollider collider in _colliderList)
             {
                 collider.SetIgnore(ignore);
+            }
+        }
+
+        public void DontIgnoreCollision(LayerMask dontIgnore)
+        {
+            foreach (MoonBunnyCollider collider in _colliderList)
+            {
+                collider.DontIgnore(dontIgnore);
             }
         }
     }
@@ -417,9 +428,15 @@ namespace MoonBunny
             _enabled = false;
         }
 
+
         public void SetIgnore(LayerMask ignoreLayerMask)
         {
-            _ignoreLayer = ignoreLayerMask;
+            _ignoreLayer |= ignoreLayerMask;
+        }
+
+        public void DontIgnore(LayerMask dontIgnoreLayerMask)
+        {
+            _ignoreLayer &= ~dontIgnoreLayerMask;
         }
     }
 
@@ -543,6 +560,7 @@ namespace MoonBunny
                     break;
                 case PinWheel pinWheel:
                 case Bee bee:
+                case ShootingStar shootingStar:
                     float xVelocity = Velocity.x;
                     float yVelocity = Velocity.y;
                     
@@ -596,7 +614,7 @@ namespace MoonBunny
         {
             if (!enabled) return;
             
-            _influencingMovement.Velocity = new Vector2(_influencingMovement.Velocity.x, _influencingMovement.Velocity.y - GravityValue * time);
+            _influencingMovement.StartMove(new Vector2(_influencingMovement.Velocity.x, _influencingMovement.Velocity.y - GravityValue * time));
         }
 
         public void Enable()
