@@ -63,8 +63,8 @@ namespace MoonBunny
             {
 #endif
                 SaveLoadSystem = new SaveLoadSystem();
+                SaveLoadSystem.OnSaveDataLoaded += LoadProgress;
                 SaveLoadSystem.LoadDatabase();
-                LoadProgress();
 #if UNITY_EDITOR
             }
 #endif
@@ -106,8 +106,6 @@ namespace MoonBunny
 #if UNITY_EDITOR
             if (!useSaveSystem) return;
 #endif
-            if (!SaveLoadSystem.DataIsLoaded) SaveLoadSystem.LoadDatabase();
-
             CollectDict = SaveLoadSystem.SaveData.CollectionDict;
             ClearDict = SaveLoadSystem.SaveData.ClearDict;
 

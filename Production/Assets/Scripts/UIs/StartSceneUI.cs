@@ -184,6 +184,7 @@ namespace MoonBunny.UIs
         {
             FadeIn(StageSelectCanvasGroup);
             FadeOut(FriendSelectCanvasGroup);
+            FadeOut(FriendProfileUICanvasGroup);
         }
 
         public void OnBackToFriendSelectButtonClicked()

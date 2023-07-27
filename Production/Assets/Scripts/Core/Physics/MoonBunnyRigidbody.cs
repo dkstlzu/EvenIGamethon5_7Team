@@ -50,6 +50,7 @@ namespace MoonBunny
 
         public GridObject GridObject;
         public List<MoonBunnyCollider.ColliderLayerMask> ColliderLayerList;
+        public LayerMask IgnoringLayerMask;
         public bool isGrounded;
 
         public Vector2 Velocity => _movement.Velocity;
@@ -261,18 +262,27 @@ namespace MoonBunny
 
         public void IgnoreCollision(LayerMask ignore)
         {
+            IgnoringLayerMask |= ignore;
+            
             foreach (MoonBunnyCollider collider in _colliderList)
             {
-                collider.SetIgnore(ignore);
+                collider.SetIgnore(IgnoringLayerMask);
             }
         }
 
         public void DontIgnoreCollision(LayerMask dontIgnore)
         {
+            IgnoringLayerMask &= ~dontIgnore;
+            
             foreach (MoonBunnyCollider collider in _colliderList)
             {
-                collider.DontIgnore(dontIgnore);
+                collider.SetIgnore(IgnoringLayerMask);
             }
+        }
+
+        public bool IsIgnoring(LayerMask target)
+        {
+            return (target & IgnoringLayerMask) > 0;
         }
     }
 
@@ -431,12 +441,7 @@ namespace MoonBunny
 
         public void SetIgnore(LayerMask ignoreLayerMask)
         {
-            _ignoreLayer |= ignoreLayerMask;
-        }
-
-        public void DontIgnore(LayerMask dontIgnoreLayerMask)
-        {
-            _ignoreLayer &= ~dontIgnoreLayerMask;
+            _ignoreLayer = ignoreLayerMask;
         }
     }
 

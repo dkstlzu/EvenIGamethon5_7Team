@@ -44,16 +44,12 @@ namespace MoonBunny
             }
             
             string jsonData = JsonUtility.ToJson(data, true);
-            byte[] byteData = Encoding.UTF8.GetBytes(jsonData);
-
-            File.WriteAllText(SaveDataFilePath, String.Empty);
-
-            using (FileStream fs = File.OpenWrite(SaveDataFilePath))
+            
+            UnityWebRequest uwr = UnityWebRequest.Put(SaveDataFilePath, jsonData);
+            uwr.SendWebRequest().completed += (ao) =>
             {
-                fs.Write(byteData);
-                fs.Flush();
-                MoonBunnyLog.print("Save Data successfully");
-            }
+                MoonBunnyLog.print("Save Data successfully on UnityWebRequest");
+            };
 
 #if UNITY_EDITOR
             AssetDatabase.Refresh();
@@ -93,8 +89,7 @@ namespace MoonBunny
             }
             else
             {
-                string jsonData;
-                jsonData = Encoding.UTF8.GetString(oper.webRequest.downloadHandler.data);
+                string jsonData = Encoding.UTF8.GetString(oper.webRequest.downloadHandler.data);
                 return Convert.ChangeType(JsonUtility.FromJson(jsonData, type), type);
             }
 #else
@@ -122,18 +117,20 @@ namespace MoonBunny
             return (T)LoadJson(typeof(T));
         }
 
+        public event Action OnSaveDataLoaded;
+
         public void LoadDatabase()
         {
-            SaveData = LoadJson<SaveData>();
-            if (SaveData != null)
+            UnityWebRequest request = UnityWebRequest.Get(SaveDataFilePath);
+            request.SendWebRequest().completed += (ao) =>
             {
-                MoonBunnyLog.print("SaveData is loaded successfully");
+                var uwr = ((UnityWebRequestAsyncOperation)ao).webRequest;
+                string jsonData = Encoding.UTF8.GetString(uwr.downloadHandler.data);
+                SaveData = (SaveData)JsonUtility.FromJson(jsonData, typeof(SaveData));
                 DataIsLoaded = true;
-            }
-            else
-            {
-                MoonBunnyLog.print("SaveData load failed");
-            }
+                MoonBunnyLog.print("SaveData is loaded successfully");
+                OnSaveDataLoaded?.Invoke();
+            };
         }
 
 #if UNITY_EDITOR

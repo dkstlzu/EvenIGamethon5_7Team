@@ -27,6 +27,7 @@ namespace MoonBunny
         public bool SummonShootingStarEnabled;
         public float SummonShootingStarInterval;
         private float _shoootingStarTimer;
+        public float ShootingStarWarningTime;
 
         private Character _player;
         private Stage _stage;
@@ -68,8 +69,20 @@ namespace MoonBunny
 
             if (_shoootingStarTimer >= SummonShootingStarInterval)
             {
-                Vector2Int targetGrid = GridTransform.ToGrid(_player.transform.position + Vector3.up * Camera.main.orthographicSize);
-                new ShootingStarEffect(targetGrid.y, Random.Range(GridTransform.GridXMin + 1, GridTransform.GridXMax - 1)).Effect();
+                int targetGridX = Random.Range(GridTransform.GridXMin + 1, GridTransform.GridXMax - 1);
+                
+                Vector2 areaMin = GridTransform.ToReal(new Vector2Int(targetGridX - 1, GridTransform.GridYMin)) - GridTransform.GetGridSize() / 2;
+                Vector2 areaMax = GridTransform.ToReal(new Vector2Int(targetGridX + 1, GameManager.instance.Stage.Spec.Height)) + GridTransform.GetGridSize() / 2;
+
+                WarningEffect warningEffect = new WarningEffect(new Rect(areaMin, areaMax - areaMin), ShootingStarWarningTime);
+                warningEffect.Effect();
+                
+                CoroutineHelper.Delay(() =>
+                {
+                    Vector2 targetPoint = new Vector2(targetGridX, (_player.transform.position + Vector3.up * Camera.main.orthographicSize + Vector3.up * 4).y);
+                    Vector2Int targetGrid = GridTransform.ToGrid(targetPoint);
+                    new ShootingStarEffect(targetGrid.y, targetGridX).Effect();
+                }, ShootingStarWarningTime);
                 _shoootingStarTimer = 0;
             }
         }

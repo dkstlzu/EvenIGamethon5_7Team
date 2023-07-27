@@ -44,7 +44,11 @@ namespace MoonBunny
         private void Awake()
         {
             _gameManager = GameManager.instance;
+            _gameManager.SaveLoadSystem.OnSaveDataLoaded += Init;
+        }
 
+        void Init()
+        {
             foreach (FriendCollection.Data data in Collection.Datas)
             {
                 data.CurrentCollectingNumber = _gameManager.SaveLoadSystem.SaveData.CollectionDict[data.Name];

@@ -65,6 +65,7 @@ namespace MoonBunny.Effects
 
     public class RocketEffect : IEffect
     {
+        private static bool S_isEffectOn = false;
         private MoonBunnyRigidbody _rigidbody;
         private float _upSpeed;
         private float _duration;
@@ -78,18 +79,22 @@ namespace MoonBunny.Effects
         
         public void Effect()
         {
+            if (S_isEffectOn) return;
+            
             Vector2 previousVelocity = _rigidbody.Velocity;
             float previousGravity = _rigidbody.Gravity;
             
             _rigidbody.IgnoreCollision(LayerMask.GetMask("Obstacle"));
             _rigidbody.Move(new Vector2(0, _upSpeed));
             _rigidbody.Gravity = 0;
+            S_isEffectOn = true;
             
             CoroutineHelper.Delay(() =>
             {
                 _rigidbody.DontIgnoreCollision(LayerMask.GetMask("Obstacle"));
                 _rigidbody.Move(previousVelocity);
                 _rigidbody.Gravity = previousGravity;
+                S_isEffectOn = false;
             }, _duration);
         }
     }
@@ -160,7 +165,7 @@ namespace MoonBunny.Effects
             }
 
             _renderer.color = Color.white;
-            _target.IgnoreCollision(0);
+            _target.DontIgnoreCollision(_from);
         }
     }
     
@@ -237,7 +242,7 @@ namespace MoonBunny.Effects
             OnThunderAttack = null;
         }
 
-    private int _targetColumn;
+        private int _targetColumn;
         private float _warningDuration;
 
         private Vector2 areaMin;
@@ -279,6 +284,8 @@ namespace MoonBunny.Effects
 
             if (character)
             {
+                if (character.Rigidbody.IsIgnoring(LayerMask.GetMask("Obstacle"))) return;
+                
                 character.Hit(null);
                 character.isIgnoringFlip = true;
                 OnThunderAttack?.Invoke(S_duration);

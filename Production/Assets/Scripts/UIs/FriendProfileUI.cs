@@ -71,7 +71,6 @@ namespace MoonBunny.UIs
         {
             CanvasGroup.DOFade(0, 1);
             CanvasGroup.blocksRaycasts = false;
-            _content.DOPivot(new Vector2(0.5f, 0.5f), 1);
         }
 
         public void OnLeftButtonClicked()
