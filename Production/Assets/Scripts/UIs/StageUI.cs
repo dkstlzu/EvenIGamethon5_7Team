@@ -87,12 +87,12 @@ namespace MoonBunny.UIs
             } else if (score >= Stage.Spec.SecondStepScore)
             {
                 _secondChecker.enabled = true;
-                _progressBar.value = 0.69f;
+                _progressBar.value = 0.62f;
 
             } else if (score >= Stage.Spec.FirstStepScore)
             {
                 _firstChecker.enabled = true;
-                _progressBar.value = 0.39f;
+                _progressBar.value = 0.2f;
             } 
         }
 
