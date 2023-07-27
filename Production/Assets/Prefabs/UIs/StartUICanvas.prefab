@@ -12173,9 +12173,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dbec9c0b1b14fe68f66e09664bf1979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FriendSpecList: []
-  FriendSpriteList: []
-  PieceOfMemorySpriteList: []
+  FriendSpecList:
+  - {fileID: 11400000, guid: de0d6d68fdeaf674f9392cccdb55f50b, type: 2}
+  - {fileID: 11400000, guid: fdc144d18b479d245bea688376d24637, type: 2}
+  - {fileID: 11400000, guid: f2fde684c4affe4439a26a63d65b24cb, type: 2}
+  - {fileID: 11400000, guid: 780a941c7ee148c4b9cdd675d894be2b, type: 2}
+  - {fileID: 11400000, guid: a2ad83f6f1d262749a63580849a476d4, type: 2}
+  - {fileID: 11400000, guid: 415b0394a7fab83439f25eca27b2872d, type: 2}
+  - {fileID: 11400000, guid: f427407b6f1214947bc5de3c92a72268, type: 2}
+  FriendSpriteList:
+  - {fileID: 21300000, guid: 9f6f7c2ba278dd74d8e8711751a8c034, type: 3}
+  - {fileID: 21300000, guid: 9f6f7c2ba278dd74d8e8711751a8c034, type: 3}
+  - {fileID: 21300000, guid: 9f6f7c2ba278dd74d8e8711751a8c034, type: 3}
+  - {fileID: 21300000, guid: 9f6f7c2ba278dd74d8e8711751a8c034, type: 3}
+  - {fileID: 21300000, guid: 9f6f7c2ba278dd74d8e8711751a8c034, type: 3}
+  - {fileID: 21300000, guid: 9f6f7c2ba278dd74d8e8711751a8c034, type: 3}
+  - {fileID: 21300000, guid: 9f6f7c2ba278dd74d8e8711751a8c034, type: 3}
+  PieceOfMemorySpriteList:
+  - {fileID: 21300000, guid: d96c445caf9428f48803debcf4d859b2, type: 3}
+  - {fileID: 21300000, guid: d96c445caf9428f48803debcf4d859b2, type: 3}
+  - {fileID: 21300000, guid: d96c445caf9428f48803debcf4d859b2, type: 3}
+  - {fileID: 21300000, guid: d96c445caf9428f48803debcf4d859b2, type: 3}
+  - {fileID: 21300000, guid: d96c445caf9428f48803debcf4d859b2, type: 3}
+  - {fileID: 21300000, guid: d96c445caf9428f48803debcf4d859b2, type: 3}
+  - {fileID: 21300000, guid: d96c445caf9428f48803debcf4d859b2, type: 3}
   FriendProfileTextList:
   - {fileID: 11400000, guid: 92150494b6c57a048855cbe6046c545e, type: 2}
   - {fileID: 11400000, guid: 5987aa291b3b63d41ac48f74ee2ad343, type: 2}
@@ -12862,12 +12883,12 @@ MonoBehaviour:
   - {fileID: 7803076541592008477}
   FriendProfileSpriteList:
   - {fileID: 21300000, guid: d3d5de6be89180549b7efe73a0fa595e, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: d3d5de6be89180549b7efe73a0fa595e, type: 3}
+  - {fileID: 21300000, guid: d3d5de6be89180549b7efe73a0fa595e, type: 3}
+  - {fileID: 21300000, guid: d3d5de6be89180549b7efe73a0fa595e, type: 3}
+  - {fileID: 21300000, guid: d3d5de6be89180549b7efe73a0fa595e, type: 3}
+  - {fileID: 21300000, guid: d3d5de6be89180549b7efe73a0fa595e, type: 3}
+  - {fileID: 21300000, guid: d3d5de6be89180549b7efe73a0fa595e, type: 3}
   CurrentProfileImage: {fileID: 1472025080991343951}
   CurrentSelectedFriendName: 0
   StageButtonList:

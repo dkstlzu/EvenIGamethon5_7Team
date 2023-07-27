@@ -136,7 +136,6 @@ MonoBehaviour:
     transform: {fileID: 649675485607266654}
     GridPosition: {x: 0, y: 0}
   InvokeOnCollision: 1
-  _type: 0
   _renderer: {fileID: 5804303894752395474}
   _audioClip: {fileID: 8300000, guid: b68e2ed4335ae4242a1c7be5964906fc, type: 3}
   FlySpeed: 3
@@ -161,14 +160,15 @@ MonoBehaviour:
     LayerMask:
       serializedVersion: 2
       m_Bits: 2048
-    Direciton: 69632
+    Direciton: 12
+  IgnoringLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
   isGrounded: 0
   _movement:
     Velocity: {x: 0, y: 0}
     DefaultHorizontalSpeedOnCollide: 0
     Bounciness: 0
-  DefaultHorizontalSpeed: 1
-  BouncyRatio: 0.3
 --- !u!61 &918443929657355966
 BoxCollider2D:
   m_ObjectHideFlags: 0

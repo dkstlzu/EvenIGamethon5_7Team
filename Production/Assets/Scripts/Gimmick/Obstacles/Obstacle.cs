@@ -13,10 +13,10 @@ namespace MoonBunny
         public override bool Invoke(MoonBunnyRigidbody with)
         {
             if (!base.Invoke(with)) return false;
-            
-            if (with.CanDestroyObstaclesByStepping)
+
+            Character target = with.GetComponent<Character>();
+            if ((target.Friend.Name == FriendName.Lala || target.Friend.Name == FriendName.SodaGirl) && this is PinWheel)
             {
-                Destroy(gameObject);
                 return false;
             }
             

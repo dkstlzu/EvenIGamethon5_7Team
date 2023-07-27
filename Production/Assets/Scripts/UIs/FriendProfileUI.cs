@@ -35,8 +35,6 @@ namespace MoonBunny.UIs
         
         public void Set(FriendName friendName)
         {
-            return;
-
             _selectingName = friendName;
             int index = (int)friendName;
 
@@ -54,7 +52,7 @@ namespace MoonBunny.UIs
             _memoryImage.sprite = PieceOfMemorySpriteList[index];
             _description.text = FriendProfileTextList[index].Description;
             _memoryText.text = string.Empty;
-            for (int i = 0; i < _currentCollectionNumber; i++)
+            for (int i = 0; i < Mathf.Min(_currentCollectionNumber, FriendProfileTextList[index].MemoryTexts.Count); i++)
             {
                 _memoryText.text += FriendProfileTextList[index].MemoryTexts[i] + "\n";
             }

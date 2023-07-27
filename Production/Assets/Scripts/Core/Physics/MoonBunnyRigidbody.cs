@@ -60,18 +60,8 @@ namespace MoonBunny
             
         private List<MoonBunnyCollider> _colliderList;
         [SerializeField] private MoonBunnyMovement _movement;
-        private bool _canDestroyObstaclesByStepping;
 
-        public bool CanDestroyObstaclesByStepping
-        {
-            get => _canDestroyObstaclesByStepping;
-            set
-            {
-                _canDestroyObstaclesByStepping = value;
-                _movement.CanDestroyObstacleByStepping = value;
-            }
-        }
-        
+        public bool CanDestroyObstaclesByStepping { get; set; }
 
         private List<Collision> _currentCollision = new List<Collision>();
         private List<Collision> _previousCollision = new List<Collision>();
@@ -92,8 +82,7 @@ namespace MoonBunny
             }
 
             Vector2 serializedInitialVelocity = _movement.Velocity;
-            _movement = new MoonBunnyMovement(GridObject.GridTransform, Gravity);
-            _movement.CanDestroyObstacleByStepping = CanDestroyObstaclesByStepping;
+            _movement = new MoonBunnyMovement(this, GridObject.GridTransform, Gravity);
             _movement.StartMove(serializedInitialVelocity);
             
             _colliderList = new List<MoonBunnyCollider>();
@@ -116,14 +105,16 @@ namespace MoonBunny
             // Collision Check
             _currentCollision.Clear();
 
-            Collision collision;
+            Collision[] collisions;
 
-            foreach (MoonBunnyCollider collider in _colliderList)
+            for (int i = 0; i < _colliderList.Count; i++)
             {
-                // if (collider.WillCollide(_movement.Velocity, deltaTime, out collision))
-                if (collider.IsColliding(out collision))
+                if (_colliderList[i].IsColliding(out collisions))
                 {
-                    _currentCollision.Add(collision);
+                    for (int j = 0; j < collisions.Length; j++)
+                    {
+                        _currentCollision.Add(collisions[j]);
+                    }
                 }
             }
 
@@ -291,11 +282,11 @@ namespace MoonBunny
         [Flags]
         public enum Direciton
         {
-            None  = 0,
-            Up    = 0x10,
-            Down  = 0x100,
-            Left  = 0x1000,
-            Right = 0x10000,
+            None  = 0b0000,
+            Up    = 0b0001,
+            Down  = 0b0010,
+            Left  = 0b0100,
+            Right = 0b1000,
         }
         [Serializable]
         public class ColliderLayerMask          
@@ -328,104 +319,129 @@ namespace MoonBunny
             _direciton = direciton;
         }
         
-        public bool IsColliding(out Collision collision)
+        public bool IsColliding(out Collision[] collisions)
         {
-            return CheckCollisionOn(_collider.transform.position, out collision);
+            return CheckCollisionOn(_collider.transform.position, out collisions);
         }
 
-        public bool WillCollide(Vector2 velocity, float time, out Collision collision)
+        public bool WillCollide(Vector2 velocity, float time, out Collision[] collisions)
         {
-            return CheckCollisionOn((Vector2)_collider.transform.position + velocity * time, out collision);
+            return CheckCollisionOn((Vector2)_collider.transform.position + velocity * time, out collisions);
         }
 
-        private bool CheckCollisionOn(Vector2 position, out Collision collision)
+        private bool CheckCollisionOn(Vector2 position, out Collision[] collisions)
         {
             if (!enabled)
             {
-                collision = null;
+                collisions = null;
                 return false;
             }
             
-            
-            Collider2D other = null;
-            collision = null;
+            Vector2 targetPosition = position + _collider.offset;
+
+            Collider2D[] others = null;
+            collisions = null;
 
             if (_collider is BoxCollider2D boxCollider2D)
             {
-                other = Physics2D.OverlapBox(position + boxCollider2D.offset, boxCollider2D.size, 0, _targetLayer & ~_ignoreLayer);
+                others = Physics2D.OverlapBoxAll(position + boxCollider2D.offset, boxCollider2D.size, 0, _targetLayer & ~_ignoreLayer);
 
             } else if (_collider is CircleCollider2D circleCollider2D)
             {
-                other = Physics2D.OverlapCircle(position + circleCollider2D.offset, circleCollider2D.radius, _targetLayer & ~_ignoreLayer);
+                others = Physics2D.OverlapCircleAll(position + circleCollider2D.offset, circleCollider2D.radius, _targetLayer & ~_ignoreLayer);
             }
    
-            if (other == null)
+            if (others == null)
             {
                 return false;
             }
-
-            bool directionCorrect = false;
-           
-            if ((_direciton & Direciton.Down) > 0)
-            {
-                if (other.transform.position.y < _collider.transform.position.y + _collider.offset.y && _movement.Velocity.y < 0)
-                {
-                    directionCorrect = true;
-                }
-            }
             
-            if ((_direciton & Direciton.Up) > 0)
+            List<Collision> collisionList = new List<Collision>();
+
+            for (int i = 0; i < others.Length; i++)
             {
-                if (other.transform.position.y > _collider.transform.position.y + _collider.offset.y && _movement.Velocity.y > 0)
+                bool directionCorrect = false;
+                Direciton collisionDirection = Direciton.None;
+                Vector3 otherPosition = others[i].transform.position + (Vector3)others[i].offset;
+                
+                if ((_direciton & Direciton.Down) > 0)
                 {
-                    directionCorrect = true;
+                    if (otherPosition.y < targetPosition.y && _movement.Velocity.y < 0)
+                    {
+                        directionCorrect = true;
+                        collisionDirection |= Direciton.Down;
+                    }
                 }
-            }
-            
-            if ((_direciton & Direciton.Left) > 0)
-            {
-                if (other.transform.position.x < _collider.transform.position.x + _collider.offset.x && _movement.Velocity.x < 0)
+                
+                if ((_direciton & Direciton.Up) > 0)
                 {
-                    directionCorrect = true;
+                    if (otherPosition.y > targetPosition.y && _movement.Velocity.y > 0)
+                    {
+                        directionCorrect = true;
+                        collisionDirection |= Direciton.Up;
+                    }
                 }
-            }
-            
-            if ((_direciton & Direciton.Right) > 0)
-            {
-                if (other.transform.position.x > _collider.transform.position.x + _collider.offset.x && _movement.Velocity.x > 0)
+                
+                if ((_direciton & Direciton.Left) > 0)
                 {
-                    directionCorrect = true;
+                    if (otherPosition.x < targetPosition.x && _movement.Velocity.x < 0)
+                    {
+                        directionCorrect = true;
+                        collisionDirection |= Direciton.Left;
+                    }
+                }
+                
+                if ((_direciton & Direciton.Right) > 0)
+                {
+                    if (otherPosition.x > targetPosition.x && _movement.Velocity.x > 0)
+                    {
+                        directionCorrect = true;
+                        collisionDirection |= Direciton.Right;
+                    }
+                }
+
+                if (!directionCorrect)
+                {
+                    return false;
+                }
+
+                FieldObject fieldObject;
+                if (others[i].TryGetComponent<FieldObject>(out fieldObject))
+                {
+                    if (_rigidbody.CanDestroyObstaclesByStepping && fieldObject is Obstacle obstacle)
+                    {
+                        if ((collisionDirection & Direciton.Down) > 0)
+                        {
+                            collisionList.Add(new DirectionCollision(new DirectionCollision.DirectionCollisionArgs(collisionDirection, _rigidbody.GridObject, obstacle)));
+                        }
+                        else
+                        {
+                            collisionList.Add(new GimmickCollision(new GimmickCollision.GimmickCollisionArgs(_rigidbody, _rigidbody.GridObject, obstacle)));
+                        }
+                    } else if (fieldObject is Platform platform)
+                    {
+                        collisionList.Add(new PlatformCollision(new PlatformCollision.PlatformCollisionArgs((Character)_rigidbody.GridObject, platform)));
+                        collisionList.Add(new GimmickCollision(new GimmickCollision.GimmickCollisionArgs(_rigidbody, _rigidbody.GridObject, platform)));
+                    } else if (fieldObject is Gimmick gimmick)
+                    {
+                        collisionList.Add(new GimmickCollision(new GimmickCollision.GimmickCollisionArgs(_rigidbody, _rigidbody.GridObject, gimmick)));
+                    } else
+                    {
+                        collisionList.Add(new Collision(new Collision.CollisionArgs(_rigidbody.GridObject, fieldObject)));
+                    }
                 }
             }
 
-            if (!directionCorrect)
+            collisions = collisionList.ToArray();
+
+            if (collisions.Length > 0)
             {
-                return false;
-            }
-
-            FieldObject fieldObject;
-            if (other.TryGetComponent<FieldObject>(out fieldObject))
-            {
-                collision = null;
-
-                if (fieldObject is Platform platform)
-                {
-                    collision = new PlatformCollision(_rigidbody, platform);
-                } else if (fieldObject is Gimmick gimmick)
-                {
-                    collision = new GimmickCollision(_rigidbody, gimmick);
-                } else if (fieldObject is GridObject gridObject)
-                {
-                    collision = new GridObjectCollision(_rigidbody, gridObject);
-                } else
-                {
-                    collision = new Collision(fieldObject);
-                }
-
                 return true;
             }
-
-            return true;
+            else
+            {
+                return false;
+            }
         }
 
         public void Enable()
@@ -460,13 +476,15 @@ namespace MoonBunny
         private Vector2 _lastPosition;
 
         private bool enabled = true;
-        
+
+        private MoonBunnyRigidbody _rigidbody;
         private MoonBunnyGravity _gravity;
 
-        public bool CanDestroyObstacleByStepping { get; set; }
+        public bool CanDestroyObstacleByStepping => _rigidbody.CanDestroyObstaclesByStepping;
 
-        public MoonBunnyMovement(GridTransform transform, float gravity)
+        public MoonBunnyMovement(MoonBunnyRigidbody rigidbody, GridTransform transform, float gravity)
         {
+            _rigidbody = rigidbody;
             _transform = transform;
             _lastPosition = _transform.transform.position;
             _gravity = new MoonBunnyGravity(this, gravity);
@@ -529,20 +547,26 @@ namespace MoonBunny
                 return;
             }
 
-            if (CanDestroyObstacleByStepping && collision.Other is Obstacle obstacle)
+            if (collision is DirectionCollision directionCollision && CanDestroyObstacleByStepping && collision.Other is Obstacle)
             {
-                float relativeSpeedByHeight = GridTransform.GetVelocityByRelativeHeight(-Velocity.y, _gravity.GravityValue, Bounciness);
-                Vector2Int fallingGridVelocity = GridTransform.GetGridByVelocity(0, relativeSpeedByHeight, _gravity.GravityValue);
+                if ((directionCollision.Direciton & MoonBunnyCollider.Direciton.Down) > 0)
+                {
+                    float relativeSpeedByHeight = GridTransform.GetVelocityByRelativeHeight(-Velocity.y, _gravity.GravityValue, Bounciness);
+                    Vector2Int fallingGridVelocity = GridTransform.GetGridByVelocity(0, relativeSpeedByHeight, _gravity.GravityValue);
 
-                int targetGridVelocityX = Velocity.x >= 0 ? DefaultHorizontalSpeedOnCollide : -DefaultHorizontalSpeedOnCollide;
-                int targetGridVelocityY = fallingGridVelocity.y;
-
-                Vector2Int bouncyGridVelocity =  new Vector2Int(targetGridVelocityX, Mathf.Min(targetGridVelocityY, MaxGridVelocityY));
-                    
-                var gridVel = GridTransform.GetVelocityByGrid(bouncyGridVelocity, _gravity.GravityValue);
+                    int targetGridVelocityX = Velocity.x >= 0 ? DefaultHorizontalSpeedOnCollide : -DefaultHorizontalSpeedOnCollide;
+                    int targetGridVelocityY = fallingGridVelocity.y;
                 
-                StartMove(gridVel);
-                return;
+                    int calculatedVelocityY = Mathf.Min(targetGridVelocityY, MaxGridVelocityY);
+                    int adjustedWithMunimumVelocityY = Mathf.Max(calculatedVelocityY, 1);
+                
+                    Vector2Int bouncyGridVelocity =  new Vector2Int(targetGridVelocityX, adjustedWithMunimumVelocityY);
+                    
+                    var gridVel = GridTransform.GetVelocityByGrid(bouncyGridVelocity, _gravity.GravityValue);
+                
+                    StartMove(gridVel);
+                    return;
+                }
             }
 
             switch (collision.Other)
@@ -554,7 +578,10 @@ namespace MoonBunny
                     int targetGridVelocityX = Velocity.x >= 0 ? DefaultHorizontalSpeedOnCollide : -DefaultHorizontalSpeedOnCollide;
                     int targetGridVelocityY = fallingGridVelocity.y + bouncyPlatform.JumpPower;
 
-                    Vector2Int bouncyGridVelocity =  new Vector2Int(targetGridVelocityX, Mathf.Min(targetGridVelocityY, MaxGridVelocityY));
+                    int calculatedVelocityY = Mathf.Min(targetGridVelocityY, MaxGridVelocityY);
+                    int adjustedWithMunimumVelocityY = Mathf.Max(calculatedVelocityY, 1);
+
+                    Vector2Int bouncyGridVelocity =  new Vector2Int(targetGridVelocityX, adjustedWithMunimumVelocityY);
                     
                     var gridVel = GridTransform.GetVelocityByGrid(bouncyGridVelocity, _gravity.GravityValue);
                     
