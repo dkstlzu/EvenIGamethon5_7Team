@@ -6,7 +6,6 @@ namespace MoonBunny.Dev.Editor
 {
     public class SaveMapData
     {
-        [MenuItem("Dev/MapData/Save", priority = 0)]
         public static void SaveData()
         {
             string fileName = GetFileName();
