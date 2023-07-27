@@ -62,6 +62,8 @@ namespace MoonBunny
 
         public StageUI UI;
         
+        public int GoldNumber;
+
         private int _score;
         public int Score
         {
@@ -145,6 +147,9 @@ namespace MoonBunny
             {
                 effect.Effect();
             }
+
+            _summoner.SummonThunderEnable = _summoner.SummonThunderEnabled;
+            _summoner.SummonShootingStarEnable = _summoner.SummonShootingStarEnabled;
         }
 
         public void Clear()
@@ -157,15 +162,23 @@ namespace MoonBunny
             GameManager.instance.ClearDict[Name] = Mathf.Max(GameManager.instance.ClearDict[Name], SubLevel+1);
             
             GameManager.instance.SaveCollection();
+
+            GameManager.instance.GoldNumber += GoldNumber;
+            
+            GameManager.instance.SaveProgress();
             
             UI.Clear();
             MoonBunnyRigidbody.DisableAll();
+            _summoner.SummonThunderEnable = false;
+            _summoner.SummonShootingStarEnable = false;
         }
 
         public void Fail()
         {
             UI.Fail();
             MoonBunnyRigidbody.DisableAll();
+            _summoner.SummonThunderEnable = false;
+            _summoner.SummonShootingStarEnable = false;
         }
     }
 }

@@ -19,11 +19,13 @@ namespace MoonBunny
         public int CoinNumber;
         public int FriendCollectableNumber;
 
+        [HideInInspector] public bool SummonThunderEnable; 
         public bool SummonThunderEnabled;
         public float SummonThunderInterval;
         private float _thunderTimer;
         public float ThunderWarningTime;
         
+        [HideInInspector] public bool SummonShootingStarEnable; 
         public bool SummonShootingStarEnabled;
         public float SummonShootingStarInterval;
         private float _shoootingStarTimer;
@@ -41,12 +43,12 @@ namespace MoonBunny
 
         private void Update()
         {
-            if (SummonThunderEnabled)
+            if (SummonThunderEnable)
             {
                 SummonThunder(Time.deltaTime);
             }
 
-            if (SummonShootingStarEnabled)
+            if (SummonShootingStarEnable)
             {
                 SummonShootingStar(Time.deltaTime);
             }

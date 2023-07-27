@@ -21,17 +21,6 @@ namespace MoonBunny
         public ReadOnlyEnumDict<StageName, int> ClearDict;
 
         public StartSceneUI StartSceneUI;
-        private int _diamondNumber;
-        public int DiamondNumber
-        {
-            get => _diamondNumber;
-            set
-            {
-                _diamondNumber = value;
-                if (StartSceneUI) StartSceneUI.DiamonText1.text = value.ToString();
-                if (StartSceneUI) StartSceneUI.DiamonText2.text = value.ToString();
-            }
-        }
 
         private int _goldNumber;
 

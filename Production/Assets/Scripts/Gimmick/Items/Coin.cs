@@ -8,7 +8,7 @@ namespace MoonBunny
         {
             if (!base.Invoke(with)) return false;
 
-            GameManager.instance.GoldNumber += 1;
+            GameManager.instance.Stage.GoldNumber += 1;
             return true;
         }
     }

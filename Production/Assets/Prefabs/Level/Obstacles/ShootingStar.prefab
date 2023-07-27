@@ -115,6 +115,9 @@ MonoBehaviour:
   MoveSacle: 1
   GridObject: {fileID: 2838584814036015846}
   ColliderLayerList: []
+  IgnoringLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
   isGrounded: 0
   _movement:
     Velocity: {x: 0, y: -2}
@@ -193,7 +196,7 @@ SpriteRenderer:
   m_SortingLayerID: 511804839
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 804461bef59b141dba258fc997c8ca15, type: 3}
+  m_Sprite: {fileID: -796281597, guid: 070e35ce48beab442a769e34aaa78be2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

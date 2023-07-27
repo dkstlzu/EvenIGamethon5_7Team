@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using dkstlzu.Utility;
 using MoonBunny.Dev;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace MoonBunny.Effects
 {
@@ -181,7 +182,7 @@ namespace MoonBunny.Effects
             To = to;
         }
 
-        public void Update()
+        public void Update(float delta)
         {
             Target.transform.position = To.position;
         }
@@ -323,6 +324,7 @@ namespace MoonBunny.Effects
     public class ShootingStarEffect : IEffect
     {
         public static GameObject S_ShootingStarEffectPrefab;
+        public static int S_ShootingStarNumber = 5;
         
         private int _targetRow;
         private int _targetColumn;
@@ -334,12 +336,19 @@ namespace MoonBunny.Effects
         {
             _targetRow = targetRow;
             _targetColumn = targetColumn;
+            
+            areaMin = GridTransform.ToReal(new Vector2Int(_targetColumn - 1, _targetRow)) - GridTransform.GetGridSize() / 2;
+            areaMax = GridTransform.ToReal(new Vector2Int(_targetColumn + 1, _targetRow + 1)) + GridTransform.GetGridSize() / 2;
         }
 
         public void Effect()
         {
-            Vector3 shootingStarPosition = GridTransform.ToReal(new Vector2Int(_targetColumn, _targetRow));
-            MonoBehaviour.Instantiate(S_ShootingStarEffectPrefab, shootingStarPosition, Quaternion.identity, GameObject.FindWithTag("Obstacles").transform);
+            Transform parent = GameObject.FindWithTag("Obstacles").transform;
+            for (int i = 0; i < S_ShootingStarNumber; i++)
+            {
+                Vector3 shootingStarPosition = new Vector3(Random.Range(areaMin.x, areaMax.x), Random.Range(areaMin.y, areaMax.y), 0);
+                MonoBehaviour.Instantiate(S_ShootingStarEffectPrefab, shootingStarPosition, Quaternion.identity, parent);
+            }
         }
     }
 
@@ -353,8 +362,10 @@ namespace MoonBunny.Effects
 
     public class RocketBoostEffect : BoostEffect
     {
-        public static float Speed;
-        public static float Duration;
+        public const string BoostName = "RocketBoost";
+            
+        public static float Speed = 5;
+        public static float Duration = 10;
 
         private MoonBunnyRigidbody _rigidbody;
 
@@ -369,14 +380,17 @@ namespace MoonBunny.Effects
         }
     }
 
-    public class StarCandyBoostEffect : BoostEffect
+    public class StarCandyBoostEffect : BoostEffect, IUpdatable
     {
+        public const string BoostName = "StarCandyBoost";
+
         private static LayerMask _targetLayerMask = LayerMask.GetMask("Obstacle");
-        private static int _effectNumber;
+        private static int _effectNumber = 10;
+        public static float S_EffectInterval = 1;
 
         private List<StarCandyEffect> _effects = new List<StarCandyEffect>();
-        
-        public override void Effect()
+
+        public StarCandyBoostEffect()
         {
             for (int i = 0; i < _effectNumber; i++)
             {
@@ -384,10 +398,22 @@ namespace MoonBunny.Effects
 // ;                _effects.Add(new StarCandyEffect(_targetLayerMask, new Rect(center, new Vector2(20, GridTransform.GridSetting.GridHeight)));
             }
         }
+        
+        public override void Effect()
+        {
+
+        }
+
+        public void Update(float delta)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class MagnetBoostEffect : BoostEffect
     {
+        public const string BoostName = "MagnetBoost";
+
         public static float Power = 1;
 
         private Character _character;

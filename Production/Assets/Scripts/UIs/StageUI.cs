@@ -27,6 +27,11 @@ namespace MoonBunny.UIs
         [SerializeField] private Slider _progressBar;
         [SerializeField] private TextMeshProUGUI _scoreText;
 
+        [SerializeField] private Sprite _progressEmptyStar;
+        [SerializeField] private Sprite _progressFullStar;
+        [SerializeField] private Image _firstStar;
+        [SerializeField] private Image _secondStar;
+        [SerializeField] private Image _thirdStar;
         [SerializeField] private Image _firstChecker;
         [SerializeField] private Image _secondChecker;
         [SerializeField] private Image _thirdChecker;
@@ -89,15 +94,18 @@ namespace MoonBunny.UIs
             
             if (score >= Stage.Spec.ThirdStepScore)
             {
+                _thirdStar.sprite = _progressFullStar;
                 _thirdChecker.enabled = true;
                 _progressBar.value = 1f;
             } else if (score >= Stage.Spec.SecondStepScore)
             {
+                _secondStar.sprite = _progressFullStar;
                 _secondChecker.enabled = true;
                 _progressBar.value = 0.62f;
 
             } else if (score >= Stage.Spec.FirstStepScore)
             {
+                _thirdStar.sprite = _progressFullStar;
                 _firstChecker.enabled = true;
                 _progressBar.value = 0.2f;
             } 

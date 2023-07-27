@@ -14,7 +14,6 @@ namespace MoonBunny
         [SerializeField] private MoonBunnyRigidbody _rigidbody;
         [SerializeField] private Transform _pickingPoint;
         [SerializeField] private Animator _animator;
-        private int _flyingDirection = 0;
         private TransformForceEffect _picker;
         private MoonBunnyRigidbody _pickingRigidbody;
 
@@ -88,12 +87,10 @@ namespace MoonBunny
             {
                 _rigidbody.Move(new Vector2(FlySpeed, 0));
                 _renderer.flipX = true;
-                _flyingDirection = 1;
             } else if (GridTransform.GridPosition.x > 0)
             {
                 _rigidbody.Move(new Vector2(-FlySpeed, 0));
                 _renderer.flipX = false;
-                _flyingDirection = -1;
             }
             
             _animator.SetBool("Attack", true);

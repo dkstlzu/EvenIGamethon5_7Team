@@ -86,7 +86,7 @@ namespace MoonBunny.UIs
         public void OnConfirmButtonClicked()
         {
             StartSceneUI.CurrentSelectedFriendName = _selectingName;
-            StartSceneUI.CurrentProfileImage.sprite = StartSceneUI.FriendProfileSpriteList[(int)_selectingName];
+            StartSceneUI.ProfileImage.sprite = StartSceneUI.FriendLibraryUIList[(int)_selectingName].ProfileSprite;
         }
     }
 }
