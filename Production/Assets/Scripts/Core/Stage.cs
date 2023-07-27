@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using dkstlzu.Utility;
+using MoonBunny.Effects;
 using MoonBunny.UIs;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -79,6 +80,8 @@ namespace MoonBunny
         [SerializeField] private BoxCollider2D _rightWallCollider;
         [SerializeField] private PolygonCollider2D _levelCollider;
         public PolygonCollider2D LevelConfiner => _levelCollider;
+
+        public List<BoostEffect> BoostEffectList = new List<BoostEffect>();
         
         public void Awake()
         {
@@ -137,6 +140,11 @@ namespace MoonBunny
             _character.Rigidbody.UnpauseMove();
             _character.StartJump();
             SoundManager.instance.PlayClip(PreloadedResources.instance.OpenStageAudioClip);
+
+            foreach (BoostEffect effect in BoostEffectList)
+            {
+                effect.Effect();
+            }
         }
 
         public void Clear()

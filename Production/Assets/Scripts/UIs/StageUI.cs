@@ -50,11 +50,18 @@ namespace MoonBunny.UIs
             _character = GameObject.FindWithTag("Player").GetComponent<Character>();
             _currentHP = _character.CurrentHp;
 
-            ThunderEffect.OnThunderAttack += (duration) =>
-            {
-                _changeDirectionButton.interactable = false;
-                CoroutineHelper.Delay(() => _changeDirectionButton.interactable = true, duration);
-            };
+            ThunderEffect.OnThunderAttack += OnThunderAttack;
+        }
+
+        private void OnDestroy()
+        {
+            ThunderEffect.OnThunderAttack -= OnThunderAttack;
+        }
+
+        void OnThunderAttack(float duration)
+        {
+            _changeDirectionButton.interactable = false;
+            CoroutineHelper.Delay(() => _changeDirectionButton.interactable = true, duration);
         }
 
         public void CountDownFinish()

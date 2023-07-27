@@ -54,7 +54,7 @@ namespace MoonBunny
             if (!UnityEditor.EditorApplication.isPlaying) return;
 #endif
             CurrentHp = Friend.MaxHp;
-            new MagnetEffect(MagneticField, Friend.MagneticPower).Effect();
+            new MagnetEffect(this, Friend.MagneticPower).Effect();
 
             isIgnoringFlip = false;
         }

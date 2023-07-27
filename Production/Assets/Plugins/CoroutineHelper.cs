@@ -23,13 +23,30 @@ namespace dkstlzu.Utility
             {
                 yield return null;
             }
-            action.Invoke();
+
+            try
+            {
+                action.Invoke();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         static IEnumerator AfterTime(Action action, float time)
         {
             yield return new WaitForSeconds(time);
-            action.Invoke();
+            try
+            {
+                action.Invoke();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }

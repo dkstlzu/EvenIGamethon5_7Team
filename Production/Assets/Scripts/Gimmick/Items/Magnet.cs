@@ -21,7 +21,7 @@ namespace MoonBunny
         {
             if (!base.Invoke(with)) return false;
 
-            new MagnetEffect(with.GetComponentInChildren<CircleCollider2D>(), MagnetPower, Duration).Effect();
+            new MagnetEffect(with.GetComponent<Character>(), MagnetPower, Duration).Effect();
             OnMangetItemTaken?.Invoke(MagnetPower, Duration);
             return true;
         }
