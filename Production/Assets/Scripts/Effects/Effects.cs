@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using dkstlzu.Utility;
 using MoonBunny.Dev;
 using UnityEngine;
@@ -18,14 +19,14 @@ namespace MoonBunny.Effects
         private float _magneticPower;
         private float _duration = -1;
 
-        public MagnetEffect(CircleCollider2D target, float magneticPower)
+        public MagnetEffect(Character target, float magneticPower)
         {
-            _target = target;
-            _spriteRenderer = target.GetComponentInChildren<SpriteRenderer>();
+            _target = target.MagneticField;
+            _spriteRenderer = target.MagneticField.GetComponentInChildren<SpriteRenderer>();
             _magneticPower = magneticPower;
         }
         
-        public MagnetEffect(CircleCollider2D target, float magneticPower, float duration) : this(target, magneticPower)
+        public MagnetEffect(Character target, float magneticPower, float duration) : this(target, magneticPower)
         {
             _duration = duration;
         }
@@ -339,6 +340,66 @@ namespace MoonBunny.Effects
         {
             Vector3 shootingStarPosition = GridTransform.ToReal(new Vector2Int(_targetColumn, _targetRow));
             MonoBehaviour.Instantiate(S_ShootingStarEffectPrefab, shootingStarPosition, Quaternion.identity, GameObject.FindWithTag("Obstacles").transform);
+        }
+    }
+
+    public class BoostEffect : IEffect
+    {
+        public virtual void Effect()
+        {
+            
+        }
+    }
+
+    public class RocketBoostEffect : BoostEffect
+    {
+        public static float Speed;
+        public static float Duration;
+
+        private MoonBunnyRigidbody _rigidbody;
+
+        public RocketBoostEffect(MoonBunnyRigidbody rigidbody)
+        {
+            _rigidbody = rigidbody;
+        }
+        
+        public override void Effect()
+        {
+            new RocketEffect(_rigidbody, Speed, Duration).Effect();
+        }
+    }
+
+    public class StarCandyBoostEffect : BoostEffect
+    {
+        private static LayerMask _targetLayerMask = LayerMask.GetMask("Obstacle");
+        private static int _effectNumber;
+
+        private List<StarCandyEffect> _effects = new List<StarCandyEffect>();
+        
+        public override void Effect()
+        {
+            for (int i = 0; i < _effectNumber; i++)
+            {
+                Vector2 center = GridTransform.ToReal(new Vector2Int(0, i));
+// ;                _effects.Add(new StarCandyEffect(_targetLayerMask, new Rect(center, new Vector2(20, GridTransform.GridSetting.GridHeight)));
+            }
+        }
+    }
+
+    public class MagnetBoostEffect : BoostEffect
+    {
+        public static float Power = 1;
+
+        private Character _character;
+
+        public MagnetBoostEffect(Character character)
+        {
+            _character = character;
+        }
+        
+        public override void Effect()
+        {
+            new MagnetEffect(_character, Power).Effect();
         }
     }
 }

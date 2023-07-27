@@ -27,7 +27,10 @@ namespace MoonBunny
             Character character;
             if (with.TryGetComponent(out character))
             {
-                if (character.Friend.Name == FriendName.Sprout) targetSlow /= 2;
+                if (character.Friend.Name == FriendName.Sprout)
+                {
+                    targetSlow = 1 - ((1 - targetSlow) / 2);
+                }
             }
             
             new SlowEffect(with, targetSlow, Duration).Effect();

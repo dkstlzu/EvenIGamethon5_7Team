@@ -50,11 +50,18 @@ namespace MoonBunny.UIs
             _character = GameObject.FindWithTag("Player").GetComponent<Character>();
             _currentHP = _character.CurrentHp;
 
-            ThunderEffect.OnThunderAttack += (duration) =>
-            {
-                _changeDirectionButton.interactable = false;
-                CoroutineHelper.Delay(() => _changeDirectionButton.interactable = true, duration);
-            };
+            ThunderEffect.OnThunderAttack += OnThunderAttack;
+        }
+
+        private void OnDestroy()
+        {
+            ThunderEffect.OnThunderAttack -= OnThunderAttack;
+        }
+
+        void OnThunderAttack(float duration)
+        {
+            _changeDirectionButton.interactable = false;
+            CoroutineHelper.Delay(() => _changeDirectionButton.interactable = true, duration);
         }
 
         public void CountDownFinish()
@@ -87,12 +94,12 @@ namespace MoonBunny.UIs
             } else if (score >= Stage.Spec.SecondStepScore)
             {
                 _secondChecker.enabled = true;
-                _progressBar.value = 0.69f;
+                _progressBar.value = 0.62f;
 
             } else if (score >= Stage.Spec.FirstStepScore)
             {
                 _firstChecker.enabled = true;
-                _progressBar.value = 0.39f;
+                _progressBar.value = 0.2f;
             } 
         }
 

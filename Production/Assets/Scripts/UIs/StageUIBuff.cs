@@ -20,9 +20,31 @@ namespace MoonBunny.UIs
 
         private void Awake()
         {
-            Magnet.OnMangetItemTaken += (power, duration) => BuffOn(BuffType.Magnet, duration);
-            Rocket.OnRocketItemTaken += (upSpeed, duration) => BuffOn(BuffType.Rocket, duration);
-            SpiderWeb.OnSpiderwebObstacleTaken += (slow, duration) => BuffOn(BuffType.Spider, duration);
+            Magnet.OnMangetItemTaken += OnMagnet;
+            Rocket.OnRocketItemTaken += OnRocket;
+            SpiderWeb.OnSpiderwebObstacleTaken += OnSpider;
+        }
+
+        private void OnDestroy()
+        {
+            Magnet.OnMangetItemTaken -= OnMagnet;
+            Rocket.OnRocketItemTaken -= OnRocket;
+            SpiderWeb.OnSpiderwebObstacleTaken -= OnSpider;
+        }
+
+        void OnMagnet(float power, float duration)
+        {
+            BuffOn(BuffType.Magnet, duration);
+        }
+
+        void OnRocket(float upSpeed, float duration)
+        {
+            BuffOn(BuffType.Rocket, duration);
+        }
+
+        void OnSpider(float slow, float duration)
+        {
+            BuffOn(BuffType.Spider, duration);
         }
 
         public void BuffOn(BuffType type, float duration = -1)

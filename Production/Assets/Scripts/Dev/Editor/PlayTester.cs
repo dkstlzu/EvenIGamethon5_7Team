@@ -28,7 +28,7 @@ namespace Dev.Editor
         [MenuItem("Dev/PlayTest/Magnet")]
         public static void ForceMagnet()
         {
-            new MagnetEffect(GameObject.FindWithTag("Player").GetComponentInChildren<CircleCollider2D>(), 2, 10).Effect();
+            new MagnetEffect(GameObject.FindWithTag("Player").GetComponentInChildren<Character>(), 2, 10).Effect();
         }
         
         [MenuItem("Dev/PlayTest/Rocket")]
