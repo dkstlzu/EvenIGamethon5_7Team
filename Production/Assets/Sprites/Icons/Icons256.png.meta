@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 579a854c0b6dcca4aa51c4d501a40778
+guid: a7d4133fdcb08a84b8ca191f2af71dec
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -150,17 +150,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d69d821c1f088e42b545dc5448d25ca
-      internalID: 534202456
+      spriteID: f30b3224233b9814b89435cf87615b9a
+      internalID: 1950468278
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IconBtnMainLeft
+      name: IconBtnMainClick
       rect:
         serializedVersion: 2
-        x: 256
+        x: 257
         y: 518
         width: 256
         height: 256
@@ -171,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 790fdd8b429841e4bba98a4344d8208a
-      internalID: 5212636
+      spriteID: e34edc15f0664a3469eab7c4b09bab5d
+      internalID: -1500813652
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IconBtnMainRight
+      name: IconProgressCheckStar0
       rect:
         serializedVersion: 2
-        x: 513
-        y: 518
-        width: 256
-        height: 256
+        x: 514
+        y: 645
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,8 +192,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0fad5ac0c6886b14da731297699a933a
-      internalID: 1589047579
+      spriteID: fe2ef57494bdde942a2f22a09a7b7200
+      internalID: 651872745
       vertices: []
       indices: 
       edges: []
@@ -213,8 +213,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb5ab047b290e2646b16d5e288ce0571
-      internalID: 846838974
+      spriteID: f3f75c1c78ba63644b252ac5943b7696
+      internalID: -12433767
       vertices: []
       indices: 
       edges: []
@@ -234,8 +234,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cbdd416547b76cb42ad45179567e074a
-      internalID: 267186327
+      spriteID: 5cc585c55298f214a886747f69167afa
+      internalID: 574168016
       vertices: []
       indices: 
       edges: []
@@ -255,8 +255,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 014418870e663b6459ae1d92876d1e3f
-      internalID: 657237849
+      spriteID: cc37b1b1828f16e4ba0d623e1878ed92
+      internalID: 823051010
       vertices: []
       indices: 
       edges: []
@@ -276,8 +276,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65d4d3858a599c44b87b54fdd500d8c8
-      internalID: -1487664468
+      spriteID: 984b4dabeb6e2fd48a179ae2c6d85fc7
+      internalID: -571895337
       vertices: []
       indices: 
       edges: []
@@ -297,8 +297,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 123bb39c6286af547ba8cb24576f0850
-      internalID: -1972003795
+      spriteID: e91744fc351a2f04492349bd21ff9e11
+      internalID: -366482413
       vertices: []
       indices: 
       edges: []
@@ -318,8 +318,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 320f6f056849796459d978aa6dcf77dd
-      internalID: -1357321682
+      spriteID: f14b70c9a2ef8b9478cf0cba77818248
+      internalID: -1814580211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IconProgressCheckStar
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 523
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa853dfec1301db438f3a943757518ab
+      internalID: 598406454
       vertices: []
       indices: 
       edges: []
@@ -335,15 +356,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      IconBtnMainLeft: 5212636
-      IconBtnMainNomal: 534202456
-      IconBtnMainRight: 1589047579
-      IconBtnStart: 846838974
-      IconCharacterProfileFrame: 267186327
-      IconStageScoreStar1: -1487664468
-      IconStageScoreStar2: -1972003795
-      IconStageScoreStar3: -1357321682
-      IconStageScoreStarNone: 657237849
+      IconBtnMainClick: -1500813652
+      IconBtnMainNomal: 1792362484
+      IconBtnStart: -12433767
+      IconCharacterProfileFrame: 574168016
+      IconProgressCheckStar: 598406454
+      IconProgressCheckStar0: 651872745
+      IconStageScoreStar1: -571895337
+      IconStageScoreStar2: -366482413
+      IconStageScoreStar3: -1814580211
+      IconStageScoreStarNone: 823051010
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
