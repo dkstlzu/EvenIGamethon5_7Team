@@ -89,7 +89,9 @@ namespace MoonBunny
             
             foreach (var colliderLayer in ColliderLayerList)
             {
-                _colliderList.Add(new MoonBunnyCollider(this, _movement, colliderLayer));
+                var collider = new MoonBunnyCollider(this, _movement, colliderLayer);
+                collider.SetIgnore(IgnoringLayerMask);
+                _colliderList.Add(collider);
             }
             
             S_RigidbodyList.Add(this);

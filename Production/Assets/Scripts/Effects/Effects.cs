@@ -364,8 +364,8 @@ namespace MoonBunny.Effects
     {
         public const string BoostName = "RocketBoost";
             
-        public static float Speed = 5;
-        public static float Duration = 10;
+        public static float Speed = 10;
+        public static float Duration = 6;
 
         private MoonBunnyRigidbody _rigidbody;
 

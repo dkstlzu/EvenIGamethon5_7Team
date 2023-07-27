@@ -265,6 +265,8 @@ namespace MoonBunny.UIs
 
                 foreach (BoostUI boost in BoostItemList)
                 {
+                    if (!boost.Checked) continue;
+                    
                     switch (boost.BoostName)
                     {
                         case RocketBoostEffect.BoostName:
@@ -277,10 +279,11 @@ namespace MoonBunny.UIs
                             stage.BoostEffectList.Add(new StarCandyBoostEffect());
                             break;
                     }
-                    
-                    _gameManager.GoldNumber -= BoostUI.S_ConsumingGold;
-                    _gameManager.SaveProgress();
                 }
+                
+                _gameManager.GoldNumber -= BoostUI.S_ConsumingGold;
+                BoostUI.S_ConsumingGold = 0;
+                _gameManager.SaveProgress();
             };
         }
 

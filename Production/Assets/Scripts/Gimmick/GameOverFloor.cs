@@ -19,6 +19,10 @@ namespace MoonBunny
                     return true;
                 }
             }
+            else
+            {
+                Destroy(with.gameObject);
+            }
 
             return false;
         }

@@ -44,12 +44,16 @@ namespace MoonBunny
             }
             
             string jsonData = JsonUtility.ToJson(data, true);
+#if UNITY_EDITOR
+            File.WriteAllText(SaveDataFilePath, jsonData);
+#else
             
             UnityWebRequest uwr = UnityWebRequest.Put(SaveDataFilePath, jsonData);
             uwr.SendWebRequest().completed += (ao) =>
             {
                 MoonBunnyLog.print("Save Data successfully on UnityWebRequest");
             };
+#endif
 
 #if UNITY_EDITOR
             AssetDatabase.Refresh();
