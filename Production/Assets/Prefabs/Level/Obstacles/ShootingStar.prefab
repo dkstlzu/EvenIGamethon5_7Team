@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gravity: 0
-  MoveSacle: 1
+  MoveSacle: 3.5
   GridObject: {fileID: 2838584814036015846}
   ColliderLayerList: []
   IgnoringLayerMask:
