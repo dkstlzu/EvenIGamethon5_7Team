@@ -96,6 +96,9 @@ namespace MoonBunny
             UI.Stage = this;
             _summoner = GetComponent<LevelSummoner>();
             Name = StringValue.GetEnumValue<StageName>(SceneManager.GetActiveScene().name);
+            _character = GameObject.FindWithTag("Player").GetComponent<Character>();
+            FriendSpec spec = Resources.Load<FriendSpec>($"Specs/Friend/{StringValue.GetStringValue(GameManager.instance.UsingFriendName)}");
+            _character.Friend.SetBySpec(spec);
 
             _spec = Resources.Load<StageSpec>($"Specs/Stage{StageLevel}Spec");
 
@@ -129,7 +132,6 @@ namespace MoonBunny
 
         private void Start()
         {
-            _character = GameObject.FindWithTag("Player").GetComponent<Character>();
             _character.Rigidbody.ForcePosition(_startPoint.position);
             _character.Rigidbody.PauseMove();
             _summoner.SummonRicecakes();

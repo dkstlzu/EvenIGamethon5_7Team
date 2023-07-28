@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using DG.Tweening;
 using dkstlzu.Utility;
 using MoonBunny.Dev;
@@ -94,21 +95,33 @@ namespace MoonBunny.UIs
             
             if (score >= Stage.Spec.ThirdStepScore)
             {
-                _thirdStar.sprite = _progressFullStar;
-                _thirdChecker.enabled = true;
                 _progressBar.value = 1f;
             } else if (score >= Stage.Spec.SecondStepScore)
             {
-                _secondStar.sprite = _progressFullStar;
-                _secondChecker.enabled = true;
                 _progressBar.value = 0.62f;
 
             } else if (score >= Stage.Spec.FirstStepScore)
             {
-                _thirdStar.sprite = _progressFullStar;
-                _firstChecker.enabled = true;
                 _progressBar.value = 0.2f;
-            } 
+            }
+
+            if (score >= Stage.Spec.ThirdStepScore)
+            {
+                _thirdStar.sprite = _progressFullStar;
+                _thirdChecker.enabled = true;
+            }
+
+            if (score >= Stage.Spec.SecondStepScore)
+            {
+                _secondStar.sprite = _progressFullStar;
+                _secondChecker.enabled = true;
+            }
+
+            if (score >= Stage.Spec.FirstStepScore)
+            {
+                _firstStar.sprite = _progressFullStar;
+                _firstChecker.enabled = true;
+            }
         }
 
         public void ChangeDirectionButtonClicked()

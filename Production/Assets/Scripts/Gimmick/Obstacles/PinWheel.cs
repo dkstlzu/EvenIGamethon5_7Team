@@ -9,7 +9,7 @@ namespace MoonBunny
         {
             if (!base.Invoke(with))
             {
-                new StarCandyEffect(LayerMask.GetMask("Obstacle"), new Rect(transform.position, new Vector2(50, 3 * GridTransform.GridSetting.GridHeight))).Effect();
+                new StarCandyEffect(LayerMask.GetMask("Obstacle"), new Bounds(transform.position, new Vector2(50, 3 * GridTransform.GridSetting.GridHeight))).Effect();
                 return false;
             }
             

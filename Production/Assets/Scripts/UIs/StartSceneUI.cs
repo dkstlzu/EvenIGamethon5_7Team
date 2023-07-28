@@ -52,7 +52,6 @@ namespace MoonBunny.UIs
 
         public List<FriendLibraryUI> FriendLibraryUIList;
         [FormerlySerializedAs("CurrentProfileImage")] public Image ProfileImage;
-        public FriendName CurrentSelectedFriendName;
 
 
         [Header("Boost")] 
@@ -142,7 +141,8 @@ namespace MoonBunny.UIs
                 if (!FriendCollectionManager.instance.Collection.Datas[i].Finish()) continue;
                 
                 FriendLibraryUIList[i].SelectButton.interactable = true;
-                FriendLibraryUIList[i].NameText.text = FriendCollectionManager.instance.Collection.Datas[i].Name.ToString();
+                string name = StringValue.GetStringValue(FriendCollectionManager.instance.Collection.Datas[i].Name);
+                FriendLibraryUIList[i].NameText.text = name;
             }
         }
 
@@ -259,9 +259,7 @@ namespace MoonBunny.UIs
                 Stage stage = GameManager.instance.Stage;
                 stage.SubLevel = _subLevelIndex;
 
-                FriendSpec spec = Resources.Load<FriendSpec>($"Specs/Friend/{CurrentSelectedFriendName.ToString()}");
                 Character character = GameObject.FindWithTag("Player").GetComponent<Character>();
-                character.Friend.SetBySpec(spec);
 
                 foreach (BoostUI boost in BoostItemList)
                 {

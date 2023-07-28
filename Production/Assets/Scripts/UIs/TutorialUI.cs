@@ -5,20 +5,15 @@ namespace MoonBunny.UIs
 {
     public class TutorialUI : MonoBehaviour
     {
-        private InputManager _inputManager;
         private void Awake()
         {
-            _inputManager = GameObject.FindWithTag("GameController").GetComponent<InputManager>();
+            Time.timeScale = 0;
         }
 
-        public void On()
+        public void OnConfirm()
         {
-            _inputManager.InputAsset.Ingame.Disable();
-        }
-
-        public void Off()
-        {
-            _inputManager.InputAsset.Ingame.Enable();
+            Time.timeScale = 1;
+            Destroy(gameObject);
         }
     }
 }

@@ -16,6 +16,7 @@ namespace MoonBunny
         public SaveLoadSystem SaveLoadSystem;
 
         public Stage Stage;
+        public FriendName UsingFriendName;
 
         public ReadOnlyEnumDict<FriendName, int> CollectDict;
         public ReadOnlyEnumDict<StageName, int> ClearDict;
@@ -98,6 +99,7 @@ namespace MoonBunny
             CollectDict = SaveLoadSystem.SaveData.CollectionDict;
             ClearDict = SaveLoadSystem.SaveData.ClearDict;
 
+            UsingFriendName = Enum.Parse<FriendName>(SaveLoadSystem.SaveData.UsingFriendName);
             GoldNumber = SaveLoadSystem.SaveData.GoldNumber;
         }
 
@@ -111,7 +113,8 @@ namespace MoonBunny
                 Debug.LogError("Cannot save progress. SaveLoadsystem never loaded data");
                 return;
             }
-            
+
+            SaveLoadSystem.SaveData.UsingFriendName = UsingFriendName.ToString();
             SaveLoadSystem.SaveData.GoldNumber = GoldNumber;
 
             SaveLoadSystem.SaveDatabase();
@@ -132,7 +135,7 @@ namespace MoonBunny
 
         public void FirstPlayTutorialOn()
         {
-            Instantiate(_tutorialUIGO).GetComponent<TutorialUI>().On();
+            Instantiate(_tutorialUIGO).GetComponent<TutorialUI>();
             SCB.SceneLoadCallBackDict[SceneName.Stage1_1] -= FirstPlayTutorialOn;
             PlayerPrefs.SetInt("MoonBunnyFirstPlay", 0);
         }

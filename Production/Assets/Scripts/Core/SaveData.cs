@@ -14,6 +14,7 @@ namespace MoonBunny
         public ReadOnlyEnumDict<FriendName, int> CollectionDict => _collectionDict;
         public ReadOnlyEnumDict<StageName, int> ClearDict => _clearDict;
 
+        public string UsingFriendName;
         public int GoldNumber;
 
         public SaveData()
@@ -30,6 +31,7 @@ namespace MoonBunny
                 ClearDict.Add(stageName, 0);
             }
 
+            UsingFriendName = FriendName.Sugar.ToString();
             GoldNumber = 0;
         }
 

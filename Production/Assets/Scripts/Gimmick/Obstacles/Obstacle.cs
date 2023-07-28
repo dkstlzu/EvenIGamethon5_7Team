@@ -15,7 +15,7 @@ namespace MoonBunny
             if (!base.Invoke(with)) return false;
 
             Character target = with.GetComponent<Character>();
-            if ((target.Friend.Name == FriendName.Lala || target.Friend.Name == FriendName.SodaGirl) && this is PinWheel)
+            if ((target.Friend.Name == FriendName.Lala || target.Friend.Name == FriendName.Soda) && this is PinWheel)
             {
                 return false;
             }

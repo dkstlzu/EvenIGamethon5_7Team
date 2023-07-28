@@ -1,4 +1,5 @@
 ﻿using System;
+using dkstlzu.Utility;
 using UnityEngine;
 
 namespace MoonBunny
@@ -6,12 +7,19 @@ namespace MoonBunny
     public enum FriendName
     {
         None = -1,
+        [StringValue("설탕이")]
         Sugar = 0,
+        [StringValue("새싹이")]
         Sprout,
-        TingkerBell,
-        SodaGirl,
+        [StringValue("팅클이")]
+        Tingkle,
+        [StringValue("소다")]
+        Soda,
+        [StringValue("라라")]
         Lala,
-        Space,
+        [StringValue("암토롱")]
+        Amtorong,
+        [StringValue("흑당이")]
         BlackSugar,
     }
     
@@ -35,11 +43,9 @@ namespace MoonBunny
                 _spec = spec;
             }
 
-            FriendName name;
-            if (Enum.TryParse(spec.name, out name))
-            {
-                Name = name;
-            }
+            FriendName name = StringValue.GetEnumValue<FriendName>(_spec.name);
+            Name = name;
+                
             HorizontalSpeed = _spec.HorizontalJumpSpeed;
             JumpPower = _spec.VerticalJumpSpeed;
             MagneticPower = _spec.MagneticPower;

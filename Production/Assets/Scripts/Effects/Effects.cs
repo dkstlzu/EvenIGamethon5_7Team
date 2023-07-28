@@ -107,9 +107,9 @@ namespace MoonBunny.Effects
         private static int S_MaxDestroyNumber;
         
         private LayerMask _targetLayerMask;
-        private Rect _area;
+        private Bounds _area;
         
-        public StarCandyEffect(LayerMask targetLayerMask, Rect area)
+        public StarCandyEffect(LayerMask targetLayerMask, Bounds area)
         {
             _targetLayerMask = targetLayerMask;
             _area = area;
