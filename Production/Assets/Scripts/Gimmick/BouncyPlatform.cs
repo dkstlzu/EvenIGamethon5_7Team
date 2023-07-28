@@ -16,6 +16,8 @@ namespace MoonBunny
         public bool Enabled = true;
         [SerializeField] private Animator _animator;
         [SerializeField] private SpriteRenderer _renderer;
+        [SerializeField] private SpriteRenderer _virtualRenderer;
+        public bool isVirtual = false;
         public int JumpPower;
         public int VerticalMoveRange;
         public int HorizontalMoveRange;
@@ -65,7 +67,7 @@ namespace MoonBunny
             if (!EditorApplication.isPlaying) return;
 #endif
             
-            if (!_doLoop) return;
+            if (!_doLoop || isVirtual) return;
             
             transform.Translate(_currentLoopDelta * Time.deltaTime);
 
@@ -97,28 +99,42 @@ namespace MoonBunny
                 CurrentPattern = 2;
                 foreach (BouncyPlatform platform in Pattern1PlatformList)
                 {
-                    platform.Enabled = false;
+                    platform.MakeVirtual();
                 }
 
                 foreach (BouncyPlatform platform in Pattern2PlatformList)
                 {
-                    platform.Enabled = true;
+                    platform.MakeConcrete();
                 }
             } else if (CurrentPattern == 2)
             {
                 CurrentPattern = 1;
                 foreach (BouncyPlatform platform in Pattern1PlatformList)
                 {
-                    platform.Enabled = true;
+                    platform.MakeConcrete();
                 }
 
                 foreach (BouncyPlatform platform in Pattern2PlatformList)
                 {
-                    platform.Enabled = false;
+                    platform.MakeVirtual();
                 }
             }
 
             return true;
+        }
+
+        public void MakeVirtual()
+        {
+            isVirtual = true;
+            _virtualRenderer.enabled = true;
+            _renderer.enabled = false;
+        }
+
+        public void MakeConcrete()
+        {
+            isVirtual = false;
+            _virtualRenderer.enabled = false;
+            _renderer.enabled = false;
         }
     }
 }

@@ -321,6 +321,7 @@ namespace MoonBunny
                             }
 
                             int index = int.Parse(lineContent[noIndex]);
+                            platform.Index = index;
                             bouncyPlatformDict.Add(index, platform);
 
                             string[] pattern1Str = lineContent[bouncyPlatformPattern1Index].Split(":");
@@ -334,7 +335,15 @@ namespace MoonBunny
                                 {
                                     if (str != NoData)
                                     {
-                                        pattern1List.Add(int.Parse(str));
+                                        int targetIndex = int.Parse(str);
+                                        if (targetIndex > 0)
+                                        {
+                                            pattern1List.Add(targetIndex);
+                                        }
+                                        else
+                                        {
+                                            platform.MakeVirtual();
+                                        }
                                     }
                                 }
                                 
