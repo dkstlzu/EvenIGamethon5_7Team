@@ -128,6 +128,7 @@ namespace MoonBunny
             isVirtual = true;
             _virtualRenderer.enabled = true;
             _renderer.enabled = false;
+            InvokeOnCollision = false;
         }
 
         public void MakeConcrete()
@@ -135,6 +136,7 @@ namespace MoonBunny
             isVirtual = false;
             _virtualRenderer.enabled = false;
             _renderer.enabled = false;
+            InvokeOnCollision = true;
         }
     }
 }
