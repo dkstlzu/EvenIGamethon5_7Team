@@ -67,7 +67,12 @@ namespace MoonBunny.UIs
         void OnThunderAttack(float duration)
         {
             _changeDirectionButton.interactable = false;
-            CoroutineHelper.Delay(() => _changeDirectionButton.interactable = true, duration);
+            _changeDirectionButton.image.color = new Color(1, 1, 1, 0.5f);;
+            CoroutineHelper.Delay(() =>
+            {
+                _changeDirectionButton.interactable = true;
+                _changeDirectionButton.image.color = Color.white;
+            }, duration);
         }
 
         public void CountDownFinish()
