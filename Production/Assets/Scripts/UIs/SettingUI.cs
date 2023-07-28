@@ -14,6 +14,14 @@ namespace MoonBunny.UIs
             TutorialToggle.onValueChanged.AddListener(OnTutorialToggle);
         }
 
+        private void Start()
+        {
+            GameManager.instance.SaveLoadSystem.OnSaveDataLoaded += () =>
+            {
+                TutorialToggle.isOn = GameManager.instance.SaveLoadSystem.SaveData.ShowTutorial;
+            };
+        }
+
         void OnSoundToggle(bool on)
         {
             AudioListener.volume = on ? 1 : 0;

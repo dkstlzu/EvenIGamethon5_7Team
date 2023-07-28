@@ -98,6 +98,8 @@ namespace MoonBunny
 
             UsingFriendName = Enum.Parse<FriendName>(SaveLoadSystem.SaveData.UsingFriendName);
             GoldNumber = SaveLoadSystem.SaveData.GoldNumber;
+
+            ShowTutorial = SaveLoadSystem.SaveData.ShowTutorial;
         }
 
         public void SaveProgress()
@@ -113,6 +115,8 @@ namespace MoonBunny
             
             SaveLoadSystem.SaveData.UsingFriendName = UsingFriendName.ToString();
             SaveLoadSystem.SaveData.GoldNumber = GoldNumber;
+
+            SaveLoadSystem.SaveData.ShowTutorial = ShowTutorial;
 
             SaveLoadSystem.SaveDatabase();
         }

@@ -19,6 +19,8 @@ namespace MoonBunny
         public string UsingFriendName;
         public int GoldNumber;
 
+        public bool ShowTutorial;
+
         public SaveData()
         {
             foreach (FriendName friendName in (FriendName[])Enum.GetValues(typeof(FriendName)))
@@ -41,6 +43,8 @@ namespace MoonBunny
 
             UsingFriendName = FriendName.Sugar.ToString();
             GoldNumber = 0;
+
+            ShowTutorial = true;
         }
 
         public int this[FriendName friendName] => _collectionDict[friendName];

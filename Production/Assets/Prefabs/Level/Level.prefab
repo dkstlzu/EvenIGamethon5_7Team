@@ -342,9 +342,11 @@ MonoBehaviour:
   RainbowRicecakeRatio: 0.2
   CoinNumber: 50
   FriendCollectableNumber: 2
+  SummonThunderEnable: 0
   SummonThunderEnabled: 0
   SummonThunderInterval: 5
   ThunderWarningTime: 2
+  SummonShootingStarEnable: 0
   SummonShootingStarEnabled: 0
   SummonShootingStarInterval: 12
   ShootingStarWarningTime: 2
@@ -364,9 +366,12 @@ MonoBehaviour:
   SubLevel: 0
   _startPoint: {fileID: 7776708680454044948}
   _spec: {fileID: 11400000, guid: 7e4f134cf9ecf704bbe9353d76d684da, type: 2}
+  _tutorialPrefab: {fileID: 1381214040629822484, guid: 318cac4417a8d9f46838e50ec5e04e7f, type: 3}
   CollectDict:
     _elementList: []
   UI: {fileID: 2628499118603251068}
+  GoldNumber: 0
+  GainedStar: 0
   _backgroundSpriteRenderer: {fileID: 8276122672916568586}
   _leftWallCollider: {fileID: 4627971106425716044}
   _rightWallCollider: {fileID: 6592815337611537684}
