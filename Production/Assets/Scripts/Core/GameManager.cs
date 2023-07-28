@@ -20,8 +20,10 @@ namespace MoonBunny
 
         public ReadOnlyEnumDict<FriendName, int> CollectDict;
         public ReadOnlyEnumDict<StageName, int> ClearDict;
+        public ReadOnlyEnumDict<QuestType, bool> QuestClearDict;
 
         public StartSceneUI StartSceneUI;
+        
 
         private int _goldNumber;
 
@@ -36,9 +38,8 @@ namespace MoonBunny
             }
         }
 
-        public bool isFirstPlay;
-        [SerializeField] private GameObject _tutorialUIGO;
-
+        public bool ShowTutorial;
+        
         public event Action OnStageSceneLoaded;
         public event Action OnStageSceneUnloaded;
         
@@ -59,14 +60,9 @@ namespace MoonBunny
             }
 #endif
 
-            isFirstPlay = PlayerPrefs.GetInt("MoonBunnyFirstPlay", 1) > 0 ? true : false;
-
             SCB = new SceneLoadCallbackSetter(SceneName.Names);
 
-            if (isFirstPlay)
-            {
-                SCB.SceneLoadCallBackDict[SceneName.Stage1_1] += FirstPlayTutorialOn;
-            }
+
 
             for (int i = 2; i < SceneName.Names.Length; i++)
             {
@@ -98,6 +94,7 @@ namespace MoonBunny
 #endif
             CollectDict = SaveLoadSystem.SaveData.CollectionDict;
             ClearDict = SaveLoadSystem.SaveData.ClearDict;
+            QuestClearDict = SaveLoadSystem.SaveData.QuestClearDict;
 
             UsingFriendName = Enum.Parse<FriendName>(SaveLoadSystem.SaveData.UsingFriendName);
             GoldNumber = SaveLoadSystem.SaveData.GoldNumber;
@@ -113,7 +110,7 @@ namespace MoonBunny
                 Debug.LogError("Cannot save progress. SaveLoadsystem never loaded data");
                 return;
             }
-
+            
             SaveLoadSystem.SaveData.UsingFriendName = UsingFriendName.ToString();
             SaveLoadSystem.SaveData.GoldNumber = GoldNumber;
 
@@ -131,13 +128,6 @@ namespace MoonBunny
             }
             
             SaveLoadSystem.SaveDatabase();
-        }
-
-        public void FirstPlayTutorialOn()
-        {
-            Instantiate(_tutorialUIGO).GetComponent<TutorialUI>();
-            SCB.SceneLoadCallBackDict[SceneName.Stage1_1] -= FirstPlayTutorialOn;
-            PlayerPrefs.SetInt("MoonBunnyFirstPlay", 0);
         }
 
         public void RestartApplication()

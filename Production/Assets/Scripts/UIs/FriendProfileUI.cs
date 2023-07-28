@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace MoonBunny.UIs
 {
-    public class FriendProfileUI : MonoBehaviour
+    public class FriendProfileUI : UI
     {
         public List<FriendSpec> FriendSpecList;
         public List<Sprite> FriendSpriteList;
@@ -17,7 +17,6 @@ namespace MoonBunny.UIs
         private int _currentCollectionNumber;
 
         public StartSceneUI StartSceneUI;
-        public CanvasGroup CanvasGroup;
         private FriendName _selectingName;
         
         [Header("References")]
@@ -59,18 +58,6 @@ namespace MoonBunny.UIs
             _storyText.text = FriendProfileTextList[index].StoryText;
         }
 
-        public void Open()
-        {
-            CanvasGroup.DOFade(1, 1);
-            CanvasGroup.blocksRaycasts = true;
-        }
-
-        public void OnExitButtonClicked()
-        {
-            CanvasGroup.DOFade(0, 1);
-            CanvasGroup.blocksRaycasts = false;
-        }
-
         public void OnLeftButtonClicked()
         {
             float xTarget = Mathf.Clamp01(_content.pivot.x - 0.5f);
@@ -86,7 +73,8 @@ namespace MoonBunny.UIs
         public void OnConfirmButtonClicked()
         {
             GameManager.instance.UsingFriendName = _selectingName;
-            StartSceneUI.ProfileImage.sprite = StartSceneUI.FriendLibraryUIList[(int)_selectingName].ProfileSprite;
+            StartSceneUI.ProfileImage.sprite = StartSceneUI.FriendSelectUI.FriendLibraryUIList[(int)_selectingName].ProfileSprite;
+            OnExitButtonClicked();
         }
     }
 }

@@ -19,13 +19,6 @@ namespace MoonBunny.Dev.Editor
         static void ResetDatas()
         {
             ResetCollection();
-            ResetFirstPlay();
-        }
-
-        [MenuItem("Dev/Datas/ResetTutorial", priority = 10)]
-        private static void ResetFirstPlay()
-        {
-            PlayerPrefs.SetInt("MoonBunnyFirstPlay", 1);
         }
 
         static void ResetCollection()

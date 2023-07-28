@@ -42,6 +42,14 @@ namespace MoonBunny
     }
     public class Stage : MonoBehaviour
     {
+        public static event Action<int, int, int> OnStageClear;
+
+        [RuntimeInitializeOnLoadMethod]
+        static void Init()
+        {
+            OnStageClear = null;
+        }
+        
         public StageName Name;
 
         public int StageLevel
@@ -56,6 +64,8 @@ namespace MoonBunny
         [SerializeField] private StageSpec _spec;
         public StageSpec Spec => _spec;
 
+        [SerializeField] private GameObject _tutorialPrefab;
+
         public ReadOnlyEnumDict<FriendName, int> CollectDict;
 
         private LevelSummoner _summoner;
@@ -64,6 +74,7 @@ namespace MoonBunny
         
         public int GoldNumber;
 
+        public int GainedStar;
         private int _score;
         public int Score
         {
@@ -139,6 +150,11 @@ namespace MoonBunny
             _summoner.SummonFriendCollectables();
         }
 
+        public void TutorialOn()
+        {
+            Instantiate(_tutorialPrefab).GetComponent<TutorialUI>();
+        }
+        
         public void CountDownFinish()
         {
             _character.Rigidbody.UnpauseMove();
@@ -171,6 +187,7 @@ namespace MoonBunny
             
             UI.Clear();
             MoonBunnyRigidbody.DisableAll();
+            OnStageClear?.Invoke(StageLevel, SubLevel, GainedStar);
             _summoner.SummonThunderEnable = false;
             _summoner.SummonShootingStarEnable = false;
         }

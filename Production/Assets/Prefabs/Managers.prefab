@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7181178156869599547}
   - component: {fileID: 6744147499280745772}
   - component: {fileID: 4755970094666209831}
+  - component: {fileID: 1459504920463896759}
   m_Layer: 0
   m_Name: Managers
   m_TagString: GameController
@@ -55,13 +56,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Stage: {fileID: 0}
+  UsingFriendName: 0
   CollectDict:
     _elementList: []
   ClearDict:
     _elementList: []
+  QuestClearDict:
+    _elementList: []
   StartSceneUI: {fileID: 0}
-  isFirstPlay: 0
-  _tutorialUIGO: {fileID: 1381214040629822484, guid: 318cac4417a8d9f46838e50ec5e04e7f, type: 3}
+  ShowTutorial: 0
   useSaveSystem: 1
 --- !u!114 &1854696770133704652
 MonoBehaviour:
@@ -200,6 +203,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b29485255fa5433db4b3876f0f513f77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1459504920463896759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386506531079968234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cec4899e44a5894a6d85116d1041f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  QuestList: []
 --- !u!1 &7393346921992038708
 GameObject:
   m_ObjectHideFlags: 0

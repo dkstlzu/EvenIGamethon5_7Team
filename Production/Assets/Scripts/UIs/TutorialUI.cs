@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace MoonBunny.UIs
 {
-    public class TutorialUI : MonoBehaviour
+    public class TutorialUI : UI
     {
         private void Awake()
         {

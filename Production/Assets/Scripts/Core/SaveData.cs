@@ -10,9 +10,11 @@ namespace MoonBunny
     {
         [SerializeField] private ReadOnlyEnumDict<FriendName, int> _collectionDict = new ReadOnlyEnumDict<FriendName, int>();
         [SerializeField] private ReadOnlyEnumDict<StageName, int> _clearDict = new ReadOnlyEnumDict<StageName, int>();
-        
+        [SerializeField] private ReadOnlyEnumDict<QuestType, bool> _questClearDict = new ReadOnlyEnumDict<QuestType, bool>();
+
         public ReadOnlyEnumDict<FriendName, int> CollectionDict => _collectionDict;
         public ReadOnlyEnumDict<StageName, int> ClearDict => _clearDict;
+        public ReadOnlyEnumDict<QuestType, bool> QuestClearDict => _questClearDict;
 
         public string UsingFriendName;
         public int GoldNumber;
@@ -30,6 +32,12 @@ namespace MoonBunny
                 if ((int)stageName < 0) continue;
                 ClearDict.Add(stageName, 0);
             }
+            
+            foreach (QuestType questType in (QuestType[])Enum.GetValues(typeof(QuestType)))
+            {
+                if ((int)questType < 0) continue;
+                QuestClearDict.Add(questType, false);
+            }
 
             UsingFriendName = FriendName.Sugar.ToString();
             GoldNumber = 0;
@@ -37,6 +45,7 @@ namespace MoonBunny
 
         public int this[FriendName friendName] => _collectionDict[friendName];
         public int this[StageName stageName] => _clearDict[stageName];
+        public bool this[QuestType questType] => _questClearDict[questType];
 
     }
 }

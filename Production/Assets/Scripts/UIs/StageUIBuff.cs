@@ -13,7 +13,7 @@ namespace MoonBunny.UIs
         Spider,
     }
     
-    public class StageUIBuff : MonoBehaviour
+    public class StageUIBuff : UI
     {
         public GameObject MagnetBuff;
         public GameObject SpiderDebuff;

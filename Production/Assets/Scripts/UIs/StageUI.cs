@@ -12,7 +12,7 @@ using UnityEngine.UI;
 
 namespace MoonBunny.UIs
 {
-    public class StageUI : MonoBehaviour
+    public class StageUI : UI
     {
         public CanvasGroup PauseUI;
         public CanvasGroup FailUI;
@@ -96,13 +96,15 @@ namespace MoonBunny.UIs
             if (score >= Stage.Spec.ThirdStepScore)
             {
                 _progressBar.value = 1f;
+                Stage.GainedStar = 3;
             } else if (score >= Stage.Spec.SecondStepScore)
             {
                 _progressBar.value = 0.62f;
-
+                Stage.GainedStar = 2;
             } else if (score >= Stage.Spec.FirstStepScore)
             {
                 _progressBar.value = 0.2f;
+                Stage.GainedStar = 1;
             }
 
             if (score >= Stage.Spec.ThirdStepScore)
@@ -131,8 +133,7 @@ namespace MoonBunny.UIs
 
         public void Clear()
         {
-            ClearUI.DOFade(1, 2);
-            ClearUI.blocksRaycasts = true;
+            FadeIn(ClearUI);
 
             ClearStarImage.sprite = StarSpriteList[_gainedStarNumber];
             ClearScoreText.text = _scoreText.text;
@@ -142,8 +143,8 @@ namespace MoonBunny.UIs
 
         public void Fail()
         {
-            FailUI.DOFade(1, 2);
-            FailUI.blocksRaycasts = true;
+            FadeIn(FailUI);
+            
             SoundManager.instance.PlayClip(_failAudioClip);
         }
 
@@ -156,10 +157,8 @@ namespace MoonBunny.UIs
         {
             SceneManager.LoadSceneAsync(SceneName.Start).completed += (ao) =>
             {
-                GameManager.instance.StartSceneUI.FriendSelectCanvasGroup.alpha = 0;
-                GameManager.instance.StartSceneUI.FriendSelectCanvasGroup.blocksRaycasts = false;
-                GameManager.instance.StartSceneUI.StageSelectCanvasGroup.alpha = 1;
-                GameManager.instance.StartSceneUI.StageSelectCanvasGroup.blocksRaycasts = true;
+                GameManager.instance.StartSceneUI.FriendSelectUI.OnExitButtonClicked(0);
+                GameManager.instance.StartSceneUI.StageSelectUI.Open(0);
             };
         }
 

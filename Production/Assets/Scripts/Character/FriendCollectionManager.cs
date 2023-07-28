@@ -51,7 +51,7 @@ namespace MoonBunny
         {
             foreach (FriendCollection.Data data in Collection.Datas)
             {
-                data.CurrentCollectingNumber = _gameManager.SaveLoadSystem.SaveData.CollectionDict[data.Name];
+                data.CurrentCollectingNumber = _gameManager.CollectDict[data.Name];
             }
         }
 

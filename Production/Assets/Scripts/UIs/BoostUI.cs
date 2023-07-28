@@ -1,13 +1,12 @@
 ﻿using System;
 using DG.Tweening;
-using MoonBunny;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Prefabs.UIs
+namespace MoonBunny.UIs
 {
-    public class BoostUI : MonoBehaviour
+    public class BoostUI : UI
     {
         public static int S_ConsumingGold = 0;
 
