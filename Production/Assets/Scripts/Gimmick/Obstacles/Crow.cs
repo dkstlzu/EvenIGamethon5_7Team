@@ -53,11 +53,13 @@ namespace MoonBunny
                         _enabled = true;
                         _renderer.color = Color.white;
                         _invoker.InvokeOnCollision = true;
+                        InvokeOnCollision = true;
                     }, CoolTime);
                 }
                 else
                 {
                     _invoker.InvokeOnCollision = true;
+                    InvokeOnCollision = true;
                 }
 
                 _rigidbody.StopMove();
@@ -72,6 +74,7 @@ namespace MoonBunny
             
             if (!base.Invoke(with)) return false;
 
+            InvokeOnCollision = false;
             with.PauseMove();
             _picker = new TransformForceEffect(with.transform, _pickingPoint);
             _picker.Effect();
