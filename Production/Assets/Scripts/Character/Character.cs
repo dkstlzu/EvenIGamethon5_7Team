@@ -66,7 +66,7 @@ namespace MoonBunny
 #endif
             GameManager.instance.Stage.UI.OnDirectionChangeButtonClicked += OnButtonClicked;
             Rigidbody.SetDefaultHorizontalSpeed(Friend.HorizontalSpeed);
-            Rigidbody.SetBounciness(Friend.JumpPower);
+            Rigidbody.SetBounciness(Friend.JumpPower / 3);
             if (Friend.Name == FriendName.BlackSugar)
             {
                 Rigidbody.CanDestroyObstaclesByStepping = true;

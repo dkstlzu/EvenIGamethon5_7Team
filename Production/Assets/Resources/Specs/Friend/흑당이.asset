@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: "\uD751\uB2F9\uC774"
   m_EditorClassIdentifier: 
   HorizontalJumpSpeed: 2
-  VerticalJumpSpeed: 0.6666667
+  VerticalJumpSpeed: 2
   MagneticPower: 0
