@@ -15,13 +15,14 @@ namespace MoonBunny.Dev.Editor
         private const string CollectionAssetPath = "Assets/Resources/Specs/FriendCollection.asset"; 
         private const string DefaultCollectionAssetPath = "Assets/Resources/Specs/DefaultFriendCollection.asset";
 
-        [MenuItem("Dev/ResetDatas", priority = 10)]
+        [MenuItem("Dev/Datas/ResetDatas", priority = 10)]
         static void ResetDatas()
         {
             ResetCollection();
             ResetFirstPlay();
         }
 
+        [MenuItem("Dev/Datas/ResetTutorial", priority = 10)]
         private static void ResetFirstPlay()
         {
             PlayerPrefs.SetInt("MoonBunnyFirstPlay", 1);

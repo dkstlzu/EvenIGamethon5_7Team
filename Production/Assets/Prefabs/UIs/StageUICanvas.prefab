@@ -4225,10 +4225,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8244390985781564195}
+  - component: {fileID: 7271849020381675076}
   - component: {fileID: 425518278541235436}
   - component: {fileID: 3455395852424010499}
   - component: {fileID: 3140274004123476173}
-  - component: {fileID: 7271849020381675076}
   - component: {fileID: 2178286418119461514}
   m_Layer: 5
   m_Name: StageUICanvas
@@ -4264,6 +4264,48 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &7271849020381675076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6551298864543153271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afe895b2acc343bc8ffcee6ec1e63dab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PauseUI: {fileID: 2949121869577439244}
+  FailUI: {fileID: 234906047041919211}
+  ClearUI: {fileID: 3085994134885186056}
+  _clearAudioClip: {fileID: 8300000, guid: ecdbb0a145f3dcf4799ab0a5b78ce7f2, type: 3}
+  _failAudioClip: {fileID: 8300000, guid: e1dd7c957f2d8fe48b28765a9e2bacdb, type: 3}
+  Stage: {fileID: 0}
+  _changeDirectionButton: {fileID: 73528981312870230}
+  _progressBar: {fileID: 2231172796606403176}
+  _scoreText: {fileID: 3443909609328036117}
+  _progressEmptyStar: {fileID: 651872745, guid: a7d4133fdcb08a84b8ca191f2af71dec, type: 3}
+  _progressFullStar: {fileID: 598406454, guid: a7d4133fdcb08a84b8ca191f2af71dec, type: 3}
+  _firstStar: {fileID: 5604458708526418171}
+  _secondStar: {fileID: 8660187293328751094}
+  _thirdStar: {fileID: 300431007126401475}
+  _firstChecker: {fileID: 4108143110707905515}
+  _secondChecker: {fileID: 505883998931410050}
+  _thirdChecker: {fileID: 2187006578817807884}
+  _heartImagelist:
+  - {fileID: 6178595509977636319}
+  - {fileID: 5318195149005950082}
+  - {fileID: 6348010424101663987}
+  _fullHeartSprite: {fileID: 1255920394, guid: da433cf3386622b4f851ba4b4c089a09, type: 3}
+  _brokenHeartSprite: {fileID: -1585722445, guid: da433cf3386622b4f851ba4b4c089a09, type: 3}
+  ClearStarImage: {fileID: 8930861626490945207}
+  StarSpriteList:
+  - {fileID: 823051010, guid: a7d4133fdcb08a84b8ca191f2af71dec, type: 3}
+  - {fileID: 621275417, guid: 2ec8ce2adf08cf3459c46b0ed3b1fbc3, type: 3}
+  - {fileID: -845694933, guid: 2ec8ce2adf08cf3459c46b0ed3b1fbc3, type: 3}
+  - {fileID: 584847994, guid: 2ec8ce2adf08cf3459c46b0ed3b1fbc3, type: 3}
+  ClearScoreText: {fileID: 6402712509983915927}
 --- !u!223 &425518278541235436
 Canvas:
   m_ObjectHideFlags: 0
@@ -4327,48 +4369,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &7271849020381675076
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6551298864543153271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afe895b2acc343bc8ffcee6ec1e63dab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PauseUI: {fileID: 2949121869577439244}
-  FailUI: {fileID: 234906047041919211}
-  ClearUI: {fileID: 3085994134885186056}
-  _clearAudioClip: {fileID: 8300000, guid: ecdbb0a145f3dcf4799ab0a5b78ce7f2, type: 3}
-  _failAudioClip: {fileID: 8300000, guid: e1dd7c957f2d8fe48b28765a9e2bacdb, type: 3}
-  Stage: {fileID: 0}
-  _changeDirectionButton: {fileID: 73528981312870230}
-  _progressBar: {fileID: 2231172796606403176}
-  _scoreText: {fileID: 3443909609328036117}
-  _progressEmptyStar: {fileID: 651872745, guid: a7d4133fdcb08a84b8ca191f2af71dec, type: 3}
-  _progressFullStar: {fileID: 598406454, guid: a7d4133fdcb08a84b8ca191f2af71dec, type: 3}
-  _firstStar: {fileID: 5604458708526418171}
-  _secondStar: {fileID: 8660187293328751094}
-  _thirdStar: {fileID: 300431007126401475}
-  _firstChecker: {fileID: 4108143110707905515}
-  _secondChecker: {fileID: 505883998931410050}
-  _thirdChecker: {fileID: 2187006578817807884}
-  _heartImagelist:
-  - {fileID: 6178595509977636319}
-  - {fileID: 5318195149005950082}
-  - {fileID: 6348010424101663987}
-  _fullHeartSprite: {fileID: 1255920394, guid: da433cf3386622b4f851ba4b4c089a09, type: 3}
-  _brokenHeartSprite: {fileID: -1585722445, guid: da433cf3386622b4f851ba4b4c089a09, type: 3}
-  ClearStarImage: {fileID: 8930861626490945207}
-  StarSpriteList:
-  - {fileID: 823051010, guid: a7d4133fdcb08a84b8ca191f2af71dec, type: 3}
-  - {fileID: 621275417, guid: 2ec8ce2adf08cf3459c46b0ed3b1fbc3, type: 3}
-  - {fileID: -845694933, guid: 2ec8ce2adf08cf3459c46b0ed3b1fbc3, type: 3}
-  - {fileID: 584847994, guid: 2ec8ce2adf08cf3459c46b0ed3b1fbc3, type: 3}
-  ClearScoreText: {fileID: 6402712509983915927}
 --- !u!95 &2178286418119461514
 Animator:
   serializedVersion: 5

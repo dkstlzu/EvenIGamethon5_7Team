@@ -40,7 +40,8 @@ namespace Dev.Editor
         [MenuItem("Dev/PlayTest/StarCandy")]
         public static void ForceStarCandy()
         {
-            Rect area = new Rect(GameObject.FindWithTag("Player").transform.position, new Vector2(50, 6));
+            Bounds area = new Bounds(GameObject.FindWithTag("Player").transform.position, new Vector2(50, 6));
+            Debug.Log($"{area}, {area.center}, {area.size}");
             new StarCandyEffect(LayerMask.GetMask("Obstacle"), area).Effect();
         }
 
