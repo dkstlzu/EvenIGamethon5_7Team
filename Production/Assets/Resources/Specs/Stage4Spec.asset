@@ -16,3 +16,13 @@ MonoBehaviour:
   FirstStepScore: 0
   SecondStepScore: 0
   ThirdStepScore: 0
+  RicecakeNumber: 0
+  RainbowRicecakeRatio: 0
+  CoinNumber: 70
+  FriendCollectableNumber: 0
+  SummonThunderEnabled: 1
+  SummonThunderInterval: 12
+  ThunderWarningTime: 1
+  SummonShootingStarEnabled: 0
+  SummonShootingStarInterval: 0
+  ShootingStarWarningTime: 0

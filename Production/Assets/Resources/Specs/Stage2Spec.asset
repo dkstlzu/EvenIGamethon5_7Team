@@ -13,3 +13,16 @@ MonoBehaviour:
   m_Name: Stage2Spec
   m_EditorClassIdentifier: 
   Height: 100
+  FirstStepScore: 0
+  SecondStepScore: 0
+  ThirdStepScore: 0
+  RicecakeNumber: 0
+  RainbowRicecakeRatio: 0
+  CoinNumber: 35
+  FriendCollectableNumber: 0
+  SummonThunderEnabled: 0
+  SummonThunderInterval: 0
+  ThunderWarningTime: 0
+  SummonShootingStarEnabled: 0
+  SummonShootingStarInterval: 0
+  ShootingStarWarningTime: 0
