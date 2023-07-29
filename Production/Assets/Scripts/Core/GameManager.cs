@@ -12,6 +12,16 @@ namespace MoonBunny
     [DefaultExecutionOrder(-1)]
     public class GameManager : Singleton<GameManager>
     {
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+        static void Init()
+        {
+            TimeUpdatable.GlobalSpeed = 1;
+            TimeUpdatable.Enabled = true;
+            GameManager.instance.OnStageSceneLoaded += () => TimeUpdatable.GlobalSpeed = 1;
+            GameManager.instance.OnStageSceneUnloaded += () => TimeUpdatable.GlobalSpeed = 1;
+        }
+
+        
         public SceneLoadCallbackSetter SCB;
         public SaveLoadSystem SaveLoadSystem;
 

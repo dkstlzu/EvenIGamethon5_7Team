@@ -17,18 +17,5 @@ namespace MoonBunny.Effects
                 _renderer.size = value;
             }
         }
-
-        public float Duration;
-
-        private float _timer;
-        private void Update()
-        {
-            _timer += Time.deltaTime;
-
-            if (_timer > Duration)
-            {
-                Destroy(gameObject);
-            }
-        }
     }
 }

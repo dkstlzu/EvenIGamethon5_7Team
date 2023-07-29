@@ -52,7 +52,7 @@ namespace MoonBunny
                 _renderer.color = new Color(1, 1, 1, 0.5f);
                 InvokeOnCollision = false;
                 
-                CoroutineHelper.Delay(() =>
+                UpdateManager.instance.Delay(() =>
                 {
                     _renderer.color = Color.white;
                     InvokeOnCollision = true;

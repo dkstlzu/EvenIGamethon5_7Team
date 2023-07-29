@@ -48,7 +48,7 @@ namespace MoonBunny
                     _enabled = false;
                     _renderer.color = CoolTimeColor;
             
-                    CoroutineHelper.Delay(() =>
+                    UpdateManager.instance.Delay(() =>
                     {
                         _enabled = true;
                         _renderer.color = Color.white;

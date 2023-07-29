@@ -41,7 +41,7 @@ namespace MoonBunny.Effects
 
             if (_duration > 0)
             {
-                CoroutineHelper.Delay(() =>
+                UpdateManager.instance.Delay(() =>
                 {
                     _target.radius = previousPower;
                     _spriteRenderer.transform.localScale = new Vector3(previousPower * 2, previousPower * 2, 1);
@@ -91,7 +91,7 @@ namespace MoonBunny.Effects
             _rigidbody.Gravity = 0;
             S_isEffectOn = true;
             
-            CoroutineHelper.Delay(() =>
+            UpdateManager.instance.Delay(() =>
             {
                 _rigidbody.DontIgnoreCollision(LayerMask.GetMask("Obstacle"));
                 _rigidbody.Move(previousVelocity);
@@ -227,7 +227,7 @@ namespace MoonBunny.Effects
             {
                 character.DebuffSpriteRenderer.sprite = SpiderWebDebuffSprite;
                 
-                CoroutineHelper.Delay(() =>
+                UpdateManager.instance.Delay(() =>
                 {
                     character.DebuffSpriteRenderer.sprite = null;
                 }, _duration);
@@ -269,7 +269,7 @@ namespace MoonBunny.Effects
             WarningEffect warningEffect = new WarningEffect(new Rect(areaMin, areaMax - areaMin), _warningDuration);
             warningEffect.Effect();
             
-            CoroutineHelper.Delay(() =>
+            UpdateManager.instance.Delay(() =>
             {
                 Vector3 thunderPosition = new Vector3(_targetColumn * GridTransform.GridSetting.GridWidth + GridTransform.OriginInReal.x,
                     GameObject.FindWithTag("Player").transform.position.y, 0);
@@ -297,7 +297,7 @@ namespace MoonBunny.Effects
                 character.isIgnoringFlip = true;
                 OnThunderAttack?.Invoke(S_duration);
                 
-                CoroutineHelper.Delay(() =>
+                UpdateManager.instance.Delay(() =>
                 {
                     character.isIgnoringFlip = false;
                 }, S_duration);
@@ -322,7 +322,11 @@ namespace MoonBunny.Effects
         {
             Warning warning = MonoBehaviour.Instantiate(S_WarningEffectPrefab, _area.center, Quaternion.identity).GetComponent<Warning>();
             warning.Size = _area.size;
-            warning.Duration = _duration;
+            
+            UpdateManager.instance.Delay(() =>
+            {
+                MonoBehaviour.Destroy(warning);
+            }, _duration);
         }
     }
 

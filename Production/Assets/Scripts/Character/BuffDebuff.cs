@@ -43,7 +43,7 @@ namespace MoonBunny
         {
             base.Apply();
             
-            CoroutineHelper.Delay(Remove, _duration);
+            UpdateManager.instance.Delay(Remove, _duration);
         }
     }
 

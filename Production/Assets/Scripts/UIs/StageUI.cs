@@ -68,7 +68,7 @@ namespace MoonBunny.UIs
         {
             _changeDirectionButton.interactable = false;
             _changeDirectionButton.image.color = new Color(1, 1, 1, 0.5f);;
-            CoroutineHelper.Delay(() =>
+            UpdateManager.instance.Delay(() =>
             {
                 _changeDirectionButton.interactable = true;
                 _changeDirectionButton.image.color = Color.white;

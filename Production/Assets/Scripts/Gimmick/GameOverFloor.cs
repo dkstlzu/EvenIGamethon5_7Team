@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using MoonBunny.Dev;
 using UnityEngine;
 
@@ -22,12 +23,22 @@ namespace MoonBunny
                     return true;
                 }
             }
-            else
-            {
-                Destroy(with.gameObject);
-            }
 
             return false;
+        }
+
+        public override Collision[] Collide(MoonBunnyRigidbody rigidbody, MoonBunnyCollider.Direction direction)
+        {
+            List<Collision> collisions = new List<Collision>();
+
+            if (rigidbody.GridObject is Gimmick gimmick)
+            {
+                collisions.Add(new DestroyCollision(rigidbody, gimmick));
+            }
+            
+            collisions.AddRange(base.Collide(rigidbody, direction));
+
+            return collisions.ToArray();
         }
     }
 }

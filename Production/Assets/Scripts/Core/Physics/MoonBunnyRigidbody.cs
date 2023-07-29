@@ -190,7 +190,7 @@ namespace MoonBunny
             
             if (time > 0)
             {
-                CoroutineHelper.Delay(() =>
+                UpdateManager.instance.Delay(() =>
                 {
                     MoveSacle = previousMoveScale;
                 }, time);

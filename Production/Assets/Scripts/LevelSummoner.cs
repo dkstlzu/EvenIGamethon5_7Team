@@ -73,7 +73,7 @@ namespace MoonBunny
                 WarningEffect warningEffect = new WarningEffect(new Rect(areaMin, areaMax - areaMin), ShootingStarWarningTime);
                 warningEffect.Effect();
                 
-                CoroutineHelper.Delay(() =>
+                UpdateManager.instance.Delay(() =>
                 {
                     Character character = GameObject.FindWithTag("Player").GetComponent<Character>();
                     Vector2 targetPoint = new Vector2(targetGridX, (character.transform.position + Vector3.up * Camera.main.orthographicSize + Vector3.up * 4).y);
@@ -288,7 +288,7 @@ namespace MoonBunny
                 WarningEffect warningEffect = new WarningEffect(new Rect(areaMin, areaMax - areaMin), ShootingStarWarningTime);
                 warningEffect.Effect();
                 
-                CoroutineHelper.Delay(() =>
+                UpdateManager.instance.Delay(() =>
                 {
                     Character character = GameObject.FindWithTag("Player").GetComponent<Character>();
                     Vector2 targetPoint = new Vector2(targetGridX, (character.transform.position + Vector3.up * Camera.main.orthographicSize + Vector3.up * 4).y);

@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using dkstlzu.Utility;
-using MoonBunny.Dev;
 using UnityEngine;
 
-namespace MoonBunny
+namespace dkstlzu.Utility
 {
     public interface IUpdatable
     {
@@ -15,15 +13,6 @@ namespace MoonBunny
     {
         public static float GlobalSpeed = 1;
         public static bool Enabled;
-
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-        static void Init()
-        {
-            GlobalSpeed = 1;
-            Enabled = true;
-            GameManager.instance.OnStageSceneLoaded += () => GlobalSpeed = 1;
-            GameManager.instance.OnStageSceneUnloaded += () => GlobalSpeed = 1;
-        }
 
         public static void Stop()
         {
@@ -106,6 +95,40 @@ namespace MoonBunny
         public void Unregister(IUpdatable updatable)
         {
             _updatableList.Remove(updatable);
+        }
+
+        class DelayedAction : IUpdatable
+        {
+            private Action _action;
+            private float _time;
+
+            private TimeUpdatable _timeUpdatable;
+            
+            public DelayedAction(Action action, float time)
+            {
+                _action = action;
+                _time = time;
+
+                _timeUpdatable = new TimeUpdatable(this, 1);
+                
+                UpdateManager.instance.Register(_timeUpdatable);
+            }
+
+            public void Update(float delta)
+            {
+                _time -= delta;
+
+                if (_time <= 0)
+                {
+                    _action?.Invoke();
+                    instance.Unregister(_timeUpdatable);
+                }
+            }
+        }
+        
+        public void Delay(Action action, float delay)
+        {
+            new DelayedAction(action, delay);
         }
 
         private void Update()
