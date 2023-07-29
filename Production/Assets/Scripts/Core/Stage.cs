@@ -240,6 +240,7 @@ namespace MoonBunny
         public void Revive()
         {
             MoonBunnyRigidbody.EnableAll();
+            TimeUpdatable.GlobalSpeed = 1;
             new HeartEffect(_character).Effect();
             new InvincibleEffect(_character.Rigidbody, LayerMask.GetMask("Obstacle"), _character.Renderer, 3, _character.InvincibleEffectCurve).Effect();
             _character.FirstJumped = false;

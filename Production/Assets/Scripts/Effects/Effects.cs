@@ -325,7 +325,7 @@ namespace MoonBunny.Effects
             
             UpdateManager.instance.Delay(() =>
             {
-                MonoBehaviour.Destroy(warning);
+                MonoBehaviour.Destroy(warning.gameObject);
             }, _duration);
         }
     }

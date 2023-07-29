@@ -1,4 +1,5 @@
-﻿using MoonBunny.Effects;
+﻿using System.Collections.Generic;
+using MoonBunny.Effects;
 using UnityEngine;
 
 namespace MoonBunny
@@ -14,6 +15,20 @@ namespace MoonBunny
             Character target = with.GetComponent<Character>();
             new InvincibleEffect(with, LayerMask.GetMask("Obstacle"), target.Renderer, target.InvincibleDuration, target.InvincibleEffectCurve).Effect();
             return true;
+        }
+
+        public override Collision[] Collide(MoonBunnyRigidbody rigidbody, MoonBunnyCollider.Direction direction)
+        {
+            List<Collision> collisions = new List<Collision>();
+
+            if (rigidbody.GridObject is Character character)
+            {
+                collisions.Add(new BounceCollision(rigidbody, this));
+            }
+            
+            collisions.AddRange(base.Collide(rigidbody, direction));
+
+            return collisions.ToArray();
         }
     }
 }
