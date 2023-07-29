@@ -85,6 +85,7 @@ namespace MoonBunny.UIs
             PauseUI.alpha = 1;
             PauseUI.blocksRaycasts = true;
             MoonBunnyRigidbody.DisableAll();
+            TimeUpdatable.GlobalSpeed = 0;
         }
 
         public void Unpause()
@@ -92,6 +93,7 @@ namespace MoonBunny.UIs
             PauseUI.alpha = 0;
             PauseUI.blocksRaycasts = false;
             MoonBunnyRigidbody.EnableAll();
+            TimeUpdatable.GlobalSpeed = 1;
         }
 
         public void SetScore(int score)
@@ -151,6 +153,12 @@ namespace MoonBunny.UIs
             FadeIn(FailUI);
             
             SoundManager.instance.PlayClip(_failAudioClip);
+        }
+
+        public void Revive()
+        {
+            Stage.Revive();
+            FadeOut(FailUI, 0);
         }
 
         public void RetryButtonClicked()

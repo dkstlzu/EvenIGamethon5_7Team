@@ -68,11 +68,10 @@ namespace MoonBunny
 
         public ReadOnlyEnumDict<FriendName, int> CollectDict;
 
-        private LevelSummoner _summoner;
-
         public StageUI UI;
         
         public int GoldNumber;
+        public float GoldMultiplier;
 
         public int GainedStar;
         private int _score;
@@ -93,6 +92,8 @@ namespace MoonBunny
         [SerializeField] private BoxCollider2D _rightWallCollider;
         [SerializeField] private PolygonCollider2D _levelCollider;
         public PolygonCollider2D LevelConfiner => _levelCollider;
+        
+        public LevelSummonerComponent LevelSummoner;
 
         public List<BoostEffect> BoostEffectList = new List<BoostEffect>();
         
@@ -105,7 +106,6 @@ namespace MoonBunny
             
             GameManager.instance.Stage = this;
             UI.Stage = this;
-            _summoner = GetComponent<LevelSummoner>();
             Name = StringValue.GetEnumValue<StageName>(SceneManager.GetActiveScene().name);
             _character = GameObject.FindWithTag("Player").GetComponent<Character>();
             FriendSpec spec = Resources.Load<FriendSpec>($"Specs/Friend/{StringValue.GetStringValue(GameManager.instance.UsingFriendName)}");
@@ -145,9 +145,28 @@ namespace MoonBunny
         {
             _character.Rigidbody.ForcePosition(_startPoint.position);
             _character.Rigidbody.PauseMove();
-            _summoner.SummonRicecakes();
-            _summoner.SummonCoins();
-            _summoner.SummonFriendCollectables();
+            
+            LevelSummoner.MaxGridHeight = Spec.Height;
+            LevelSummoner.SummonRicecakes();
+            LevelSummoner.SummonCoins();
+            LevelSummoner.SummonFriendCollectables();
+
+            if (StageLevel == 4)
+            {
+                LevelSummoner.SummonThunderEnabled = true;
+            }
+
+            if (StageLevel == 5)
+            {
+                LevelSummoner.SummonShootingStarEnabled = true;
+            }
+            
+            UpdateManager.instance.Register(new TimeUpdatable(LevelSummoner, 1));
+        }
+
+        private void OnDestroy()
+        {
+            UpdateManager.instance.Unregister(LevelSummoner);
         }
 
         public void TutorialOn()
@@ -166,8 +185,8 @@ namespace MoonBunny
                 effect.Effect();
             }
 
-            _summoner.SummonThunderEnable = _summoner.SummonThunderEnabled;
-            _summoner.SummonShootingStarEnable = _summoner.SummonShootingStarEnabled;
+            LevelSummoner.SummonThunderEnable = LevelSummoner.SummonThunderEnabled;
+            LevelSummoner.SummonShootingStarEnable = LevelSummoner.SummonShootingStarEnabled;
         }
 
         public void Clear()
@@ -181,23 +200,34 @@ namespace MoonBunny
             
             GameManager.instance.SaveCollection();
 
-            GameManager.instance.GoldNumber += GoldNumber;
+            GameManager.instance.GoldNumber += (int)(GoldNumber * GoldMultiplier);
             
             GameManager.instance.SaveProgress();
             
             UI.Clear();
             MoonBunnyRigidbody.DisableAll();
+            TimeUpdatable.GlobalSpeed = 0;
             OnStageClear?.Invoke(StageLevel, SubLevel, GainedStar);
-            _summoner.SummonThunderEnable = false;
-            _summoner.SummonShootingStarEnable = false;
+            LevelSummoner.SummonThunderEnable = false;
+            LevelSummoner.SummonShootingStarEnable = false;
         }
 
         public void Fail()
         {
             UI.Fail();
             MoonBunnyRigidbody.DisableAll();
-            _summoner.SummonThunderEnable = false;
-            _summoner.SummonShootingStarEnable = false;
+            TimeUpdatable.GlobalSpeed = 0;
+            LevelSummoner.SummonThunderEnable = false;
+            LevelSummoner.SummonShootingStarEnable = false;
+        }
+
+        public void Revive()
+        {
+            MoonBunnyRigidbody.EnableAll();
+            new HeartEffect(_character).Effect();
+            new InvincibleEffect(_character.Rigidbody, LayerMask.GetMask("Obstacle"), _character.Renderer, 3, _character.InvincibleEffectCurve).Effect();
+            _character.FirstJumped = false;
+            _character.StartJump(10);
         }
     }
 }

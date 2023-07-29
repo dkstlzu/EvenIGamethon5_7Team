@@ -12,6 +12,7 @@ namespace MoonBunny.UIs
         public List<Sprite> FriendSpriteList;
         public List<Sprite> PieceOfMemorySpriteList;
         public List<FriendProfileText> FriendProfileTextList;
+        public Sprite SilhouetteSprite;
 
         private int _fullCollectionNumber;
         private int _currentCollectionNumber;
@@ -35,11 +36,23 @@ namespace MoonBunny.UIs
         public void Set(FriendName friendName)
         {
             _selectingName = friendName;
+            bool isCollected = FriendCollectionManager.instance.Collection.Datas[(int)_selectingName].IsFinish();
+            
             int index = (int)friendName;
 
-            _horizontalSpeed.text = FriendSpecList[index].HorizontalJumpSpeed.ToString();
-            _bounciness.text = FriendSpecList[index].VerticalJumpSpeed.ToString();
-            _magneticPower.text = FriendSpecList[index].MagneticPower.ToString();
+            if (isCollected)
+            {
+                _horizontalSpeed.text = FriendSpecList[index].HorizontalJumpSpeed.ToString();
+                _bounciness.text = FriendSpecList[index].VerticalJumpSpeed.ToString();
+                _magneticPower.text = FriendSpecList[index].MagneticPower.ToString();
+            }
+            else
+            {
+                _horizontalSpeed.text = "???";
+                _bounciness.text = "???";
+                _magneticPower.text = "???";
+            }
+
             
             _fullCollectionNumber = FriendCollectionManager.instance[friendName].TargetCollectingNumber;
             _currentCollectionNumber = FriendCollectionManager.instance[friendName].CurrentCollectingNumber;
@@ -47,15 +60,33 @@ namespace MoonBunny.UIs
             _collectionSlider.maxValue = _fullCollectionNumber;
             _collectionSlider.value = _currentCollectionNumber;
 
-            _profileImage.sprite = FriendSpriteList[index];
+            if (isCollected)
+            {
+                _profileImage.sprite = FriendSpriteList[index];
+            }
+            else
+            {
+                _profileImage.sprite = SilhouetteSprite;
+            }
+            
             _memoryImage.sprite = PieceOfMemorySpriteList[index];
             _description.text = FriendProfileTextList[index].Description;
             _memoryText.text = string.Empty;
+            
             for (int i = 0; i < Mathf.Min(_currentCollectionNumber, FriendProfileTextList[index].MemoryTexts.Count); i++)
             {
                 _memoryText.text += FriendProfileTextList[index].MemoryTexts[i] + "\n";
             }
-            _storyText.text = FriendProfileTextList[index].StoryText;
+
+            if (isCollected)
+            {
+                _storyText.text = FriendProfileTextList[index].StoryText;
+            }
+            else
+            {
+                _storyText.text = "날 구해줘! 부탁해";
+            }
+
         }
 
         public void OnLeftButtonClicked()

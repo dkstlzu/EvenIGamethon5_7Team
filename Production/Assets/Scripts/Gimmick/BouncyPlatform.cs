@@ -14,6 +14,7 @@ namespace MoonBunny
         private static readonly int BounceHash = Animator.StringToHash("Bounce");
 
         public bool Enabled = true;
+        [SerializeField] private MoonBunnyRigidbody _rigidbody;
         [SerializeField] private Animator _animator;
         [SerializeField] private SpriteRenderer _renderer;
         [SerializeField] private SpriteRenderer _virtualRenderer;
@@ -59,6 +60,10 @@ namespace MoonBunny
             {
                 _doLoop = true;
             }
+
+            _rigidbody.DisableCollision();
+            
+            CheckMovement();
         }
 
         protected void FixedUpdate()
@@ -66,22 +71,17 @@ namespace MoonBunny
 #if UNITY_EDITOR
             if (!EditorApplication.isPlaying) return;
 #endif
-            
-            if (!_doLoop || isVirtual) return;
-            
-            transform.Translate(_currentLoopDelta * Time.deltaTime);
-
             // Forward
             if ((transform.position.y > _loopForwardPosition.y || transform.position.x > _loopForwardPosition.x))
             {
                 _currentLoopDelta = -_loopDelta;
-                transform.position = _loopForwardPosition;
+                CheckMovement();
             }
             // Backward
             if (transform.position.y < _loopStartPosition.y || transform.position.x < _loopStartPosition.x)
             {
                 _currentLoopDelta = _loopDelta;
-                transform.position = _loopStartPosition;
+                CheckMovement();
             }
         }
         
@@ -129,6 +129,7 @@ namespace MoonBunny
             _virtualRenderer.enabled = true;
             _renderer.enabled = false;
             InvokeOnCollision = false;
+            CheckMovement();
         }
 
         public void MakeConcrete()
@@ -137,6 +138,19 @@ namespace MoonBunny
             _virtualRenderer.enabled = false;
             _renderer.enabled = false;
             InvokeOnCollision = true;
+            CheckMovement();
+        }
+
+        public void CheckMovement()
+        {
+            if (!_doLoop || isVirtual)
+            {
+                _rigidbody.StopMove();
+            }
+            else
+            {
+                _rigidbody.Move(_currentLoopDelta);
+            }
         }
     }
 }

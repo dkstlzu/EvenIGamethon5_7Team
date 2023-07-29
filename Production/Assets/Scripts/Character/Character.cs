@@ -99,11 +99,11 @@ namespace MoonBunny
             else FlipDirection();
         }
 
-        public void StartJump()
+        public void StartJump(int jumpPower = 4)
         {
             if (FirstJumped) return;
 
-            Rigidbody.Move(new Vector2Int(1, 4));
+            Rigidbody.Move(new Vector2Int(1, jumpPower));
             _animator.SetBool(_jumpHash, true);
             FirstJumped = true;
         }
@@ -115,6 +115,8 @@ namespace MoonBunny
 
         public void Hit(Obstacle by)
         {
+            if (CurrentHp <= 0) return;
+            
             CurrentHp -= 1;
             GameManager.instance.Stage.UI.LoseHP();
         }

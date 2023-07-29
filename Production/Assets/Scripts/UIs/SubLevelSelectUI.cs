@@ -96,6 +96,9 @@ namespace MoonBunny.UIs
                         case StarCandyBoostEffect.BoostName:
                             stage.BoostEffectList.Add(new StarCandyBoostEffect());
                             break;
+                        case DoubleGoldBoostEffect.BoostName:
+                            stage.BoostEffectList.Add(new DoubleGoldBoostEffect(stage, 2));
+                            break;
                     }
                 }
                 

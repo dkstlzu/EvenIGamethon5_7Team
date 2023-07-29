@@ -129,6 +129,16 @@ namespace MoonBunny
             request.SendWebRequest().completed += (ao) =>
             {
                 var uwr = ((UnityWebRequestAsyncOperation)ao).webRequest;
+                if (uwr.result != UnityWebRequest.Result.Success)
+                {
+                    SaveData = new SaveData();
+                    SaveDatabase();
+                    DataIsLoaded = true;
+                    MoonBunnyLog.print("SaveData is loaded fail so made new one");
+                    OnSaveDataLoaded?.Invoke();
+                    return;
+                }
+                
                 string jsonData = Encoding.UTF8.GetString(uwr.downloadHandler.data);
                 SaveData = (SaveData)JsonUtility.FromJson(jsonData, typeof(SaveData));
                 DataIsLoaded = true;

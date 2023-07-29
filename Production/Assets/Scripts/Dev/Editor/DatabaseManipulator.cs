@@ -41,8 +41,7 @@ namespace MoonBunny.Dev.Editor
         }
         
         
-#if UNITY_EDITOR
-        [MenuItem("Dev/CreateDefaultSaveData")]
+        [MenuItem("Dev/Datas/CreateDefaultSaveData")]
         public static void CreateDefaultSaveDataFile()
         {
             SaveData data = new SaveData();
@@ -61,7 +60,42 @@ namespace MoonBunny.Dev.Editor
 
             AssetDatabase.Refresh();
         }
-#endif
+        
+        [MenuItem("Dev/Datas/CreateFullSaveData")]
+        public static void CreateFullSaveDataFile()
+        {
+            SaveData data = new SaveData();
+            
+            FriendCollection collection = AssetDatabase.LoadAssetAtPath<FriendCollection>(CollectionAssetPath);
+
+            for (int i = 0; i < data.CollectionDict.Count; i++)
+            {
+                data.CollectionDict[(FriendName)i] = collection.Datas[i].TargetCollectingNumber;
+            }
+
+            for (int i = 0; i < data.ClearDict.Count; i++)
+            {
+                data.ClearDict[(StageName)i] = 3;
+            }
+
+            data.ShowTutorial = false;
+            data.GoldNumber = 9999;
+
+            string jsonData = JsonUtility.ToJson(data, true);
+            byte[] byteData = Encoding.UTF8.GetBytes(jsonData);
+
+            string defaultPath = Path.Combine(Application.streamingAssetsPath, "Saves", "Save") + ".txt";
+         
+            File.WriteAllText(defaultPath, String.Empty);
+
+            using (FileStream fs = File.OpenWrite(defaultPath))
+            {
+                fs.Write(byteData);
+                fs.Flush();
+            }
+
+            AssetDatabase.Refresh();
+        }
 
         [MenuItem("Dev/MapData/HorizontalVerticalReverse")]
         public static void ReverseBouncyPlatformHorizontalVerticalMoveRange()

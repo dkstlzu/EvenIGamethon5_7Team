@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6183660109679586148}
   - component: {fileID: 978205355702668989}
   - component: {fileID: 3675761889070197999}
+  - component: {fileID: 6470761770131956253}
   m_Layer: 9
   m_Name: BouncyPlatform
   m_TagString: Untagged
@@ -119,6 +120,7 @@ MonoBehaviour:
     GridPosition: {x: 0, y: 0}
   InvokeOnCollision: 1
   Enabled: 1
+  _rigidbody: {fileID: 6470761770131956253}
   _animator: {fileID: 978205355702668989}
   _renderer: {fileID: 3889271018641120838}
   _virtualRenderer: {fileID: 1883050324610489974}
@@ -131,6 +133,30 @@ MonoBehaviour:
   Pattern2PlatformList: []
   CurrentPattern: 1
   LoopCycleSpeed: 0
+--- !u!114 &6470761770131956253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6143585326858288700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44342a30f9e24963b7611ebeb9b91d16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gravity: 0
+  MoveSacle: 1
+  GridObject: {fileID: 3675761889070197999}
+  ColliderLayerList: []
+  IgnoringLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  isGrounded: 0
+  _movement:
+    Velocity: {x: 0, y: 0}
+    DefaultHorizontalSpeedOnCollide: 0
+    Bounciness: 0
 --- !u!1 &6685337230468245306
 GameObject:
   m_ObjectHideFlags: 0

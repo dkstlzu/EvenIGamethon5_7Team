@@ -12,6 +12,16 @@ namespace MoonBunny
 
         public EnumDict<FriendName, float> Potentials;
 
+        protected override void Reset()
+        {
+            base.Reset();
+
+            foreach (var friendName in (FriendName[])Enum.GetValues(typeof(FriendName)))
+            {
+                Potentials.Add(friendName, 0);
+            }
+        }
+
         private void Start()
         {
             List<float> potentialList = new List<float>();

@@ -16,11 +16,13 @@ namespace MoonBunny
         public static float GlobalSpeed = 1;
         public static bool Enabled;
 
-        [RuntimeInitializeOnLoadMethod]
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void Init()
         {
             GlobalSpeed = 1;
             Enabled = true;
+            GameManager.instance.OnStageSceneLoaded += () => GlobalSpeed = 1;
+            GameManager.instance.OnStageSceneUnloaded += () => GlobalSpeed = 1;
         }
 
         public static void Stop()
@@ -109,9 +111,16 @@ namespace MoonBunny
         private void Update()
         {
             float delta = Time.deltaTime;
-            foreach (IUpdatable updatable in _updatableList)
+            for (int i = 0; i < _updatableList.Count; i++)
             {
-                updatable.Update(delta);
+                if (_updatableList[i] == null)
+                {
+                    _updatableList.RemoveAt(i);
+                    i--;
+                    continue;
+                }
+                    
+                _updatableList[i].Update(delta);
             }
         }
     }

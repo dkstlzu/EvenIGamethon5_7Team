@@ -369,8 +369,26 @@ MonoBehaviour:
   _tutorialPrefab: {fileID: 1381214040629822484, guid: 318cac4417a8d9f46838e50ec5e04e7f, type: 3}
   CollectDict:
     _elementList: []
+  LevelSummoner:
+    RicecakePrefab: {fileID: 6739887548533978570, guid: 7077ee0a6b7a8ce4e9f199dc55d902b3, type: 3}
+    CoinPrefab: {fileID: 5553466026946515911, guid: 33683233be09cd345bba46a8631556d4, type: 3}
+    FriendPrefab: {fileID: 3964396391748974210, guid: f08077e1aab2d394f8079d0d9b08fbac, type: 3}
+    RicecakeNumber: 100
+    RainbowRicecakeRatio: 0.2
+    CoinNumber: 50
+    FriendCollectableNumber: 2
+    SummonThunderEnable: 0
+    SummonThunderEnabled: 0
+    SummonThunderInterval: 5
+    ThunderWarningTime: 2
+    SummonShootingStarEnable: 0
+    SummonShootingStarEnabled: 0
+    SummonShootingStarInterval: 12
+    ShootingStarWarningTime: 2
+  Summoner: {fileID: 0}
   UI: {fileID: 2628499118603251068}
   GoldNumber: 0
+  GoldMultiplier: 0
   GainedStar: 0
   _backgroundSpriteRenderer: {fileID: 8276122672916568586}
   _leftWallCollider: {fileID: 4627971106425716044}

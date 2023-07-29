@@ -6,6 +6,9 @@ namespace MoonBunny.Dev.Editor
 {
     [CustomPropertyDrawer(typeof(EnumDictElement<FriendName, int>))]
     public class FrienNameIntElementPropertyDrawer : EnumDictElementPropertyDrawer<FriendName, int> {}
+        
+    [CustomPropertyDrawer(typeof(EnumDictElement<FriendName, float>))]
+    public class FriendPotentialElementPropertyDrawer : EnumDictElementPropertyDrawer<FriendName, float> {}
     
     [CustomPropertyDrawer(typeof(EnumDictElement<StageName, int>))]
     public class StageNameIntElementPropertyDrawer : EnumDictElementPropertyDrawer<StageName, int> {}

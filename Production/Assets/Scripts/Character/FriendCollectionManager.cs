@@ -83,7 +83,7 @@ namespace MoonBunny
             _gameManager.SaveLoadSystem.SaveData.CollectionDict[name] = data.CurrentCollectingNumber;
             
             OnCollectFriend?.Invoke(name, data.CurrentCollectingNumber);
-            if (data.Finish()) CollectFinish(name);
+            if (data.IsFinish()) CollectFinish(name);
         }
 
         public void CollectFinish(FriendName name)

@@ -24,7 +24,7 @@ namespace MoonBunny.UIs
         {
             for (int i = 0; i < FriendLibraryUIList.Count; i++)
             {
-                if (!FriendCollectionManager.instance.Collection.Datas[i].Finish()) continue;
+                if (!FriendCollectionManager.instance.Collection.Datas[i].IsFinish()) continue;
                 
                 FriendLibraryUIList[i].SelectButton.interactable = true;
                 string name = StringValue.GetStringValue(FriendCollectionManager.instance.Collection.Datas[i].Name);

@@ -37,7 +37,7 @@ namespace MoonBunny.UIs
 
         private void Awake()
         {
-            PriceText.text = Price + " 골드";
+            PriceText.text = Price.ToString();
         }
 
         public void OnClicked()

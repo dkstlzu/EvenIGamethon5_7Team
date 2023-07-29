@@ -97,6 +97,11 @@ namespace MoonBunny
             S_RigidbodyList.Add(this);
         }
 
+        private void OnDestroy()
+        {
+            S_RigidbodyList.Remove(this);
+        }
+
         public void FixedUpdate()
         {
             if (!enabled) return;

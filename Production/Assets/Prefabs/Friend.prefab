@@ -51,7 +51,24 @@ MonoBehaviour:
     GridPosition: {x: 0, y: 0}
   InvokeOnCollision: 1
   Name: 0
-  _audioClip: {fileID: 0}
+  Potentials:
+    _elementList:
+    - EnumKey: 0
+      Value: 1
+    - EnumKey: 1
+      Value: 1
+    - EnumKey: 2
+      Value: 1
+    - EnumKey: 3
+      Value: 1
+    - EnumKey: 4
+      Value: 1
+    - EnumKey: 5
+      Value: 1
+    - EnumKey: 6
+      Value: 1
+    - EnumKey: -1
+      Value: 0
 --- !u!61 &1980661225399528701
 BoxCollider2D:
   m_ObjectHideFlags: 0

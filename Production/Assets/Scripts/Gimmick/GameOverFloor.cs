@@ -15,6 +15,9 @@ namespace MoonBunny
                 Character character = with.GetComponent<Character>();
                 if (character.FirstJumped)
                 {
+                    character.Hit(null);
+                    character.Hit(null);
+                    character.Hit(null);
                     GameManager.instance.Stage.Fail();
                     return true;
                 }

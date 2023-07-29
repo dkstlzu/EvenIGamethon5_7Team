@@ -15,7 +15,7 @@ namespace MoonBunny
             public int TargetCollectingNumber;
             public int CurrentCollectingNumber;
 
-            public bool Finish()
+            public bool IsFinish()
             {
                 if (TargetCollectingNumber <= CurrentCollectingNumber) return true;
                 else return false;

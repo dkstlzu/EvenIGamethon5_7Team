@@ -176,6 +176,7 @@ namespace MoonBunny.Effects
         public Transform Target;
         public Transform To;
 
+        private TimeUpdatable _timeUpdatable;
         public TransformForceEffect(Transform target, Transform to)
         {
             Target = target;
@@ -189,12 +190,13 @@ namespace MoonBunny.Effects
 
         public void Effect()
         {
-            UpdateManager.instance.Register(this);
+            _timeUpdatable = new TimeUpdatable(this, 1);
+            UpdateManager.instance.Register(_timeUpdatable);
         }
 
         public void Quit()
         {
-            UpdateManager.instance.Unregister(this);
+            UpdateManager.instance.Unregister(_timeUpdatable);
         }
     }
 
@@ -389,24 +391,40 @@ namespace MoonBunny.Effects
         public static float S_EffectInterval = 1;
 
         private List<StarCandyEffect> _effects = new List<StarCandyEffect>();
+        private TimeUpdatable _timeUpdatable;
 
         public StarCandyBoostEffect()
         {
             for (int i = 0; i < _effectNumber; i++)
             {
-                Vector2 center = GridTransform.ToReal(new Vector2Int(0, i));
-// ;                _effects.Add(new StarCandyEffect(_targetLayerMask, new Rect(center, new Vector2(20, GridTransform.GridSetting.GridHeight)));
+                Vector2 center = GridTransform.ToReal(new Vector2Int(0, i * 3 + 1));
+                _effects.Add(new StarCandyEffect(_targetLayerMask, new Bounds(center, new Vector2(20, GridTransform.GridSetting.GridHeight * 3))));
             }
         }
         
         public override void Effect()
         {
-
+            _timeUpdatable = new TimeUpdatable(this, 1);
+            UpdateManager.instance.Register(_timeUpdatable);
         }
 
+        private float _timer = 0;
+        
         public void Update(float delta)
         {
-            throw new NotImplementedException();
+            _timer += delta;
+
+            if (_timer >= S_EffectInterval)
+            {
+                if (_effects.Count <= 0)
+                {
+                    UpdateManager.instance.Unregister(_timeUpdatable);
+                    return;
+                }
+                
+                _effects[0].Effect();
+                _effects.RemoveAt(0);
+            }
         }
     }
 
@@ -426,6 +444,25 @@ namespace MoonBunny.Effects
         public override void Effect()
         {
             new MagnetEffect(_character, Power).Effect();
+        }
+    }
+
+    public class DoubleGoldBoostEffect : BoostEffect
+    {
+        public const string BoostName = "DoubleGoldBoost";
+
+        private Stage _stage;
+        private float _multiplier;
+        
+        public DoubleGoldBoostEffect(Stage stage, float multiplier)
+        {
+            _stage = stage;
+            _multiplier = multiplier;
+        }
+        
+        public override void Effect()
+        {
+            _stage.GoldMultiplier = _multiplier;
         }
     }
 }
