@@ -66,9 +66,9 @@ namespace MoonBunny
             _renderer.sprite = MemorySpriteList[targetIndex];
         }
 
-        public override bool Invoke(MoonBunnyRigidbody with)
+        public override bool Invoke(MoonBunnyRigidbody with, MoonBunnyCollider.Direction direction)
         {
-            if (!base.Invoke(with)) return false;
+            if (!base.Invoke(with, direction)) return false;
             
             SoundManager.instance.PlayClip(S_FriendCollectedAudioClip);
             GameManager.instance.Stage.CollectDict[Name]++;

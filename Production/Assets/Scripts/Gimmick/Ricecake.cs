@@ -22,9 +22,9 @@ namespace MoonBunny
             Score = RainbowCakeScore;
         }
 
-        public override bool Invoke(MoonBunnyRigidbody with)
+        public override bool Invoke(MoonBunnyRigidbody with, MoonBunnyCollider.Direction direction)
         {
-            if (!base.Invoke(with)) return false;
+            if (!base.Invoke(with, direction)) return false;
 
             GameManager.instance.Stage.Score += Score;
             SoundManager.instance.PlayClip(_audioClip);

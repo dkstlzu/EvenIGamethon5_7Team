@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 402288316631767705}
   - component: {fileID: 8126647621377828892}
   - component: {fileID: 655919091681965842}
-  m_Layer: 14
+  m_Layer: 13
   m_Name: Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,7 +50,6 @@ MonoBehaviour:
     transform: {fileID: 402288316631767705}
     GridPosition: {x: 0, y: 0}
   InvokeOnCollision: 1
-  _type: 0
   Score: 0
   _renderer: {fileID: 5154871899787240843}
   _audioClip: {fileID: 8300000, guid: 5ae3dc4646ce7bf409230635d1667d02, type: 3}
@@ -99,7 +98,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5900296928629196939}
   - component: {fileID: 5154871899787240843}
-  m_Layer: 14
+  m_Layer: 13
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

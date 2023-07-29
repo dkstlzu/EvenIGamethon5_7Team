@@ -97,6 +97,7 @@ namespace MoonBunny
         }
     }
 
+    [Serializable]
     public class DependentQuest : Quest
     {
         public Quest DependentOn;
@@ -108,9 +109,10 @@ namespace MoonBunny
         }
     }
 
-    public class ReapeatableQuest : Quest
+    [Serializable]
+    public class RepeatableQuest : Quest
     {
-        public ReapeatableQuest()
+        public RepeatableQuest()
         {
             OnQuestCompleted += (type) => Repeat();
         }

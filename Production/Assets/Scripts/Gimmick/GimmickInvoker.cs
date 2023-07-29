@@ -9,13 +9,13 @@ namespace MoonBunny
         public bool UseUnityEventInsteadOfInvoke;
         public UnityEvent Events;
 
-        public override bool Invoke(MoonBunnyRigidbody with)
+        public override bool Invoke(MoonBunnyRigidbody with, MoonBunnyCollider.Direction direction)
         {
-            if (!base.Invoke(with)) return false;
+            if (!base.Invoke(with, direction)) return false;
             
             if (!UseUnityEventInsteadOfInvoke)
             {
-                return TargetGimmick.Invoke(with);
+                return TargetGimmick.Invoke(with, direction);
             }
             
             Events.Invoke();

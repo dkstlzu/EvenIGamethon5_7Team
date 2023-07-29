@@ -32,7 +32,6 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1386506531079968234}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -42,6 +41,7 @@ Transform:
   - {fileID: 5764405506096153255}
   - {fileID: 6017021853455002589}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5611170586294499107
 MonoBehaviour:
@@ -218,28 +218,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32cec4899e44a5894a6d85116d1041f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  QuestList:
-  - QuestType: 0
-    CheckTiming: 0
-    TargetProgress: 0
-    CurrentProgress: 0
-    Enabled: 0
-    QuestName: 0
-    DependentTo: 0
-  - QuestType: 1
-    CheckTiming: 0
-    TargetProgress: 0
-    CurrentProgress: 0
-    Enabled: 0
-    QuestName: 0
-    DependentTo: 0
-  - QuestType: 2
-    CheckTiming: 0
-    TargetProgress: 0
-    CurrentProgress: 0
-    Enabled: 0
-    QuestName: 0
-    DependentTo: 0
+  DefaultQuestList: []
+  DependentQuestList: []
+  RepeatableQuestList: []
 --- !u!1 &7393346921992038708
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,13 +246,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7393346921992038708}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4700425635291501093}
+  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1989233454123413127
 MonoBehaviour:
@@ -342,13 +323,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8966022812278691860}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4700425635291501093}
+  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1519028595631678618
 AudioSource:
@@ -479,13 +460,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9168371452221604120}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4700425635291501093}
+  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &5671565548280607027
 AudioSource:

@@ -16,9 +16,9 @@ namespace MoonBunny
 
         private float _totalPotential => HeartPotential + StarCandyPotential + RicecakePotential;
 
-        public override bool Invoke(MoonBunnyRigidbody with)
+        public override bool Invoke(MoonBunnyRigidbody with, MoonBunnyCollider.Direction direction)
         {
-            if (!base.Invoke(with)) return false;
+            if (!base.Invoke(with, direction)) return false;
 
             float randomValue = Random.value;
             GameObject targetGo = null;

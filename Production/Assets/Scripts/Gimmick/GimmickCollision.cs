@@ -1,33 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using MoonBunny;
+using MoonBunny.Effects;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
 public class Collision : IEqualityComparer<Collision>
 {
-    public class CollisionArgs
-    {
-        public FieldObject This { get; private set; }
-        public FieldObject Other { get; private set; }
-
-        public CollisionArgs(FieldObject @this, FieldObject other)
-        {
-            This = @this;
-            Other = other;
-        }
-    }
 
     private FieldObject _other;
     public FieldObject Other => _other;
     private FieldObject _this;
     public FieldObject This => _this;
-
-    public Collision(CollisionArgs args)
-    {
-        _this = args.This;
-        _other = args.Other;
-    }
 
     protected Collision(FieldObject @this, FieldObject other)
     {
@@ -55,86 +39,109 @@ public class Collision : IEqualityComparer<Collision>
     }
 }
 
-public class GimmickCollision : Collision
+public class MoonBunnyCollision : Collision
 {
-    public class GimmickCollisionArgs : CollisionArgs
+    protected MoonBunnyCollision(MoonBunnyRigidbody rigidbody, FieldObject other) : base(rigidbody.GridObject, other)
     {
-        public MoonBunnyRigidbody Rigidbody { get; protected set;}
-        public GimmickCollisionArgs(MoonBunnyRigidbody rigidbody, FieldObject @this, Gimmick other) : base(@this, other)
-        {
-            Rigidbody = rigidbody;
-        }
     }
-    
+}
+
+public class GimmickCollision : MoonBunnyCollision
+{
     public Gimmick Gimmick => (Gimmick)Other;
     private MoonBunnyRigidbody _rigidbody;
+    private MoonBunnyCollider.Direction _direction;
     
-    public GimmickCollision(GimmickCollisionArgs args) : base(args)
+    public GimmickCollision(MoonBunnyRigidbody rigidbody, MoonBunnyCollider.Direction direction, Gimmick gimmick) : base(rigidbody, gimmick)
     {
-        _rigidbody = args.Rigidbody;
+        _rigidbody = rigidbody;
+        _direction = direction;
     }
 
     public override void OnCollision()
     {
         if (Gimmick.InvokeOnCollision)
         {
-            Gimmick.Invoke(_rigidbody);
+            Gimmick.Invoke(_rigidbody, _direction);
         }
     }
 }
 
-public class PlatformCollision : Collision
+public class BlockCollision : MoonBunnyCollision
 {
-    public class PlatformCollisionArgs : CollisionArgs
+    public BlockCollision(MoonBunnyRigidbody rigidbody, FieldObject other) : base(rigidbody, other)
     {
-        public MoonBunnyRigidbody Rigidbody { get; protected set; }
-
-        public PlatformCollisionArgs(Character @this, FieldObject other) : base(@this, other)
-        {
-            Rigidbody = @this.GetComponent<MoonBunnyRigidbody>();
-        }
-    }
-
-    public Platform Platform => (Platform)Other;
-    private MoonBunnyRigidbody _rigidbody;
-
-    public PlatformCollision(PlatformCollisionArgs args) : base(args)
-    {
-        _rigidbody = args.Rigidbody;
     }
 }
 
-
-public class DirectionCollision : Collision
+public class BounceCollision : MoonBunnyCollision
 {
-    public class DirectionCollisionArgs : CollisionArgs
+    public BounceCollision(MoonBunnyRigidbody rigidbody, FieldObject other) : base(rigidbody, other)
     {
-        public MoonBunnyCollider.Direciton Direciton { get; private set; }
-            
-        public DirectionCollisionArgs(MoonBunnyCollider.Direciton direciton, FieldObject @this, FieldObject other) : base(@this, other)
-        {
-            Direciton = direciton;
-        }
     }
-        
-    private MoonBunnyCollider.Direciton _direction;
-    public MoonBunnyCollider.Direciton Direciton => _direction;
+}
 
-    public DirectionCollision(DirectionCollisionArgs args) : base(args.This, args.Other)
+public class FlipCollision : MoonBunnyCollision
+{
+    public bool isVertical;
+    public FlipCollision(bool isVertical, MoonBunnyRigidbody rigidbody, FieldObject other) : base(rigidbody, other)
     {
-        _direction = args.Direciton;
+        this.isVertical = isVertical;
+    }
+}
+
+public class BouncyPlatformCollision : MoonBunnyCollision
+{
+    public BouncyPlatform BouncyPlatform => (BouncyPlatform)Other;
+    public BouncyPlatformCollision(MoonBunnyRigidbody rigidbody, BouncyPlatform bouncyPlatform) : base(rigidbody, bouncyPlatform)
+    {
+    }
+}
+
+public class DestroyCollision : MoonBunnyCollision
+{
+    public DestroyCollision(MoonBunnyRigidbody rigidbody, FieldObject other) : base(rigidbody, other)
+    {
     }
 
     public override void OnCollision()
     {
-        base.OnCollision();
-
-        if (This is Character character && Other is Obstacle obstacle)
-        {
-            if ((_direction & MoonBunnyCollider.Direciton.Down) > 0)
-            {
-                MonoBehaviour.Destroy(obstacle.gameObject);
-            }
-        }
+        MonoBehaviour.Instantiate(StarCandyEffect.S_StarCandyExplosionEffect, Other.transform.position, Quaternion.identity);
+        MonoBehaviour.Destroy(Other.gameObject);
     }
 }
+
+//
+// public class DirectionCollision : Collision
+// {
+//     public class DirectionCollisionArgs : CollisionArgs
+//     {
+//         public MoonBunnyCollider.Direciton Direciton { get; private set; }
+//             
+//         public DirectionCollisionArgs(MoonBunnyCollider.Direciton direciton, FieldObject @this, FieldObject other) : base(@this, other)
+//         {
+//             Direciton = direciton;
+//         }
+//     }
+//         
+//     private MoonBunnyCollider.Direciton _direction;
+//     public MoonBunnyCollider.Direciton Direciton => _direction;
+//
+//     public DirectionCollision(DirectionCollisionArgs args) : base(args.This, args.Other)
+//     {
+//         _direction = args.Direciton;
+//     }
+//
+//     public override void OnCollision()
+//     {
+//         base.OnCollision();
+//
+//         if (This is Character character && Other is Obstacle obstacle)
+//         {
+//             if ((_direction & MoonBunnyCollider.Direciton.Down) > 0)
+//             {
+//                 MonoBehaviour.Destroy(obstacle.gameObject);
+//             }
+//         }
+//     }
+// }

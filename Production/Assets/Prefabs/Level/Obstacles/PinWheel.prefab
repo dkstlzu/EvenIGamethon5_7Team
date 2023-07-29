@@ -53,6 +53,7 @@ MonoBehaviour:
   InvokeOnCollision: 1
   _renderer: {fileID: 4148142135554199687}
   _audioClip: {fileID: 8300000, guid: b68e2ed4335ae4242a1c7be5964906fc, type: 3}
+  _animator: {fileID: 961518109954677004}
 --- !u!61 &1735029295689619169
 BoxCollider2D:
   m_ObjectHideFlags: 0

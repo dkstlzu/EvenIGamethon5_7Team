@@ -5,50 +5,25 @@ using UnityEngine;
 
 namespace MoonBunny
 {
-    [Serializable]
-    public class TestList : InheritSwapList<Quest> {}
-
-    [Serializable]
-    public class TestList2 : List<Quest> {}
-
     public class QuestManager : Singleton<QuestManager>
     {
-        public InheritanceList<Quest> InheritanceQuestList;
-        public List<Quest> QuestListNormal;
-        public TestList TestList;
-        public TestList2 TestList2;
-        public InheritSwapList<Quest> QuestList;
+        private List<Quest> QuestList = new List<Quest>();
+        public List<Quest> DefaultQuestList;
+        public List<DependentQuest> DependentQuestList;
+        public List<RepeatableQuest> RepeatableQuestList;
 
         private Action _onApplicationQuit;
 
-        private void Reset()
-        {
-            InheritanceQuestList.Add(new Quest());
-            InheritanceQuestList.Add(new Quest());
-            InheritanceQuestList.Add(new Quest());
-            InheritanceQuestList.Add(new Quest());
-            InheritanceQuestList.Add(new Quest());
-        }
-
         private void Awake()
         {
+            QuestList.AddRange(DefaultQuestList);
+            QuestList.AddRange(DependentQuestList);
+            QuestList.AddRange(RepeatableQuestList);
+            
             for (int i = 0; i < QuestList.Count; i++)
             {
                 Quest quest = QuestList[i];
-
-                switch (quest.QuestType)
-                {
-                    case QuestType.Default:
-                    QuestList.InheritanceList.Add(new Quest());
-                    break;
-                    case QuestType.Dependent:
-                    QuestList.InheritanceList.Add(new DependentQuest(QuestManager.instance.GetQuest(quest.DependentTo)));
-                    break;
-                    case QuestType.Repeatable:
-                    QuestList.InheritanceList.Add(new ReapeatableQuest());
-                    break;
-                }
-
+                
                 switch (quest.CheckTiming)
                 {
                     case QuestCheckTiming.OnStageClear:

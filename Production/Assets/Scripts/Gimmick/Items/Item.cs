@@ -11,9 +11,9 @@ namespace MoonBunny
         [SerializeField] protected SpriteRenderer _renderer;
         [SerializeField] protected AudioClip _audioClip;
         
-        public override bool Invoke(MoonBunnyRigidbody with)
+        public override bool Invoke(MoonBunnyRigidbody with, MoonBunnyCollider.Direction direction)
         {
-            if (!base.Invoke(with)) return false;
+            if (!base.Invoke(with, direction)) return false;
             
             if (_audioClip) SoundManager.instance.PlayClip(_audioClip);
             GameManager.instance.Stage.Score += Score;

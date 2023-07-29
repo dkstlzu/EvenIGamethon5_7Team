@@ -7,9 +7,9 @@ namespace MoonBunny
         [SerializeField] private Animator _animator;
         private static readonly int Crack = Animator.StringToHash("Crack");
 
-        public override bool Invoke(MoonBunnyRigidbody with)
+        public override bool Invoke(MoonBunnyRigidbody with, MoonBunnyCollider.Direction direction)
         {
-            if (!base.Invoke(with)) return false;
+            if (!base.Invoke(with, direction)) return false;
 
             _animator.SetTrigger(Crack);
             return true;

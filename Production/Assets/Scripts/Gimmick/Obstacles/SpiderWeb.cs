@@ -18,9 +18,9 @@ namespace MoonBunny
         [Range(0, 1)] public float Slow;
         public float Duration;
         
-        public override bool Invoke(MoonBunnyRigidbody with)
+        public override bool Invoke(MoonBunnyRigidbody with, MoonBunnyCollider.Direction direction)
         {
-            if (!base.Invoke(with)) return false;
+            if (!base.Invoke(with, direction)) return false;
 
             float targetSlow = Slow;
 
@@ -30,6 +30,9 @@ namespace MoonBunny
                 if (character.Friend.Name == FriendName.Sprout)
                 {
                     targetSlow = 1 - ((1 - targetSlow) / 2);
+                } else if (character.Friend.Name == FriendName.Soda)
+                {
+                    
                 }
             }
             
@@ -38,6 +41,19 @@ namespace MoonBunny
             
             Destroy(gameObject);
             return true;
+        }
+
+        public override Collision[] Collide(MoonBunnyRigidbody rigidbody, MoonBunnyCollider.Direction direction)
+        {
+            if (rigidbody.GridObject is Character character)
+            {
+                if (character.Friend.Name == FriendName.Soda)
+                {
+                    return new Collision[]{new DestroyCollision(rigidbody, this)};
+                }
+            }
+            
+            return base.Collide(rigidbody, direction);
         }
     }
 }

@@ -10,12 +10,12 @@ namespace MoonBunny
         [SerializeField] protected SpriteRenderer _renderer;
         [SerializeField] protected AudioClip _audioClip;
 
-        public override bool Invoke(MoonBunnyRigidbody with)
+        public override bool Invoke(MoonBunnyRigidbody with, MoonBunnyCollider.Direction direction)
         {
-            if (!base.Invoke(with)) return false;
+            if (!base.Invoke(with, direction)) return false;
 
             Character target = with.GetComponent<Character>();
-            if ((target.Friend.Name == FriendName.Lala || target.Friend.Name == FriendName.Soda) && this is PinWheel)
+            if (target.Friend.Name == FriendName.Lala && this is PinWheel)
             {
                 return false;
             }
@@ -23,6 +23,23 @@ namespace MoonBunny
             if (_audioClip) SoundManager.instance.PlayClip(_audioClip);
             with.GetComponent<Character>().Hit(this);
             return true;
+        }
+
+        public override Collision[] Collide(MoonBunnyRigidbody rigidbody, MoonBunnyCollider.Direction direction)
+        {
+            if (rigidbody.GridObject is Character character && (direction & MoonBunnyCollider.Direction.Down) > 0)
+            {
+                if (character.Friend.Name is FriendName.BlackSugar)
+                {
+                    return new Collision[]
+                    {
+                        new BounceCollision(rigidbody, this),
+                        new DestroyCollision(rigidbody, this),
+                    };
+                }
+            }
+            
+            return base.Collide(rigidbody, direction);
         }
     }
 }
