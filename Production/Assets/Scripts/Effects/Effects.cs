@@ -37,7 +37,7 @@ namespace MoonBunny.Effects
             float previousPower = _target.radius;
             
             _target.radius += _magneticPower;
-            _spriteRenderer.transform.localScale = new Vector3(_magneticPower * 2, _magneticPower * 2, 1);
+            _spriteRenderer.transform.localScale = new Vector3(_target.radius * 2, _target.radius * 2, 1);
 
             if (_duration > 0)
             {

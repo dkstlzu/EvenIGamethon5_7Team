@@ -53,9 +53,6 @@ namespace MoonBunny
 #if UNITY_EDITOR
             if (!UnityEditor.EditorApplication.isPlaying) return;
 #endif
-            CurrentHp = Friend.MaxHp;
-            new MagnetEffect(this, Friend.MagneticPower).Effect();
-
             isIgnoringFlip = false;
         }
 
@@ -64,6 +61,9 @@ namespace MoonBunny
 #if UNITY_EDITOR
             if (!UnityEditor.EditorApplication.isPlaying) return;
 #endif
+            CurrentHp = Friend.MaxHp;
+            new MagnetEffect(this, Friend.MagneticPower).Effect();
+
             GameManager.instance.Stage.UI.OnDirectionChangeButtonClicked += OnButtonClicked;
             Rigidbody.SetDefaultHorizontalSpeed(Friend.HorizontalSpeed);
             Rigidbody.SetBounciness(Friend.JumpPower / 3);
