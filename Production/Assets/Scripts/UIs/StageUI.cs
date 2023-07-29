@@ -163,6 +163,7 @@ namespace MoonBunny.UIs
 
         public void RetryButtonClicked()
         {
+            TimeUpdatable.GlobalSpeed = 1;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 

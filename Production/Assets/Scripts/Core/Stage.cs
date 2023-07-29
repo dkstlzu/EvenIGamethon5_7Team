@@ -193,6 +193,7 @@ namespace MoonBunny
         public void CountDownFinish()
         {
             _character.Rigidbody.UnpauseMove();
+            TimeUpdatable.GlobalSpeed = 1;
             _character.StartJump();
             SoundManager.instance.PlayClip(PreloadedResources.instance.OpenStageAudioClip);
 
