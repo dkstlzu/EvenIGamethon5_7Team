@@ -13641,7 +13641,8 @@ MonoBehaviour:
   StoreUI: {fileID: 9163122713863015649}
   GoldText1: {fileID: 5930256871186895922}
   GoldText2: {fileID: 7498398225572825008}
-  ProfileImage: {fileID: 1472025080991343951}
+  ProfileImage1: {fileID: 1472025080991343951}
+  ProfileImage2: {fileID: 167414222214945867}
 --- !u!223 &2218536581154564489
 Canvas:
   m_ObjectHideFlags: 0
@@ -13677,10 +13678,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1080, y: 2340}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3

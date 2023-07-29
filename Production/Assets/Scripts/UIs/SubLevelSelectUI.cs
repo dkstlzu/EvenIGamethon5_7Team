@@ -94,7 +94,7 @@ namespace MoonBunny.UIs
                             stage.BoostEffectList.Add(new MagnetBoostEffect(character));
                             break;
                         case StarCandyBoostEffect.BoostName:
-                            stage.BoostEffectList.Add(new StarCandyBoostEffect());
+                            stage.BoostEffectList.Add(new StarCandyBoostEffect(20, 0.5f));
                             break;
                         case DoubleGoldBoostEffect.BoostName:
                             stage.BoostEffectList.Add(new DoubleGoldBoostEffect(stage, 2));

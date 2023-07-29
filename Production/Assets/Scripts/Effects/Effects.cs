@@ -108,6 +108,8 @@ namespace MoonBunny.Effects
         
         private LayerMask _targetLayerMask;
         private Bounds _area;
+        private List<Obstacle> _destroyedObstacles = new List<Obstacle>();
+        public Obstacle[] DestroyedObstacles => _destroyedObstacles.ToArray();
         
         public StarCandyEffect(LayerMask targetLayerMask, Bounds area)
         {
@@ -125,6 +127,7 @@ namespace MoonBunny.Effects
             {
                 if (results[i] == null) continue;
                 
+                _destroyedObstacles.Add(results[i].GetComponent<Obstacle>());
                 MonoBehaviour.Destroy(results[i].gameObject);
             }
         }
@@ -386,20 +389,33 @@ namespace MoonBunny.Effects
     {
         public const string BoostName = "StarCandyBoost";
 
+        public static GameObject S_CoinPrefab;
         private static LayerMask _targetLayerMask = LayerMask.GetMask("Obstacle");
-        private static int _effectNumber = 10;
+        private static int S_effectNumber = 10;
         public static float S_EffectInterval = 1;
 
         private List<StarCandyEffect> _effects = new List<StarCandyEffect>();
         private TimeUpdatable _timeUpdatable;
 
-        public StarCandyBoostEffect()
+        private int _effectNumber;
+        private float _effectInterval;
+        private Transform _parent;
+
+        public StarCandyBoostEffect(int effectNumber = -1, float interval = -1)
         {
+            if (effectNumber > 0) _effectNumber = effectNumber;
+            else _effectNumber = S_effectNumber;
+
+            if (interval > 0) _effectInterval = interval;
+            else _effectInterval = S_EffectInterval;
+            
             for (int i = 0; i < _effectNumber; i++)
             {
                 Vector2 center = GridTransform.ToReal(new Vector2Int(0, i * 3 + 1));
                 _effects.Add(new StarCandyEffect(_targetLayerMask, new Bounds(center, new Vector2(20, GridTransform.GridSetting.GridHeight * 3))));
             }
+
+            _parent = GameObject.FindWithTag("Items").transform;
         }
         
         public override void Effect()
@@ -414,7 +430,7 @@ namespace MoonBunny.Effects
         {
             _timer += delta;
 
-            if (_timer >= S_EffectInterval)
+            if (_timer >= _effectInterval)
             {
                 if (_effects.Count <= 0)
                 {
@@ -423,7 +439,18 @@ namespace MoonBunny.Effects
                 }
                 
                 _effects[0].Effect();
+                Obstacle[] destroyedObstacles = _effects[0].DestroyedObstacles;
+                foreach (Obstacle obstacle in destroyedObstacles)
+                {
+                    Vector3 point = obstacle.transform.position;
+
+                    MonoBehaviour.Instantiate(S_CoinPrefab, point + new Vector3(-GridTransform.GridSetting.GridWidth/2, GridTransform.GridSetting.GridHeight/2), Quaternion.identity, _parent);
+                    MonoBehaviour.Instantiate(S_CoinPrefab, point + new Vector3(GridTransform.GridSetting.GridWidth/2, GridTransform.GridSetting.GridHeight/2), Quaternion.identity, _parent);
+                    MonoBehaviour.Instantiate(S_CoinPrefab, point + new Vector3(-GridTransform.GridSetting.GridWidth/2, -GridTransform.GridSetting.GridHeight/2), Quaternion.identity, _parent);
+                    MonoBehaviour.Instantiate(S_CoinPrefab, point + new Vector3(GridTransform.GridSetting.GridWidth/2, -GridTransform.GridSetting.GridHeight/2), Quaternion.identity, _parent);
+                }
                 _effects.RemoveAt(0);
+                _timer = 0;
             }
         }
     }

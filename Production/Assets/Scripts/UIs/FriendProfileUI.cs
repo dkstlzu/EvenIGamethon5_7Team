@@ -104,7 +104,8 @@ namespace MoonBunny.UIs
         public void OnConfirmButtonClicked()
         {
             GameManager.instance.UsingFriendName = _selectingName;
-            StartSceneUI.ProfileImage.sprite = StartSceneUI.FriendSelectUI.FriendLibraryUIList[(int)_selectingName].ProfileSprite;
+            StartSceneUI.ProfileImage1.sprite = StartSceneUI.FriendSelectUI.FriendLibraryUIList[(int)_selectingName].ProfileSprite;
+            StartSceneUI.ProfileImage2.sprite = StartSceneUI.FriendSelectUI.FriendLibraryUIList[(int)_selectingName].ProfileSprite;
             OnExitButtonClicked();
         }
     }

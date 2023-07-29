@@ -20,6 +20,7 @@ namespace MoonBunny
         public GameObject ThunderEffectPrefab;
         public GameObject WarningEffectPrefab;
         public GameObject ShootingStarEffectPrefab;
+        public GameObject CoinPrefab;
 
         private void Awake()
         {
@@ -32,6 +33,7 @@ namespace MoonBunny
             ThunderEffect.S_ThunderEffectPrefab = ThunderEffectPrefab;
             WarningEffect.S_WarningEffectPrefab = WarningEffectPrefab;
             ShootingStarEffect.S_ShootingStarEffectPrefab = ShootingStarEffectPrefab;
+            StarCandyBoostEffect.S_CoinPrefab = CoinPrefab;
         }
     }
 }

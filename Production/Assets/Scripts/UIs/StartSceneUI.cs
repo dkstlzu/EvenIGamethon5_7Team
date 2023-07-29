@@ -31,7 +31,8 @@ namespace MoonBunny.UIs
         [Header("Money Texts")] 
         public TextMeshProUGUI GoldText1;
         public TextMeshProUGUI GoldText2;
-        public Image ProfileImage;
+        public Image ProfileImage1;
+        public Image ProfileImage2;
 
         private GameManager _gameManager;
 
@@ -46,6 +47,9 @@ namespace MoonBunny.UIs
             _gameManager = GameManager.instance;
             _gameManager.StartSceneUI = this;
             
+            ProfileImage1.sprite = FriendSelectUI.FriendLibraryUIList[(int)_gameManager.UsingFriendName].ProfileSprite;
+            ProfileImage2.sprite = FriendSelectUI.FriendLibraryUIList[(int)_gameManager.UsingFriendName].ProfileSprite;
+
             GoldText1.text = _gameManager.GoldNumber.ToString();
             GoldText2.text = _gameManager.GoldNumber.ToString();
         }
