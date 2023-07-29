@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 #if UNITY_EDITOR
@@ -136,7 +137,7 @@ namespace MoonBunny
         {
             isVirtual = false;
             _virtualRenderer.enabled = false;
-            _renderer.enabled = false;
+            _renderer.enabled = true;
             InvokeOnCollision = true;
             CheckMovement();
         }
@@ -155,6 +156,8 @@ namespace MoonBunny
 
         public override Collision[] Collide(MoonBunnyRigidbody rigidbody, MoonBunnyCollider.Direction direction)
         {
+            if (!InvokeOnCollision) return Array.Empty<Collision>();
+
             List<Collision> collisions = new List<Collision>();
             
             if (rigidbody.GridObject is Character character)
