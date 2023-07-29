@@ -9,10 +9,12 @@ namespace MoonBunny
     public class SaveData
     {
         [SerializeField] private ReadOnlyEnumDict<FriendName, int> _collectionDict = new ReadOnlyEnumDict<FriendName, int>();
+        [SerializeField] private ReadOnlyEnumDict<FriendName, int> _collectionSellDict = new ReadOnlyEnumDict<FriendName, int>();
         [SerializeField] private ReadOnlyEnumDict<StageName, int> _clearDict = new ReadOnlyEnumDict<StageName, int>();
         [SerializeField] private ReadOnlyEnumDict<QuestType, bool> _questClearDict = new ReadOnlyEnumDict<QuestType, bool>();
 
         public ReadOnlyEnumDict<FriendName, int> CollectionDict => _collectionDict;
+        public ReadOnlyEnumDict<FriendName, int> CollectionSellDict => _collectionSellDict;
         public ReadOnlyEnumDict<StageName, int> ClearDict => _clearDict;
         public ReadOnlyEnumDict<QuestType, bool> QuestClearDict => _questClearDict;
 
@@ -27,6 +29,7 @@ namespace MoonBunny
             {
                 if ((int)friendName < 0) continue;
                 CollectionDict.Add(friendName, 0);
+                CollectionSellDict.Add(friendName, 0);
             }
             
             foreach (StageName stageName in (StageName[])Enum.GetValues(typeof(StageName)))

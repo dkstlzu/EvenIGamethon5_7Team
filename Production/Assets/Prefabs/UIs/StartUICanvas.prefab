@@ -11369,7 +11369,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 600}
+  m_SizeDelta: {x: 0, y: 550}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &6203620054623487560
 GameObject:
@@ -16779,6 +16779,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 6509902869169295284, guid: 78798c94c0435aa4299464c34b8f5ad6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1261327812, guid: a24f2f3676d7bad478e75246411598b3, type: 3}
     - target: {fileID: 8334121829731956416, guid: 78798c94c0435aa4299464c34b8f5ad6, type: 3}
       propertyPath: m_Name
       value: MemoryGoods (5)
@@ -17896,6 +17900,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 6509902869169295284, guid: 78798c94c0435aa4299464c34b8f5ad6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1682133160, guid: a24f2f3676d7bad478e75246411598b3, type: 3}
     - target: {fileID: 8334121829731956416, guid: 78798c94c0435aa4299464c34b8f5ad6, type: 3}
       propertyPath: m_Name
       value: MemoryGoods (3)
@@ -19087,6 +19095,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 6509902869169295284, guid: 78798c94c0435aa4299464c34b8f5ad6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 948150549, guid: a24f2f3676d7bad478e75246411598b3, type: 3}
     - target: {fileID: 8334121829731956416, guid: 78798c94c0435aa4299464c34b8f5ad6, type: 3}
       propertyPath: m_Name
       value: MemoryGoods (4)
@@ -19556,6 +19568,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 6509902869169295284, guid: 78798c94c0435aa4299464c34b8f5ad6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1066861054, guid: a24f2f3676d7bad478e75246411598b3, type: 3}
     - target: {fileID: 8334121829731956416, guid: 78798c94c0435aa4299464c34b8f5ad6, type: 3}
       propertyPath: m_Name
       value: MemoryGoods (2)
@@ -20010,6 +20026,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 6509902869169295284, guid: 78798c94c0435aa4299464c34b8f5ad6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1021032173, guid: a24f2f3676d7bad478e75246411598b3, type: 3}
     - target: {fileID: 8334121829731956416, guid: 78798c94c0435aa4299464c34b8f5ad6, type: 3}
       propertyPath: m_Name
       value: MemoryGoods (1)

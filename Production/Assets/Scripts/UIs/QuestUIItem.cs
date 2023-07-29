@@ -8,5 +8,13 @@ namespace MoonBunny.UIs
     {
         public TextMeshProUGUI Description;
         public Toggle Checker;
+        public QuestName QuestName;
+
+        private Quest _quest;
+
+        void Awake()
+        {
+            _quest = QuestManager.instance.GetQuest(QuestName);
+        }
     }
 }

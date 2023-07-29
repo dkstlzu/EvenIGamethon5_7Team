@@ -19,6 +19,7 @@ namespace MoonBunny
         public FriendName UsingFriendName;
 
         public ReadOnlyEnumDict<FriendName, int> CollectDict;
+        public ReadOnlyEnumDict<FriendName, int> CollectSellDict;
         public ReadOnlyEnumDict<StageName, int> ClearDict;
         public ReadOnlyEnumDict<QuestType, bool> QuestClearDict;
 
@@ -93,6 +94,7 @@ namespace MoonBunny
             if (!useSaveSystem) return;
 #endif
             CollectDict = SaveLoadSystem.SaveData.CollectionDict;
+            CollectSellDict = SaveLoadSystem.SaveData.CollectionSellDict;
             ClearDict = SaveLoadSystem.SaveData.ClearDict;
             QuestClearDict = SaveLoadSystem.SaveData.QuestClearDict;
 

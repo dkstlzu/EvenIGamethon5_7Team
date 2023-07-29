@@ -59,6 +59,8 @@ MonoBehaviour:
   UsingFriendName: 0
   CollectDict:
     _elementList: []
+  CollectSellDict:
+    _elementList: []
   ClearDict:
     _elementList: []
   QuestClearDict:
@@ -216,7 +218,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32cec4899e44a5894a6d85116d1041f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  QuestList: []
+  QuestList:
+  - QuestType: 0
+    CheckTiming: 0
+    TargetProgress: 0
+    CurrentProgress: 0
+    Enabled: 0
+    QuestName: 0
+    DependentTo: 0
+  - QuestType: 1
+    CheckTiming: 0
+    TargetProgress: 0
+    CurrentProgress: 0
+    Enabled: 0
+    QuestName: 0
+    DependentTo: 0
+  - QuestType: 2
+    CheckTiming: 0
+    TargetProgress: 0
+    CurrentProgress: 0
+    Enabled: 0
+    QuestName: 0
+    DependentTo: 0
 --- !u!1 &7393346921992038708
 GameObject:
   m_ObjectHideFlags: 0
