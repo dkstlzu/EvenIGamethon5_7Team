@@ -71,7 +71,7 @@ namespace MoonBunny
         public StageUI UI;
         
         public int GoldNumber;
-        public float GoldMultiplier;
+        public float GoldMultiplier = 1;
 
         public int GainedStar;
         private int _score;
@@ -113,6 +113,7 @@ namespace MoonBunny
 
             _spec = Resources.Load<StageSpec>($"Specs/Stage{StageLevel}Spec");
 
+            // Background and sidewalls range initialize;
             Vector3 backgroundPosition = _backgroundSpriteRenderer.transform.position;
             _backgroundSpriteRenderer.transform.position = new Vector3(backgroundPosition.x, _realHeight/2, backgroundPosition.z);
             _backgroundSpriteRenderer.size = new Vector2(_backgroundSpriteRenderer.size.x, _realHeight + 20);
@@ -139,6 +140,22 @@ namespace MoonBunny
             };
 
             _levelCollider.SetPath(0, path);
+
+            // LevelSummoner setting
+            LevelSummoner.RicecakeNumber = Spec.RicecakeNumber;
+            LevelSummoner.RainbowRicecakeRatio = Spec.RainbowRicecakeRatio;
+            LevelSummoner.CoinNumber = Spec.CoinNumber;
+            LevelSummoner.FriendCollectableNumber = Spec.FriendCollectableNumber;
+
+            LevelSummoner.SummonThunderEnabled = Spec.SummonThunderEnabled;
+            LevelSummoner.SummonThunderInterval = Spec.SummonThunderInterval;
+            LevelSummoner.ThunderWarningTime = Spec.ThunderWarningTime;
+
+            LevelSummoner.SummonShootingStarEnabled = Spec.SummonShootingStarEnabled;
+            LevelSummoner.SummonShootingStarInterval = Spec.SummonShootingStarInterval;
+            LevelSummoner.ShootingStarWarningTime = Spec.ShootingStarWarningTime;
+
+            LevelSummoner.MaxGridHeight = Spec.Height;
         }
 
         private void Start()
@@ -146,7 +163,6 @@ namespace MoonBunny
             _character.Rigidbody.ForcePosition(_startPoint.position);
             _character.Rigidbody.PauseMove();
             
-            LevelSummoner.MaxGridHeight = Spec.Height;
             LevelSummoner.SummonRicecakes();
             LevelSummoner.SummonCoins();
             LevelSummoner.SummonFriendCollectables();
