@@ -31,6 +31,8 @@ namespace MoonBunny.UIs
         [Header("Money Texts")] 
         public TextMeshProUGUI GoldText1;
         public TextMeshProUGUI GoldText2;
+        public TextMeshProUGUI DiamondText1;
+        public TextMeshProUGUI DiamondText2;
         public Image ProfileImage1;
         public Image ProfileImage2;
 
@@ -77,6 +79,10 @@ namespace MoonBunny.UIs
             FriendSelectUI.Open();
         }
 
+        public void OnDiamondPlusButtonClicked()
+        {
+            
+        }
 
         public void OnGoldPlusButtonClicked()
         {
