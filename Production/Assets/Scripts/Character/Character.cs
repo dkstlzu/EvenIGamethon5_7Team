@@ -24,7 +24,6 @@ namespace MoonBunny
         [SerializeField] private int _currentHP;
 
         public List<Buff> BuffList = new List<Buff>();
-        public SpriteRenderer DebuffSpriteRenderer;
 
         public int CurrentHp
         {

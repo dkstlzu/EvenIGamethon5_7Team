@@ -30,9 +30,6 @@ namespace MoonBunny
                 if (character.Friend.Name == FriendName.Sprout)
                 {
                     targetSlow = 1 - ((1 - targetSlow) / 2);
-                } else if (character.Friend.Name == FriendName.Soda)
-                {
-                    
                 }
             }
             

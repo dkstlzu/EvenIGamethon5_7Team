@@ -86,6 +86,7 @@ namespace MoonBunny
         }
 
         private Character _character;
+        public int RevivedNumber { get; set; }
         private float _realHeight =>  GridTransform.GridSetting.GridHeight *  _spec.Height;
         [SerializeField] private SpriteRenderer _backgroundSpriteRenderer;
         [SerializeField] private BoxCollider2D _leftWallCollider;
@@ -225,8 +226,6 @@ namespace MoonBunny
             MoonBunnyRigidbody.DisableAll();
             TimeUpdatable.GlobalSpeed = 0;
             OnStageClear?.Invoke(StageLevel, SubLevel, GainedStar);
-            LevelSummoner.SummonThunderEnable = false;
-            LevelSummoner.SummonShootingStarEnable = false;
         }
 
         public void Fail()
@@ -234,12 +233,11 @@ namespace MoonBunny
             UI.Fail();
             MoonBunnyRigidbody.DisableAll();
             TimeUpdatable.GlobalSpeed = 0;
-            LevelSummoner.SummonThunderEnable = false;
-            LevelSummoner.SummonShootingStarEnable = false;
         }
 
         public void Revive()
         {
+            RevivedNumber++;
             MoonBunnyRigidbody.EnableAll();
             TimeUpdatable.GlobalSpeed = 1;
             new HeartEffect(_character).Effect();

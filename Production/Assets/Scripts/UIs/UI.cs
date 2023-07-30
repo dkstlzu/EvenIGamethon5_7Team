@@ -1,13 +1,28 @@
 ﻿using System;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace MoonBunny.UIs
 {
     public class UI : MonoBehaviour
     {
+        public static void SetColorOfChildren(RectTransform rectTransform, Color color)
+        {
+            var graphics = rectTransform.GetComponentsInChildren<Graphic>();
+
+            foreach (var graphic in graphics)
+            {
+                graphic.color = color;
+            }
+        }
+            
         public CanvasGroup CanvasGroup;
         protected const float DEFAULT_FADE_DURATION = 1;
+
+        public event Action OnOpen;
+        public event Action OnExit;
+        
         protected virtual void Reset()
         {
             CanvasGroup = GetComponent<CanvasGroup>();
@@ -16,11 +31,13 @@ namespace MoonBunny.UIs
         public void Open(float duration = DEFAULT_FADE_DURATION)
         {
             FadeIn(CanvasGroup, duration);
+            OnOpen?.Invoke();
         }
 
         public void OnExitButtonClicked(float duration = DEFAULT_FADE_DURATION)
         {
             FadeOut(CanvasGroup, duration);
+            OnExit?.Invoke();
         }
 
         protected void FadeIn(CanvasGroup cg, float duration = DEFAULT_FADE_DURATION)

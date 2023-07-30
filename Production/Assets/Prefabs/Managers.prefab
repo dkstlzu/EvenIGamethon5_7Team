@@ -132,10 +132,11 @@ MonoBehaviour:
   BouncyPlatformSound: {fileID: 8300000, guid: 3e35fa72656a4594e99720107582a5dd, type: 3}
   OpenStageAudioClip: {fileID: 8300000, guid: 1fdb7f1560016034698d3e970589b4ca, type: 3}
   FriendCollectedAudioClip: {fileID: 8300000, guid: 9e5afcb31f3f2024fa5e57637b72422a, type: 3}
-  SpiderWebDebuffSprite: {fileID: 0}
+  SpiderWebDebuffSprite: {fileID: 21300000, guid: fb0a9939c30559f409b1f7f75d4358cf, type: 3}
   CannibalismEffectPrefab: {fileID: 9127653965126434405, guid: b99b72f4a9666904fbe5e99b58090b10, type: 3}
   StarCandyEffectPrefab: {fileID: 3072994387487185058, guid: 7f997d2f0cc923545a16cd1f37627173, type: 3}
   ThunderEffectPrefab: {fileID: 13301048646092075, guid: 99e78b6b4035d884a8534bf10f2a8096, type: 3}
+  ThunderImpactEffectPrefab: {fileID: 7849791404790678207, guid: 4b02a9aff3cab62438a74180032b4b4f, type: 3}
   WarningEffectPrefab: {fileID: 5105176418460448878, guid: d9d01206de179ba4d912ab7cfb2d3a54, type: 3}
   ShootingStarEffectPrefab: {fileID: 210294969498474542, guid: 0ec458f0f6573e8449038e3e2a74d4f0, type: 3}
   CoinPrefab: {fileID: 5553466026946515911, guid: 33683233be09cd345bba46a8631556d4, type: 3}

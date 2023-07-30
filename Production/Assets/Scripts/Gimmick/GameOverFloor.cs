@@ -11,17 +11,14 @@ namespace MoonBunny
         {
             if (!base.Invoke(with, direction)) return false;
 
-            if (with.tag == "Player")
+            Character character = with.GetComponent<Character>();
+            if (character.FirstJumped)
             {
-                Character character = with.GetComponent<Character>();
-                if (character.FirstJumped)
-                {
-                    character.Hit(null);
-                    character.Hit(null);
-                    character.Hit(null);
-                    GameManager.instance.Stage.Fail();
-                    return true;
-                }
+                character.Hit(null);
+                character.Hit(null);
+                character.Hit(null);
+                GameManager.instance.Stage.Fail();
+                return true;
             }
 
             return false;

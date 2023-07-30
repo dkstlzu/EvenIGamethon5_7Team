@@ -205,7 +205,7 @@ TextureImporter:
         x: 768
         y: 776
         width: 256
-        height: 256
+        height: 248
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -307,9 +307,9 @@ TextureImporter:
       name: MenuCharacterSelectYes1
       rect:
         serializedVersion: 2
-        x: 1
+        x: 18
         y: 278
-        width: 253
+        width: 236
         height: 213
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -330,7 +330,7 @@ TextureImporter:
         serializedVersion: 2
         x: 258
         y: 278
-        width: 253
+        width: 240
         height: 213
       alignment: 0
       pivot: {x: 0.5, y: 0.5}

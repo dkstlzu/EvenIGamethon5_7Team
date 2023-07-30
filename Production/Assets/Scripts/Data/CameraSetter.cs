@@ -11,6 +11,7 @@ namespace MoonBunny
 
         protected void Start()
         {
+            AudioListener.volume = GameManager.instance.VolumeSetting;
             _confiner2D.m_BoundingShape2D = GameManager.instance.Stage.LevelConfiner;
             _confiner2D.InvalidateCache();
         }

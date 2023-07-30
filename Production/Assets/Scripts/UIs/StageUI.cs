@@ -15,7 +15,7 @@ namespace MoonBunny.UIs
     public class StageUI : UI
     {
         public CanvasGroup PauseUI;
-        public CanvasGroup FailUI;
+        public StageFailUI FailUI;
         public CanvasGroup ClearUI;
 
         [SerializeField] private AudioClip _clearAudioClip;
@@ -24,6 +24,8 @@ namespace MoonBunny.UIs
         public Stage Stage;
         [SerializeField] private Button _changeDirectionButton;
 
+        [Header("Pause")] public Toggle SoundToggle;
+        
         [Header("Progress")]
         [SerializeField] private Slider _progressBar;
         [SerializeField] private TextMeshProUGUI _scoreText;
@@ -55,6 +57,7 @@ namespace MoonBunny.UIs
         {
             _character = GameObject.FindWithTag("Player").GetComponent<Character>();
             _currentHP = _character.CurrentHp;
+            SoundToggle.isOn = GameManager.instance.VolumeSetting > 0;
 
             ThunderEffect.OnThunderAttack += OnThunderAttack;
         }
@@ -150,7 +153,7 @@ namespace MoonBunny.UIs
 
         public void Fail()
         {
-            FadeIn(FailUI);
+            FailUI.Open();
             
             SoundManager.instance.PlayClip(_failAudioClip);
         }
@@ -158,7 +161,6 @@ namespace MoonBunny.UIs
         public void Revive()
         {
             Stage.Revive();
-            FadeOut(FailUI, 0);
         }
 
         public void RetryButtonClicked()
@@ -174,6 +176,11 @@ namespace MoonBunny.UIs
                 GameManager.instance.StartSceneUI.FriendSelectUI.OnExitButtonClicked(0);
                 GameManager.instance.StartSceneUI.StageSelectUI.Open(0);
             };
+        }
+
+        public void OnSoundToggle()
+        {
+            GameManager.instance.VolumeSetting = SoundToggle.isOn ? 1 : 0;
         }
 
         public void LoseHP()

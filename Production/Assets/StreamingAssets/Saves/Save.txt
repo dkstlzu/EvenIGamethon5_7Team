@@ -31,6 +31,38 @@
             }
         ]
     },
+    "_collectionSellDict": {
+        "_elementList": [
+            {
+                "EnumKey": 0,
+                "Value": 0
+            },
+            {
+                "EnumKey": 1,
+                "Value": 0
+            },
+            {
+                "EnumKey": 2,
+                "Value": 0
+            },
+            {
+                "EnumKey": 3,
+                "Value": 0
+            },
+            {
+                "EnumKey": 4,
+                "Value": 0
+            },
+            {
+                "EnumKey": 5,
+                "Value": 0
+            },
+            {
+                "EnumKey": 6,
+                "Value": 0
+            }
+        ]
+    },
     "_clearDict": {
         "_elementList": [
             {
@@ -68,10 +100,15 @@
             {
                 "EnumKey": 1,
                 "Value": false
+            },
+            {
+                "EnumKey": 2,
+                "Value": false
             }
         ]
     },
-    "UsingFriendName": "BlackSugar",
-    "GoldNumber": 127,
-    "ShowTutorial": true
+    "UsingFriendName": "Sugar",
+    "GoldNumber": 9824,
+    "ShowTutorial": false,
+    "VolumeSetting": 0.0
 }

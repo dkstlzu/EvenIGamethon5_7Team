@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,6 +25,8 @@ namespace MoonBunny.UIs
             for (int i = 0; i < StageButtonList.Count; i++)
             {
                 int subLevelClear = GameManager.instance.ClearDict[(StageName)i];
+                
+                if (StageButtonList[i].StarImage)
                 StageButtonList[i].StarImage.sprite = StarSpriteList[subLevelClear];
                 
                 if (i+1 < StageButtonList.Count)

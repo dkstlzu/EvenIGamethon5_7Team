@@ -32,14 +32,6 @@ namespace MoonBunny
     [Serializable]
     public class Quest
     {
-        public static Dictionary<QuestType, bool> Datas = new Dictionary<QuestType, bool>();
-
-        [RuntimeInitializeOnLoadMethod]
-        static void Init()
-        {
-            Datas.Clear();
-        }
-
         public QuestType QuestType;
         public QuestCheckTiming CheckTiming;
         public int TargetProgress;

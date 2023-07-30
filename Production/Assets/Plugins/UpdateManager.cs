@@ -111,7 +111,7 @@ namespace dkstlzu.Utility
 
                 _timeUpdatable = new TimeUpdatable(this, 1);
                 
-                UpdateManager.instance.Register(_timeUpdatable);
+                instance.Register(_timeUpdatable);
             }
 
             public void Update(float delta)
@@ -126,9 +126,46 @@ namespace dkstlzu.Utility
             }
         }
         
+        class WhileAction : IUpdatable
+        {
+            private Action<float> _whileAction;
+            private Action _finishAction;
+            private float _time;
+
+            private TimeUpdatable _timeUpdatable;
+            
+            public WhileAction(Action<float> whileAction, Action finishAction, float time)
+            {
+                _whileAction = whileAction;
+                _finishAction = finishAction;
+                _time = time;
+
+                _timeUpdatable = new TimeUpdatable(this, 1);
+                instance.Register(_timeUpdatable);
+            }
+
+            public void Update(float delta)
+            {
+                _time -= delta;
+                
+                _whileAction?.Invoke(_time);
+
+                if (_time <= 0)
+                {
+                    _finishAction?.Invoke();
+                    instance.Unregister(_timeUpdatable);
+                }
+            }
+        }
+        
         public void Delay(Action action, float delay)
         {
             new DelayedAction(action, delay);
+        }
+        
+        public void Delay(Action<float> whileAction, Action finishAction, float delay)
+        {
+            new WhileAction(whileAction, finishAction, delay);
         }
 
         private void Update()
@@ -142,8 +179,17 @@ namespace dkstlzu.Utility
                     i--;
                     continue;
                 }
-                    
-                _updatableList[i].Update(delta);
+
+                try
+                {
+                    _updatableList[i].Update(delta);
+                }
+                catch (Exception e)
+                {
+                    Debug.Log(e + "\n" + "UpdateManager error. auto remove element");
+                    _updatableList.RemoveAt(i);
+                    i--;
+                }
             }
         }
     }

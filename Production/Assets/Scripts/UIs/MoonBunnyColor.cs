@@ -7,6 +7,7 @@ namespace MoonBunny.UIs
     {
         public static Color IconGaugeFull = FromCode("c0f528");
         public static Color BackgroundColor = FromCode("000000", 230);
+        public static Color DisabledColor = FromCode("ffffff", 150);
         
         private static Color FromCode(string code, int alpha = 255)
         {

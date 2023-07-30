@@ -46,6 +46,7 @@ namespace MoonBunny
             string jsonData = JsonUtility.ToJson(data, true);
 #if UNITY_EDITOR
             File.WriteAllText(SaveDataFilePath, jsonData);
+            MoonBunnyLog.print($"Save Data successfully on File {SaveDataFilePath}");
 #else
             
             UnityWebRequest uwr = UnityWebRequest.Put(SaveDataFilePath, jsonData);

@@ -173,6 +173,57 @@ namespace MoonBunny.Effects
             _target.DontIgnoreCollision(_from);
         }
     }
+
+    public class SpriteEffect : IEffect
+    {
+        private float _duration;
+        private float _size;
+        private float _rotate;
+        private GameObject go;
+
+        private float _timer;
+
+        public SpriteEffect(Sprite sprite, Vector3 position, float duration, float size, float rotate)
+        {
+            _duration = duration;
+            _size = size;
+            _rotate = rotate;
+            
+            go = new GameObject(("SpriteEffect"));
+            go.AddComponent<SpriteRenderer>().sprite = sprite;
+            go.transform.position = position;
+            
+            go.SetActive(false);
+        }
+
+        void Update(float time)
+        {
+            _timer = time;
+
+            float offset = Mathf.Abs(_timer - (_duration / 2)) / (_duration/2);
+
+            go.transform.localScale = Vector3.one * ((1 - offset) * _size);
+            
+            go.transform.Rotate(Vector3.forward, _rotate);
+        }
+
+        void Finish()
+        {
+            MonoBehaviour.Destroy(go);
+        }
+
+        public void Effect()
+        {
+            go.SetActive(true);
+            UpdateManager.instance.Delay(Update, Finish, _duration);
+        }
+
+        public SpriteRenderer ReturnEffect()
+        {
+            Effect();
+            return go.GetComponent<SpriteRenderer>();
+        }
+    }
     
     public class TransformForceEffect : IEffect, IUpdatable
     {
@@ -205,8 +256,6 @@ namespace MoonBunny.Effects
 
     public class SlowEffect : IEffect
     {
-        public static Sprite SpiderWebDebuffSprite;
-
         private MoonBunnyRigidbody _target;
         private float _slow;
         private float _duration;
@@ -220,24 +269,14 @@ namespace MoonBunny.Effects
 
         public void Effect()
         {
-            _target.ChangeDelta(_slow, _duration);
-
-            Character character;
-            if (_target.TryGetComponent(out character))
-            {
-                character.DebuffSpriteRenderer.sprite = SpiderWebDebuffSprite;
-                
-                UpdateManager.instance.Delay(() =>
-                {
-                    character.DebuffSpriteRenderer.sprite = null;
-                }, _duration);
-            }
+            _target.ChangeDelta(_target.MoveSacle * _slow, _duration);
         }
     }
 
     public class ThunderEffect : IEffect
     {
         public static GameObject S_ThunderEffectPrefab;
+        public static GameObject S_ThunderImpactEffectPrefab;
         private static LayerMask S_characterLayerMask = LayerMask.GetMask("Character");
         private static float S_duration = 3;
 
@@ -272,8 +311,8 @@ namespace MoonBunny.Effects
             UpdateManager.instance.Delay(() =>
             {
                 Vector3 thunderPosition = new Vector3(_targetColumn * GridTransform.GridSetting.GridWidth + GridTransform.OriginInReal.x,
-                    GameObject.FindWithTag("Player").transform.position.y, 0);
-                MonoBehaviour.Instantiate(S_ThunderEffectPrefab, thunderPosition, Quaternion.identity, GameObject.FindWithTag("Obstacles").transform);
+                    GameObject.FindWithTag("Player").transform.position.y - Camera.main.orthographicSize, 0);
+                MonoBehaviour.Instantiate(S_ThunderEffectPrefab, thunderPosition, Quaternion.identity);
                 Attack();
             }, _warningDuration);
         }
@@ -293,6 +332,10 @@ namespace MoonBunny.Effects
             {
                 if (character.Rigidbody.IsIgnoring(LayerMask.GetMask("Obstacle"))) return;
                 
+                Vector3 thunderPosition = new Vector3(_targetColumn * GridTransform.GridSetting.GridWidth + GridTransform.OriginInReal.x,
+                    GameObject.FindWithTag("Player").transform.position.y, 0);
+                MonoBehaviour.Instantiate(S_ThunderImpactEffectPrefab, thunderPosition, Quaternion.identity, GameObject.FindWithTag("Obstacles").transform);
+
                 character.Hit(null);
                 character.isIgnoringFlip = true;
                 OnThunderAttack?.Invoke(S_duration);

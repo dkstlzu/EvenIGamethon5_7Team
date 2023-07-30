@@ -14,10 +14,10 @@ namespace MoonBunny
         public AudioClip OpenStageAudioClip;
         public AudioClip FriendCollectedAudioClip;
 
-        public Sprite SpiderWebDebuffSprite;
         public GameObject CannibalismEffectPrefab;
         public GameObject StarCandyEffectPrefab;
         public GameObject ThunderEffectPrefab;
+        public GameObject ThunderImpactEffectPrefab;
         public GameObject WarningEffectPrefab;
         public GameObject ShootingStarEffectPrefab;
         public GameObject CoinPrefab;
@@ -27,10 +27,10 @@ namespace MoonBunny
             BouncyPlatform.S_JumpAudioClip = BouncyPlatformSound;
             FriendCollectable.S_FriendCollectedAudioClip = FriendCollectedAudioClip;
             
-            SlowEffect.SpiderWebDebuffSprite = SpiderWebDebuffSprite;
             CannibalismFlower.S_EffectPrefab = CannibalismEffectPrefab;
             StarCandyEffect.S_StarCandyExplosionEffect = StarCandyEffectPrefab;
             ThunderEffect.S_ThunderEffectPrefab = ThunderEffectPrefab;
+            ThunderEffect.S_ThunderImpactEffectPrefab = ThunderImpactEffectPrefab;
             WarningEffect.S_WarningEffectPrefab = WarningEffectPrefab;
             ShootingStarEffect.S_ShootingStarEffectPrefab = ShootingStarEffectPrefab;
             StarCandyBoostEffect.S_CoinPrefab = CoinPrefab;

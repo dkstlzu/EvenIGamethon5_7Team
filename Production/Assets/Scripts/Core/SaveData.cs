@@ -22,6 +22,7 @@ namespace MoonBunny
         public int GoldNumber;
 
         public bool ShowTutorial;
+        public float VolumeSetting;
 
         public SaveData()
         {
@@ -48,6 +49,7 @@ namespace MoonBunny
             GoldNumber = 0;
 
             ShowTutorial = true;
+            VolumeSetting = 1;
         }
 
         public int this[FriendName friendName] => _collectionDict[friendName];

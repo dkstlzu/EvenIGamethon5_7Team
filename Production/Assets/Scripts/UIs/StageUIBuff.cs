@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using dkstlzu.Utility;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -66,24 +67,39 @@ namespace MoonBunny.UIs
             if (duration > 0)
             {
                 Image image = targetGo.GetComponentInChildren<Image>(true);
-                StartCoroutine(BuffTimer(image, duration));
+                new BuffTimer(image, duration);
             }
         }
 
-        IEnumerator BuffTimer(Image image, float time)
+        class BuffTimer : IUpdatable
         {
-            float _timer = time;
+            private Image _image;
+            private float _time;
+            private float _timer;
 
-            while (_timer > 0)
+            private TimeUpdatable _timeUpdatable;
+            public BuffTimer(Image image, float time)
             {
-                _timer -= Time.deltaTime;
+                _image = image;
+                _time = time;
+                _timer = time;
 
-                image.fillAmount = _timer / time;
-
-                yield return new WaitForEndOfFrame();
+                _timeUpdatable = new TimeUpdatable(this, 1);
+                UpdateManager.instance.Register(_timeUpdatable);
             }
-            
-            image.transform.parent.gameObject.SetActive(false);
+
+            public void Update(float delta)
+            {
+                _timer -= delta;
+        
+                _image.fillAmount = _timer / _time;
+
+                if (_timer <= 0)
+                {
+                    _image.transform.parent.gameObject.SetActive(false);
+                    UpdateManager.instance.Unregister(_timeUpdatable);
+                }
+            }
         }
     }
 }

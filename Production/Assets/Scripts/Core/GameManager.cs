@@ -17,8 +17,8 @@ namespace MoonBunny
         {
             TimeUpdatable.GlobalSpeed = 1;
             TimeUpdatable.Enabled = true;
-            GameManager.instance.OnStageSceneLoaded += () => TimeUpdatable.GlobalSpeed = 1;
-            GameManager.instance.OnStageSceneUnloaded += () => TimeUpdatable.GlobalSpeed = 1;
+            instance.OnStageSceneLoaded += () => TimeUpdatable.GlobalSpeed = 1;
+            instance.OnStageSceneUnloaded += () => TimeUpdatable.GlobalSpeed = 1;
         }
 
         
@@ -50,7 +50,17 @@ namespace MoonBunny
         }
 
         public bool ShowTutorial;
-        
+        [SerializeField] private float _volumeSetting;
+        public float VolumeSetting
+        {
+            get => _volumeSetting;
+            set
+            {
+                _volumeSetting = value;
+                AudioListener.volume = value;
+            }
+        }
+
         public event Action OnStageSceneLoaded;
         public event Action OnStageSceneUnloaded;
         
@@ -88,11 +98,6 @@ namespace MoonBunny
             }
         }
 
-        private void OnDestroy()
-        {
-            SaveProgress();
-        }
-
         private void OnApplicationQuit()
         {
             SaveProgress();
@@ -112,6 +117,7 @@ namespace MoonBunny
             GoldNumber = SaveLoadSystem.SaveData.GoldNumber;
 
             ShowTutorial = SaveLoadSystem.SaveData.ShowTutorial;
+            VolumeSetting = SaveLoadSystem.SaveData.VolumeSetting;
         }
 
         public void SaveProgress()
@@ -129,6 +135,7 @@ namespace MoonBunny
             SaveLoadSystem.SaveData.GoldNumber = GoldNumber;
 
             SaveLoadSystem.SaveData.ShowTutorial = ShowTutorial;
+            SaveLoadSystem.SaveData.VolumeSetting = VolumeSetting;
 
             SaveLoadSystem.SaveDatabase();
         }
@@ -150,7 +157,5 @@ namespace MoonBunny
         {
             SceneManager.LoadScene(SceneName.Loading);
         }
-        
-        
     }
 }
