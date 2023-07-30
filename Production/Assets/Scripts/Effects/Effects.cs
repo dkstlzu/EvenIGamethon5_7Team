@@ -68,6 +68,13 @@ namespace MoonBunny.Effects
     public class RocketEffect : IEffect
     {
         private static bool S_isEffectOn = false;
+
+        [RuntimeInitializeOnLoadMethod]
+        static void Init()
+        {
+            S_isEffectOn = false;
+        }
+        
         private MoonBunnyRigidbody _rigidbody;
         private float _upSpeed;
         private float _duration;
