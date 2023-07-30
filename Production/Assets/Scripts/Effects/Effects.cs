@@ -333,7 +333,7 @@ namespace MoonBunny.Effects
                 return;
             }
 
-            Character character = result.GetComponentInParent<Character>();
+            Character character = result.GetComponent<Character>();
 
             if (character)
             {
