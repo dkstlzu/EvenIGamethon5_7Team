@@ -11,11 +11,13 @@ namespace MoonBunny
     public class MoonBunnyRigidbody : MonoBehaviour
     {
         public static List<MoonBunnyRigidbody> S_RigidbodyList = new List<MoonBunnyRigidbody>();
+        public static float MaxYVelocityLimit;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static void ResetList()
         {
             S_RigidbodyList = new List<MoonBunnyRigidbody>();
+            MaxYVelocityLimit = 30;
         }
 
         public static void EnableAll()
@@ -521,7 +523,7 @@ namespace MoonBunny
         
         public void StartMove(float x, float y)
         {
-            Velocity = new Vector2(x, y);
+            Velocity = new Vector2(x, Mathf.Clamp(y, -MoonBunnyRigidbody.MaxYVelocityLimit, MoonBunnyRigidbody.MaxYVelocityLimit));
         }
 
         public void StartMove(Vector2 velocity)
