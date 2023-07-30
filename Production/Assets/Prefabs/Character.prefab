@@ -340,8 +340,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44342a30f9e24963b7611ebeb9b91d16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gravity: 10
-  MoveSacle: 1.6
+  _gravity: 20
+  MoveSacle: 1.2
   GridObject: {fileID: 2034000656419043365}
   ColliderLayerList:
   - Collider: {fileID: 8245130013832087367}
