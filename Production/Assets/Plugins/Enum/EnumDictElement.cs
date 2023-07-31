@@ -47,6 +47,7 @@ namespace dkstlzu.Utility
             }
         }
     }
+
     
     [Serializable]
     public class EnumDict<T, M> : Dictionary<T, M>, ISerializationCallbackReceiver where T : Enum

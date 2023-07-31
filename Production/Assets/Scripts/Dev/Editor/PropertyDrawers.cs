@@ -29,19 +29,10 @@ namespace MoonBunny.Dev.Editor
     [CustomPropertyDrawer(typeof(EnumDict<StageName, int>))]
     public class RWStageNameIntDictPropertyDrawer : EnumDictPropertyDrawer<StageName, int> {}
     
+    [CustomPropertyDrawer(typeof(DictElement<int, Quest>))]
+    public class QuestDictElementPropertyDrawer : DictElementPropertyDrawer<int, Quest> {}
     
-    [CustomPropertyDrawer(typeof(EnumDictElement<QuestName, bool>))]
-    public class QuestNameClearElementPropertyDrawer : EnumDictElementPropertyDrawer<QuestName, bool> {}
-    
-    [CustomPropertyDrawer(typeof(ReadOnlyEnumDict<QuestName, bool>))]
-    public class QuestNameClearDictPropertyDrawer : ReadOnlyEnumDictPropertyDrawer<QuestName, bool> {}
-    
-        
-    [CustomPropertyDrawer(typeof(EnumDictElement<QuestName, int>))]
-    public class RepeatableQuestClearElementPropertyDrawer : EnumDictElementPropertyDrawer<QuestName, int> {}
-    
-    [CustomPropertyDrawer(typeof(ReadOnlyEnumDict<QuestName, int>))]
-    public class RepeatableQuestClearDictPropertyDrawer : ReadOnlyEnumDictPropertyDrawer<QuestName, int> {}
-    
+    [CustomPropertyDrawer(typeof(ReadOnlyWithClassDict<int, Quest>))]
+    public class ROQuestDictPropertyDrawer : ReadOnlyDictPropertyDrawer<int, Quest> {}
 
 }
