@@ -10,6 +10,7 @@ namespace MoonBunny
     {
         public List<Sprite> BouncyPlatformSpriteList;
         public List<RuntimeAnimatorController> BouncyPlatformAnimatorControllerList;
+        public List<RuntimeAnimatorController> CharacterAnimatorControllerList;
         public AudioClip BouncyPlatformSound;
         public AudioClip OpenStageAudioClip;
         public AudioClip FriendCollectedAudioClip;

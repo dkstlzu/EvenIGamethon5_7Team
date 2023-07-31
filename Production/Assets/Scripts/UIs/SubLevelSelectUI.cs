@@ -48,7 +48,7 @@ namespace MoonBunny.UIs
 
             for (int i = 0; i < SubLevelList.Count; i++)
             {
-                SubLevelList[i].Enabled = GameManager.instance.ClearDict[(StageName)_selectingLevel] >= i;
+                SubLevelList[i].Enabled = GameManager.SaveData.ClearDict[(StageName)_selectingLevel] >= i;
                 SubLevelList[i].Image.sprite = SubLevelList[i].Enabled ? SubLevelList[i].SpriteList[_selectingLevel].SubLevelSprite : LockStageSprite;
                 SubLevelList[i].Text.sprite = SubLevelList[i].SpriteList[_selectingLevel].SubLevelTextSprite;
             }

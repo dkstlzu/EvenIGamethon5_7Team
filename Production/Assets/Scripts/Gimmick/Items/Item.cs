@@ -7,6 +7,14 @@ namespace MoonBunny
 {
     public class Item : Gimmick
     {
+        public static event Action OnInvoke;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        static void StaticEventInit()
+        {
+            OnInvoke = null;
+        }
+        
         public int Score;
         [SerializeField] protected SpriteRenderer _renderer;
         [SerializeField] protected AudioClip _audioClip;

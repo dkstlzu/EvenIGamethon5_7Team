@@ -22,19 +22,22 @@ namespace MoonBunny.UIs
 
         private void Awake()
         {
-            for (int i = 0; i < StageButtonList.Count; i++)
+            GameManager.instance.SaveLoadSystem.OnSaveDataLoaded += () =>
             {
-                int subLevelClear = GameManager.instance.ClearDict[(StageName)i];
-                
-                if (StageButtonList[i].StarImage)
-                StageButtonList[i].StarImage.sprite = StarSpriteList[subLevelClear];
-                
-                if (i+1 < StageButtonList.Count)
+                for (int i = 0; i < StageButtonList.Count; i++)
                 {
-                    StageButtonList[i+1].Button.interactable = subLevelClear > 2;
-                    StageButtonList[i+1].LockImage.enabled = subLevelClear <= 2;
+                    int subLevelClear = GameManager.SaveData.ClearDict[(StageName)i];
+
+                    if (StageButtonList[i].StarImage)
+                        StageButtonList[i].StarImage.sprite = StarSpriteList[subLevelClear];
+
+                    if (i + 1 < StageButtonList.Count)
+                    {
+                        StageButtonList[i + 1].Button.interactable = subLevelClear > 2;
+                        StageButtonList[i + 1].LockImage.enabled = subLevelClear <= 2;
+                    }
                 }
-            }
+            };
         }
                 
         public void OnStageButtonClicked(string stageNameStr)

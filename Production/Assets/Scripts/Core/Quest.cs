@@ -5,52 +5,61 @@ using UnityEngine;
 
 namespace MoonBunny
 {
-    public enum QuestType
+    [Serializable]
+    public class QuestSaveData
     {
-        None = -1,
-        Default,
-        Dependent,
-        Repeatable,
-    }
-
-    public enum QuestName
-    {
-        None = -1,
-        Default,
-
-    }
-
-    public enum QuestCheckTiming
-    {
-        OnStageClear,
-        OnCollectionFinish,
-        OnPlayApplication,
-        OnQuitApplication,
+        public int Id;
+        public int CurrentProgress;
+        public bool isFinished;
         
+        public QuestSaveData(int id)
+        {
+            Id = id;
+        }
+    }
+
+    [Serializable]
+    public struct QuestReward
+    {
+        public int GoldReward;
+        public int DiamondReward;
+        public FriendName MemoryTarget;
+        public int MemoryNumber;
     }
     
     [Serializable]
     public class Quest
     {
-        public QuestType QuestType;
-        public QuestCheckTiming CheckTiming;
+        public int Id;
         public int TargetProgress;
         public int CurrentProgress;
-        public bool Enabled;
+        
+        public int DependentId = -1;
+        public bool Repeatable;
+        public string DescriptionText;
+        public string DescriptionTextOnDisabled;
+        public string DescriptionTextOnHidden;
 
-        public QuestName QuestName;
-        public QuestName DependentTo;
+        public QuestReward Reward;
 
-        public event Action<QuestName> OnQuestCompleted;
-        public event Action<int> OnQuestProgressChanged;
+        public bool Enabled = true;
+        public bool Hidden = false;
+        public bool isFinished;
 
-        protected virtual void ProgressAhead()
+        public QuestSaveData SaveData { get; set; }
+        
+        public int PercentProgress => (int)((float)CurrentProgress * 100 / TargetProgress);
+        public bool CanTakeReward => CurrentProgress >= TargetProgress && !isFinished;
+
+        public event Action OnQuestCompleted;
+
+        public void ProgressAhead()
         {
             CurrentProgress++;
             CheckProgress();
         }
 
-        protected virtual void ProgressAhead(int step)
+        public void ProgressAhead(int step)
         {
             CurrentProgress += step;
             CheckProgress();
@@ -58,60 +67,36 @@ namespace MoonBunny
 
         public virtual void CheckProgress()
         {
-            OnQuestProgressChanged?.Invoke(CurrentProgress);
+            if (CurrentProgress >= TargetProgress)
+            {
+                OnQuestCompleted?.Invoke();
+            }
 
-            if (CurrentProgress >= TargetProgress) Complete();
-        }
-
-        public virtual void CheckProgress(FriendName friendName)
-        {
+            SaveData.CurrentProgress = CurrentProgress;
             
+            GameManager.instance.SaveProgress();
         }
 
-        public virtual void CheckProgress(int clearStage, int clearLevel, int gainedStar)
+        public void TakeReward()
         {
+            if (Repeatable)
+            {
+                CurrentProgress -= TargetProgress;
+            }
+            else
+            {
+                isFinished = true;
+            }
+
+            SaveData.isFinished = isFinished;
+            SaveData.CurrentProgress = CurrentProgress;
             
-        }
-
-        protected virtual void Complete()
-        {
-            OnQuestCompleted?.Invoke(QuestName);
-        }
-
-        public void Enable()
-        {
-            Enabled = true;
-        }
-
-        public void Disable()
-        {
-            Enabled = false;
-        }
-    }
-
-    [Serializable]
-    public class DependentQuest : Quest
-    {
-        public Quest DependentOn;
-
-        public DependentQuest(Quest dependentOn)
-        {
-            DependentOn = dependentOn;
-            DependentOn.OnQuestCompleted += (type) => Enable();
-        }
-    }
-
-    [Serializable]
-    public class RepeatableQuest : Quest
-    {
-        public RepeatableQuest()
-        {
-            OnQuestCompleted += (type) => Repeat();
-        }
-
-        public void Repeat()
-        {
-            CurrentProgress = 0;
+            GameManager.instance.GoldNumber += Reward.GoldReward;
+            GameManager.instance.DiamondNumber += Reward.DiamondReward;
+            
+            FriendCollectionManager.instance.Collect(Reward.MemoryTarget, Reward.MemoryNumber);
+            
+            GameManager.instance.SaveProgress();
         }
     }
 }

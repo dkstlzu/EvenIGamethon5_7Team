@@ -42,12 +42,18 @@ namespace MoonBunny
     }
     public class Stage : MonoBehaviour
     {
+        /// <summary>
+        /// Stage Level, Sub Level, Gained Star
+        /// </summary>
         public static event Action<int, int, int> OnStageClear;
 
-        [RuntimeInitializeOnLoadMethod]
+        public static event Action OnNewLevelUnlocked;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static void Init()
         {
             OnStageClear = null;
+            OnNewLevelUnlocked = null;
         }
         
         public StageName Name;
@@ -161,6 +167,7 @@ namespace MoonBunny
 
         private void Start()
         {
+            _character.Animator.runtimeAnimatorController = PreloadedResources.instance.CharacterAnimatorControllerList[(int)_character.Friend.Name];
             _character.Rigidbody.ForcePosition(_startPoint.position);
             _character.Rigidbody.PauseMove();
             
@@ -181,9 +188,9 @@ namespace MoonBunny
             UpdateManager.instance.Register(new TimeUpdatable(LevelSummoner, 1));
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
-            UpdateManager.instance.Unregister(LevelSummoner);
+            UpdateManager.instance?.Unregister(new TimeUpdatable(LevelSummoner, 1));
         }
 
         public void TutorialOn()
@@ -214,10 +221,11 @@ namespace MoonBunny
                 FriendCollectionManager.instance.Collect(element.Key, element.Value);
             }
 
-            GameManager.instance.ClearDict[Name] = Mathf.Max(GameManager.instance.ClearDict[Name], SubLevel+1);
-            
-            GameManager.instance.SaveCollection();
-
+            if (GameManager.SaveData.ClearDict[Name] < SubLevel + 1)
+            {
+                OnNewLevelUnlocked?.Invoke();
+            }
+            GameManager.SaveData.ClearDict[Name] = Mathf.Max(GameManager.SaveData.ClearDict[Name], SubLevel+1);
             GameManager.instance.GoldNumber += (int)(GoldNumber * GoldMultiplier);
             
             GameManager.instance.SaveProgress();

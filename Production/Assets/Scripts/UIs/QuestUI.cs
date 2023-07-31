@@ -8,34 +8,26 @@ namespace MoonBunny.UIs
 {
     public class QuestUI : UI
     {
-        private string _questSpecPath = Path.Combine("Specs", "Quest");
-
-        private string GetFullPath(string specName)
-        {
-            return Path.Combine(_questSpecPath, specName + ".asset");
-        }
-
-        [SerializeField] private List<QuestSpec> _questSpecList = new List<QuestSpec>();
+        public GameObject QuestUIItemPrefab;
+        public Transform UIItemParent;
         public List<QuestUIItem> QuestUIItemList;
 
-        protected override void Reset()
+        private void Start()
         {
-            base.Reset();
-           
-            QuestUIItemList.AddRange(GetComponentsInChildren<QuestUIItem>());
-        }
-
-        private void Awake()
-        {
-            QuestSpec[] specs = Resources.LoadAll<QuestSpec>(_questSpecPath);
-
-            _questSpecList.AddRange(specs);
-
-            for (int i = 0; i < Mathf.Min(QuestUIItemList.Count, _questSpecList.Count); i++)
+            foreach (Quest quest in QuestManager.instance.GetAllQuest())
             {
-                QuestUIItemList[i].Description.text = _questSpecList[i].DescriptionText;
-                QuestUIItemList[i].Checker.isOn = GameManager.instance.QuestClearDict[(QuestType)i];
+                QuestUIItem item = Instantiate(QuestUIItemPrefab, UIItemParent).GetComponent<QuestUIItem>();
+                item.Set(quest);
+                QuestUIItemList.Add(item);
             }
+
+            OnOpen += () =>
+            {
+                foreach (QuestUIItem item in QuestUIItemList)
+                {
+                    item.Rewind();
+                }
+            };
         }
     }
 }

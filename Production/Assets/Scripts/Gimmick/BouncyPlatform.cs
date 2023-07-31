@@ -11,6 +11,15 @@ namespace MoonBunny
 {
     public class BouncyPlatform : Gimmick
     {
+        public static event Action OnInvoke;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        static void StaticEventInit()
+        {
+            OnInvoke = null;
+        }
+        
+        
         public static AudioClip S_JumpAudioClip;
         private static readonly int BounceHash = Animator.StringToHash("Bounce");
 

@@ -28,7 +28,7 @@ namespace MoonBunny.UIs
 
             if (Enum.TryParse<FriendName>(friendName, out firendNameEnum))
             {
-                if (GameManager.instance.CollectSellDict[firendNameEnum] >= MaxSellNumberPerFriend)
+                if (GameManager.SaveData.CollectionSellDict[firendNameEnum] >= MaxSellNumberPerFriend)
                 {
                     NoticeText.DOText(SellLimitExceedText, NoticeTweenDuration);
                     return;

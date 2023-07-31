@@ -14,6 +14,7 @@ using UnityEditor.Experimental.GraphView;
 
 namespace MoonBunny
 {
+    [Serializable]
     public class SaveLoadSystem
     {
         public bool DataIsLoaded;
@@ -122,7 +123,19 @@ namespace MoonBunny
             return (T)LoadJson(typeof(T));
         }
 
-        public event Action OnSaveDataLoaded;
+        private event Action _onSaveDataLoaded;
+        public event Action OnSaveDataLoaded
+        {
+            add
+            {
+                if (DataIsLoaded) value?.Invoke();
+                else _onSaveDataLoaded += value;
+            }
+            remove
+            {
+                _onSaveDataLoaded -= value;
+            }
+        }
 
         public void LoadDatabase()
         {
@@ -136,7 +149,7 @@ namespace MoonBunny
                     SaveDatabase();
                     DataIsLoaded = true;
                     MoonBunnyLog.print("SaveData is loaded fail so made new one");
-                    OnSaveDataLoaded?.Invoke();
+                    _onSaveDataLoaded?.Invoke();
                     return;
                 }
                 
@@ -144,7 +157,7 @@ namespace MoonBunny
                 SaveData = (SaveData)JsonUtility.FromJson(jsonData, typeof(SaveData));
                 DataIsLoaded = true;
                 MoonBunnyLog.print("SaveData is loaded successfully");
-                OnSaveDataLoaded?.Invoke();
+                _onSaveDataLoaded?.Invoke();
             };
         }
 

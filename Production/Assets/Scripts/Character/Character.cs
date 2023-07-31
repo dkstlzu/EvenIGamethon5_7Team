@@ -14,6 +14,7 @@ namespace MoonBunny
         private static readonly int _fallingHash = Animator.StringToHash("isFalling");
 
         [SerializeField] private Animator _animator;
+        public Animator Animator => _animator;
         public SpriteRenderer Renderer;
         public MoonBunnyRigidbody Rigidbody;
 

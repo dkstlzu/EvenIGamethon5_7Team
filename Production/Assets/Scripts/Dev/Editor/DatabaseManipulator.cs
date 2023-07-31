@@ -14,6 +14,7 @@ namespace MoonBunny.Dev.Editor
     {
         private const string CollectionAssetPath = "Assets/Resources/Specs/FriendCollection.asset"; 
         private const string DefaultCollectionAssetPath = "Assets/Resources/Specs/DefaultFriendCollection.asset";
+        private const string QuestAssetPath = "Assets/Resources/Specs/Quest/";
 
         [MenuItem("Dev/Datas/ResetDatas", priority = 10)]
         static void ResetDatas()
@@ -44,7 +45,7 @@ namespace MoonBunny.Dev.Editor
         [MenuItem("Dev/Datas/CreateDefaultSaveData")]
         public static void CreateDefaultSaveDataFile()
         {
-            SaveData data = new SaveData();
+            SaveData data = SaveData.GetDefaultSaveData();
             string jsonData = JsonUtility.ToJson(data, true);
             byte[] byteData = Encoding.UTF8.GetBytes(jsonData);
 
@@ -64,23 +65,8 @@ namespace MoonBunny.Dev.Editor
         [MenuItem("Dev/Datas/CreateFullSaveData")]
         public static void CreateFullSaveDataFile()
         {
-            SaveData data = new SaveData();
+            SaveData data = SaveData.GetFullSaveData();
             
-            FriendCollection collection = AssetDatabase.LoadAssetAtPath<FriendCollection>(CollectionAssetPath);
-
-            for (int i = 0; i < data.CollectionDict.Count; i++)
-            {
-                data.CollectionDict[(FriendName)i] = collection.Datas[i].TargetCollectingNumber;
-            }
-
-            for (int i = 0; i < data.ClearDict.Count; i++)
-            {
-                data.ClearDict[(StageName)i] = 3;
-            }
-
-            data.ShowTutorial = false;
-            data.GoldNumber = 9999;
-
             string jsonData = JsonUtility.ToJson(data, true);
             byte[] byteData = Encoding.UTF8.GetBytes(jsonData);
 

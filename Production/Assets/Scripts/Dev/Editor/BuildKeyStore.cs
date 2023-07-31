@@ -16,12 +16,13 @@ namespace MoonBunny.Dev.Editor
             PlayerSettings.Android.keyaliasPass = KEYPATH;
             PlayerSettings.Android.keystorePass = KEYPASSWORD;
 
+            if (EditorUserBuildSettings.buildAppBundle && !EditorUserBuildSettings.development)
             switch (report.summary.platform)
             {
                 case BuildTarget.Android:
                     PlayerSettings.Android.bundleVersionCode++;
                     break;
-            }
+            } 
         }
 
         public static void BuildMono()

@@ -21,42 +21,69 @@ namespace MoonBunny
             instance.OnStageSceneUnloaded += () => TimeUpdatable.GlobalSpeed = 1;
         }
 
-        
+        public static SaveData SaveData
+        {
+            get
+            {
+                if (!instance.SaveLoadSystem.DataIsLoaded) return null;
+                else return instance.SaveLoadSystem.SaveData;
+            }
+        }
+
         public SceneLoadCallbackSetter SCB;
         public SaveLoadSystem SaveLoadSystem;
 
         public Stage Stage;
-        public FriendName UsingFriendName;
-
-        public ReadOnlyEnumDict<FriendName, int> CollectDict;
-        public ReadOnlyEnumDict<FriendName, int> CollectSellDict;
-        public ReadOnlyEnumDict<StageName, int> ClearDict;
-        public ReadOnlyEnumDict<QuestType, bool> QuestClearDict;
 
         public StartSceneUI StartSceneUI;
-        
 
-        private int _goldNumber;
-
-        public int GoldNumber
+        public FriendName UsingFriendName
         {
-            get => _goldNumber;
+            get => Enum.Parse<FriendName>(SaveData.UsingFriendName);
+            set => SaveData.UsingFriendName = value.ToString();
+        }
+
+        private int _diamondNumber;
+        public int DiamondNumber
+        {
+            get => _diamondNumber;
             set
             {
-                _goldNumber = value;
-                if (StartSceneUI) StartSceneUI.GoldText1.text = value.ToString();
-                if (StartSceneUI) StartSceneUI.GoldText2.text = value.ToString();
+                _diamondNumber = value;
+                if (StartSceneUI)
+                {
+                    StartSceneUI.DiamondText1.text = value.ToString();
+                    StartSceneUI.DiamondText2.text = value.ToString();
+                }
             }
         }
 
-        public bool ShowTutorial;
-        [SerializeField] private float _volumeSetting;
-        public float VolumeSetting
+        public int GoldNumber
         {
-            get => _volumeSetting;
+            get => SaveData.GoldNumber;
             set
             {
-                _volumeSetting = value;
+                SaveData.GoldNumber = value;
+                if (StartSceneUI)
+                {
+                    StartSceneUI.GoldText1.text = value.ToString();
+                    StartSceneUI.GoldText2.text = value.ToString();
+                }
+            }
+        }
+
+        public bool ShowTutorial
+        {
+            get => SaveData.ShowTutorial;
+            set => SaveData.ShowTutorial = value;
+        }
+        
+        public float VolumeSetting
+        {
+            get => SaveData.VolumeSetting;
+            set
+            {
+                SaveData.VolumeSetting = value;
                 AudioListener.volume = value;
             }
         }
@@ -74,8 +101,6 @@ namespace MoonBunny
             if (useSaveSystem)
             {
 #endif
-                SaveLoadSystem = new SaveLoadSystem();
-                SaveLoadSystem.OnSaveDataLoaded += LoadProgress;
                 SaveLoadSystem.LoadDatabase();
 #if UNITY_EDITOR
             }
@@ -103,23 +128,6 @@ namespace MoonBunny
             SaveProgress();
         }
 
-        public void LoadProgress()
-        {
-#if UNITY_EDITOR
-            if (!useSaveSystem) return;
-#endif
-            CollectDict = SaveLoadSystem.SaveData.CollectionDict;
-            CollectSellDict = SaveLoadSystem.SaveData.CollectionSellDict;
-            ClearDict = SaveLoadSystem.SaveData.ClearDict;
-            QuestClearDict = SaveLoadSystem.SaveData.QuestClearDict;
-
-            UsingFriendName = Enum.Parse<FriendName>(SaveLoadSystem.SaveData.UsingFriendName);
-            GoldNumber = SaveLoadSystem.SaveData.GoldNumber;
-
-            ShowTutorial = SaveLoadSystem.SaveData.ShowTutorial;
-            VolumeSetting = SaveLoadSystem.SaveData.VolumeSetting;
-        }
-
         public void SaveProgress()
         {
 #if UNITY_EDITOR
@@ -129,25 +137,6 @@ namespace MoonBunny
             {
                 Debug.LogError("Cannot save progress. SaveLoadsystem never loaded data");
                 return;
-            }
-            
-            SaveLoadSystem.SaveData.UsingFriendName = UsingFriendName.ToString();
-            SaveLoadSystem.SaveData.GoldNumber = GoldNumber;
-
-            SaveLoadSystem.SaveData.ShowTutorial = ShowTutorial;
-            SaveLoadSystem.SaveData.VolumeSetting = VolumeSetting;
-
-            SaveLoadSystem.SaveDatabase();
-        }
-
-        public void SaveCollection()
-        {
-#if UNITY_EDITOR
-            if (!useSaveSystem) return;
-#endif
-            foreach (var data in FriendCollectionManager.instance.Collection.Datas)
-            {
-                SaveLoadSystem.SaveData.CollectionDict[data.Name] = data.CurrentCollectingNumber;
             }
             
             SaveLoadSystem.SaveDatabase();

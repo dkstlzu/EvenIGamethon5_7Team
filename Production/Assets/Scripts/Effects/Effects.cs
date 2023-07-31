@@ -289,7 +289,7 @@ namespace MoonBunny.Effects
 
         public static event Action<float> OnThunderAttack;
 
-        [RuntimeInitializeOnLoadMethod]
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static void ClearEvents()
         {
             OnThunderAttack = null;

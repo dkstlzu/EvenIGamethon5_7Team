@@ -7,6 +7,14 @@ namespace MoonBunny
 {
     public class Obstacle : Gimmick
     {
+        public static event Action OnInvoke;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        static void StaticEventInit()
+        {
+            OnInvoke = null;
+        }
+        
         [SerializeField] protected SpriteRenderer _renderer;
         [SerializeField] protected AudioClip _audioClip;
 
