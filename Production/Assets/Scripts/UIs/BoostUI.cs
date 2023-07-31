@@ -10,7 +10,7 @@ namespace MoonBunny.UIs
     {
         public static int S_ConsumingGold = 0;
 
-        [RuntimeInitializeOnLoadMethod]
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static void Init()
         {
             S_ConsumingGold = 0;

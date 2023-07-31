@@ -8,7 +8,7 @@ namespace MoonBunny
     {
         public static event Action<float, float> OnMangetItemTaken;
 
-        [RuntimeInitializeOnLoadMethod]
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static void ClearEventListeners()
         {
             OnMangetItemTaken = null;

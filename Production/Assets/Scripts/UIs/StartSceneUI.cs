@@ -38,7 +38,7 @@ namespace MoonBunny.UIs
 
         private GameManager _gameManager;
 
-        [RuntimeInitializeOnLoadMethod]
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static void InitializeOnLoad()
         {
             _showCutScene = true;

@@ -9,7 +9,7 @@ namespace MoonBunny
     {
         public static event Action<float, float> OnSpiderwebObstacleTaken;
         
-        [RuntimeInitializeOnLoadMethod]
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static void ClearEventListeners()
         {
             OnSpiderwebObstacleTaken = null;
