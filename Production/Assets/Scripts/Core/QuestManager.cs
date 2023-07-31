@@ -74,7 +74,10 @@ namespace MoonBunny
                 }
             };
 
-            GameManager.instance.Stage.UI.OnDirectionChangeButtonClicked += OnChangeDirection;
+            GameManager.instance.OnStageSceneLoaded += () =>
+            {
+                GameManager.instance.Stage.UI.OnDirectionChangeButtonClicked += OnChangeDirection;
+            };
             FriendCollectionManager.instance.OnCollectFriend += OnCollectFinish;
             Item.OnInvoke += OnItemInvoke;
             Obstacle.OnInvoke += OnObstacleInvoke;
