@@ -10,6 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f2bb93ce317e41fbb690a22862ffdc67, type: 3}
-  m_Name: 1. Default
+  m_Name: 2. HiddenSample
   m_EditorClassIdentifier: 
-  DescriptionText: "\uC0D8\uD50C\uC77C\uAE4C?"
+  Id: 2
+  TargetProgress: 20
+  DependentId: -1
+  Repeatable: 1
+  DescriptionText: "\uC810\uD504\uB97C 20\uBC88 \uD574\uB77C"
+  DescriptionTextOnDisabled: ???????
+  DescriptionTextOnHidden: "\uAE30\uC5B5\uC758 \uC870\uAC01 \uC0D8\uD50C(\uD788\uB4E0)"
+  Reward:
+    GoldReward: 0
+    DiamondReward: 1
+    MemoryTarget: 0
+    MemoryNumber: 0
