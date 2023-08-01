@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18131f2561c44f4d933b1019879be6b4, type: 3}
   m_Name: "0. \uC124\uD0D5\uC774"
   m_EditorClassIdentifier: 
-  Description: 
+  Description: "\uBB34\uC5B8\uAC00\uC5D0 \uC758\uD574 \uAC15\uC81C\uB85C \uC9C0\uAD6C\uC5D0
+    \uBD88\uC2DC\uCC29\uD55C \uB2EC\uD1A0\uB07C. \r\n\uD568\uAED8 \uB5A8\uC5B4\uC9C4
+    \uCE5C\uAD6C\uB4E4\uC744 \uAD6C\uD558\uAE30 \uC704\uD574 \r\n\uC5EC\uD589\uC744
+    \uB5A0\uB098\uAE30\uB85C \uACB0\uC2EC\uD588\uB2E4. \r\n "
   MemoryTexts: []
   StoryText: 
