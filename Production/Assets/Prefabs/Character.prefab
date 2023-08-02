@@ -287,10 +287,10 @@ MonoBehaviour:
   Rigidbody: {fileID: 4521182815814504969}
   FirstJumped: 0
   Friend:
-    _spec: {fileID: 11400000, guid: de0d6d68fdeaf674f9392cccdb55f50b, type: 2}
+    _spec: {fileID: 11400000, guid: a2ad83f6f1d262749a63580849a476d4, type: 2}
     Name: 0
-    HorizontalSpeed: 1
-    JumpPower: 1
+    HorizontalSpeed: 2
+    JumpPower: 2
     MagneticPower: 0
   MagneticField: {fileID: 6427175580982026930}
   _currentHP: 3
@@ -340,7 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44342a30f9e24963b7611ebeb9b91d16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gravity: 20
+  _gravity: 28
   MoveSacle: 1.2
   GridObject: {fileID: 2034000656419043365}
   ColliderLayerList:
