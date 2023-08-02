@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39fb64055b894cc29d854e8131d8729a, type: 3}
   m_Name: "\uC554\uD1A0\uB871"
   m_EditorClassIdentifier: 
-  HorizontalJumpSpeed: 2
+  HorizontalJumpSpeed: 1
   VerticalJumpSpeed: 2
   MagneticPower: 4
