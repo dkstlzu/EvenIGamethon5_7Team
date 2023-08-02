@@ -19,7 +19,8 @@ namespace MoonBunny
     {
         public bool DataIsLoaded;
         public SaveData SaveData;
-        public string DataSavingFolderPath = Path.Combine(Application.streamingAssetsPath, "Saves");
+        public string DataSavingFolderPath => Path.Combine(Application.streamingAssetsPath, DataSavingFolderName);
+        private string DataSavingFolderName = "Saves";
         private string DataSavingFileName = "Save";
         private string DataSavingExtension = ".txt";
 
@@ -31,7 +32,7 @@ namespace MoonBunny
 
         public SaveLoadSystem(string folder, string fileName, string extension)
         {
-            DataSavingFolderPath = Path.Combine(Application.streamingAssetsPath, folder);
+            DataSavingFolderName = folder;
             DataSavingFileName = fileName;
             DataSavingExtension = "." + extension;
         }
