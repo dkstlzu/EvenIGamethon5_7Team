@@ -46,6 +46,7 @@ namespace MoonBunny.Dev.Editor
         public static void CreateDefaultSaveDataFile()
         {
             SaveData data = SaveData.GetDefaultSaveData();
+            
             string jsonData = JsonUtility.ToJson(data, true);
             byte[] byteData = Encoding.UTF8.GetBytes(jsonData);
 
