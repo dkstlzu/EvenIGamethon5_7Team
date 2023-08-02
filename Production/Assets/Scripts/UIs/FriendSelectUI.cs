@@ -27,6 +27,7 @@ namespace MoonBunny.UIs
                 if (!FriendCollectionManager.instance.Collection.Datas[i].IsFinish()) continue;
                 
                 FriendLibraryUIList[i].SelectButton.interactable = true;
+                FriendLibraryUIList[i].SelectButton.image.sprite = FriendProfileUI.FriendSpriteList[i];
                 string name = StringValue.GetStringValue(FriendCollectionManager.instance.Collection.Datas[i].Name);
                 FriendLibraryUIList[i].NameText.text = name;
             }

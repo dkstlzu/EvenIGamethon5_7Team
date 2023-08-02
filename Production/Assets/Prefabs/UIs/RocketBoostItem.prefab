@@ -296,8 +296,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7786386352237510158}
-  - component: {fileID: 174989895436366904}
   - component: {fileID: 580975824625508439}
+  - component: {fileID: 6716818720295248328}
   m_Layer: 5
   m_Name: RocketBoostItem
   m_TagString: Untagged
@@ -329,7 +329,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &174989895436366904
+--- !u!114 &580975824625508439
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -338,7 +338,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 6794164811147644765}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: d5958ee286654cfb9a62d4bebf2ed383, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanvasGroup: {fileID: 0}
+  BoostName: RocketBoost
+  Price: 100
+  PriceText: {fileID: 76432940809677948}
+  NoticeText: {fileID: 0}
+  LackOfGoldText: "\uACE8\uB4DC\uB3C4 \uC5C6\uB294\uAC8C!"
+  WarningColor: {r: 1, g: 0, b: 0, a: 1}
+  BoostOnText: "\uBD80\uC2A4\uD2B8 \uC120\uD0DD!"
+  BoostOffText: "\uBD80\uC2A4\uD2B8 \uD574\uC81C!"
+  NormalColor: {r: 0, g: 0, b: 0, a: 1}
+  TweenDuration: 0.2
+  CheckerImage: {fileID: 165476000387442796}
+  Checked: 0
+--- !u!114 &6716818720295248328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6794164811147644765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79919bf9d1c844d08eccc87f1b52f130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -369,12 +394,12 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 8924755597962805452}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 580975824625508439}
-        m_TargetAssemblyTypeName: Prefabs.UIs.BoostUI, Assembly-CSharp
+        m_TargetAssemblyTypeName: MoonBunny.UIs.BoostUI, Assembly-CSharp
         m_MethodName: OnClicked
         m_Mode: 1
         m_Arguments:
@@ -382,34 +407,10 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Rocket
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &580975824625508439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6794164811147644765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5958ee286654cfb9a62d4bebf2ed383, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CanvasGroup: {fileID: 0}
-  BoostName: RocketBoost
-  Price: 100
-  PriceText: {fileID: 76432940809677948}
-  NoticeText: {fileID: 0}
-  LackOfGoldText: "\uACE8\uB4DC\uB3C4 \uC5C6\uB294\uAC8C!"
-  WarningColor: {r: 1, g: 0, b: 0, a: 1}
-  BoostOnText: "\uBD80\uC2A4\uD2B8 \uC120\uD0DD!"
-  BoostOffText: "\uBD80\uC2A4\uD2B8 \uD574\uC81C!"
-  NormalColor: {r: 0, g: 0, b: 0, a: 1}
-  TweenDuration: 0.2
-  CheckerImage: {fileID: 165476000387442796}
-  Checked: 0
+  ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
 --- !u!1 &8945032655190430933
 GameObject:
   m_ObjectHideFlags: 0

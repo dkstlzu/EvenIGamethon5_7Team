@@ -1885,7 +1885,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7196188587901330085}
-  - component: {fileID: 73528981312870230}
+  - component: {fileID: 2299441506321581284}
   m_Layer: 5
   m_Name: DirectionButton
   m_TagString: Untagged
@@ -1914,7 +1914,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &73528981312870230
+--- !u!114 &2299441506321581284
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1923,7 +1923,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2816230068508737703}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 79919bf9d1c844d08eccc87f1b52f130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -1970,6 +1970,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
 --- !u!1 &2839944654915684190
 GameObject:
   m_ObjectHideFlags: 0
@@ -5065,6 +5066,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 1
+  ButtonSound: {fileID: 0}
   SwapTargetImage: {fileID: 7661008114086554022}
   ToggleOnSprite: {fileID: 152967719, guid: 2ec8ce2adf08cf3459c46b0ed3b1fbc3, type: 3}
   ToggleOffSprite: {fileID: 1652691570, guid: 2ec8ce2adf08cf3459c46b0ed3b1fbc3, type: 3}
@@ -5628,7 +5630,7 @@ MonoBehaviour:
   _clearAudioClip: {fileID: 8300000, guid: ecdbb0a145f3dcf4799ab0a5b78ce7f2, type: 3}
   _failAudioClip: {fileID: 8300000, guid: e1dd7c957f2d8fe48b28765a9e2bacdb, type: 3}
   Stage: {fileID: 0}
-  _changeDirectionButton: {fileID: 73528981312870230}
+  _changeDirectionButton: {fileID: 0}
   SoundToggle: {fileID: 5861189206355041406}
   _progressBar: {fileID: 2231172796606403176}
   _scoreText: {fileID: 3443909609328036117}

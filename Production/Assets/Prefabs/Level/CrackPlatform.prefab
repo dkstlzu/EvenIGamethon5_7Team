@@ -136,6 +136,7 @@ MonoBehaviour:
     GridPosition: {x: 0, y: 0}
   InvokeOnCollision: 1
   _animator: {fileID: 5552177862712556466}
+  _audioClip: {fileID: 8300000, guid: ca6ceabe87cd2314e958c12f9abb5686, type: 3}
 --- !u!61 &6844837169341423732
 BoxCollider2D:
   m_ObjectHideFlags: 0

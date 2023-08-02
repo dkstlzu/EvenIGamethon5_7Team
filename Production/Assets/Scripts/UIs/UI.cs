@@ -27,14 +27,24 @@ namespace MoonBunny.UIs
         {
             CanvasGroup = GetComponent<CanvasGroup>();
         }
+
+        public void Open()
+        {
+            Open(DEFAULT_FADE_DURATION);
+        }
         
-        public void Open(float duration = DEFAULT_FADE_DURATION)
+        public void Open(float duration)
         {
             FadeIn(CanvasGroup, duration);
             OnOpen?.Invoke();
         }
 
-        public void OnExitButtonClicked(float duration = DEFAULT_FADE_DURATION)
+        public void OnExitButtonClicked()
+        {
+            OnExitButtonClicked(DEFAULT_FADE_DURATION);
+        }
+
+        public void OnExitButtonClicked(float duration)
         {
             FadeOut(CanvasGroup, duration);
             OnExit?.Invoke();

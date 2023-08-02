@@ -9727,6 +9727,7 @@ GameObject:
   - component: {fileID: 5476174338657290378}
   - component: {fileID: 6293983109367299705}
   - component: {fileID: 6027952493277088653}
+  - component: {fileID: 826538731658574065}
   m_Layer: 0
   m_Name: StarCandyEffect
   m_TagString: FxTemporaire
@@ -14484,6 +14485,19 @@ MonoBehaviour:
     shakesDelay: 0
   animatedLights: []
   fadeOutReference: {fileID: 0}
+--- !u!114 &826538731658574065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3072994387487185058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4bfed34f2f247b19cd53d2d2420825c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioClip: {fileID: 8300000, guid: 90a8f0b608e961e458b592bfc5a83a5a, type: 3}
 --- !u!1 &4780154587585700968
 GameObject:
   m_ObjectHideFlags: 0

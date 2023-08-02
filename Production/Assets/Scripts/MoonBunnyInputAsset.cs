@@ -33,7 +33,7 @@ public partial class @MoonBunnyInputAsset: IInputActionCollection2, IDisposable
                     ""id"": ""3051ea8f-3047-4cee-8359-e80dedaaaba2"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Tap"",
                     ""initialStateCheck"": false
                 },
                 {
