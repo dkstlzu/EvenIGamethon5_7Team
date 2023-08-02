@@ -21,7 +21,7 @@ MonoBehaviour:
   CoinNumber: 70
   FriendCollectableNumber: 0
   SummonThunderEnabled: 1
-  SummonThunderInterval: 12
+  SummonThunderInterval: 13
   ThunderWarningTime: 1
   SummonShootingStarEnabled: 0
   SummonShootingStarInterval: 0
