@@ -9,8 +9,11 @@ namespace MoonBunny
         public int TargetProgress;
         public int DependentId = -1;
         public bool Repeatable;
+        [Multiline(5)]
         public string DescriptionText;
+        [Multiline(5)]
         public string DescriptionTextOnDisabled = "???????";
+        [Multiline(5)]
         public string DescriptionTextOnHidden = "???????";
 
         public QuestReward Reward;
