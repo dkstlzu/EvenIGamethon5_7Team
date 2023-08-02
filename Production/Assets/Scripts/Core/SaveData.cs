@@ -67,10 +67,22 @@ namespace MoonBunny
 
         public static SaveData GetFullSaveData()
         {
-            SaveData data = new SaveData();
-            
-            FriendCollection collection = Resources.Load<FriendCollection>(CollectionAssetPath);
+            SaveData data = SaveData.GetDefaultSaveData();
 
+            FriendCollection collection = null;
+            
+#if UNITY_EDITOR
+            if (!UnityEditor.EditorApplication.isPlaying)
+            {
+                collection = UnityEditor.AssetDatabase.LoadAssetAtPath<FriendCollection>(CollectionAssetPath);
+            }
+#endif
+
+            if (collection == null)
+            {
+                collection = Resources.Load<FriendCollection>(CollectionAssetPath);
+            }
+            
             for (int i = 0; i < data.CollectionDict.Count; i++)
             {
                 data.CollectionDict[(FriendName)i] = collection.Datas[i].TargetCollectingNumber;
