@@ -9,7 +9,7 @@ namespace dkstlzu.Utility
         void Update(float delta);
     }
 
-    public class TimeUpdatable : IUpdatable, IEquatable<TimeUpdatable>, IEquatable<IUpdatable>
+    public class TimeUpdatable : IUpdatable
     {
         public static float GlobalSpeed = 1;
         public static bool Enabled;
@@ -41,28 +41,20 @@ namespace dkstlzu.Utility
             _updatable.Update(delta * _speed * GlobalSpeed);
         }
 
-        public bool Equals(IUpdatable other)
-        {
-            if (ReferenceEquals(null, other)) return false;
-            if (ReferenceEquals(_updatable, other)) return true;
-            return Equals(_updatable, other);
-        }
-        
-        public bool Equals(TimeUpdatable other)
-        {
-            if (ReferenceEquals(null, other)) return false;
-            if (ReferenceEquals(this, other)) return true;
-            return Equals(_updatable, other._updatable);
-        }
-
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType() && obj.GetType() != typeof(IUpdatable)) return false;
 
-            if (obj.GetType() == typeof(IUpdatable)) return Equals((IUpdatable)obj);
-            return Equals((TimeUpdatable)obj);
+            if (obj is TimeUpdatable timeUpdatable)
+            {
+                return _updatable.Equals(timeUpdatable._updatable);
+            } else if (obj is IUpdatable updatable)
+            {
+                return _updatable.Equals(updatable);
+            }
+
+            return false;
         }
 
         public override int GetHashCode()
