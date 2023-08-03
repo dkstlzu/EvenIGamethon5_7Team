@@ -5630,7 +5630,7 @@ MonoBehaviour:
   _clearAudioClip: {fileID: 8300000, guid: ecdbb0a145f3dcf4799ab0a5b78ce7f2, type: 3}
   _failAudioClip: {fileID: 8300000, guid: e1dd7c957f2d8fe48b28765a9e2bacdb, type: 3}
   Stage: {fileID: 0}
-  _changeDirectionButton: {fileID: 0}
+  _changeDirectionButton: {fileID: 2299441506321581284}
   SoundToggle: {fileID: 5861189206355041406}
   _progressBar: {fileID: 2231172796606403176}
   _scoreText: {fileID: 3443909609328036117}

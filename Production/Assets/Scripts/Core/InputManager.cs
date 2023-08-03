@@ -13,7 +13,7 @@ namespace MoonBunny
         {
             InputAsset = new MoonBunnyInputAsset();
             InputAsset.Enable();
-            
+
             DisableIngameInput();
 
             GameManager.instance.OnStageSceneLoaded += () => EnableIngameInput();

@@ -17,8 +17,11 @@ namespace MoonBunny
         {
             TimeUpdatable.GlobalSpeed = 1;
             TimeUpdatable.Enabled = true;
-            instance.OnStageSceneLoaded += () => TimeUpdatable.GlobalSpeed = 1;
-            instance.OnStageSceneUnloaded += () => TimeUpdatable.GlobalSpeed = 1;
+            if (instance)
+            {
+                instance.OnStageSceneLoaded += () => TimeUpdatable.GlobalSpeed = 1;
+                instance.OnStageSceneUnloaded += () => TimeUpdatable.GlobalSpeed = 1;
+            }
         }
 
         public static SaveData SaveData
@@ -43,13 +46,12 @@ namespace MoonBunny
             set => SaveData.UsingFriendName = value.ToString();
         }
 
-        private int _diamondNumber;
         public int DiamondNumber
         {
-            get => _diamondNumber;
+            get => SaveData.DiamondNumber;
             set
             {
-                _diamondNumber = value;
+                SaveData.DiamondNumber = value;
                 if (StartSceneUI)
                 {
                     StartSceneUI.DiamondText1.text = value.ToString();
@@ -87,6 +89,8 @@ namespace MoonBunny
                 AudioListener.volume = value;
             }
         }
+
+        public bool RemoveAd;
 
         public event Action OnStageSceneLoaded;
         public event Action OnStageSceneUnloaded;

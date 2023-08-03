@@ -289,8 +289,8 @@ MonoBehaviour:
   Friend:
     _spec: {fileID: 11400000, guid: a2ad83f6f1d262749a63580849a476d4, type: 2}
     Name: 0
-    HorizontalSpeed: 2
-    JumpPower: 2
+    HorizontalSpeed: 1
+    JumpPower: 1
     MagneticPower: 0
   MagneticField: {fileID: 6427175580982026930}
   _currentHP: 3

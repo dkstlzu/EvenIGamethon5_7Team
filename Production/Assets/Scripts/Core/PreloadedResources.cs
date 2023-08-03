@@ -9,6 +9,7 @@ namespace MoonBunny
     public class PreloadedResources : Singleton<PreloadedResources>
     {
         public List<Sprite> BouncyPlatformSpriteList;
+        public List<Sprite> LevelEndPlatformSpriteList;
         public List<RuntimeAnimatorController> BouncyPlatformAnimatorControllerList;
         public List<RuntimeAnimatorController> CharacterAnimatorControllerList;
         public AudioClip BouncyPlatformSound;

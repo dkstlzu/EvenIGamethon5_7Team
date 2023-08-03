@@ -54,6 +54,8 @@ namespace MoonBunny.UIs
 
             GoldText1.text = _gameManager.GoldNumber.ToString();
             GoldText2.text = _gameManager.GoldNumber.ToString();
+            DiamondText1.text = _gameManager.DiamondNumber.ToString();
+            DiamondText2.text = _gameManager.DiamondNumber.ToString();
         }
 
         private void Start()
@@ -81,7 +83,7 @@ namespace MoonBunny.UIs
 
         public void OnDiamondPlusButtonClicked()
         {
-            
+            IAPManager.instance.Diamond100ProductInfo.InitiatePurchase();
         }
 
         public void OnGoldPlusButtonClicked()

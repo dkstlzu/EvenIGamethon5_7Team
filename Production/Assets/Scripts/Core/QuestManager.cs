@@ -110,7 +110,7 @@ namespace MoonBunny
         {
             if (stageLevel == 1 && subLevel == 0)
             {
-                _questDict[0].ProgressAhead();
+                _questDict[1].ProgressAhead();
             }
         }
 

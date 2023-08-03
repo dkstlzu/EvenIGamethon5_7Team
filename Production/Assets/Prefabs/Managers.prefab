@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 4755970094666209831}
   - component: {fileID: 1459504920463896759}
   - component: {fileID: 5048097624571690920}
+  - component: {fileID: 1028992441649865061}
   m_Layer: 0
   m_Name: Managers
   m_TagString: GameController
@@ -70,6 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3043d2eedd14a5faa94760190eecce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TapSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
 --- !u!114 &6680752847438356378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,6 +100,12 @@ MonoBehaviour:
   - {fileID: -19304570, guid: 46f35db5258347740a8dfae7c73c4b99, type: 3}
   - {fileID: -961121361, guid: edf391cc6d5eacf4d93b51c805d8d365, type: 3}
   - {fileID: -654892240, guid: 2aae289d5271ab645a78cf7b977b938d, type: 3}
+  LevelEndPlatformSpriteList:
+  - {fileID: 965661563, guid: 1a22f9a0a4e3b5646a70e4f7be251bc1, type: 3}
+  - {fileID: 1962843608, guid: 1a22f9a0a4e3b5646a70e4f7be251bc1, type: 3}
+  - {fileID: 1240413948, guid: 1a22f9a0a4e3b5646a70e4f7be251bc1, type: 3}
+  - {fileID: 1154674338, guid: 1a22f9a0a4e3b5646a70e4f7be251bc1, type: 3}
+  - {fileID: 2052851898, guid: 1a22f9a0a4e3b5646a70e4f7be251bc1, type: 3}
   BouncyPlatformAnimatorControllerList:
   - {fileID: 9100000, guid: ef84a13ce8bdbb749934b701325899cd, type: 2}
   - {fileID: 22100000, guid: e334c6d11ca58804695bb76d90254a74, type: 2}
@@ -226,13 +234,46 @@ MonoBehaviour:
         _elementList: []
       _questClearList: []
       UsingFriendName: 
+      DiamondNumber: 0
       GoldNumber: 0
       ShowTutorial: 0
       VolumeSetting: 0
-    DataSavingFolderPath: E:/EProjects/EvenI7Team/Production/Assets/StreamingAssets\Saves
   Stage: {fileID: 0}
   StartSceneUI: {fileID: 0}
+  RemoveAd: 0
   useSaveSystem: 1
+--- !u!114 &1028992441649865061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386506531079968234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41da409df8e44954b0a39b3e94c08e4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Diamond100ProductInfo:
+    Name: "100\uB2E4\uC774\uC544"
+    Id: diamond_100
+    Description: "\uB2E4\uC774\uC544100\uAC1C"
+    Price: 100
+  Diamond200ProductInfo:
+    Name: "200\uB2E4\uC774\uC544"
+    Id: diamond_200
+    Description: "\uB2E4\uC774\uC544200\uAC1C"
+    Price: 200
+  Diamond1000ProductInfo:
+    Name: "100\uB2E4\uC774\uC544"
+    Id: diamond_1000
+    Description: "\uB2E4\uC774\uC544100\uAC1C"
+    Price: 1000
+  RemoveAdProductInfo:
+    Name: "\uAD11\uACE0\uC81C\uAC70"
+    Id: remove_ad
+    Description: "\uAD11\uACE0\uC81C\uAC70"
+    Price: 1000
 --- !u!1 &7393346921992038708
 GameObject:
   m_ObjectHideFlags: 0

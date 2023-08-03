@@ -20,6 +20,7 @@ namespace MoonBunny
         public List<QuestSaveData> QuestClearList => _questClearList;
 
         public string UsingFriendName;
+        public int DiamondNumber;
         public int GoldNumber;
 
         public bool ShowTutorial;
@@ -55,6 +56,7 @@ namespace MoonBunny
             }
 
             saveData.UsingFriendName = FriendName.Sugar.ToString();
+            saveData.DiamondNumber = 0;
             saveData.GoldNumber = 0;
 
             saveData.ShowTutorial = true;
@@ -93,8 +95,10 @@ namespace MoonBunny
                 data.ClearDict[(StageName)i] = 3;
             }
 
-            data.ShowTutorial = false;
+            data.DiamondNumber = 9999;
             data.GoldNumber = 9999;
+            
+            data.ShowTutorial = false;
 
             return data;
         }

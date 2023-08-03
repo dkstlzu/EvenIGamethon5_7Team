@@ -146,7 +146,7 @@ namespace MoonBunny
                 var uwr = ((UnityWebRequestAsyncOperation)ao).webRequest;
                 if (uwr.result != UnityWebRequest.Result.Success)
                 {
-                    SaveData = new SaveData();
+                    SaveData = SaveData.GetDefaultSaveData();
                     SaveDatabase();
                     DataIsLoaded = true;
                     MoonBunnyLog.print("SaveData is loaded fail so made new one");

@@ -32,6 +32,8 @@ namespace MoonBunny.UIs
 
         [Space(10)]
         public float TweenDuration;
+
+        public Image CheckerBackgroundImage;
         public Image CheckerImage;
         public bool Checked;
 
@@ -46,6 +48,7 @@ namespace MoonBunny.UIs
             {
                 NoticeText.DOText(BoostOffText, TweenDuration);
                 NoticeText.DOColor(NormalColor, TweenDuration);
+                CheckerBackgroundImage.enabled = false;
                 CheckerImage.enabled = false;
                 Checked = false;
                 S_ConsumingGold -= Price;
@@ -61,6 +64,7 @@ namespace MoonBunny.UIs
             {
                 NoticeText.DOText(BoostOnText, TweenDuration);
                 NoticeText.DOColor(NormalColor, TweenDuration);
+                CheckerBackgroundImage.enabled = !CheckerBackgroundImage.enabled;
                 CheckerImage.enabled = !CheckerImage.enabled;
                 Checked = true;
                 S_ConsumingGold += Price;
