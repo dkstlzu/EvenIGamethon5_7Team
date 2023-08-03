@@ -16,8 +16,8 @@ MonoBehaviour:
   FirstStepScore: 0
   SecondStepScore: 0
   ThirdStepScore: 0
-  RicecakeNumber: 35
-  RainbowRicecakeRatio: 0.2
+  RicecakeNumber: 80
+  RainbowRicecakeRatio: 0.3
   CoinNumber: 35
   FriendCollectableNumber: 3
   SummonThunderEnabled: 0

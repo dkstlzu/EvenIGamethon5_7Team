@@ -16,7 +16,7 @@ MonoBehaviour:
   FirstStepScore: 0
   SecondStepScore: 0
   ThirdStepScore: 0
-  RicecakeNumber: 85
+  RicecakeNumber: 75
   RainbowRicecakeRatio: 0.2
   CoinNumber: 85
   FriendCollectableNumber: 3
