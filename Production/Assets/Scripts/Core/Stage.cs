@@ -45,14 +45,24 @@ namespace MoonBunny
         /// <summary>
         /// Stage Level, Sub Level, Gained Star
         /// </summary>
-        public static event Action<int, int, int> OnStageClear;
+        public static event Action<Stage> OnStageClear;
 
-        public static event Action OnNewLevelUnlocked;
+        /// <summary>
+        /// Unlocked StageLevel
+        /// </summary>
+        public static event Action<int> OnNewStageUnlocked;
+        
+        /// <summary>
+        /// Unlocked SubLevel
+        /// </summary>
+        public static event Action<int> OnNewLevelUnlocked;
+
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static void Init()
         {
             OnStageClear = null;
+            OnNewStageUnlocked = null;
             OnNewLevelUnlocked = null;
         }
 
@@ -119,7 +129,7 @@ namespace MoonBunny
         {
             Name = StringValue.GetEnumValue<StageName>(SceneManager.GetActiveScene().name);
 
-            _spec = Resources.Load<StageSpec>($"{SpecPath}Stage{StageLevel}_{SubLevel}Spec");
+            _spec = Resources.Load<StageSpec>($"{SpecPath}Stage{StageLevel+1}_{SubLevel+1}Spec");
 
             SetEnvironments();
             SetSummoner();
@@ -199,16 +209,6 @@ namespace MoonBunny
             LevelSummoner.SummonRicecakes();
             LevelSummoner.SummonCoins();
             LevelSummoner.SummonFriendCollectables();
-
-            if (StageLevel == 4)
-            {
-                LevelSummoner.SummonThunderEnabled = true;
-            }
-
-            if (StageLevel == 5)
-            {
-                LevelSummoner.SummonShootingStarEnabled = true;
-            }
             
             UpdateManager.instance.Register(new TimeUpdatable(LevelSummoner, 1));
         }
@@ -254,11 +254,17 @@ namespace MoonBunny
                 FriendCollectionManager.instance.Collect(element.Key, element.Value);
             }
 
-            if (GameManager.ProgressSaveData.ClearDict[Name] < SubLevel + 1)
+            if (GameManager.ProgressSaveData.ClearDict[Name] <= SubLevel)
             {
-                OnNewLevelUnlocked?.Invoke();
+                GameManager.ProgressSaveData.ClearDict[Name] = SubLevel+1;
+                OnNewLevelUnlocked?.Invoke(SubLevel+1);
+                
+                if (SubLevel >= 3)
+                {
+                    OnNewStageUnlocked?.Invoke(StageLevel+1);
+                }
             }
-            GameManager.ProgressSaveData.ClearDict[Name] = Mathf.Max(GameManager.ProgressSaveData.ClearDict[Name], SubLevel+1);
+            
             GameManager.instance.GoldNumber += (int)(GoldNumber * GoldMultiplier);
             
             GameManager.instance.SaveProgress();
@@ -266,7 +272,7 @@ namespace MoonBunny
             UI.Clear();
             MoonBunnyRigidbody.DisableAll();
             TimeUpdatable.GlobalSpeed = 0;
-            OnStageClear?.Invoke(StageLevel, SubLevel, GainedStar);
+            OnStageClear?.Invoke(this);
         }
 
         public void Fail()

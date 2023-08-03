@@ -23,7 +23,7 @@ namespace MoonBunny
             if (!UnityEditor.EditorApplication.isPlaying) return;
 #endif
 
-            _renderer.sprite = PreloadedResources.instance.LevelEndPlatformSpriteList[Stage.StageLevel - 1];
+            _renderer.sprite = PreloadedResources.instance.LevelEndPlatformSpriteList[Stage.StageLevel];
         }
     }
 }

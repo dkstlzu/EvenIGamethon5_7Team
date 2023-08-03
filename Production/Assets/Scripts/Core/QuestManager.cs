@@ -11,17 +11,29 @@ namespace MoonBunny
         public SaveLoadSystem SaveLoadSystem;
         [SerializeField] private ReadOnlyWithClassDict<int, Quest> _questDict = new ReadOnlyWithClassDict<int, Quest>();
 
+        public QuestSaveData SaveData
+        {
+            get
+            {
+                if (!instance.SaveLoadSystem.DataIsLoaded) return null;
+                else return instance.SaveLoadSystem.QuestSaveData;
+            }
+        }
+        
         private const string QUEST_PATH = "Specs/Quest/";
-        private static int[] BouncyPlatformJumpCountQuestIds = {}; 
-        private static int[] ChangeDirectionCountQuestIds = {}; 
-        private static int[] ItemIvokeCountQuestIds = {}; 
-        private static int[] ObstacleInvokeCountQuestIds = {}; 
-        private static int[] CoinTakenCountQuestIds = {}; 
-        private static int[] DiamondTakenCountQuestIds = {}; 
-        private static int[] CharacterCollectionQuestIds = {}; 
-        private static int[] NewLevelUnlocckedQuestIds = {}; 
-        private static int[] StageClearQuestIds = {}; 
-        private static int[] StagePerfectClearQuestIds = {}; 
+
+        private const int JUMP_ID = 0;
+        private const int CHANGE_DIRECTION_ID = 1;
+        private const int SIDEWALL_COLLISION_ID = 2;
+        private const int ITEM_TAKEN_ID = 3;
+        private const int OBSTACLE_COLLISION_ID = 4;
+        private const int GOLD_GET_ID = 5;
+        private const int DIAMOND_GET_ID = 6;
+        
+        private const int UNLOCK_STAGE_ID = 100;
+        private const int SUGAR_PERFECTCLEAR_ID = 110;
+        private const int FRIEND_COLLECTION_ID = 130;
+        private const int PERFECTCLEAR_ID = 140;
         
         void SpecialQuestSet(Quest quest)
         {
@@ -125,42 +137,75 @@ namespace MoonBunny
             };
             GameManager.instance.OnStageSceneUnloaded += () =>
             {
-                SaveLoadSystem.SaveProgress();
+                SaveLoadSystem.SaveQuest();
             };
             
             FriendCollectionManager.instance.OnCollectFriendFinish += OnCollectFinish;
             Item.OnInvoke += OnItemInvoke;
             Obstacle.OnInvoke += OnObstacleInvoke;
+            BouncyPlatform.OnInvoke += OnJump;
+            SideWall.OnPlayerCollide += OnSideWallCollision;
+            Stage.OnNewStageUnlocked += OnNewStageUnlocked;
             Stage.OnNewLevelUnlocked += OnNewLevelUnlocked;
             Stage.OnStageClear += OnStageClear;
         }
 
+        private void OnSideWallCollision()
+        {
+            SaveData.SideWallCollisionCount++;
+            _questDict[SIDEWALL_COLLISION_ID].ProgressAhead();
+        }
+
+        private void OnJump()
+        {
+            SaveData.JumpCount++;
+            _questDict[JUMP_ID].ProgressAhead();
+        }
+
         private void OnChangeDirection()
         {
+            SaveData.ChangeDirectionCount++;
+            _questDict[CHANGE_DIRECTION_ID].ProgressAhead();
         }
         
         private void OnCollectFinish(FriendName friendName)
         {
+            int targetID = FRIEND_COLLECTION_ID + (int)friendName - 1;
+            _questDict[targetID].ProgressAhead();
         }
 
         private void OnItemInvoke()
         {
+            SaveData.ItemTakenCount++;
+            _questDict[ITEM_TAKEN_ID].ProgressAhead();
         }
 
         private void OnObstacleInvoke()
         {
+            SaveData.ObstacleCollisionCount++;
+            _questDict[OBSTACLE_COLLISION_ID].ProgressAhead();
         }
 
-
-        private void OnNewLevelUnlocked()
+        private void OnNewStageUnlocked(int stageLevel)
+        {
+            int targetId = UNLOCK_STAGE_ID + stageLevel;
+            _questDict[targetId].ProgressAhead();
+        }
+        
+        private void OnNewLevelUnlocked(int subLevel)
         {
         }
         
-        private void OnStageClear(int stageLevel, int subLevel, int gainedStar)
+        private void OnStageClear(Stage stage)
         {
-            if (stageLevel == 1 && subLevel == 0)
+            if (stage.GainedStar == 3 && GameManager.instance.UsingFriendName == FriendName.Sugar)
             {
-                _questDict[1].ProgressAhead();
+                int targetId = SUGAR_PERFECTCLEAR_ID + stage.StageLevel * 3 + stage.SubLevel;
+                _questDict[targetId].ProgressAhead();                
+            } else if (stage.StageLevel == (int)StageName.StarfulMilkyWay)
+            {
+                int targetId = PERFECTCLEAR_ID + (int)GameManager.instance.UsingFriendName - 1;
+                _questDict[targetId].ProgressAhead();
             }
         }
 

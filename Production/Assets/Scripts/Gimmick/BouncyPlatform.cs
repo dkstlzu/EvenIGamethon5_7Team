@@ -53,12 +53,12 @@ namespace MoonBunny
 #if UNITY_EDITOR
             if (!EditorApplication.isPlaying) return;
 #endif
-            int bounceLevel = JumpPower == 3 ? -1 : JumpPower == 4 ? 0 : JumpPower == 5 ? 1 : 0;
+            int bounceLevel = JumpPower == 3 ? 0 : JumpPower == 4 ? 1 : JumpPower == 5 ? 2 : 1;
             _animator.runtimeAnimatorController =
-                PreloadedResources.instance.BouncyPlatformAnimatorControllerList[GameManager.instance.Stage.StageLevel - 1];
-            _animator.SetInteger("BounceLevel", bounceLevel);
+                PreloadedResources.instance.BouncyPlatformAnimatorControllerList[GameManager.instance.Stage.StageLevel];
+            _animator.SetInteger("BounceLevel", bounceLevel-1);
             _animator.SetTrigger("Set");
-            _renderer.sprite = PreloadedResources.instance.BouncyPlatformSpriteList[(GameManager.instance.Stage.StageLevel - 1) * 3 + bounceLevel + 1];
+            _renderer.sprite = PreloadedResources.instance.BouncyPlatformSpriteList[(GameManager.instance.Stage.StageLevel) * 3 + bounceLevel];
 
             _loopStartPosition = transform.position;
             _loopForwardPosition = GridTransform.ToReal(GridTransform.ToGrid(_loopStartPosition) + new Vector2Int(HorizontalMoveRange, VerticalMoveRange));

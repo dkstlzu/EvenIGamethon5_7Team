@@ -104,8 +104,6 @@ namespace MoonBunny
             }
 
             ItemSaveData.CurrentProgress = CurrentProgress;
-            
-            GameManager.instance.SaveProgress();
         }
 
         public void TakeReward()

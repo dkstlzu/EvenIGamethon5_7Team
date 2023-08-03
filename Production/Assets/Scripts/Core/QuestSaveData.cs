@@ -11,6 +11,14 @@ namespace MoonBunny
 
         public List<QuestItemSaveData> QuestClearList => _questClearList;
 
+        public int JumpCount;
+        public int ChangeDirectionCount;
+        public int SideWallCollisionCount;
+        public int ItemTakenCount;
+        public int ObstacleCollisionCount;
+        public int GoldGetCount;
+        public int DiamondGetCount;
+
         public static QuestSaveData GetDefaultSaveData()
         {
             QuestSaveData saveData = new QuestSaveData();

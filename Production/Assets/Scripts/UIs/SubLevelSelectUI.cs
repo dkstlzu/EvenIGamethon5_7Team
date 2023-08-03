@@ -77,8 +77,8 @@ namespace MoonBunny.UIs
             SceneManager.LoadSceneAsync(StringValue.GetStringValue(_stageName, _subLevelIndex)).completed += (ao) =>
             {
                 Stage stage = GameManager.instance.Stage;
-                stage.StageLevel = _selectingLevel + 1;
-                stage.SubLevel = _subLevelIndex + 1;
+                stage.StageLevel = _selectingLevel;
+                stage.SubLevel = _subLevelIndex;
 
                 Character character = GameObject.FindWithTag("Player").GetComponent<Character>();
 

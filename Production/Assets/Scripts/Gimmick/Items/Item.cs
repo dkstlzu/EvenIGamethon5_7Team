@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using MoonBunny.Effects;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -25,9 +26,7 @@ namespace MoonBunny
             
             if (_audioClip) SoundManager.instance.PlayClip(_audioClip);
             GameManager.instance.Stage.Score += Score;
-            _renderer.enabled = false;
-            GetComponent<Collider2D>().enabled = false;
-            Destroy(gameObject, 2);
+            Destroy(gameObject);
             return true;
         }
     }
