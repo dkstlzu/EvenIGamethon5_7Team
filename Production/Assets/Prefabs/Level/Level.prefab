@@ -837,11 +837,11 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4967dfcee94bddd4ba1430cb6fa1f304, type: 3}
+  m_Sprite: {fileID: 965661563, guid: 1a22f9a0a4e3b5646a70e4f7be251bc1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 2
+  m_DrawMode: 0
   m_Size: {x: 12, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -930,6 +930,7 @@ MonoBehaviour:
     GridPosition: {x: 0, y: 0}
   InvokeOnCollision: 1
   Stage: {fileID: 8967351194144355069}
+  _renderer: {fileID: 7243735031654124080}
 --- !u!61 &1145530004512929840
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -973,7 +974,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 12, y: 1}
+  m_Size: {x: 4, y: 2}
   m_EdgeRadius: 0
 --- !u!1001 &4652361499104842552
 PrefabInstance:
