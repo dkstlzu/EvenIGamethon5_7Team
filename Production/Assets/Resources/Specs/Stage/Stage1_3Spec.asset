@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c69f2ad42c4557b6083487f2910997, type: 3}
-  m_Name: Stage3Spec
+  m_Name: Stage1_3Spec
   m_EditorClassIdentifier: 
-  Height: 120
-  FirstStepScore: 0
-  SecondStepScore: 0
-  ThirdStepScore: 0
+  Height: 100
+  FirstStepScore: 200
+  SecondStepScore: 400
+  ThirdStepScore: 600
   RicecakeNumber: 0
   RainbowRicecakeRatio: 0
-  CoinNumber: 50
+  CoinNumber: 25
   FriendCollectableNumber: 0
   SummonThunderEnabled: 0
   SummonThunderInterval: 0

@@ -55,14 +55,12 @@ namespace MoonBunny
             OnStageClear = null;
             OnNewLevelUnlocked = null;
         }
+
+        private const string SpecPath = "Specs/Stage/";
         
         public StageName Name;
 
-        public int StageLevel
-        {
-            get => IntValue.GetEnumIntValue(Name);
-        }
-
+        public int StageLevel;
         public int SubLevel;
 
         [SerializeField] private Transform _startPoint;
@@ -113,13 +111,40 @@ namespace MoonBunny
             
             GameManager.instance.Stage = this;
             UI.Stage = this;
+            
+            SetCharater();
+        }
+
+        private void Start()
+        {
             Name = StringValue.GetEnumValue<StageName>(SceneManager.GetActiveScene().name);
+
+            _spec = Resources.Load<StageSpec>($"{SpecPath}Stage{StageLevel}_{SubLevel}Spec");
+
+            SetEnvironments();
+            SetSummoner();
+        }
+
+        #region Initialize
+
+        void SetCharater()
+        {
             _character = GameObject.FindWithTag("Player").GetComponent<Character>();
-            FriendSpec spec = Resources.Load<FriendSpec>($"Specs/Friend/{StringValue.GetStringValue(GameManager.instance.UsingFriendName)}");
-            _character.Friend.SetBySpec(spec);
 
-            _spec = Resources.Load<StageSpec>($"Specs/Stage{StageLevel}Spec");
+            FriendSpec[] friendSpecs = Resources.LoadAll<FriendSpec>($"Specs/Friend/");
 
+            foreach (FriendSpec spec in friendSpecs)
+            {
+                if (spec.name.Contains(StringValue.GetStringValue(GameManager.instance.UsingFriendName)))
+                {
+                    FriendSpec targetSpec = spec;
+                    _character.Friend.SetBySpec(targetSpec);
+                }
+            }
+        }
+
+        void SetEnvironments()
+        {
             // Background and sidewalls range initialize;
             Vector3 backgroundPosition = _backgroundSpriteRenderer.transform.position;
             _backgroundSpriteRenderer.transform.position = new Vector3(backgroundPosition.x, _realHeight/2, backgroundPosition.z);
@@ -133,9 +158,9 @@ namespace MoonBunny
             _rightWallCollider.transform.position = new Vector3(rightWallPosition.x, _realHeight/2, rightWallPosition.z);
             _rightWallCollider.size = new Vector2(_rightWallCollider.size.x, _realHeight + 20);
 
-            Vector2 minPoint = GridTransform.ToReal(new Vector2Int(GridTransform.GridXMin, -_spec.Height / 2)) -
-                               GridTransform.GetGridSize() / 2 + Vector2.down * 3;
-            Vector2 maxPoint = GridTransform.ToReal(new Vector2Int(GridTransform.GridXMax, _spec.Height/2)) +
+            Vector2 minPoint = GridTransform.ToReal(new Vector2Int(GridTransform.GridXMin, -Spec.Height / 2)) -
+                GridTransform.GetGridSize() / 2 + Vector2.down * 3;
+            Vector2 maxPoint = GridTransform.ToReal(new Vector2Int(GridTransform.GridXMax, Spec.Height/2)) +
                                GridTransform.GetGridSize() / 2;
 
             Vector2[] path = new Vector2[]
@@ -147,7 +172,10 @@ namespace MoonBunny
             };
 
             _levelCollider.SetPath(0, path);
+        }
 
+        void SetSummoner()
+        {
             // LevelSummoner setting
             LevelSummoner.RicecakeNumber = Spec.RicecakeNumber;
             LevelSummoner.RainbowRicecakeRatio = Spec.RainbowRicecakeRatio;
@@ -163,10 +191,7 @@ namespace MoonBunny
             LevelSummoner.ShootingStarWarningTime = Spec.ShootingStarWarningTime;
 
             LevelSummoner.MaxGridHeight = Spec.Height;
-        }
-
-        private void Start()
-        {
+            
             _character.Animator.runtimeAnimatorController = PreloadedResources.instance.CharacterAnimatorControllerList[(int)_character.Friend.Name];
             _character.Rigidbody.ForcePosition(_startPoint.position);
             _character.Rigidbody.PauseMove();
@@ -187,6 +212,9 @@ namespace MoonBunny
             
             UpdateManager.instance.Register(new TimeUpdatable(LevelSummoner, 1));
         }
+        
+
+        #endregion
 
         private void OnDisable()
         {

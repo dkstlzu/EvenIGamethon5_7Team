@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c69f2ad42c4557b6083487f2910997, type: 3}
+  m_Name: Stage4_1Spec
+  m_EditorClassIdentifier: 
+  Height: 150
+  FirstStepScore: 0
+  SecondStepScore: 0
+  ThirdStepScore: 0
+  RicecakeNumber: 0
+  RainbowRicecakeRatio: 0
+  CoinNumber: 70
+  FriendCollectableNumber: 0
+  SummonThunderEnabled: 1
+  SummonThunderInterval: 13
+  ThunderWarningTime: 1
+  SummonShootingStarEnabled: 0
+  SummonShootingStarInterval: 0
+  ShootingStarWarningTime: 0

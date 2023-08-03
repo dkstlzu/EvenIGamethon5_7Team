@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c69f2ad42c4557b6083487f2910997, type: 3}
-  m_Name: Stage4Spec
+  m_Name: Stage2_2Spec
   m_EditorClassIdentifier: 
-  Height: 150
+  Height: 100
   FirstStepScore: 0
   SecondStepScore: 0
   ThirdStepScore: 0
   RicecakeNumber: 0
   RainbowRicecakeRatio: 0
-  CoinNumber: 70
+  CoinNumber: 35
   FriendCollectableNumber: 0
-  SummonThunderEnabled: 1
-  SummonThunderInterval: 13
-  ThunderWarningTime: 1
+  SummonThunderEnabled: 0
+  SummonThunderInterval: 0
+  ThunderWarningTime: 0
   SummonShootingStarEnabled: 0
   SummonShootingStarInterval: 0
   ShootingStarWarningTime: 0
