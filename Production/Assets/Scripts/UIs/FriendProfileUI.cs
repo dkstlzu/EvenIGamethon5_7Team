@@ -24,6 +24,7 @@ namespace MoonBunny.UIs
         [SerializeField] private TextMeshProUGUI _horizontalSpeed;
         [SerializeField] private TextMeshProUGUI _bounciness;
         [SerializeField] private TextMeshProUGUI _magneticPower;
+        [SerializeField] private TextMeshProUGUI _specialAbility;
         [SerializeField] private TextMeshProUGUI _description;
         [SerializeField] private TextMeshProUGUI _memoryText;
         [SerializeField] private TextMeshProUGUI _storyText;
@@ -45,12 +46,14 @@ namespace MoonBunny.UIs
                 _horizontalSpeed.text = FriendSpecList[index].HorizontalJumpSpeed.ToString();
                 _bounciness.text = FriendSpecList[index].VerticalJumpSpeed.ToString();
                 _magneticPower.text = FriendSpecList[index].MagneticPower.ToString();
+                _specialAbility.text = FriendSpecList[index].SpecialAbility;
             }
             else
             {
                 _horizontalSpeed.text = "???";
                 _bounciness.text = "???";
                 _magneticPower.text = "???";
+                _specialAbility.text = "???";
             }
 
             

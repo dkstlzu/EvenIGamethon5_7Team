@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using dkstlzu.Utility;
+using MoonBunny.Dev;
 using UnityEngine;
 
 namespace MoonBunny
@@ -51,7 +52,7 @@ namespace MoonBunny
         {
             foreach (FriendCollection.Data data in Collection.Datas)
             {
-                data.CurrentCollectingNumber = GameManager.SaveData.CollectionDict[data.Name];
+                data.CurrentCollectingNumber = GameManager.ProgressSaveData.CollectionDict[data.Name];
             }
         }
 
@@ -78,9 +79,15 @@ namespace MoonBunny
             }
             
             FriendCollection.Data data = GetCollectingData(name);
+            if (data == null)
+            {
+                MoonBunnyLog.print($"{name} friend is already collected so can not collected anymore");
+                return;
+            }
+            
             data.CurrentCollectingNumber = Mathf.Clamp(data.CurrentCollectingNumber + number, 0, data.TargetCollectingNumber);
             
-            _gameManager.SaveLoadSystem.SaveData.CollectionDict[name] = data.CurrentCollectingNumber;
+            _gameManager.SaveLoadSystem.ProgressSaveData.CollectionDict[name] = data.CurrentCollectingNumber;
             
             OnCollectFriend?.Invoke(name, data.CurrentCollectingNumber);
             if (data.IsFinish()) CollectFinish(name);
