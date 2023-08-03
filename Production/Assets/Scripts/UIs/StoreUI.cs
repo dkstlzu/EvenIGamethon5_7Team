@@ -9,6 +9,7 @@ namespace MoonBunny.UIs
 {
     public class StoreUI : UI
     {
+        public List<TextMeshProUGUI> MemoryPurchaseTextList;
         public List<TextMeshProUGUI> MemoryPriceTextList;
         public List<int> MemoryPriceList;
 
@@ -17,10 +18,16 @@ namespace MoonBunny.UIs
         
         public TextMeshProUGUI NoticeText;
         public float NoticeTweenDuration;
+        public const string AlreadyCollectedText = "이미 수집 완료한 친구입니다.";
         public const string SellLimitExceedText = "구매 가능한 최대숫자를 넘었습니다";
 
-        private void Awake()
+        private void Start()
         {
+            for (int i = 0; i < MemoryPurchaseTextList.Count; i++)
+            {
+                MemoryPurchaseTextList[i].text = $"{GameManager.ProgressSaveData.CollectionSellDict[(FriendName)(i+1)]}/{PreloadedResources.instance.FriendSpecList[i+1].MaxPurchasableNumber}";
+            }
+            
             for (int i = 0; i < MemoryPriceTextList.Count; i++)
             {
                 MemoryPriceTextList[i].text = MemoryPriceList[i].ToString();
@@ -54,18 +61,23 @@ namespace MoonBunny.UIs
         {
             MoonBunnyLog.print($"Memory Purchase {friendName}");
 
-            FriendName firendNameEnum;
+            FriendName friendNameEnum;
 
-            if (Enum.TryParse<FriendName>(friendName, out firendNameEnum))
+            if (Enum.TryParse<FriendName>(friendName, out friendNameEnum))
             {
-                if (GameManager.ProgressSaveData.CollectionSellDict[firendNameEnum] >= PreloadedResources.instance.FriendSpecList[(int)firendNameEnum].MaxPurchasableNumber)
+                if (FriendCollectionManager.instance.CollectFinished(friendNameEnum))
+                {
+                    NoticeText.DOText(AlreadyCollectedText, NoticeTweenDuration);
+                    return;
+                }
+                if (GameManager.ProgressSaveData.CollectionSellDict[friendNameEnum] >= PreloadedResources.instance.FriendSpecList[(int)friendNameEnum].MaxPurchasableNumber)
                 {
                     NoticeText.DOText(SellLimitExceedText, NoticeTweenDuration);
                     return;
                 }
                 
                 ConfirmUI.Description.text = ConfirmDescription;
-                ConfirmUI.OnConfirm.AddListener(() => BuyMemory(firendNameEnum));
+                ConfirmUI.OnConfirm.AddListener(() => BuyMemory(friendNameEnum));
                 ConfirmUI.Open();
             }
         }
