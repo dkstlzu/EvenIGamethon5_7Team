@@ -236,10 +236,10 @@ TextureImporter:
       name: MenuBoostItemsBox
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 256
-        height: 256
+        x: 25
+        y: 25
+        width: 209
+        height: 216
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

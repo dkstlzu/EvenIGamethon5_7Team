@@ -2,6 +2,7 @@
 using UnityEngine;
 using TMPro;
 using DG.Tweening;
+using MoonBunny.Dev;
 
 namespace MoonBunny.UIs
 {
@@ -12,18 +13,26 @@ namespace MoonBunny.UIs
         public float NoticeTweenDuration;
         public const string SellLimitExceedText = "구매 가능한 최대숫자를 넘었습니다";
 
-        public void OnGatchaClicked()
+        public void OnNormalGotchaClicked()
+        {
+            MoonBunnyLog.print("Normal Gotcha");
+        }
+        
+        public void OnSpecialGotchaClicked()
+        {
+            MoonBunnyLog.print("Special Gotcha");
+        }
+
+
+        private void DoGotcha()
         {
             
         }
 
-        public void DoGatcha()
+        public void OnMemoryPurchase(string friendName)
         {
-            
-        }
+            MoonBunnyLog.print($"Memory Purchase {friendName}");
 
-        public void OnMemoryClicked(string friendName)
-        {
             FriendName firendNameEnum;
 
             if (Enum.TryParse<FriendName>(friendName, out firendNameEnum))
@@ -39,7 +48,7 @@ namespace MoonBunny.UIs
 
         }
 
-        public void BuyMemory(FriendName friendName)
+        void BuyMemory(FriendName friendName)
         {
             
         }
