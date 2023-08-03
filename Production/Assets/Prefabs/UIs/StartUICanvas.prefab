@@ -3963,6 +3963,8 @@ GameObject:
   - component: {fileID: 205820897279451211}
   - component: {fileID: 4179296197404334451}
   - component: {fileID: 2374192228035279710}
+  - component: {fileID: 8981547819498663883}
+  - component: {fileID: 966503151382175924}
   m_Layer: 5
   m_Name: ConfirmUI
   m_TagString: Untagged
@@ -4024,6 +4026,46 @@ MonoBehaviour:
   OnCancel:
     m_PersistentCalls:
       m_Calls: []
+--- !u!223 &8981547819498663883
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723971421248355528}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!114 &966503151382175924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723971421248355528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &1755268501096424660
 GameObject:
   m_ObjectHideFlags: 0
@@ -5075,7 +5117,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 1324}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &133216229596461954
@@ -9386,6 +9428,7 @@ GameObject:
   - component: {fileID: 3651847942966179005}
   - component: {fileID: 2666004142985037472}
   - component: {fileID: 668091113500812755}
+  - component: {fileID: 6314073049776341258}
   m_Layer: 5
   m_Name: image
   m_TagString: Untagged
@@ -9451,6 +9494,114 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6314073049776341258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3538514848420947612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0390bd8b8ffd640b34fe25065ff1df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updateType: 0
+  isSpeedBased: 0
+  hasOnStart: 0
+  hasOnPlay: 0
+  hasOnUpdate: 0
+  hasOnStepComplete: 0
+  hasOnComplete: 0
+  hasOnTweenCreated: 0
+  hasOnRewind: 0
+  onStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onPlay:
+    m_PersistentCalls:
+      m_Calls: []
+  onUpdate:
+    m_PersistentCalls:
+      m_Calls: []
+  onStepComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onTweenCreated:
+    m_PersistentCalls:
+      m_Calls: []
+  onRewind:
+    m_PersistentCalls:
+      m_Calls: []
+  targetIsSelf: 1
+  targetGO: {fileID: 0}
+  tweenTargetIsTargetGO: 1
+  delay: 0
+  duration: 1
+  easeType: 6
+  easeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  loopType: 0
+  loops: 1
+  id: 
+  isRelative: 0
+  isFrom: 0
+  isIndependentUpdate: 0
+  autoKill: 1
+  autoGenerate: 1
+  isActive: 1
+  isValid: 0
+  target: {fileID: 668091113500812755}
+  animationType: 0
+  targetType: 3
+  forcedTargetType: 0
+  autoPlay: 1
+  useTargetAsV3: 0
+  endValueFloat: 0
+  endValueV3: {x: 0, y: 0, z: 0}
+  endValueV2: {x: 0, y: 0}
+  endValueColor: {r: 1, g: 1, b: 1, a: 1}
+  endValueString: 
+  endValueRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  endValueTransform: {fileID: 0}
+  optionalBool0: 0
+  optionalBool1: 0
+  optionalFloat0: 0
+  optionalInt0: 0
+  optionalRotationMode: 0
+  optionalScrambleMode: 0
+  optionalShakeRandomnessMode: 0
+  optionalString: 
 --- !u!1 &3546358050611268812
 GameObject:
   m_ObjectHideFlags: 0
@@ -9879,6 +10030,8 @@ GameObject:
   - component: {fileID: 2549624665132272133}
   - component: {fileID: 9068636426028888948}
   - component: {fileID: 203216724328702907}
+  - component: {fileID: 4703876825238500858}
+  - component: {fileID: 4102305029356028858}
   m_Layer: 5
   m_Name: QuestUI
   m_TagString: Untagged
@@ -9938,6 +10091,46 @@ MonoBehaviour:
   QuestUIItemDict:
     _elementList: []
   _layoutGroup: {fileID: 9218378244249369899}
+--- !u!223 &4703876825238500858
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3805156386290124440}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!114 &4102305029356028858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3805156386290124440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &3837342984088581668
 GameObject:
   m_ObjectHideFlags: 0
@@ -14489,6 +14682,8 @@ GameObject:
   - component: {fileID: 4638330278251007062}
   - component: {fileID: 5644199248445215966}
   - component: {fileID: 8393388765319475536}
+  - component: {fileID: 608137562760082803}
+  - component: {fileID: 870336912253309457}
   m_Layer: 5
   m_Name: SettingUI
   m_TagString: Untagged
@@ -14549,6 +14744,46 @@ MonoBehaviour:
   ConfirmDescriptionText: "\uC815\uB9D0 \uCD08\uAE30\uD654 \uD558\uACA0\uC2B5\uB2C8\uAE4C?\r\n\r\n\uC774\uB294
     \uC601\uAD6C\uC801\uC73C\uB85C \uCD08\uAE30\uD654\uB418\uBA70\r\n\uB418\uB3CC\uB9B4
     \uC218 \uC5C6\uC2B5\uB2C8\uB2E4."
+--- !u!223 &608137562760082803
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5250054775351689699}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!114 &870336912253309457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5250054775351689699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &5266067253790281270
 GameObject:
   m_ObjectHideFlags: 0
@@ -17014,6 +17249,8 @@ GameObject:
   - component: {fileID: 8571321444605524446}
   - component: {fileID: 6882756521566265559}
   - component: {fileID: 8664300546940628295}
+  - component: {fileID: 663557412088215158}
+  - component: {fileID: 8620947280175393243}
   m_Layer: 5
   m_Name: DiamondGoldExchangeUI
   m_TagString: Untagged
@@ -17079,6 +17316,46 @@ MonoBehaviour:
   DiamondNumberPerTrade: 1
   GoldNumberPerTrade: 100
   GoldNumberPerTenTimeTrade: 900
+--- !u!223 &663557412088215158
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6164484281989118772}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!114 &8620947280175393243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6164484281989118772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &6185677298080365545
 GameObject:
   m_ObjectHideFlags: 0
@@ -20375,6 +20652,8 @@ GameObject:
   - component: {fileID: 2770326443478716529}
   - component: {fileID: 2038758089395472560}
   - component: {fileID: 9163122713863015649}
+  - component: {fileID: 7034816155254155004}
+  - component: {fileID: 6540806275139818867}
   m_Layer: 5
   m_Name: StoreUI
   m_TagString: Untagged
@@ -20441,10 +20720,269 @@ MonoBehaviour:
   - {fileID: 958221079119932436}
   - {fileID: 6251287100400872966}
   MemoryPriceList: 010000000200000003000000050000000a000000
+  NormalGotchaImage: {fileID: 668091113500812755}
+  NormalGotchaRewards:
+  - GoldNumber: 50
+    DiamondNumber: 0
+    MemoryType: -1
+    MemoryNumber: 0
+    Potential: 1
+  - GoldNumber: 100
+    DiamondNumber: 0
+    MemoryType: -1
+    MemoryNumber: 0
+    Potential: 1
+  - GoldNumber: 150
+    DiamondNumber: 0
+    MemoryType: -1
+    MemoryNumber: 0
+    Potential: 1
+  - GoldNumber: 300
+    DiamondNumber: 0
+    MemoryType: -1
+    MemoryNumber: 0
+    Potential: 1
+  - GoldNumber: 1000
+    DiamondNumber: 0
+    MemoryType: -1
+    MemoryNumber: 0
+    Potential: 1
+  - GoldNumber: 0
+    DiamondNumber: 1
+    MemoryType: -1
+    MemoryNumber: 0
+    Potential: 1
+  - GoldNumber: 0
+    DiamondNumber: 3
+    MemoryType: -1
+    MemoryNumber: 0
+    Potential: 1
+  - GoldNumber: 0
+    DiamondNumber: 5
+    MemoryType: -1
+    MemoryNumber: 0
+    Potential: 1
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 1
+    MemoryNumber: 1
+    Potential: 1
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 1
+    MemoryNumber: 3
+    Potential: 1
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 1
+    MemoryNumber: 5
+    Potential: 1
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 2
+    MemoryNumber: 1
+    Potential: 1
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 2
+    MemoryNumber: 3
+    Potential: 1
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 2
+    MemoryNumber: 5
+    Potential: 1
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 2
+    MemoryNumber: 10
+    Potential: 1
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 3
+    MemoryNumber: 1
+    Potential: 1
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 3
+    MemoryNumber: 3
+    Potential: 1
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 3
+    MemoryNumber: 5
+    Potential: 1
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 3
+    MemoryNumber: 10
+    Potential: 1
+  SpecialGotchaImage: {fileID: 6003021458501926476}
+  SpecialGotchaRewards:
+  - GoldNumber: 100
+    DiamondNumber: 0
+    MemoryType: -1
+    MemoryNumber: 0
+    Potential: 0
+  - GoldNumber: 200
+    DiamondNumber: 0
+    MemoryType: -1
+    MemoryNumber: 0
+    Potential: 0
+  - GoldNumber: 300
+    DiamondNumber: 0
+    MemoryType: -1
+    MemoryNumber: 0
+    Potential: 0
+  - GoldNumber: 1000
+    DiamondNumber: 0
+    MemoryType: -1
+    MemoryNumber: 0
+    Potential: 0
+  - GoldNumber: 3000
+    DiamondNumber: 0
+    MemoryType: -1
+    MemoryNumber: 0
+    Potential: 0
+  - GoldNumber: 0
+    DiamondNumber: 1
+    MemoryType: -1
+    MemoryNumber: 0
+    Potential: 0
+  - GoldNumber: 0
+    DiamondNumber: 2
+    MemoryType: -1
+    MemoryNumber: 0
+    Potential: 0
+  - GoldNumber: 0
+    DiamondNumber: 3
+    MemoryType: -1
+    MemoryNumber: 0
+    Potential: 0
+  - GoldNumber: 0
+    DiamondNumber: 5
+    MemoryType: -1
+    MemoryNumber: 0
+    Potential: 0
+  - GoldNumber: 0
+    DiamondNumber: 15
+    MemoryType: -1
+    MemoryNumber: 0
+    Potential: 0
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 3
+    MemoryNumber: 1
+    Potential: 0
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 3
+    MemoryNumber: 3
+    Potential: 0
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 3
+    MemoryNumber: 5
+    Potential: 0
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 3
+    MemoryNumber: 10
+    Potential: 0
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 4
+    MemoryNumber: 1
+    Potential: 0
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 4
+    MemoryNumber: 3
+    Potential: 0
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 4
+    MemoryNumber: 5
+    Potential: 0
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 4
+    MemoryNumber: 10
+    Potential: 0
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 5
+    MemoryNumber: 1
+    Potential: 0
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 5
+    MemoryNumber: 3
+    Potential: 0
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 5
+    MemoryNumber: 5
+    Potential: 0
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 6
+    MemoryNumber: 1
+    Potential: 0
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 6
+    MemoryNumber: 2
+    Potential: 0
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 6
+    MemoryNumber: 3
+    Potential: 0
   ConfirmUI: {fileID: 2374192228035279710}
   ConfirmDescription: "\uC815\uB9D0 \uAD6C\uB9E4\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
   NoticeText: {fileID: 711120701944888035}
   NoticeTweenDuration: 0.2
+--- !u!223 &7034816155254155004
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7381935151876186277}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!114 &6540806275139818867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7381935151876186277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &7396008658687075377
 GameObject:
   m_ObjectHideFlags: 0
@@ -20957,6 +21495,8 @@ GameObject:
   - component: {fileID: 2744212292540401802}
   - component: {fileID: 3422648823053599716}
   - component: {fileID: 8962751778837818644}
+  - component: {fileID: 4960947094185907260}
+  - component: {fileID: 433887532792072715}
   m_Layer: 5
   m_Name: FriendProfileUI
   m_TagString: Untagged
@@ -21048,6 +21588,46 @@ MonoBehaviour:
   _profileImage: {fileID: 5133706281880026343}
   _memoryImage: {fileID: 8550508339915824468}
   _content: {fileID: 7970434777621049550}
+--- !u!223 &4960947094185907260
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7555789809300809481}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!114 &433887532792072715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7555789809300809481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &7560278196861094109
 GameObject:
   m_ObjectHideFlags: 0
@@ -21772,6 +22352,8 @@ GameObject:
   - component: {fileID: 3194968335740980532}
   - component: {fileID: 6408232531525247390}
   - component: {fileID: 5383154878051575558}
+  - component: {fileID: 2789907332521257179}
+  - component: {fileID: 4725439090354087540}
   m_Layer: 5
   m_Name: NotImplementedUI
   m_TagString: Untagged
@@ -21825,6 +22407,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanvasGroup: {fileID: 6408232531525247390}
+--- !u!223 &2789907332521257179
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8078115956533277699}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!114 &4725439090354087540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8078115956533277699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &8125329895988958909
 GameObject:
   m_ObjectHideFlags: 0
