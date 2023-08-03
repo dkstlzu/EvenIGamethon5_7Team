@@ -14,6 +14,10 @@ namespace MoonBunny.UIs
         public void OnConfirmButtonClicked()
         {
             OnConfirm?.Invoke();
+            
+            OnConfirm.RemoveAllListeners();
+            OnCancel.RemoveAllListeners();
+            
             OnExitButtonClicked();
         }
 

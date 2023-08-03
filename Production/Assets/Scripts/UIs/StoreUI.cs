@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using DG.Tweening;
+using dkstlzu.Utility;
 using MoonBunny.Dev;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
@@ -31,10 +32,18 @@ namespace MoonBunny.UIs
         public List<TextMeshProUGUI> MemoryPriceTextList;
         public List<int> MemoryPriceList;
 
+        public float GotchaAnimationInterval;
+        
         public Image NormalGotchaImage;
+        public List<Sprite> NormalGotchaAnimationSprites;
         public List<GotchaReward> NormalGotchaRewards;
+        public TextMeshProUGUI NormalGotchaResult;
         public Image SpecialGotchaImage;
+        public List<Sprite> SpecialGotchaAnimationSprites;
         public List<GotchaReward> SpecialGotchaRewards;
+        public TextMeshProUGUI SpecialGotchaResult;
+
+        private const float GOTCHA_RESULT_TWEEN_DURATION = 0.2f;
 
         public ConfirmUI ConfirmUI;
         public string ConfirmDescription = @"정말 구매하시겠습니까?";
@@ -47,7 +56,14 @@ namespace MoonBunny.UIs
 
         public const int NORMAL_GOTCHA_GOLD_COST = 150;
         public const int SPECIAL_GOTCHA_DIAMOND_COST = 3;
-        
+
+        private GraphicRaycaster _graphicRaycaster;
+
+        private void Awake()
+        {
+            _graphicRaycaster = GetComponent<GraphicRaycaster>();
+        }
+
         private void Start()
         {
             for (int i = 0; i < MemoryPurchaseTextList.Count; i++)
@@ -97,50 +113,106 @@ namespace MoonBunny.UIs
 
         private void DoNormalGotcha()
         {
-            GameManager.instance.GoldNumber -= NORMAL_GOTCHA_GOLD_COST;
+            _graphicRaycaster.enabled = false;
 
-            GotchaReward reward = GetRandom(NormalGotchaRewards);
-            
-            if (EqualityComparer<GotchaReward>.Default.Equals(reward, default))
+            for (int i = 0; i < NormalGotchaAnimationSprites.Count; i++)
             {
-                Debug.LogError("Random Error on gotcha. Check again");
-                return;
+                int index = i;
+
+                CoroutineHelper.Delay(() =>
+                {
+                    NormalGotchaImage.sprite = NormalGotchaAnimationSprites[index];
+                }, i * GotchaAnimationInterval);
             }
             
-            GameManager.instance.GoldNumber += reward.GoldNumber;
-            GameManager.instance.DiamondNumber += reward.DiamondNumber;
-
-            if (reward.MemoryNumber > 0 && reward.MemoryType != FriendName.None && !FriendCollectionManager.instance.CollectFinished(reward.MemoryType))
+            CoroutineHelper.Delay(() =>
             {
-                FriendCollectionManager.instance.Collect(reward.MemoryType, reward.MemoryNumber);
-            }
+                GameManager.instance.GoldNumber -= NORMAL_GOTCHA_GOLD_COST;
+
+                GotchaReward reward = GetRandom(NormalGotchaRewards);
             
-            MoonBunnyLog.print($"NormalGotcha reward {reward}");
-            GameManager.instance.SaveProgress();
+                if (EqualityComparer<GotchaReward>.Default.Equals(reward, default))
+                {
+                    Debug.LogError("Random Error on gotcha. Check again");
+                    return;
+                }
+            
+                GameManager.instance.GoldNumber += reward.GoldNumber;
+                GameManager.instance.DiamondNumber += reward.DiamondNumber;
+
+                if (reward.MemoryNumber > 0 && reward.MemoryType != FriendName.None && !FriendCollectionManager.instance.CollectFinished(reward.MemoryType))
+                {
+                    FriendCollectionManager.instance.Collect(reward.MemoryType, reward.MemoryNumber);
+                }
+
+                if (reward.GoldNumber > 0)
+                {
+                    NormalGotchaResult.DOText($"와! {reward.GoldNumber}개의 <sprite=\"GameIcons2\" index=2>를 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
+                } else if (reward.DiamondNumber > 0)
+                {
+                    NormalGotchaResult.DOText($"와! {reward.DiamondNumber}개의 <sprite=\"GameIcons2\" index=6>를 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
+                }
+                else
+                {
+                    NormalGotchaResult.DOText($"와! {reward.MemoryNumber}개의 {StringValue.GetStringValue(reward.MemoryType)}조각을 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
+                }
+            
+                GameManager.instance.SaveProgress();
+
+                _graphicRaycaster.enabled = true;
+            }, NormalGotchaAnimationSprites.Count * GotchaAnimationInterval);
         }
         
         private void DoSpecialGotcha()
         {
-            GameManager.instance.DiamondNumber -= SPECIAL_GOTCHA_DIAMOND_COST;
+            _graphicRaycaster.enabled = false;
 
-            GotchaReward reward = GetRandom(SpecialGotchaRewards);
-            
-            if (EqualityComparer<GotchaReward>.Default.Equals(reward, default))
+            for (int i = 0; i < SpecialGotchaAnimationSprites.Count; i++)
             {
-                Debug.LogError("Random Error on gotcha. Check again");
-                return;
+                int index = i;
+
+                CoroutineHelper.Delay(() =>
+                {
+                    SpecialGotchaImage.sprite = SpecialGotchaAnimationSprites[index];
+                }, i * GotchaAnimationInterval);
             }
             
-            GameManager.instance.GoldNumber += reward.GoldNumber;
-            GameManager.instance.DiamondNumber += reward.DiamondNumber;
-
-            if (reward.MemoryNumber > 0 && !FriendCollectionManager.instance.CollectFinished(reward.MemoryType))
+            CoroutineHelper.Delay(() =>
             {
-                FriendCollectionManager.instance.Collect(reward.MemoryType, reward.MemoryNumber);
-            }
+                GameManager.instance.DiamondNumber -= SPECIAL_GOTCHA_DIAMOND_COST;
+
+                GotchaReward reward = GetRandom(SpecialGotchaRewards);
             
-            MoonBunnyLog.print($"SpecialGotcha reward {reward}");
-            GameManager.instance.SaveProgress(); 
+                if (EqualityComparer<GotchaReward>.Default.Equals(reward, default))
+                {
+                    Debug.LogError("Random Error on gotcha. Check again");
+                    return;
+                }
+            
+                GameManager.instance.GoldNumber += reward.GoldNumber;
+                GameManager.instance.DiamondNumber += reward.DiamondNumber;
+
+                if (reward.MemoryNumber > 0 && !FriendCollectionManager.instance.CollectFinished(reward.MemoryType))
+                {
+                    FriendCollectionManager.instance.Collect(reward.MemoryType, reward.MemoryNumber);
+                }
+            
+                if (reward.GoldNumber > 0)
+                {
+                    SpecialGotchaResult.DOText($"와! {reward.GoldNumber}개의 골드를 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
+                } else if (reward.DiamondNumber > 0)
+                {
+                    SpecialGotchaResult.DOText($"와! {reward.DiamondNumber}개의 다이아를 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
+                }
+                else
+                {
+                    SpecialGotchaResult.DOText($"와! {reward.MemoryNumber}개의 {StringValue.GetStringValue(reward.MemoryType)}조각을 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
+                }
+            
+                GameManager.instance.SaveProgress();
+
+                _graphicRaycaster.enabled = true;
+            }, SpecialGotchaAnimationSprites.Count * GotchaAnimationInterval);
         }
 
         GotchaReward GetRandom(IEnumerable<GotchaReward> rewards)
