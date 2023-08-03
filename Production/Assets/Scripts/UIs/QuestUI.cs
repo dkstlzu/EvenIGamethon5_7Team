@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using dkstlzu.Utility;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace MoonBunny.UIs
 {
@@ -10,22 +11,29 @@ namespace MoonBunny.UIs
     {
         public GameObject QuestUIItemPrefab;
         public Transform UIItemParent;
-        public List<QuestUIItem> QuestUIItemList;
+        public ReadOnlyDict<int, QuestUIItem> QuestUIItemDict = new ReadOnlyDict<int, QuestUIItem>();
 
         private void Start()
         {
-            foreach (Quest quest in QuestManager.instance.GetAllQuest())
+            Quest[] quests = QuestManager.instance.GetAllQuest();
+            List<QuestUIItem> UIItemList = new List<QuestUIItem>();
+
+            for (int i = 0; i < quests.Length; i++)
             {
-                QuestUIItem item = Instantiate(QuestUIItemPrefab, UIItemParent).GetComponent<QuestUIItem>();
-                item.Set(quest);
-                QuestUIItemList.Add(item);
+                UIItemList.Add(Instantiate(QuestUIItemPrefab, UIItemParent).GetComponent<QuestUIItem>().GetComponent<QuestUIItem>());
+            }
+
+            for (int i = 0; i < quests.Length; i++)
+            {
+                UIItemList[i].Set(quests[i]);
+                QuestUIItemDict.Add(UIItemList[i].TargetQuestId, UIItemList[i]);
             }
 
             OnOpen += () =>
             {
-                foreach (QuestUIItem item in QuestUIItemList)
+                foreach (var pair in QuestUIItemDict)
                 {
-                    item.Rewind();
+                    pair.Value.Rewind();
                 }
             };
         }

@@ -47,7 +47,7 @@ namespace MoonBunny
                     DescriptionText = spec.DescriptionText,
                     DescriptionTextOnDisabled = spec.DescriptionTextOnDisabled,
                     DescriptionTextOnHidden = spec.DescriptionTextOnHidden,
-                    Reward = spec.Reward
+                    Reward = spec.Reward,
                 };
 
                 SpecialQuestSet(quest);
@@ -57,10 +57,16 @@ namespace MoonBunny
 
             foreach (var pair in _questDict)
             {
-                if (pair.Value.DependentId > 0)
+                if (pair.Value.DependentId >= 0)
                 {
-                    pair.Value.Enabled = false;
-                    _questDict[pair.Value.DependentId].OnQuestCompleted += () => pair.Value.Enabled = true;
+                    pair.Value.State = QuestState.Disabled;
+                    _questDict[pair.Value.DependentId].OnStateChanged += (state) =>
+                    {
+                        if (state == QuestState.IsFinished)
+                        {
+                            pair.Value.State = QuestState.Enabled;
+                        }
+                    };
                 }
             }
 
@@ -71,10 +77,19 @@ namespace MoonBunny
                 for (int i = 0; i < SaveLoadSystem.QuestSaveData.QuestClearList.Count; i++)
                 {
                     QuestItemSaveData questItemSaveData = SaveLoadSystem.QuestSaveData.QuestClearList[i];
+
+                    Quest targetQuest = _questDict[questItemSaveData.Id];
                     
-                    _questDict[questItemSaveData.Id].CurrentProgress = questItemSaveData.CurrentProgress;
-                    _questDict[questItemSaveData.Id].isFinished = questItemSaveData.isFinished;
-                    _questDict[questItemSaveData.Id].ItemSaveData = questItemSaveData;
+                    targetQuest.CurrentProgress = questItemSaveData.CurrentProgress;
+                    targetQuest.ItemSaveData = questItemSaveData;
+
+                    if (questItemSaveData.isFinished)
+                    {
+                        targetQuest.State = QuestState.IsFinished;
+                    } else if (targetQuest.CurrentProgress >= targetQuest.TargetProgress)
+                    {
+                        targetQuest.State = QuestState.CanTakeReward;
+                    }
                 }
             };
             
@@ -94,6 +109,11 @@ namespace MoonBunny
             Obstacle.OnInvoke += OnObstacleInvoke;
             Stage.OnNewLevelUnlocked += OnNewLevelUnlocked;
             Stage.OnStageClear += OnStageClear;
+        }
+
+        private void OnApplicationQuit()
+        {
+            SaveLoadSystem.SaveQuest();
         }
 
         private void OnChangeDirection()

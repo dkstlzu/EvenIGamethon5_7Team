@@ -26,6 +26,16 @@ namespace MoonBunny
         public FriendName MemoryTarget;
         public int MemoryNumber;
     }
+
+    public enum QuestState
+    {
+        None = -1,
+        Enabled,
+        Disabled,
+        Hidden,
+        CanTakeReward,
+        IsFinished,
+    }
     
     [Serializable]
     public class Quest
@@ -41,17 +51,38 @@ namespace MoonBunny
         public string DescriptionTextOnHidden;
 
         public QuestReward Reward;
+        [SerializeField] private QuestState _state;
 
-        public bool Enabled = true;
-        public bool Hidden = false;
-        public bool isFinished;
+        public QuestState State
+        {
+            get => _state;
+            set
+            {
+                _state = value;
+                
+                switch (_state)
+                {
+                    case QuestState.Enabled:
+                        break;
+                    case QuestState.Disabled:
+                        break;
+                    case QuestState.Hidden:
+                        break;
+                    case QuestState.CanTakeReward:
+                        break;
+                    case QuestState.IsFinished:
+                        break;
+                }
+                
+                OnStateChanged?.Invoke(_state);
+            }
+        }
+
+        public event Action<QuestState> OnStateChanged;
 
         public QuestItemSaveData ItemSaveData { get; set; }
         
         public int PercentProgress => (int)((float)CurrentProgress * 100 / TargetProgress);
-        public bool CanTakeReward => CurrentProgress >= TargetProgress && !isFinished;
-
-        public event Action OnQuestCompleted;
 
         public void ProgressAhead()
         {
@@ -69,7 +100,7 @@ namespace MoonBunny
         {
             if (CurrentProgress >= TargetProgress)
             {
-                OnQuestCompleted?.Invoke();
+                State = QuestState.CanTakeReward;
             }
 
             ItemSaveData.CurrentProgress = CurrentProgress;
@@ -82,13 +113,14 @@ namespace MoonBunny
             if (Repeatable)
             {
                 CurrentProgress -= TargetProgress;
+                State = QuestState.Enabled;
             }
             else
             {
-                isFinished = true;
+                State = QuestState.IsFinished;
             }
 
-            ItemSaveData.isFinished = isFinished;
+            ItemSaveData.isFinished = State == QuestState.IsFinished;
             ItemSaveData.CurrentProgress = CurrentProgress;
             
             GameManager.instance.GoldNumber += Reward.GoldReward;
