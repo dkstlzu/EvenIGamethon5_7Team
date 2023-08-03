@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using DG.Tweening;
@@ -8,10 +9,25 @@ namespace MoonBunny.UIs
 {
     public class StoreUI : UI
     {
-        public int MaxSellNumberPerFriend;
+        public List<TextMeshProUGUI> MemoryPriceTestList;
+        public List<int> MemoryPriceList;
+
+        public ConfirmUI ConfirmUI;
+        public string ConfirmDescription = @"정말 구매하시겠습니까?";
+        
         public TextMeshProUGUI NoticeText;
         public float NoticeTweenDuration;
         public const string SellLimitExceedText = "구매 가능한 최대숫자를 넘었습니다";
+
+        private void Awake()
+        {
+            OnOpen += Rebuild;
+        }
+
+        private void Rebuild()
+        {
+            
+        }
 
         public void OnNormalGotchaClicked()
         {
@@ -37,15 +53,16 @@ namespace MoonBunny.UIs
 
             if (Enum.TryParse<FriendName>(friendName, out firendNameEnum))
             {
-                if (GameManager.ProgressSaveData.CollectionSellDict[firendNameEnum] >= MaxSellNumberPerFriend)
+                if (GameManager.ProgressSaveData.CollectionSellDict[firendNameEnum] >= PreloadedResources.instance.FriendSpecList[(int)firendNameEnum].MaxPurchasableNumber)
                 {
                     NoticeText.DOText(SellLimitExceedText, NoticeTweenDuration);
                     return;
                 }
-
                 
+                ConfirmUI.Description.text = ConfirmDescription;
+                ConfirmUI.OnConfirm.AddListener(() => BuyMemory(firendNameEnum));
+                ConfirmUI.Open();
             }
-
         }
 
         void BuyMemory(FriendName friendName)

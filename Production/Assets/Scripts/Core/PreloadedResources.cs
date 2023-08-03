@@ -12,6 +12,7 @@ namespace MoonBunny
         public List<Sprite> LevelEndPlatformSpriteList;
         public List<RuntimeAnimatorController> BouncyPlatformAnimatorControllerList;
         public List<RuntimeAnimatorController> CharacterAnimatorControllerList;
+        public List<FriendSpec> FriendSpecList;
         public AudioClip BouncyPlatformSound;
         public AudioClip OpenStageAudioClip;
         public AudioClip FriendCollectedAudioClip;

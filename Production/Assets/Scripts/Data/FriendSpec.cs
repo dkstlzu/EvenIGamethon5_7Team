@@ -10,5 +10,6 @@ namespace MoonBunny
         public float VerticalJumpSpeed;
         public float MagneticPower;
         public string SpecialAbility;
+        public int MaxPurchasableNumber;
     }
 }

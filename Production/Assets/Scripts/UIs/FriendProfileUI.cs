@@ -8,7 +8,6 @@ namespace MoonBunny.UIs
 {
     public class FriendProfileUI : UI
     {
-        public List<FriendSpec> FriendSpecList;
         public List<Sprite> FriendSpriteList;
         public List<Sprite> PieceOfMemorySpriteList;
         public List<FriendProfileText> FriendProfileTextList;
@@ -43,10 +42,10 @@ namespace MoonBunny.UIs
 
             if (isCollected)
             {
-                _horizontalSpeed.text = FriendSpecList[index].HorizontalJumpSpeed.ToString();
-                _bounciness.text = FriendSpecList[index].VerticalJumpSpeed.ToString();
-                _magneticPower.text = FriendSpecList[index].MagneticPower.ToString();
-                _specialAbility.text = FriendSpecList[index].SpecialAbility;
+                _horizontalSpeed.text = PreloadedResources.instance.FriendSpecList[index].HorizontalJumpSpeed.ToString();
+                _bounciness.text = PreloadedResources.instance.FriendSpecList[index].VerticalJumpSpeed.ToString();
+                _magneticPower.text = PreloadedResources.instance.FriendSpecList[index].MagneticPower.ToString();
+                _specialAbility.text = PreloadedResources.instance.FriendSpecList[index].SpecialAbility;
             }
             else
             {

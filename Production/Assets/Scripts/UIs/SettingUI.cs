@@ -8,6 +8,13 @@ namespace MoonBunny.UIs
         public SpriteSwappableToggle SoundToggle;
         public SpriteSwappableToggle TutorialToggle;
 
+        public ConfirmUI ConfirmUI;
+        public string ConfirmDescriptionText = 
+            @"정말 초기화 하겠습니까?
+
+이는 영구적으로 초기화되며
+되돌릴 수 없습니다.";
+
         private void Awake()
         {
             SoundToggle.onValueChanged.AddListener(OnSoundToggle);
@@ -38,7 +45,48 @@ namespace MoonBunny.UIs
 
         public void OnResetDataButtonClicked()
         {
-            
+            ConfirmUI.Description.text = ConfirmDescriptionText;
+            ConfirmUI.OnConfirm.AddListener(DataReset);
+            ConfirmUI.Open();
         }
+
+        void DataReset()
+        {
+            bool progressReset = false;
+            bool questReset = false;
+            
+            GameManager.instance.SaveLoadSystem.ProgressSaveData = ProgressSaveData.GetDefaultSaveData();
+            GameManager.instance.SaveLoadSystem.OnSaveSuccess += () =>
+            {
+                progressReset = true;
+
+                if (progressReset && questReset)
+                {
+#if UNITY_EDITOR
+                    UnityEditor.EditorApplication.isPlaying = false;
+#else
+                    Application.Quit();
+#endif
+                }
+            };
+            GameManager.instance.SaveProgress();
+            
+            QuestManager.instance.SaveLoadSystem.QuestSaveData = QuestSaveData.GetDefaultSaveData();
+            QuestManager.instance.SaveLoadSystem.OnSaveSuccess += () =>
+            {
+                questReset = true;
+
+                if (progressReset && questReset)
+                {
+#if UNITY_EDITOR
+                    UnityEditor.EditorApplication.isPlaying = false;
+#else
+                    Application.Quit();
+#endif
+                }
+            };
+            QuestManager.instance.SaveLoadSystem.SaveQuest();
+        }
+
     }
 }

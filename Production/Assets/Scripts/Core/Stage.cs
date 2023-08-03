@@ -141,17 +141,7 @@ namespace MoonBunny
         {
             _character = GameObject.FindWithTag("Player").GetComponent<Character>();
 
-            FriendSpec[] friendSpecs = Resources.LoadAll<FriendSpec>($"Specs/Friend/");
-
-            foreach (FriendSpec spec in friendSpecs)
-            {
-                if (spec.Name == GameManager.instance.UsingFriendName)
-                {
-                    _character.Friend.SetBySpec(spec);
-                    break;
-                }
-            }
-            
+            _character.Friend.SetBySpec(PreloadedResources.instance.FriendSpecList[(int)GameManager.instance.UsingFriendName]);
             _character.Animator.runtimeAnimatorController = PreloadedResources.instance.CharacterAnimatorControllerList[(int)_character.Friend.Name];
             _character.Rigidbody.ForcePosition(_startPoint.position);
             _character.Rigidbody.PauseMove();

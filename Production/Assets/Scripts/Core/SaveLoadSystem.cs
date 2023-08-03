@@ -38,7 +38,9 @@ namespace MoonBunny
             DataSavingFileName = fileName;
             DataSavingExtension = "." + extension;
         }
-            
+
+        public event Action OnSaveSuccess;
+        
         public void SaveJson(object data)
         {
             if (data == null)
@@ -51,12 +53,14 @@ namespace MoonBunny
 #if UNITY_EDITOR
             File.WriteAllText(SaveDataFilePath, jsonData);
             MoonBunnyLog.print($"Save Data successfully on File {SaveDataFilePath}");
+            OnSaveSuccess?.Invoke();
 #else
             
             UnityWebRequest uwr = UnityWebRequest.Put(SaveDataFilePath, jsonData);
             uwr.SendWebRequest().completed += (ao) =>
             {
                 MoonBunnyLog.print("Save Data successfully on UnityWebRequest");
+                OnSaveSuccess?.Invoke();
             };
 #endif
 
