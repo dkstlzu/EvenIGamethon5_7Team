@@ -128,7 +128,7 @@ namespace MoonBunny
                 FriendCollectionManager.instance.Collect(Reward.MemoryTarget, Reward.MemoryNumber);
             }
 
-            if (Reward.GoldReward > 0 || Reward.DiamondReward > 0)
+            if (Reward.GoldReward > 0 || Reward.DiamondReward > 0 || (Reward.MemoryTarget != FriendName.None && Reward.MemoryNumber > 0))
             {
                 GameManager.instance.SaveProgress();
             }
