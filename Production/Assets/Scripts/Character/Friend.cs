@@ -43,8 +43,7 @@ namespace MoonBunny
                 _spec = spec;
             }
 
-            FriendName name = StringValue.GetEnumValue<FriendName>(_spec.name);
-            Name = name;
+            Name = Spec.Name;
                 
             HorizontalSpeed = _spec.HorizontalJumpSpeed;
             JumpPower = _spec.VerticalJumpSpeed;

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39fb64055b894cc29d854e8131d8729a, type: 3}
   m_Name: "4. \uB77C\uB77C"
   m_EditorClassIdentifier: 
+  Name: 4
   HorizontalJumpSpeed: 1
   VerticalJumpSpeed: 1
   MagneticPower: 0

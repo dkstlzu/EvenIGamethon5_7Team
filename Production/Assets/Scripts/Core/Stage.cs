@@ -145,12 +145,16 @@ namespace MoonBunny
 
             foreach (FriendSpec spec in friendSpecs)
             {
-                if (spec.name.Contains(StringValue.GetStringValue(GameManager.instance.UsingFriendName)))
+                if (spec.Name == GameManager.instance.UsingFriendName)
                 {
-                    FriendSpec targetSpec = spec;
-                    _character.Friend.SetBySpec(targetSpec);
+                    _character.Friend.SetBySpec(spec);
+                    break;
                 }
             }
+            
+            _character.Animator.runtimeAnimatorController = PreloadedResources.instance.CharacterAnimatorControllerList[(int)_character.Friend.Name];
+            _character.Rigidbody.ForcePosition(_startPoint.position);
+            _character.Rigidbody.PauseMove();
         }
 
         void SetEnvironments()
@@ -201,11 +205,7 @@ namespace MoonBunny
             LevelSummoner.ShootingStarWarningTime = Spec.ShootingStarWarningTime;
 
             LevelSummoner.MaxGridHeight = Spec.Height;
-            
-            _character.Animator.runtimeAnimatorController = PreloadedResources.instance.CharacterAnimatorControllerList[(int)_character.Friend.Name];
-            _character.Rigidbody.ForcePosition(_startPoint.position);
-            _character.Rigidbody.PauseMove();
-            
+
             LevelSummoner.SummonRicecakes();
             LevelSummoner.SummonCoins();
             LevelSummoner.SummonFriendCollectables();
