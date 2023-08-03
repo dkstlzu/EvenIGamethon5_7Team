@@ -72,13 +72,12 @@ namespace MoonBunny.UIs
         
         public void OnStartButtonClicked()
         {
-
+            Stage.S_StageLevel = _selectingLevel;
+            Stage.S_SubLevel = _subLevelIndex;
             
             SceneManager.LoadSceneAsync(StringValue.GetStringValue(_stageName, _subLevelIndex)).completed += (ao) =>
             {
                 Stage stage = GameManager.instance.Stage;
-                stage.StageLevel = _selectingLevel;
-                stage.SubLevel = _subLevelIndex;
 
                 Character character = GameObject.FindWithTag("Player").GetComponent<Character>();
 
@@ -103,15 +102,15 @@ namespace MoonBunny.UIs
                     }
                 }
                 
-                GameManager.instance.GoldNumber -= BoostUI.S_ConsumingGold;
-                BoostUI.S_ConsumingGold = 0;
-                GameManager.instance.SaveProgress();
-                
                 if (GameManager.instance.ShowTutorial)
                 {
                     GameManager.instance.Stage.TutorialOn();
                 }
             };
+            
+            GameManager.instance.GoldNumber -= BoostUI.S_ConsumingGold;
+            BoostUI.S_ConsumingGold = 0;
+            GameManager.instance.SaveProgress();
         }
     }
 }

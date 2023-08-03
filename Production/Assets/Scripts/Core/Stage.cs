@@ -70,6 +70,8 @@ namespace MoonBunny
         
         public StageName Name;
 
+        public static int S_StageLevel;
+        public static int S_SubLevel;
         public int StageLevel;
         public int SubLevel;
 
@@ -124,11 +126,20 @@ namespace MoonBunny
             
             Name = StringValue.GetEnumValue<StageName>(SceneManager.GetActiveScene().name);
 
+            StageLevel = S_StageLevel;
+            SubLevel = S_SubLevel;
+            
+            print($"{SpecPath}Stage{StageLevel+1}_{SubLevel+1}Spec");
             _spec = Resources.Load<StageSpec>($"{SpecPath}Stage{StageLevel+1}_{SubLevel+1}Spec");
             
             SetCharater();
             SetEnvironments();
             SetSummoner();
+        }
+
+        private void Start()
+        {
+            _spec = Resources.Load<StageSpec>($"{SpecPath}Stage{StageLevel+1}_{SubLevel+1}Spec");
         }
 
         #region Initialize
