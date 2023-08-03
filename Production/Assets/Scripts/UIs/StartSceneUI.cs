@@ -27,6 +27,7 @@ namespace MoonBunny.UIs
         public FriendProfileUI FriendProfileUI;
         public QuestUI QuestUI;
         public StoreUI StoreUI;
+        public DiamondGoldExchangeUI ExchangeUI;
 
         [Header("Money Texts")] 
         public TextMeshProUGUI GoldText1;
@@ -86,11 +87,6 @@ namespace MoonBunny.UIs
             IAPManager.instance.Diamond100ProductInfo.InitiatePurchase();
         }
 
-        public void OnGoldPlusButtonClicked()
-        {
-            
-        }
-        
         public void OnPressTheAnyKeyIntro(InputAction.CallbackContext callbackContext)
         {
             FadeOut(IntroCanvasGroup);
