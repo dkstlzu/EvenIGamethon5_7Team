@@ -161,6 +161,8 @@ namespace MoonBunny.UIs
         public void Revive()
         {
             Stage.Revive();
+
+            FailUI.OnExitButtonClicked();
         }
 
         public void RetryButtonClicked()
