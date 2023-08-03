@@ -21,8 +21,18 @@ namespace MoonBunny.UIs
             TargetQuestId = quest.Id;
 
             _quest = quest;
-            _quest.OnStateChanged += (state) => Rewind();
+            _quest.OnStateChanged += Rewind;
             
+            Rewind();
+        }
+
+        private void OnDestroy()
+        {
+            _quest.OnStateChanged -= Rewind;
+        }
+
+        private void Rewind(QuestState state)
+        {
             Rewind();
         }
 
