@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c559311d4e994d97ab9a6900acf3f01a, type: 3}
+  m_Name: NormalGotcha
+  m_EditorClassIdentifier: 
+  Datas:
+  - GoldNumber: 50
+    DiamondNumber: 0
+    MemoryType: -1
+    MemoryNumber: 0
+    Potential: 1
+  - GoldNumber: 100
+    DiamondNumber: 0
+    MemoryType: -1
+    MemoryNumber: 0
+    Potential: 1
+  - GoldNumber: 150
+    DiamondNumber: 0
+    MemoryType: -1
+    MemoryNumber: 0
+    Potential: 1
+  - GoldNumber: 300
+    DiamondNumber: 0
+    MemoryType: -1
+    MemoryNumber: 0
+    Potential: 1
+  - GoldNumber: 1000
+    DiamondNumber: 0
+    MemoryType: -1
+    MemoryNumber: 0
+    Potential: 1
+  - GoldNumber: 0
+    DiamondNumber: 1
+    MemoryType: -1
+    MemoryNumber: 0
+    Potential: 1
+  - GoldNumber: 0
+    DiamondNumber: 3
+    MemoryType: -1
+    MemoryNumber: 0
+    Potential: 1
+  - GoldNumber: 0
+    DiamondNumber: 5
+    MemoryType: -1
+    MemoryNumber: 0
+    Potential: 1
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 1
+    MemoryNumber: 1
+    Potential: 1
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 1
+    MemoryNumber: 3
+    Potential: 1
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 1
+    MemoryNumber: 5
+    Potential: 1
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 2
+    MemoryNumber: 1
+    Potential: 1
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 2
+    MemoryNumber: 3
+    Potential: 1
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 2
+    MemoryNumber: 5
+    Potential: 1
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 2
+    MemoryNumber: 10
+    Potential: 1
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 3
+    MemoryNumber: 1
+    Potential: 1
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 3
+    MemoryNumber: 3
+    Potential: 1
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 3
+    MemoryNumber: 5
+    Potential: 1
+  - GoldNumber: 0
+    DiamondNumber: 0
+    MemoryType: 3
+    MemoryNumber: 10
+    Potential: 1

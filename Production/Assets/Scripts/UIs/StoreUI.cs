@@ -36,11 +36,11 @@ namespace MoonBunny.UIs
         
         public Image NormalGotchaImage;
         public List<Sprite> NormalGotchaAnimationSprites;
-        public List<GotchaReward> NormalGotchaRewards;
+        public GotchaData NormalGotchaData;
         public TextMeshProUGUI NormalGotchaResult;
         public Image SpecialGotchaImage;
+        public GotchaData SpecialGotchaData;
         public List<Sprite> SpecialGotchaAnimationSprites;
-        public List<GotchaReward> SpecialGotchaRewards;
         public TextMeshProUGUI SpecialGotchaResult;
 
         private const float GOTCHA_RESULT_TWEEN_DURATION = 0.2f;
@@ -129,7 +129,7 @@ namespace MoonBunny.UIs
             {
                 GameManager.instance.GoldNumber -= NORMAL_GOTCHA_GOLD_COST;
 
-                GotchaReward reward = GetRandom(NormalGotchaRewards);
+                GotchaReward reward = GetRandom(NormalGotchaData.Datas);
             
                 if (EqualityComparer<GotchaReward>.Default.Equals(reward, default))
                 {
@@ -181,7 +181,7 @@ namespace MoonBunny.UIs
             {
                 GameManager.instance.DiamondNumber -= SPECIAL_GOTCHA_DIAMOND_COST;
 
-                GotchaReward reward = GetRandom(SpecialGotchaRewards);
+                GotchaReward reward = GetRandom(SpecialGotchaData.Datas);
             
                 if (EqualityComparer<GotchaReward>.Default.Equals(reward, default))
                 {

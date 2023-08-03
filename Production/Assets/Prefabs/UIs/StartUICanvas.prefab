@@ -20804,6 +20804,7 @@ MonoBehaviour:
   - {fileID: 1067453403, guid: cc2512b51784c5d4f91b451d0eb6da79, type: 3}
   - {fileID: 2069291051, guid: cc2512b51784c5d4f91b451d0eb6da79, type: 3}
   - {fileID: 201744097, guid: cc2512b51784c5d4f91b451d0eb6da79, type: 3}
+  NormalGotchaData: {fileID: 11400000, guid: fd2ca993bd78f5a4e9fcd12ee9a457bc, type: 2}
   NormalGotchaRewards:
   - GoldNumber: 50
     DiamondNumber: 0
@@ -20902,6 +20903,7 @@ MonoBehaviour:
     Potential: 1
   NormalGotchaResult: {fileID: 1812099280140394770}
   SpecialGotchaImage: {fileID: 6003021458501926476}
+  SpecialGotchaData: {fileID: 11400000, guid: 2718c85f29828eb439023ea8ee090db4, type: 2}
   SpecialGotchaAnimationSprites:
   - {fileID: 58937701, guid: cc2512b51784c5d4f91b451d0eb6da79, type: 3}
   - {fileID: 632267800, guid: cc2512b51784c5d4f91b451d0eb6da79, type: 3}
