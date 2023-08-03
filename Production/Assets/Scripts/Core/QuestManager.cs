@@ -23,17 +23,25 @@ namespace MoonBunny
         private static int[] StageClearQuestIds = {}; 
         private static int[] StagePerfectClearQuestIds = {}; 
         
+        void SpecialQuestSet(Quest quest)
+        {
+            switch (quest.Id)
+            {
 
+            }
+        }
+        
         private void Awake()
         {
-            void SpecialQuestSet(Quest quest)
-            {
-                switch (quest.Id)
-                {
-
-                }
-            }
-
+            SetByDefaultSpec();
+            SetDependentQuests();
+            LoadQuestData();
+            SetQuestProgressCheckers();
+        }
+        
+        #region Initialize
+        void SetByDefaultSpec()
+        {
             QuestSpec[] specs = Resources.LoadAll<QuestSpec>(QUEST_PATH);
 
             foreach (QuestSpec spec in specs)
@@ -54,7 +62,10 @@ namespace MoonBunny
 
                 _questDict.Add(spec.Id, quest);
             }
+        }
 
+        void SetDependentQuests()
+        {
             foreach (var pair in _questDict)
             {
                 if (pair.Value.DependentId >= 0)
@@ -69,7 +80,10 @@ namespace MoonBunny
                     };
                 }
             }
+        }
 
+        void LoadQuestData()
+        {
             SaveLoadSystem = new SaveLoadSystem("Saves", "Quest", "txt");
 
             SaveLoadSystem.OnSaveDataLoaded += () =>
@@ -94,7 +108,17 @@ namespace MoonBunny
             };
             
             SaveLoadSystem.LoadQuest();
+        }
+        
 
+        #endregion
+
+        #region QuestProgress
+
+        public int ChangeDirectionNumber;
+
+        void SetQuestProgressCheckers()
+        {
             GameManager.instance.OnStageSceneLoaded += () =>
             {
                 GameManager.instance.Stage.UI.OnDirectionChangeButtonClicked += OnChangeDirection;
@@ -104,23 +128,18 @@ namespace MoonBunny
                 SaveLoadSystem.SaveProgress();
             };
             
-            FriendCollectionManager.instance.OnCollectFriend += OnCollectFinish;
+            FriendCollectionManager.instance.OnCollectFriendFinish += OnCollectFinish;
             Item.OnInvoke += OnItemInvoke;
             Obstacle.OnInvoke += OnObstacleInvoke;
             Stage.OnNewLevelUnlocked += OnNewLevelUnlocked;
             Stage.OnStageClear += OnStageClear;
         }
 
-        private void OnApplicationQuit()
-        {
-            SaveLoadSystem.SaveQuest();
-        }
-
         private void OnChangeDirection()
         {
         }
         
-        private void OnCollectFinish(FriendName arg1, int arg2)
+        private void OnCollectFinish(FriendName friendName)
         {
         }
 
@@ -145,6 +164,13 @@ namespace MoonBunny
             }
         }
 
+        #endregion
+        
+        private void OnApplicationQuit()
+        {
+            SaveLoadSystem.SaveQuest();
+        }
+        
         public Quest GetQuest(int id)
         {
             return _questDict[id];

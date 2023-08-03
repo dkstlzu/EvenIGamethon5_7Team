@@ -45,15 +45,13 @@ namespace MoonBunny
         private void Awake()
         {
             _gameManager = GameManager.instance;
-            _gameManager.SaveLoadSystem.OnSaveDataLoaded += Init;
-        }
-
-        void Init()
-        {
-            foreach (FriendCollection.Data data in Collection.Datas)
+            _gameManager.SaveLoadSystem.OnSaveDataLoaded += () =>
             {
-                data.CurrentCollectingNumber = GameManager.ProgressSaveData.CollectionDict[data.Name];
-            }
+                foreach (FriendCollection.Data data in Collection.Datas)
+                {
+                    data.CurrentCollectingNumber = GameManager.ProgressSaveData.CollectionDict[data.Name];
+                }
+            };
         }
 
         private void Start()
@@ -144,6 +142,18 @@ namespace MoonBunny
             }
             
             return null;
+        }
+
+        public FriendName[] GetCollectionFinishedFriendNames()
+        {
+            List<FriendName> friendNameList = new List<FriendName>();
+
+            foreach (var data in CollectedFriendCharacterList)
+            {
+                friendNameList.Add(data.Name);
+            }
+
+            return friendNameList.ToArray();
         }
     }
 }
