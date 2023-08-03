@@ -102,13 +102,13 @@ namespace MoonBunny
 
             if (id == Diamond100ProductInfo.Id)
             {
-                GameManager.SaveData.DiamondNumber += 100;
+                GameManager.instance.DiamondNumber += 100;
             } else if (id == Diamond200ProductInfo.Id)
             {
-                GameManager.SaveData.DiamondNumber += 200;
+                GameManager.instance.DiamondNumber += 200;
             } else if (id == Diamond1000ProductInfo.Id)
             {
-                GameManager.SaveData.DiamondNumber += 1000;
+                GameManager.instance.DiamondNumber += 1000;
             } else if (id == RemoveAdProductInfo.Id)
             {
                 GameManager.instance.RemoveAd = true;

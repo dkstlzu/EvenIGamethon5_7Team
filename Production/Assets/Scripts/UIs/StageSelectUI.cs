@@ -26,7 +26,7 @@ namespace MoonBunny.UIs
             {
                 for (int i = 0; i < StageButtonList.Count; i++)
                 {
-                    int subLevelClear = GameManager.SaveData.ClearDict[(StageName)i];
+                    int subLevelClear = GameManager.ProgressSaveData.ClearDict[(StageName)i];
 
                     if (StageButtonList[i].StarImage)
                         StageButtonList[i].StarImage.sprite = StarSpriteList[subLevelClear];

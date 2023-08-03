@@ -17,8 +17,8 @@ namespace MoonBunny.UIs
 
         private void Init()
         {
-            TutorialToggle.isOn = GameManager.SaveData.ShowTutorial;
-            SoundToggle.isOn = GameManager.SaveData.VolumeSetting > 0;
+            TutorialToggle.isOn = GameManager.ProgressSaveData.ShowTutorial;
+            SoundToggle.isOn = GameManager.ProgressSaveData.VolumeSetting > 0;
         }
 
         void OnSoundToggle(bool on)

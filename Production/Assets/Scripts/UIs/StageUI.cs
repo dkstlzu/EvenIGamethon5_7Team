@@ -171,6 +171,7 @@ namespace MoonBunny.UIs
 
         public void GoToLobbyButtonClicked()
         {
+            Stage.OnGotoStageSelect();
             SceneManager.LoadSceneAsync(SceneName.Start).completed += (ao) =>
             {
                 GameManager.instance.StartSceneUI.FriendSelectUI.OnExitButtonClicked(0);

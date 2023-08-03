@@ -7,17 +7,15 @@ using UnityEngine.Serialization;
 namespace MoonBunny
 {
     [Serializable]
-    public class SaveData
+    public class ProgressSaveData
     {
         [SerializeField] private ReadOnlyEnumDict<FriendName, int> _collectionDict = new ReadOnlyEnumDict<FriendName, int>();
         [SerializeField] private ReadOnlyEnumDict<FriendName, int> _collectionSellDict = new ReadOnlyEnumDict<FriendName, int>();
         [SerializeField] private ReadOnlyEnumDict<StageName, int> _clearDict = new ReadOnlyEnumDict<StageName, int>();
-        [SerializeField] private List<QuestSaveData> _questClearList = new List<QuestSaveData>();
 
         public ReadOnlyEnumDict<FriendName, int> CollectionDict => _collectionDict;
         public ReadOnlyEnumDict<FriendName, int> CollectionSellDict => _collectionSellDict;
         public ReadOnlyEnumDict<StageName, int> ClearDict => _clearDict;
-        public List<QuestSaveData> QuestClearList => _questClearList;
 
         public string UsingFriendName;
         public int DiamondNumber;
@@ -26,50 +24,43 @@ namespace MoonBunny
         public bool ShowTutorial;
         public float VolumeSetting;
 
-        public SaveData()
+        public ProgressSaveData()
         {
 
         }
 
-        public static SaveData GetDefaultSaveData()
+        public static ProgressSaveData GetDefaultSaveData()
         {
-            SaveData saveData = new SaveData();
+            ProgressSaveData progressSaveData = new ProgressSaveData();
                 
             foreach (FriendName friendName in (FriendName[])Enum.GetValues(typeof(FriendName)))
             {
                 if ((int)friendName < 0) continue;
-                saveData.CollectionDict.Add(friendName, 0);
-                saveData.CollectionSellDict.Add(friendName, 0);
+                progressSaveData.CollectionDict.Add(friendName, 0);
+                progressSaveData.CollectionSellDict.Add(friendName, 0);
             }
 
             foreach (StageName stageName in (StageName[])Enum.GetValues(typeof(StageName)))
             {
                 if ((int)stageName < 0) continue;
-                saveData.ClearDict.Add(stageName, 0);
+                progressSaveData.ClearDict.Add(stageName, 0);
             }
             
-            QuestSpec[] questSpecs = Resources.LoadAll<QuestSpec>("Specs/Quest/");
+            progressSaveData.UsingFriendName = FriendName.Sugar.ToString();
+            progressSaveData.DiamondNumber = 0;
+            progressSaveData.GoldNumber = 0;
 
-            foreach (QuestSpec spec in questSpecs)
-            {
-                saveData.QuestClearList.Add(new QuestSaveData(spec.Id));
-            }
+            progressSaveData.ShowTutorial = true;
+            progressSaveData.VolumeSetting = 1;
 
-            saveData.UsingFriendName = FriendName.Sugar.ToString();
-            saveData.DiamondNumber = 0;
-            saveData.GoldNumber = 0;
-
-            saveData.ShowTutorial = true;
-            saveData.VolumeSetting = 1;
-
-            return saveData;
+            return progressSaveData;
         }
         
         private const string CollectionAssetPath = "Assets/Resources/Specs/FriendCollection.asset"; 
 
-        public static SaveData GetFullSaveData()
+        public static ProgressSaveData GetFullSaveData()
         {
-            SaveData data = SaveData.GetDefaultSaveData();
+            ProgressSaveData data = GetDefaultSaveData();
 
             FriendCollection collection = null;
             

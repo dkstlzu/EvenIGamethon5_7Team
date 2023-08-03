@@ -21,6 +21,10 @@ namespace MoonBunny
                 MoonBunnyLog.print("Unity Purchasing system is not initialized yet");
                 return;
             }
+            else
+            {
+                MoonBunnyLog.print($"InitiatePurcase {Id}");
+            }
             StoreController.InitiatePurchase(Id);
         }
     }

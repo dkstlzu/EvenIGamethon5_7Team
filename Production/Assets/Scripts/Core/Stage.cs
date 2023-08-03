@@ -193,6 +193,11 @@ namespace MoonBunny
             UpdateManager.instance?.Unregister(new TimeUpdatable(LevelSummoner, 1));
         }
 
+        public void OnGotoStageSelect()
+        {
+            
+        }
+
         public void TutorialOn()
         {
             Instantiate(_tutorialPrefab).GetComponent<TutorialUI>();
@@ -221,11 +226,11 @@ namespace MoonBunny
                 FriendCollectionManager.instance.Collect(element.Key, element.Value);
             }
 
-            if (GameManager.SaveData.ClearDict[Name] < SubLevel + 1)
+            if (GameManager.ProgressSaveData.ClearDict[Name] < SubLevel + 1)
             {
                 OnNewLevelUnlocked?.Invoke();
             }
-            GameManager.SaveData.ClearDict[Name] = Mathf.Max(GameManager.SaveData.ClearDict[Name], SubLevel+1);
+            GameManager.ProgressSaveData.ClearDict[Name] = Mathf.Max(GameManager.ProgressSaveData.ClearDict[Name], SubLevel+1);
             GameManager.instance.GoldNumber += (int)(GoldNumber * GoldMultiplier);
             
             GameManager.instance.SaveProgress();

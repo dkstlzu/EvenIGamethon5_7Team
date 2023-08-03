@@ -91,10 +91,9 @@
             }
         ]
     },
-    "_questClearList": [],
-    "UsingFriendName": "BlackSugar",
-    "DiamondNumber": 0,
-    "GoldNumber": 9843,
+    "UsingFriendName": "Sugar",
+    "DiamondNumber": 10091,
+    "GoldNumber": 10899,
     "ShowTutorial": false,
-    "VolumeSetting": 0.0
+    "VolumeSetting": 1.0
 }

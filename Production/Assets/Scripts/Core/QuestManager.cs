@@ -8,6 +8,7 @@ namespace MoonBunny
 {
     public class QuestManager : Singleton<QuestManager>
     {
+        public SaveLoadSystem SaveLoadSystem;
         [SerializeField] private ReadOnlyWithClassDict<int, Quest> _questDict = new ReadOnlyWithClassDict<int, Quest>();
 
         private const string QUEST_PATH = "Specs/Quest/";
@@ -63,21 +64,31 @@ namespace MoonBunny
                 }
             }
 
-            GameManager.instance.SaveLoadSystem.OnSaveDataLoaded += () =>
+            SaveLoadSystem = new SaveLoadSystem("Saves", "Quest", "txt");
+
+            SaveLoadSystem.OnSaveDataLoaded += () =>
             {
-                for (int i = 0; i < GameManager.SaveData.QuestClearList.Count; i++)
+                for (int i = 0; i < SaveLoadSystem.QuestSaveData.QuestClearList.Count; i++)
                 {
-                    QuestSaveData questSaveData = GameManager.SaveData.QuestClearList[i];
-                    _questDict[questSaveData.Id].CurrentProgress = questSaveData.CurrentProgress;
-                    _questDict[questSaveData.Id].isFinished = questSaveData.isFinished;
-                    _questDict[questSaveData.Id].SaveData = questSaveData;
+                    QuestItemSaveData questItemSaveData = SaveLoadSystem.QuestSaveData.QuestClearList[i];
+                    
+                    _questDict[questItemSaveData.Id].CurrentProgress = questItemSaveData.CurrentProgress;
+                    _questDict[questItemSaveData.Id].isFinished = questItemSaveData.isFinished;
+                    _questDict[questItemSaveData.Id].ItemSaveData = questItemSaveData;
                 }
             };
+            
+            SaveLoadSystem.LoadQuest();
 
             GameManager.instance.OnStageSceneLoaded += () =>
             {
                 GameManager.instance.Stage.UI.OnDirectionChangeButtonClicked += OnChangeDirection;
             };
+            GameManager.instance.OnStageSceneUnloaded += () =>
+            {
+                SaveLoadSystem.SaveProgress();
+            };
+            
             FriendCollectionManager.instance.OnCollectFriend += OnCollectFinish;
             Item.OnInvoke += OnItemInvoke;
             Obstacle.OnInvoke += OnObstacleInvoke;

@@ -45,12 +45,27 @@ namespace MoonBunny.Dev.Editor
         [MenuItem("Dev/Datas/CreateDefaultSaveData")]
         public static void CreateDefaultSaveDataFile()
         {
-            SaveData data = SaveData.GetDefaultSaveData();
+            ProgressSaveData data = ProgressSaveData.GetDefaultSaveData();
             
             string jsonData = JsonUtility.ToJson(data, true);
             byte[] byteData = Encoding.UTF8.GetBytes(jsonData);
 
             string defaultPath = Path.Combine(Application.streamingAssetsPath, "Saves", "Save") + ".txt";
+         
+            File.WriteAllText(defaultPath, String.Empty);
+
+            using (FileStream fs = File.OpenWrite(defaultPath))
+            {
+                fs.Write(byteData);
+                fs.Flush();
+            }
+
+            QuestSaveData questSaveData = QuestSaveData.GetDefaultSaveData();
+            
+            jsonData = JsonUtility.ToJson(questSaveData, true);
+            byteData = Encoding.UTF8.GetBytes(jsonData);
+
+            defaultPath = Path.Combine(Application.streamingAssetsPath, "Saves", "Quest") + ".txt";
          
             File.WriteAllText(defaultPath, String.Empty);
 
@@ -66,12 +81,27 @@ namespace MoonBunny.Dev.Editor
         [MenuItem("Dev/Datas/CreateFullSaveData")]
         public static void CreateFullSaveDataFile()
         {
-            SaveData data = SaveData.GetFullSaveData();
+            ProgressSaveData data = ProgressSaveData.GetFullSaveData();
             
             string jsonData = JsonUtility.ToJson(data, true);
             byte[] byteData = Encoding.UTF8.GetBytes(jsonData);
 
             string defaultPath = Path.Combine(Application.streamingAssetsPath, "Saves", "Save") + ".txt";
+         
+            File.WriteAllText(defaultPath, String.Empty);
+
+            using (FileStream fs = File.OpenWrite(defaultPath))
+            {
+                fs.Write(byteData);
+                fs.Flush();
+            }
+            
+            QuestSaveData questSaveData = QuestSaveData.GetFullSaveData();
+            
+            jsonData = JsonUtility.ToJson(questSaveData, true);
+            byteData = Encoding.UTF8.GetBytes(jsonData);
+
+            defaultPath = Path.Combine(Application.streamingAssetsPath, "Saves", "Quest") + ".txt";
          
             File.WriteAllText(defaultPath, String.Empty);
 

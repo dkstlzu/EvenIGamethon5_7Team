@@ -24,12 +24,12 @@ namespace MoonBunny
             }
         }
 
-        public static SaveData SaveData
+        public static ProgressSaveData ProgressSaveData
         {
             get
             {
                 if (!instance.SaveLoadSystem.DataIsLoaded) return null;
-                else return instance.SaveLoadSystem.SaveData;
+                else return instance.SaveLoadSystem.ProgressSaveData;
             }
         }
 
@@ -42,16 +42,16 @@ namespace MoonBunny
 
         public FriendName UsingFriendName
         {
-            get => Enum.Parse<FriendName>(SaveData.UsingFriendName);
-            set => SaveData.UsingFriendName = value.ToString();
+            get => Enum.Parse<FriendName>(ProgressSaveData.UsingFriendName);
+            set => ProgressSaveData.UsingFriendName = value.ToString();
         }
 
         public int DiamondNumber
         {
-            get => SaveData.DiamondNumber;
+            get => ProgressSaveData.DiamondNumber;
             set
             {
-                SaveData.DiamondNumber = value;
+                ProgressSaveData.DiamondNumber = value;
                 if (StartSceneUI)
                 {
                     StartSceneUI.DiamondText1.text = value.ToString();
@@ -62,10 +62,10 @@ namespace MoonBunny
 
         public int GoldNumber
         {
-            get => SaveData.GoldNumber;
+            get => ProgressSaveData.GoldNumber;
             set
             {
-                SaveData.GoldNumber = value;
+                ProgressSaveData.GoldNumber = value;
                 if (StartSceneUI)
                 {
                     StartSceneUI.GoldText1.text = value.ToString();
@@ -76,16 +76,16 @@ namespace MoonBunny
 
         public bool ShowTutorial
         {
-            get => SaveData.ShowTutorial;
-            set => SaveData.ShowTutorial = value;
+            get => ProgressSaveData.ShowTutorial;
+            set => ProgressSaveData.ShowTutorial = value;
         }
         
         public float VolumeSetting
         {
-            get => SaveData.VolumeSetting;
+            get => ProgressSaveData.VolumeSetting;
             set
             {
-                SaveData.VolumeSetting = value;
+                ProgressSaveData.VolumeSetting = value;
                 AudioListener.volume = value;
             }
         }
@@ -105,7 +105,7 @@ namespace MoonBunny
             if (useSaveSystem)
             {
 #endif
-                SaveLoadSystem.LoadDatabase();
+                SaveLoadSystem.LoadProgress();
 #if UNITY_EDITOR
             }
 #endif
@@ -143,7 +143,7 @@ namespace MoonBunny
                 return;
             }
             
-            SaveLoadSystem.SaveDatabase();
+            SaveLoadSystem.SaveProgress();
         }
 
         public void RestartApplication()

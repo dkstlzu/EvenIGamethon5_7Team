@@ -4,6 +4,7 @@ using System.Text;
 using MoonBunny.Dev;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.Serialization;
 
 #if UNITY_EDITOR
 using System.Collections.Generic;
@@ -18,7 +19,8 @@ namespace MoonBunny
     public class SaveLoadSystem
     {
         public bool DataIsLoaded;
-        public SaveData SaveData;
+        public ProgressSaveData ProgressSaveData;
+        public QuestSaveData QuestSaveData;
         public string DataSavingFolderPath => Path.Combine(Application.streamingAssetsPath, DataSavingFolderName);
         private string DataSavingFolderName = "Saves";
         private string DataSavingFileName = "Save";
@@ -63,9 +65,14 @@ namespace MoonBunny
 #endif
         }
 
-        public void SaveDatabase()
+        public void SaveProgress()
         {
-            SaveJson(SaveData);
+            SaveJson(ProgressSaveData);
+        }
+
+        public void SaveQuest()
+        {
+            SaveJson(QuestSaveData);
         }
 
         public object LoadJson(Type type)
@@ -138,7 +145,7 @@ namespace MoonBunny
             }
         }
 
-        public void LoadDatabase()
+        public void LoadProgress()
         {
             UnityWebRequest request = UnityWebRequest.Get(SaveDataFilePath);
             request.SendWebRequest().completed += (ao) =>
@@ -146,8 +153,8 @@ namespace MoonBunny
                 var uwr = ((UnityWebRequestAsyncOperation)ao).webRequest;
                 if (uwr.result != UnityWebRequest.Result.Success)
                 {
-                    SaveData = SaveData.GetDefaultSaveData();
-                    SaveDatabase();
+                    ProgressSaveData = ProgressSaveData.GetDefaultSaveData();
+                    SaveProgress();
                     DataIsLoaded = true;
                     MoonBunnyLog.print("SaveData is loaded fail so made new one");
                     _onSaveDataLoaded?.Invoke();
@@ -155,9 +162,33 @@ namespace MoonBunny
                 }
                 
                 string jsonData = Encoding.UTF8.GetString(uwr.downloadHandler.data);
-                SaveData = (SaveData)JsonUtility.FromJson(jsonData, typeof(SaveData));
+                ProgressSaveData = (ProgressSaveData)JsonUtility.FromJson(jsonData, typeof(ProgressSaveData));
                 DataIsLoaded = true;
                 MoonBunnyLog.print("SaveData is loaded successfully");
+                _onSaveDataLoaded?.Invoke();
+            };
+        }
+
+        public void LoadQuest()
+        {
+            UnityWebRequest request = UnityWebRequest.Get(SaveDataFilePath);
+            request.SendWebRequest().completed += (ao) =>
+            {
+                var uwr = ((UnityWebRequestAsyncOperation)ao).webRequest;
+                if (uwr.result != UnityWebRequest.Result.Success)
+                {
+                    QuestSaveData = QuestSaveData.GetDefaultSaveData();
+                    SaveQuest();
+                    DataIsLoaded = true;
+                    MoonBunnyLog.print("QuestData is loaded fail so made new one");
+                    _onSaveDataLoaded?.Invoke();
+                    return;
+                }
+                
+                string jsonData = Encoding.UTF8.GetString(uwr.downloadHandler.data);
+                QuestSaveData = (QuestSaveData)JsonUtility.FromJson(jsonData, typeof(QuestSaveData));
+                DataIsLoaded = true;
+                MoonBunnyLog.print("QuestData is loaded successfully");
                 _onSaveDataLoaded?.Invoke();
             };
         }

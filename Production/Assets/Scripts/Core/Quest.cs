@@ -6,13 +6,13 @@ using UnityEngine;
 namespace MoonBunny
 {
     [Serializable]
-    public class QuestSaveData
+    public class QuestItemSaveData
     {
         public int Id;
         public int CurrentProgress;
         public bool isFinished;
         
-        public QuestSaveData(int id)
+        public QuestItemSaveData(int id)
         {
             Id = id;
         }
@@ -46,7 +46,7 @@ namespace MoonBunny
         public bool Hidden = false;
         public bool isFinished;
 
-        public QuestSaveData SaveData { get; set; }
+        public QuestItemSaveData ItemSaveData { get; set; }
         
         public int PercentProgress => (int)((float)CurrentProgress * 100 / TargetProgress);
         public bool CanTakeReward => CurrentProgress >= TargetProgress && !isFinished;
@@ -72,7 +72,7 @@ namespace MoonBunny
                 OnQuestCompleted?.Invoke();
             }
 
-            SaveData.CurrentProgress = CurrentProgress;
+            ItemSaveData.CurrentProgress = CurrentProgress;
             
             GameManager.instance.SaveProgress();
         }
@@ -88,15 +88,19 @@ namespace MoonBunny
                 isFinished = true;
             }
 
-            SaveData.isFinished = isFinished;
-            SaveData.CurrentProgress = CurrentProgress;
+            ItemSaveData.isFinished = isFinished;
+            ItemSaveData.CurrentProgress = CurrentProgress;
             
             GameManager.instance.GoldNumber += Reward.GoldReward;
             GameManager.instance.DiamondNumber += Reward.DiamondReward;
-            
-            FriendCollectionManager.instance.Collect(Reward.MemoryTarget, Reward.MemoryNumber);
+
+            if (Reward.MemoryTarget != FriendName.None && Reward.MemoryNumber > 0)
+            {
+                FriendCollectionManager.instance.Collect(Reward.MemoryTarget, Reward.MemoryNumber);
+            }
             
             GameManager.instance.SaveProgress();
+            QuestManager.instance.SaveLoadSystem.SaveQuest();
         }
     }
 }
