@@ -91,24 +91,9 @@
             }
         ]
     },
-    "_questClearDict": {
-        "_elementList": [
-            {
-                "EnumKey": 0,
-                "Value": false
-            },
-            {
-                "EnumKey": 1,
-                "Value": false
-            },
-            {
-                "EnumKey": 2,
-                "Value": false
-            }
-        ]
-    },
-    "UsingFriendName": "Sugar",
-    "GoldNumber": 9824,
+    "_questClearList": [],
+    "UsingFriendName": "BlackSugar",
+    "GoldNumber": 9843,
     "ShowTutorial": false,
     "VolumeSetting": 0.0
 }
