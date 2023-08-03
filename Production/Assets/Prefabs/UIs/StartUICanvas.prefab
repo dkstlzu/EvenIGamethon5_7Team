@@ -7759,6 +7759,7 @@ MonoBehaviour:
   UIItemParent: {fileID: 4997775181367839012}
   QuestUIItemDict:
     _elementList: []
+  _layoutGroup: {fileID: 9218378244249369899}
 --- !u!1 &3852423864010383597
 GameObject:
   m_ObjectHideFlags: 0

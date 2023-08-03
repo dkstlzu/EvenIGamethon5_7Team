@@ -87,7 +87,14 @@ namespace MoonBunny
                     {
                         if (state == QuestState.IsFinished)
                         {
-                            pair.Value.State = QuestState.Enabled;
+                            if (pair.Value.CurrentProgress >= pair.Value.TargetProgress)
+                            {
+                                pair.Value.State = QuestState.CanTakeReward;
+                            }
+                            else
+                            {
+                                pair.Value.State = QuestState.Enabled;
+                            }
                         }
                     };
                 }
@@ -109,7 +116,9 @@ namespace MoonBunny
                     targetQuest.CurrentProgress = questItemSaveData.CurrentProgress;
                     targetQuest.ItemSaveData = questItemSaveData;
 
-                    if (questItemSaveData.isFinished)
+                    if (targetQuest.State == QuestState.Disabled)
+                    {
+                    } else if (questItemSaveData.isFinished)
                     {
                         targetQuest.State = QuestState.IsFinished;
                     } else if (targetQuest.CurrentProgress >= targetQuest.TargetProgress)

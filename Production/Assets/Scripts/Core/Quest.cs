@@ -58,9 +58,7 @@ namespace MoonBunny
             get => _state;
             set
             {
-                _state = value;
-                
-                switch (_state)
+                switch (value)
                 {
                     case QuestState.Enabled:
                         break;
@@ -69,10 +67,11 @@ namespace MoonBunny
                     case QuestState.Hidden:
                         break;
                     case QuestState.CanTakeReward:
-                        break;
                     case QuestState.IsFinished:
                         break;
                 }
+                
+                _state = value;
                 
                 OnStateChanged?.Invoke(_state);
             }
@@ -128,8 +127,11 @@ namespace MoonBunny
             {
                 FriendCollectionManager.instance.Collect(Reward.MemoryTarget, Reward.MemoryNumber);
             }
-            
-            GameManager.instance.SaveProgress();
+
+            if (Reward.GoldReward > 0 || Reward.DiamondReward > 0)
+            {
+                GameManager.instance.SaveProgress();
+            }
             QuestManager.instance.SaveLoadSystem.SaveQuest();
         }
     }
