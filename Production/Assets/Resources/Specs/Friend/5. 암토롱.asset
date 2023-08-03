@@ -17,3 +17,4 @@ MonoBehaviour:
   VerticalJumpSpeed: 2
   MagneticPower: 4
   SpecialAbility: "\uC5C6\uC74C"
+  MaxPurchasableNumber: 80

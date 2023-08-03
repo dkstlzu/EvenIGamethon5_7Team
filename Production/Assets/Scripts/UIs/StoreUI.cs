@@ -9,7 +9,7 @@ namespace MoonBunny.UIs
 {
     public class StoreUI : UI
     {
-        public List<TextMeshProUGUI> MemoryPriceTestList;
+        public List<TextMeshProUGUI> MemoryPriceTextList;
         public List<int> MemoryPriceList;
 
         public ConfirmUI ConfirmUI;
@@ -21,6 +21,11 @@ namespace MoonBunny.UIs
 
         private void Awake()
         {
+            for (int i = 0; i < MemoryPriceTextList.Count; i++)
+            {
+                MemoryPriceTextList[i].text = MemoryPriceList[i].ToString();
+            }
+            
             OnOpen += Rebuild;
         }
 
@@ -67,7 +72,9 @@ namespace MoonBunny.UIs
 
         void BuyMemory(FriendName friendName)
         {
-            
+            GameManager.ProgressSaveData.CollectionSellDict[friendName]++;
+            FriendCollectionManager.instance.Collection.Datas[(int)friendName].CurrentCollectingNumber++;
+            GameManager.instance.SaveProgress();
         }
     }
 }
