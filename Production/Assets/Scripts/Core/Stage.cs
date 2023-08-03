@@ -101,7 +101,7 @@ namespace MoonBunny
 
         private Character _character;
         public int RevivedNumber { get; set; }
-        private float _realHeight =>  GridTransform.GridSetting.GridHeight *  _spec.Height;
+        private float _realHeight =>  GridTransform.GridSetting.GridHeight *  Spec.Height;
         [SerializeField] private SpriteRenderer _backgroundSpriteRenderer;
         [SerializeField] private BoxCollider2D _leftWallCollider;
         [SerializeField] private BoxCollider2D _rightWallCollider;
@@ -122,15 +122,11 @@ namespace MoonBunny
             GameManager.instance.Stage = this;
             UI.Stage = this;
             
-            SetCharater();
-        }
-
-        private void Start()
-        {
             Name = StringValue.GetEnumValue<StageName>(SceneManager.GetActiveScene().name);
 
             _spec = Resources.Load<StageSpec>($"{SpecPath}Stage{StageLevel+1}_{SubLevel+1}Spec");
-
+            
+            SetCharater();
             SetEnvironments();
             SetSummoner();
         }
