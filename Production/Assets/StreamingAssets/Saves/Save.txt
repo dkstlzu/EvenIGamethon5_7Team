@@ -93,6 +93,7 @@
     },
     "_questClearList": [],
     "UsingFriendName": "BlackSugar",
+    "DiamondNumber": 0,
     "GoldNumber": 9843,
     "ShowTutorial": false,
     "VolumeSetting": 0.0
