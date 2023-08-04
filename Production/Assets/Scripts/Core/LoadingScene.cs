@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace MoonBunny
 {
@@ -28,8 +29,9 @@ namespace MoonBunny
         public const string Stage5_2 = "6. Stage5_2";
         public const string Stage5_3 = "6. Stage5_3";
         public const string StageChallenge = "7. Stage Challenge";
+        public const string Ending = "999. Ending";
 
-        public static string[] Names = {Loading, Start, Stage1_1, Stage1_2, Stage1_3, Stage2_1, Stage2_2, Stage2_3, Stage3_1, Stage3_2, Stage3_3, Stage4_1, Stage4_2, Stage4_3, Stage5_1, Stage5_2, Stage5_3, StageChallenge};
+        public static string[] Names = {Loading, Start, Stage1_1, Stage1_2, Stage1_3, Stage2_1, Stage2_2, Stage2_3, Stage3_1, Stage3_2, Stage3_3, Stage4_1, Stage4_2, Stage4_3, Stage5_1, Stage5_2, Stage5_3, StageChallenge, Ending};
         public static string[] StageNames = {Stage1_1, Stage1_2, Stage1_3, Stage2_1, Stage2_2, Stage2_3, Stage3_1, Stage3_2, Stage3_3, Stage4_1, Stage4_2, Stage4_3, Stage5_1, Stage5_2, Stage5_3, StageChallenge};
 
         public static bool isStage(string name)
@@ -43,7 +45,7 @@ namespace MoonBunny
         public List<Sprite> SplashImages;
         [Range(0, 10)] public float SplashInterval;
         public AnimationCurve SplashCurve;
-        public int SplashNumber = 0;
+        public int CurrentSplashNumber = 0;
         public int NextScene = -1;
 
         [SerializeField] private SpriteRenderer _renderer;
@@ -88,16 +90,16 @@ namespace MoonBunny
 
         void SplashNext()
         {
-            SplashNumber++;
+            CurrentSplashNumber++;
 
-            if (SplashNumber >= SplashImages.Count)
+            if (CurrentSplashNumber >= SplashImages.Count)
             {
                 FinishSplash();
                 return;
             }
             
 
-            _renderer.sprite = SplashImages[SplashNumber];
+            _renderer.sprite = SplashImages[CurrentSplashNumber];
             _timer = 0;
         }
         

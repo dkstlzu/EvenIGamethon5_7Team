@@ -7,7 +7,7 @@ namespace MoonBunny
     public class StarCandy : Item
     {
         public LayerMask TargetLayerMask;
-        public Collider2D TargetArea;
+        public BoxCollider2D TargetArea;
             
         public override bool Invoke(MoonBunnyRigidbody with, MoonBunnyCollider.Direction direction)
         {
@@ -15,15 +15,16 @@ namespace MoonBunny
 
             Vector2 _2dPosition = transform.position;
 
-            new StarCandyEffect(TargetLayerMask, new Bounds(_2dPosition + TargetArea.offset, TargetArea.bounds.size)).Effect();
+            Bounds bounds = new Bounds(_2dPosition + TargetArea.offset, TargetArea.size);
+            new StarCandyEffect(TargetLayerMask, bounds).Effect();
             return true;
         }
 
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
             Vector3 offset = TargetArea.offset;
             Vector3 center = transform.position + offset;
-            Gizmos.DrawCube(center, TargetArea.bounds.size);
+            Gizmos.DrawCube(center, TargetArea.size);
         }
     }
 }

@@ -37,8 +37,10 @@ namespace MoonBunny.UIs
         public Image CheckerImage;
         public bool Checked;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+            
             PriceText.text = Price.ToString();
         }
 

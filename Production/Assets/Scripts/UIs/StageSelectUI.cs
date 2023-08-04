@@ -20,8 +20,10 @@ namespace MoonBunny.UIs
         public List<Sprite> StarSpriteList;
         public SubLevelSelectUI SubLevelSelectUI;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+            
             GameManager.instance.SaveLoadSystem.OnSaveDataLoaded += () =>
             {
                 for (int i = 0; i < StageButtonList.Count; i++)

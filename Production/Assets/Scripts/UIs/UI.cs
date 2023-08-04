@@ -8,6 +8,8 @@ namespace MoonBunny.UIs
 {
     public class UI : MonoBehaviour
     {
+        protected GraphicRaycaster _graphicRaycaster;
+        
         public static void SetColorOfChildren(RectTransform rectTransform, Color color)
         {
             var graphics = rectTransform.GetComponentsInChildren<Graphic>();
@@ -29,6 +31,17 @@ namespace MoonBunny.UIs
         protected virtual void Reset()
         {
             CanvasGroup = GetComponent<CanvasGroup>();
+        }
+
+        protected virtual void Awake()
+        {
+            OnOpen += Rebuild;
+            _graphicRaycaster = GetComponent<GraphicRaycaster>();
+        }
+
+        protected virtual void Rebuild()
+        {
+            
         }
 
         public void Open()
@@ -60,17 +73,19 @@ namespace MoonBunny.UIs
         protected void FadeIn(CanvasGroup cg, float duration = DEFAULT_FADE_DURATION)
         {
             _isFading = true;
-            UpdateManager.instance.Delay(() => _isFading = false, duration);
+            CoroutineHelper.Delay(() => _isFading = false, duration);
             cg.DOFade(1, duration);
             cg.blocksRaycasts = true;
+            if (_graphicRaycaster) _graphicRaycaster.enabled = true;
         }
 
         protected void FadeOut(CanvasGroup cg, float duration = DEFAULT_FADE_DURATION)
         {
             _isFading = true;
-            UpdateManager.instance.Delay(() => _isFading = false, duration);
+            CoroutineHelper.Delay(() => _isFading = false, duration);
             cg.DOFade(0, duration);
             cg.blocksRaycasts = false;
+            if (_graphicRaycaster) _graphicRaycaster.enabled = false;
         }
     }
 }

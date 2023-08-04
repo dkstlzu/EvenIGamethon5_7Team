@@ -11,7 +11,7 @@ namespace MoonBunny
 {
     public class BouncyPlatform : Gimmick
     {
-        public static event Action OnInvoke;
+        public static Action OnInvoke;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static void StaticEventInit()

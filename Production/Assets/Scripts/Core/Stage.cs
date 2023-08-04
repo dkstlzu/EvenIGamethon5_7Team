@@ -129,7 +129,6 @@ namespace MoonBunny
             StageLevel = S_StageLevel;
             SubLevel = S_SubLevel;
             
-            print($"{SpecPath}Stage{StageLevel+1}_{SubLevel+1}Spec");
             _spec = Resources.Load<StageSpec>($"{SpecPath}Stage{StageLevel+1}_{SubLevel+1}Spec");
             
             SetCharater();

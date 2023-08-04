@@ -59,6 +59,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/7. Stage Challenge.unity
     guid: 1eeb7e72da959a54fb2f9e07b4d5c7a3
+  - enabled: 1
+    path: Assets/Scenes/999. Ending.unity
+    guid: c497ba3c715f25b4fb360e55caf85ee8
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: b633ac4ce534f4745a7e29dcaaa3b347, type: 2}
     com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: a283407f4d39a7d439b858e6570f0953, type: 2}

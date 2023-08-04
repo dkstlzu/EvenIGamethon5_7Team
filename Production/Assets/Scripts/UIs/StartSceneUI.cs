@@ -5,6 +5,7 @@ using dkstlzu.Utility;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -45,7 +46,7 @@ namespace MoonBunny.UIs
             _showCutScene = true;
         }
 
-        private void Awake()
+        protected override void Awake()
         {
             _gameManager = GameManager.instance;
             _gameManager.StartSceneUI = this;
@@ -84,7 +85,7 @@ namespace MoonBunny.UIs
 
         public void OnDiamondPlusButtonClicked()
         {
-            IAPManager.instance.Diamond100ProductInfo.InitiatePurchase();
+            IAPManager.instance.Diamond10ProductInfo.InitiatePurchase();
         }
 
         public void OnPressTheAnyKeyIntro(InputAction.CallbackContext callbackContext)
@@ -117,7 +118,12 @@ namespace MoonBunny.UIs
             FriendSelectUI.Open(0);
         }
 
-        public void OnExitButtonClicked()
+        public void ShowEnding()
+        {
+            SceneManager.LoadScene(SceneName.Ending);
+        }
+
+        public void OnQuitButtonClicked()
         {
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;

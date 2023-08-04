@@ -153,6 +153,7 @@ MonoBehaviour:
   _stayingSourceList: []
   _audioSourceParent: {fileID: 9168371452221604120}
   _bgmAudioSource: {fileID: 1519028595631678618}
+  IntroBGM: {fileID: 8300000, guid: 343599d5a6b2dc64f9393436dba371d5, type: 3}
   LobbyBGM: {fileID: 8300000, guid: 6e778b339a99a8348b10b394db2f9f6e, type: 3}
   Stage1BGM: {fileID: 8300000, guid: 5f4c2144e39b34740b703887faa0048e, type: 3}
   Stage2BGM: {fileID: 8300000, guid: edd0afde7b757de459f2b4e78a3db2f6, type: 3}
@@ -160,6 +161,7 @@ MonoBehaviour:
   Stage4BGM: {fileID: 8300000, guid: bf02c4435319730458e23e2a3348c122, type: 3}
   Stage5BGM: {fileID: 8300000, guid: 4be4e9f5371e4234388cadb644050740, type: 3}
   StageChallengeBGM: {fileID: 0}
+  EndingBGM: {fileID: 8300000, guid: f1fbbe930e71d6f4db8dc21f8f877f40, type: 3}
 --- !u!114 &7181178156869599547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,6 +295,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41da409df8e44954b0a39b3e94c08e4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Diamond10ProductInfo:
+    Name: "10\uB2E4\uC774\uC544"
+    Id: diamond_10
+    Description: "\uB2E4\uC774\uC54410\uAC1C"
+    Price: 1000
   Diamond100ProductInfo:
     Name: "100\uB2E4\uC774\uC544"
     Id: diamond_100

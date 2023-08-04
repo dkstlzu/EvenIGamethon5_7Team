@@ -15,8 +15,10 @@ namespace MoonBunny.UIs
 이는 영구적으로 초기화되며
 되돌릴 수 없습니다.";
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+            
             SoundToggle.onValueChanged.AddListener(OnSoundToggle);
             TutorialToggle.onValueChanged.AddListener(OnTutorialToggle);
             GameManager.instance.SaveLoadSystem.OnSaveDataLoaded += Init;

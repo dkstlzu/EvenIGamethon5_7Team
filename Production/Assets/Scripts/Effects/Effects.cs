@@ -126,13 +126,18 @@ namespace MoonBunny.Effects
         
         public void Effect()
         {
-            Collider2D[] results = Physics2D.OverlapAreaAll(_area.min, _area.max, _targetLayerMask);
-
+            Collider2D[] results = new Collider2D[5];
+                
+            Physics2D.OverlapAreaNonAlloc(_area.min, _area.max, results, _targetLayerMask);
+            
             MonoBehaviour.Instantiate(S_StarCandyExplosionEffect, _area.center, Quaternion.identity);
             
             for (int i = 0; i < results.Length; i++)
             {
-                if (results[i] == null) continue;
+                if (results[i] == null)
+                {
+                    continue;
+                }
                 
                 _destroyedObstacles.Add(results[i].GetComponent<Obstacle>());
                 MonoBehaviour.Destroy(results[i].gameObject);

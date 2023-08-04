@@ -163,6 +163,7 @@ namespace MoonBunny.UIs
             Stage.Revive();
 
             FailUI.OnExitButtonClicked();
+            GameManager.instance.GoldNumber -= StageFailUI.REVIVE_GOLD_COST;
         }
 
         public void RetryButtonClicked()

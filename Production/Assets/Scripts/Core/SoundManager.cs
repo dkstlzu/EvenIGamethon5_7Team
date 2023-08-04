@@ -14,6 +14,7 @@ namespace MoonBunny
         [SerializeField] private GameObject _audioSourceParent;
         [SerializeField] private AudioSource _bgmAudioSource;
 
+        public AudioClip IntroBGM;
         public AudioClip LobbyBGM;
         public AudioClip Stage1BGM;
         public AudioClip Stage2BGM;
@@ -21,79 +22,35 @@ namespace MoonBunny
         public AudioClip Stage4BGM;
         public AudioClip Stage5BGM;
         public AudioClip StageChallengeBGM;
+        public AudioClip EndingBGM;
 
         private void Awake()
         {
             AudioSourceList.AddRange(_audioSourceParent.GetComponentsInChildren<AudioSource>());
             _stayingSourceList.AddRange(AudioSourceList);
-            GameManager.instance.SCB.SceneLoadCallBackDict[SceneName.Start] += () =>
-            {
-                PlayBGM(LobbyBGM);
-            };
-            GameManager.instance.SCB.SceneLoadCallBackDict[SceneName.Stage1_1] += () =>
-            {
-                PlayBGM(Stage1BGM);
-            };
-            GameManager.instance.SCB.SceneLoadCallBackDict[SceneName.Stage1_2] += () =>
-            {
-                PlayBGM(Stage1BGM);
-            };
-            GameManager.instance.SCB.SceneLoadCallBackDict[SceneName.Stage1_3] += () =>
-            {
-                PlayBGM(Stage1BGM);
-            };
-            GameManager.instance.SCB.SceneLoadCallBackDict[SceneName.Stage2_1] += () =>
-            {
-                PlayBGM(Stage2BGM);
-            };
-            GameManager.instance.SCB.SceneLoadCallBackDict[SceneName.Stage2_2] += () =>
-            {
-                PlayBGM(Stage2BGM);
-            };
-            GameManager.instance.SCB.SceneLoadCallBackDict[SceneName.Stage2_3] += () =>
-            {
-                PlayBGM(Stage2BGM);
-            };
-            GameManager.instance.SCB.SceneLoadCallBackDict[SceneName.Stage3_1] += () =>
-            {
-                PlayBGM(Stage3BGM);
-            };
-            GameManager.instance.SCB.SceneLoadCallBackDict[SceneName.Stage3_2] += () =>
-            {
-                PlayBGM(Stage3BGM);
-            };
-            GameManager.instance.SCB.SceneLoadCallBackDict[SceneName.Stage3_3] += () =>
-            {
-                PlayBGM(Stage3BGM);
-            };
-            GameManager.instance.SCB.SceneLoadCallBackDict[SceneName.Stage4_1] += () =>
-            {
-                PlayBGM(Stage4BGM);
-            };
-            GameManager.instance.SCB.SceneLoadCallBackDict[SceneName.Stage4_2] += () =>
-            {
-                PlayBGM(Stage4BGM);
-            };
-            GameManager.instance.SCB.SceneLoadCallBackDict[SceneName.Stage4_3] += () =>
-            {
-                PlayBGM(Stage4BGM);
-            };
-            GameManager.instance.SCB.SceneLoadCallBackDict[SceneName.Stage5_1] += () =>
-            {
-                PlayBGM(Stage5BGM);
-            };
-            GameManager.instance.SCB.SceneLoadCallBackDict[SceneName.Stage5_2] += () =>
-            {
-                PlayBGM(Stage5BGM);
-            };
-            GameManager.instance.SCB.SceneLoadCallBackDict[SceneName.Stage5_3] += () =>
-            {
-                PlayBGM(Stage5BGM);
-            };
-            GameManager.instance.SCB.SceneLoadCallBackDict[SceneName.StageChallenge] += () =>
-            {
-                PlayBGM(StageChallengeBGM);
-            };
+            
+            PlayBGM(IntroBGM);
+            
+            Dictionary<string, Action> callbackDict = GameManager.instance.SCB.SceneLoadCallBackDict;
+            
+            callbackDict[SceneName.Start] += () => PlayBGM(LobbyBGM);
+            callbackDict[SceneName.Stage1_1] += () => PlayBGM(Stage1BGM);
+            callbackDict[SceneName.Stage1_2] += () => PlayBGM(Stage1BGM);
+            callbackDict[SceneName.Stage1_3] += () => PlayBGM(Stage1BGM);
+            callbackDict[SceneName.Stage2_1] += () => PlayBGM(Stage2BGM);
+            callbackDict[SceneName.Stage2_2] += () => PlayBGM(Stage2BGM);
+            callbackDict[SceneName.Stage2_3] += () => PlayBGM(Stage2BGM);
+            callbackDict[SceneName.Stage3_1] += () => PlayBGM(Stage3BGM);
+            callbackDict[SceneName.Stage3_2] += () => PlayBGM(Stage3BGM);
+            callbackDict[SceneName.Stage3_3] += () => PlayBGM(Stage3BGM);
+            callbackDict[SceneName.Stage4_1] += () => PlayBGM(Stage4BGM);
+            callbackDict[SceneName.Stage4_2] += () => PlayBGM(Stage4BGM);
+            callbackDict[SceneName.Stage4_3] += () => PlayBGM(Stage4BGM);
+            callbackDict[SceneName.Stage5_1] += () => PlayBGM(Stage5BGM);
+            callbackDict[SceneName.Stage5_2] += () => PlayBGM(Stage5BGM);
+            callbackDict[SceneName.Stage5_3] += () => PlayBGM(Stage5BGM);
+            callbackDict[SceneName.StageChallenge] += () => PlayBGM(StageChallengeBGM);
+            callbackDict[SceneName.Ending] += () => PlayBGM(EndingBGM);
         }
 
         public void PlayBGM(AudioClip clip)

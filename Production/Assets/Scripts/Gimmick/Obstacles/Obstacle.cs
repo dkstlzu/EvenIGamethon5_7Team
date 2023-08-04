@@ -30,6 +30,8 @@ namespace MoonBunny
             
             if (_audioClip) SoundManager.instance.PlayClip(_audioClip);
             with.GetComponent<Character>().Hit(this);
+            
+            OnInvoke?.Invoke();
             return true;
         }
 

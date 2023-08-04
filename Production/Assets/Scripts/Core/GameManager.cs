@@ -28,7 +28,11 @@ namespace MoonBunny
         {
             get
             {
-                if (!instance.SaveLoadSystem.DataIsLoaded) return null;
+                if (!instance.SaveLoadSystem.DataIsLoaded)
+                {
+                    Debug.LogWarning("ProgressSaveData in GameManager is not loaded yet");
+                    return null;
+                }
                 else return instance.SaveLoadSystem.ProgressSaveData;
             }
         }
@@ -105,6 +109,7 @@ namespace MoonBunny
             if (useSaveSystem)
             {
 #endif
+                SaveLoadSystem.Init("Saves", "Save", "txt");
                 SaveLoadSystem.LoadProgress();
 #if UNITY_EDITOR
             }
@@ -114,13 +119,13 @@ namespace MoonBunny
 
 
 
-            for (int i = 2; i < SceneName.Names.Length; i++)
+            for (int i = 0; i < SceneName.StageNames.Length; i++)
             {
-                SCB.SceneLoadCallBackDict[SceneName.Names[i]] += () =>
+                SCB.SceneLoadCallBackDict[SceneName.StageNames[i]] += () =>
                 {
                     OnStageSceneLoaded?.Invoke();
                 };
-                SCB.SceneUnloadCallBackDict[SceneName.Names[i]] += () =>
+                SCB.SceneUnloadCallBackDict[SceneName.StageNames[i]] += () =>
                 {
                     OnStageSceneUnloaded?.Invoke();
                 };

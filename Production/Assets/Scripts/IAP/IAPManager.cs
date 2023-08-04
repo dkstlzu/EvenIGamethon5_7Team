@@ -15,6 +15,7 @@ namespace MoonBunny
     {
         private IStoreController _controller;
 
+        public ProductInfo Diamond10ProductInfo;
         public ProductInfo Diamond100ProductInfo;
         public ProductInfo Diamond200ProductInfo;
         public ProductInfo Diamond1000ProductInfo;
@@ -30,7 +31,7 @@ namespace MoonBunny
             {
                 UnityServices.InitializeAsync(options).ContinueWith(task => MoonBunnyLog.print("Unity Service initialization success."));
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Debug.LogError("UnityService initialize error {e}");
                 throw;
@@ -43,6 +44,7 @@ namespace MoonBunny
         {
             ConfigurationBuilder builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
 
+            builder.AddProduct(Diamond10ProductInfo.Id, ProductType.Consumable);
             builder.AddProduct(Diamond100ProductInfo.Id, ProductType.Consumable);
             builder.AddProduct(Diamond200ProductInfo.Id, ProductType.Consumable);
             builder.AddProduct(Diamond1000ProductInfo.Id, ProductType.Consumable);
@@ -57,6 +59,7 @@ namespace MoonBunny
             
             _controller = controller;
 
+            Diamond10ProductInfo.StoreController = controller;
             Diamond100ProductInfo.StoreController = controller;
             Diamond200ProductInfo.StoreController = controller;
             Diamond1000ProductInfo.StoreController = controller;
@@ -100,7 +103,10 @@ namespace MoonBunny
             
             MoonBunnyLog.print($"Purchase Complete {id}");
 
-            if (id == Diamond100ProductInfo.Id)
+            if (id == Diamond10ProductInfo.Id)
+            {
+                GameManager.instance.DiamondNumber += 100;
+            } else if (id == Diamond100ProductInfo.Id)
             {
                 GameManager.instance.DiamondNumber += 100;
             } else if (id == Diamond200ProductInfo.Id)

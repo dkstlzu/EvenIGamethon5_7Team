@@ -19,8 +19,10 @@ namespace MoonBunny.UIs
         public GameObject MagnetBuff;
         public GameObject SpiderDebuff;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+            
             Magnet.OnMangetItemTaken += OnMagnet;
             Rocket.OnRocketItemTaken += OnRocket;
             SpiderWeb.OnSpiderwebObstacleTaken += OnSpider;

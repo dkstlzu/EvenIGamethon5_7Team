@@ -96,6 +96,11 @@ public class BouncyPlatformCollision : MoonBunnyCollision
     public BouncyPlatformCollision(MoonBunnyRigidbody rigidbody, BouncyPlatform bouncyPlatform) : base(rigidbody, bouncyPlatform)
     {
     }
+
+    public override void OnCollision()
+    {
+        BouncyPlatform.OnInvoke?.Invoke();
+    }
 }
 
 public class DestroyCollision : MoonBunnyCollision

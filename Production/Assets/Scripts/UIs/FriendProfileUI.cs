@@ -31,7 +31,8 @@ namespace MoonBunny.UIs
         [SerializeField] private Slider _collectionSlider;
         [SerializeField] private Image _profileImage; 
         [SerializeField] private Image _memoryImage; 
-        [SerializeField] private RectTransform _content; 
+        [SerializeField] private RectTransform _content;
+        [SerializeField] private Button _selectButton; 
         
         public void Set(FriendName friendName)
         {
@@ -46,6 +47,9 @@ namespace MoonBunny.UIs
                 _bounciness.text = PreloadedResources.instance.FriendSpecList[index].VerticalJumpSpeed.ToString();
                 _magneticPower.text = PreloadedResources.instance.FriendSpecList[index].MagneticPower.ToString();
                 _specialAbility.text = PreloadedResources.instance.FriendSpecList[index].SpecialAbility;
+                _profileImage.sprite = FriendSpriteList[index];
+                _storyText.text = FriendProfileTextList[index].StoryText;
+                _selectButton.interactable = true;
             }
             else
             {
@@ -53,23 +57,16 @@ namespace MoonBunny.UIs
                 _bounciness.text = "???";
                 _magneticPower.text = "???";
                 _specialAbility.text = "???";
+                _profileImage.sprite = SilhouetteSprite;
+                _storyText.text = "날 구해줘! 부탁해";
+                _selectButton.interactable = false;
             }
-
             
             _fullCollectionNumber = FriendCollectionManager.instance[friendName].TargetCollectingNumber;
             _currentCollectionNumber = FriendCollectionManager.instance[friendName].CurrentCollectingNumber;
             _collectionText.text = $"수집률 {_currentCollectionNumber} / {_fullCollectionNumber}";
             _collectionSlider.maxValue = _fullCollectionNumber;
             _collectionSlider.value = _currentCollectionNumber;
-
-            if (isCollected)
-            {
-                _profileImage.sprite = FriendSpriteList[index];
-            }
-            else
-            {
-                _profileImage.sprite = SilhouetteSprite;
-            }
             
             _memoryImage.sprite = PieceOfMemorySpriteList[index];
             _description.text = FriendProfileTextList[index].Description;
@@ -78,15 +75,6 @@ namespace MoonBunny.UIs
             for (int i = 0; i < Mathf.Min(_currentCollectionNumber, FriendProfileTextList[index].MemoryTexts.Count); i++)
             {
                 _memoryText.text += FriendProfileTextList[index].MemoryTexts[i] + "\n";
-            }
-
-            if (isCollected)
-            {
-                _storyText.text = FriendProfileTextList[index].StoryText;
-            }
-            else
-            {
-                _storyText.text = "날 구해줘! 부탁해";
             }
 
         }

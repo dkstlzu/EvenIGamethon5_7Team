@@ -45,12 +45,15 @@ namespace MoonBunny.Dev.Editor
         [MenuItem("Dev/Datas/CreateDefaultSaveData")]
         public static void CreateDefaultSaveDataFile()
         {
+            CheckDirectory();
+            CheckFile();
+                
             ProgressSaveData data = ProgressSaveData.GetDefaultSaveData();
             
             string jsonData = JsonUtility.ToJson(data, true);
             byte[] byteData = Encoding.UTF8.GetBytes(jsonData);
 
-            string defaultPath = Path.Combine(Application.streamingAssetsPath, "Saves", "Save") + ".txt";
+            string defaultPath = Path.Combine(Application.persistentDataPath, "Saves", "Save") + ".txt";
          
             File.WriteAllText(defaultPath, String.Empty);
 
@@ -65,7 +68,7 @@ namespace MoonBunny.Dev.Editor
             jsonData = JsonUtility.ToJson(questSaveData, true);
             byteData = Encoding.UTF8.GetBytes(jsonData);
 
-            defaultPath = Path.Combine(Application.streamingAssetsPath, "Saves", "Quest") + ".txt";
+            defaultPath = Path.Combine(Application.persistentDataPath, "Saves", "Quest") + ".txt";
          
             File.WriteAllText(defaultPath, String.Empty);
 
@@ -81,12 +84,15 @@ namespace MoonBunny.Dev.Editor
         [MenuItem("Dev/Datas/CreateFullSaveData")]
         public static void CreateFullSaveDataFile()
         {
+            CheckDirectory();
+            CheckFile();
+
             ProgressSaveData data = ProgressSaveData.GetFullSaveData();
             
             string jsonData = JsonUtility.ToJson(data, true);
             byte[] byteData = Encoding.UTF8.GetBytes(jsonData);
 
-            string defaultPath = Path.Combine(Application.streamingAssetsPath, "Saves", "Save") + ".txt";
+            string defaultPath = Path.Combine(Application.persistentDataPath, "Saves", "Save") + ".txt";
          
             File.WriteAllText(defaultPath, String.Empty);
 
@@ -101,7 +107,7 @@ namespace MoonBunny.Dev.Editor
             jsonData = JsonUtility.ToJson(questSaveData, true);
             byteData = Encoding.UTF8.GetBytes(jsonData);
 
-            defaultPath = Path.Combine(Application.streamingAssetsPath, "Saves", "Quest") + ".txt";
+            defaultPath = Path.Combine(Application.persistentDataPath, "Saves", "Quest") + ".txt";
          
             File.WriteAllText(defaultPath, String.Empty);
 
@@ -112,6 +118,39 @@ namespace MoonBunny.Dev.Editor
             }
 
             AssetDatabase.Refresh();
+        }
+
+        static void CheckDirectory()
+        {
+            string path = Path.Combine(Application.persistentDataPath, "Saves");
+
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+        }
+
+        static void CheckFile()
+        {
+            string path = Path.Combine(Application.persistentDataPath, "Saves", "Save") + ".txt";
+
+            if (!File.Exists(path))
+            {
+                using (File.Create(path))
+                {
+                    
+                }
+            }
+            
+            path = Path.Combine(Application.persistentDataPath, "Saves", "Quest") + ".txt";
+
+            if (!File.Exists(path))
+            {
+                using (File.Create(path))
+                {
+                    
+                }
+            }
         }
 
         [MenuItem("Dev/MapData/HorizontalVerticalReverse")]

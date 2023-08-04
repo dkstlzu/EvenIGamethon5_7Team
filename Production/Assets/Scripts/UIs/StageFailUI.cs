@@ -13,19 +13,21 @@ namespace MoonBunny.UIs
         public int MaxReviveNumber;
         public RectTransform ReviveRect;
         public Button ReviveButton;
-        
+
+        public const int REVIVE_GOLD_COST = 100;
+
         private void Start()
         {
             Stage = GameManager.instance.Stage;
-            
-            OnOpen += () =>
+        }
+
+        protected override void Rebuild()
+        {
+            if (Stage.RevivedNumber >= MaxReviveNumber || GameManager.instance.GoldNumber < REVIVE_GOLD_COST)
             {
-                if (Stage.RevivedNumber >= MaxReviveNumber)
-                {
-                    SetColorOfChildren(ReviveRect, MoonBunnyColor.DisabledColor);
-                    ReviveButton.interactable = false;
-                }
-            };
+                SetColorOfChildren(ReviveRect, MoonBunnyColor.DisabledColor);
+                ReviveButton.interactable = false;
+            }
         }
     }
 }

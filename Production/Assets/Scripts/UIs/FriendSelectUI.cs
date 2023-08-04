@@ -20,7 +20,11 @@ namespace MoonBunny.UIs
         public List<FriendLibraryUI> FriendLibraryUIList;
         public FriendProfileUI FriendProfileUI;
 
-        private void Start()
+        public TextMeshProUGUI ProgressText;
+        public Slider ProgressBar;
+        public GameObject ShowEnding;
+
+        protected override void Rebuild()
         {
             for (int i = 0; i < FriendLibraryUIList.Count; i++)
             {
@@ -30,6 +34,25 @@ namespace MoonBunny.UIs
                 FriendLibraryUIList[i].SelectButton.image.sprite = FriendProfileUI.FriendSpriteList[i];
                 string name = StringValue.GetStringValue(FriendCollectionManager.instance.Collection.Datas[i].Name);
                 FriendLibraryUIList[i].NameText.text = name;
+            }
+
+            RebuildProgressBar();
+        }
+
+        public void RebuildProgressBar()
+        {
+            float progressValue = (float)FriendCollectionManager.instance.CurrentCollectionNumber /
+                                  FriendCollectionManager.instance.TotalCollectionNumber;
+            ProgressText.text = $"달성률 {(int)(progressValue * 100)}%";
+            ProgressBar.value = progressValue;
+            
+            if (progressValue >= 1)
+            {
+                ShowEnding.SetActive(true);
+            }
+            else
+            {
+                ShowEnding.SetActive(false);
             }
         }
         

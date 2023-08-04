@@ -27,6 +27,8 @@ namespace MoonBunny
             if (_audioClip) SoundManager.instance.PlayClip(_audioClip);
             GameManager.instance.Stage.Score += Score;
             Destroy(gameObject);
+            
+            OnInvoke?.Invoke();
             return true;
         }
     }

@@ -45,7 +45,7 @@ namespace MoonBunny.UIs
         {
             _stageName = stageName;
             _selectingLevel = (int)stageName;
-
+            
             for (int i = 0; i < SubLevelList.Count; i++)
             {
                 SubLevelList[i].Enabled = GameManager.ProgressSaveData.ClearDict[(StageName)_selectingLevel] >= i;

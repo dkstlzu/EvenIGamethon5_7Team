@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using dkstlzu.Utility;
+using MoonBunny.Dev;
 using UnityEngine;
 
 namespace MoonBunny
@@ -40,6 +41,14 @@ namespace MoonBunny
     [Serializable]
     public class Quest
     {
+        public static event Action<int> OnQusetCanTakeReward;
+        
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        static void EventInit()
+        {
+            OnQusetCanTakeReward = null;
+        }
+        
         public int Id;
         public int TargetProgress;
         public int CurrentProgress;
@@ -67,6 +76,8 @@ namespace MoonBunny
                     case QuestState.Hidden:
                         break;
                     case QuestState.CanTakeReward:
+                        OnQusetCanTakeReward?.Invoke(Id);
+                        break;
                     case QuestState.IsFinished:
                         break;
                 }
@@ -102,7 +113,14 @@ namespace MoonBunny
                 State = QuestState.CanTakeReward;
             }
 
-            ItemSaveData.CurrentProgress = CurrentProgress;
+            if (ItemSaveData != null)
+            {
+                ItemSaveData.CurrentProgress = CurrentProgress;
+            }
+            else
+            {
+                MoonBunnyLog.print($"Quest {Id} has null ref of ItemSaveData");
+            }
         }
 
         public void TakeReward()

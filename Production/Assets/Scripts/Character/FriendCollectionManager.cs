@@ -13,9 +13,39 @@ namespace MoonBunny
         public List<FriendCollection.Data> CollectingFriendCharacterList;
         public List<FriendCollection.Data> CollectedFriendCharacterList;
 
+        public int TotalCollectionNumber
+        {
+            get
+            {
+                int total = 0;
+
+                foreach (FriendCollection.Data data in Collection.Datas)
+                {
+                    total += data.TargetCollectingNumber;
+                }
+
+                return total;
+            }
+        }
+
+        public int CurrentCollectionNumber
+        {
+            get
+            {
+                int total = 0;
+
+                foreach (FriendCollection.Data data in Collection.Datas)
+                {
+                    total += data.CurrentCollectingNumber;
+                }
+
+                return total;
+            }
+        }
+
         public event Action<FriendName, int> OnCollectFriend;
         public event Action<FriendName> OnCollectFriendFinish;
-
+        
         private GameManager _gameManager;
 
         public FriendCollection.Data this[FriendName name]

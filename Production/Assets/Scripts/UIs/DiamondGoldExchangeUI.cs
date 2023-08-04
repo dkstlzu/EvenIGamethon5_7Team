@@ -20,12 +20,7 @@ namespace MoonBunny.UIs
         public int GoldNumberPerTrade;
         public int GoldNumberPerTenTimeTrade;
 
-        private void Awake()
-        {
-            OnOpen += Rebuild;
-        }
-
-        void Rebuild()
+        protected override void Rebuild()
         {
             _currentGoldText.text = GameManager.instance.GoldNumber.ToString();
             _currentDiamondText.text = GameManager.instance.DiamondNumber.ToString();

@@ -5,7 +5,7 @@ namespace MoonBunny.UIs
 {
     public class TutorialUI : UI
     {
-        private void Awake()
+        protected override void Awake()
         {
             Time.timeScale = 0;
         }

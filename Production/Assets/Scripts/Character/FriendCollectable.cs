@@ -32,35 +32,35 @@ namespace MoonBunny
 
         private void Start()
         {
-            List<float> potentialList = new List<float>();
-            float total = 0;
+            // List<float> potentialList = new List<float>();
+            // float total = 0;
+            //
+            // foreach (var pair in Potentials)
+            // {
+            //     potentialList.Add(pair.Value);
+            //     total += pair.Value;
+            // }
 
-            foreach (var pair in Potentials)
-            {
-                potentialList.Add(pair.Value);
-                total += pair.Value;
-            }
+            // float randomValue = UnityEngine.Random.Range(0f, total);
 
-            float randomValue = UnityEngine.Random.Range(0f, total);
+            // float potentialCheck = 0;
+            int targetIndex = Stage.S_StageLevel + 1;
 
-            float potentialCheck = 0;
-            int targetIndex = -1;
-
-            for (int i = 0; i < potentialList.Count; i++)
-            {
-                if (randomValue >= potentialCheck && randomValue < potentialCheck + potentialList[i])
-                {
-                    targetIndex = i;
-                    break;
-                }
-
-                potentialCheck += potentialList[i];
-            }
-
-            if (targetIndex < 0)
-            {
-                targetIndex = potentialList.Count - 1;
-            }
+            // for (int i = 0; i < potentialList.Count; i++)
+            // {
+            //     if (randomValue >= potentialCheck && randomValue < potentialCheck + potentialList[i])
+            //     {
+            //         targetIndex = i;
+            //         break;
+            //     }
+            //
+            //     potentialCheck += potentialList[i];
+            // }
+            //
+            // if (targetIndex < 0)
+            // {
+            //     targetIndex = potentialList.Count - 1;
+            // }
 
             Name = (FriendName)targetIndex;
             _renderer.sprite = MemorySpriteList[targetIndex];

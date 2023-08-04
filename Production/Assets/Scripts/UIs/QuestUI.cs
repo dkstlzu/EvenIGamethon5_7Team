@@ -30,6 +30,7 @@ namespace MoonBunny.UIs
         public Transform UIItemParent;
         public ReadOnlyDict<int, QuestUIItem> QuestUIItemDict = new ReadOnlyDict<int, QuestUIItem>();
         [SerializeField] private VerticalLayoutGroup _layoutGroup;
+        [SerializeField] private Image RewardNoticeImage;
 
         private void Start()
         {
@@ -46,18 +47,29 @@ namespace MoonBunny.UIs
                 UIItemList[i].Set(quests[i]);
                 QuestUIItemDict.Add(UIItemList[i].TargetQuestId, UIItemList[i]);
             }
-
-            OnOpen += () =>
+            
+            Rebuild();
+            
+            RewardNoticeImage.enabled = S_CanTakeRewardNumber > 0;
+            OnExit += () =>
             {
-                _layoutGroup.enabled = false;
-                
-                foreach (var pair in QuestUIItemDict)
+                if (S_CanTakeRewardNumber == 0)
                 {
-                    pair.Value.Rewind();
+                    RewardNoticeImage.enabled = false;
                 }
-                
-                _layoutGroup.enabled = true;
             };
+        }
+
+        protected override void Rebuild()
+        {
+            _layoutGroup.enabled = false;
+                
+            foreach (var pair in QuestUIItemDict)
+            {
+                pair.Value.Rewind();
+            }
+                
+            _layoutGroup.enabled = true;
         }
     }
 }

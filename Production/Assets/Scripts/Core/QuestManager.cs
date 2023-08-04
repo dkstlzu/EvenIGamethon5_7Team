@@ -115,7 +115,7 @@ namespace MoonBunny
                     
                     targetQuest.CurrentProgress = questItemSaveData.CurrentProgress;
                     targetQuest.ItemSaveData = questItemSaveData;
-
+                    
                     if (targetQuest.State == QuestState.Disabled)
                     {
                     } else if (questItemSaveData.isFinished)

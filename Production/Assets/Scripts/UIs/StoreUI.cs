@@ -57,14 +57,17 @@ namespace MoonBunny.UIs
         public const int NORMAL_GOTCHA_GOLD_COST = 150;
         public const int SPECIAL_GOTCHA_DIAMOND_COST = 3;
 
-        private GraphicRaycaster _graphicRaycaster;
-
-        private void Awake()
+        protected override void Awake()
         {
-            _graphicRaycaster = GetComponent<GraphicRaycaster>();
+            base.Awake();
         }
 
         private void Start()
+        {
+            OnExit += GameManager.instance.StartSceneUI.FriendSelectUI.RebuildProgressBar;
+        }
+
+        protected override void Rebuild()
         {
             for (int i = 0; i < MemoryPurchaseTextList.Count; i++)
             {
@@ -75,13 +78,6 @@ namespace MoonBunny.UIs
             {
                 MemoryPriceTextList[i].text = MemoryPriceList[i].ToString();
             }
-            
-            OnOpen += Rebuild;
-        }
-
-        private void Rebuild()
-        {
-            
         }
 
         public void OnNormalGotchaClicked()
@@ -157,6 +153,7 @@ namespace MoonBunny.UIs
                     NormalGotchaResult.DOText($"와! {reward.MemoryNumber}개의 {StringValue.GetStringValue(reward.MemoryType)}조각을 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
                 }
             
+                Rebuild();
                 GameManager.instance.SaveProgress();
 
                 _graphicRaycaster.enabled = true;
@@ -209,6 +206,7 @@ namespace MoonBunny.UIs
                     SpecialGotchaResult.DOText($"와! {reward.MemoryNumber}개의 {StringValue.GetStringValue(reward.MemoryType)}조각을 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
                 }
             
+                Rebuild();
                 GameManager.instance.SaveProgress();
 
                 _graphicRaycaster.enabled = true;
@@ -282,8 +280,10 @@ namespace MoonBunny.UIs
         {
             MoonBunnyLog.print($"Memory Purchase {friendName}");
 
+            
             GameManager.ProgressSaveData.CollectionSellDict[friendName]++;
             FriendCollectionManager.instance.Collection.Datas[(int)friendName].CurrentCollectingNumber++;
+            Rebuild();
             GameManager.instance.SaveProgress();
         }
 
