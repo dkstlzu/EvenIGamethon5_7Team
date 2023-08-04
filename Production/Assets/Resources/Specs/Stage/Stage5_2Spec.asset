@@ -19,7 +19,7 @@ MonoBehaviour:
   RicecakeNumber: 70
   RainbowRicecakeRatio: 0.2
   CoinNumber: 85
-  FriendCollectableNumber: 0
+  FriendCollectableNumber: 3
   SummonThunderEnabled: 0
   SummonThunderInterval: 0
   ThunderWarningTime: 0
