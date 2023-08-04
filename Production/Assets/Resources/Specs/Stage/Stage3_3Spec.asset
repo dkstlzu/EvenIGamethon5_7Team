@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Stage3_3Spec
   m_EditorClassIdentifier: 
   Height: 120
-  FirstStepScore: 0
-  SecondStepScore: 0
-  ThirdStepScore: 0
+  FirstStepScore: 100
+  SecondStepScore: 300
+  ThirdStepScore: 800
   RicecakeNumber: 80
   RainbowRicecakeRatio: 0.2
   CoinNumber: 50
