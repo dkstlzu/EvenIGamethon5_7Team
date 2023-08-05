@@ -105,16 +105,16 @@ namespace MoonBunny
 
             if (id == Diamond10ProductInfo.Id)
             {
-                GameManager.instance.DiamondNumber += 100;
+                QuestManager.instance.GetDiamond(Diamond10ProductInfo.RewardValue);
             } else if (id == Diamond100ProductInfo.Id)
             {
-                GameManager.instance.DiamondNumber += 100;
+                QuestManager.instance.GetDiamond(Diamond100ProductInfo.RewardValue);
             } else if (id == Diamond200ProductInfo.Id)
             {
-                GameManager.instance.DiamondNumber += 200;
+                QuestManager.instance.GetDiamond(Diamond200ProductInfo.RewardValue);
             } else if (id == Diamond1000ProductInfo.Id)
             {
-                GameManager.instance.DiamondNumber += 1000;
+                QuestManager.instance.GetDiamond(Diamond1000ProductInfo.RewardValue);
             } else if (id == RemoveAdProductInfo.Id)
             {
                 GameManager.instance.RemoveAd = true;

@@ -8,7 +8,7 @@ namespace MoonBunny
 {
     public class Item : Gimmick
     {
-        public static event Action OnInvoke;
+        public static event Action<Item> OnInvoke;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static void StaticEventInit()
@@ -28,7 +28,7 @@ namespace MoonBunny
             GameManager.instance.Stage.Score += Score;
             Destroy(gameObject);
             
-            OnInvoke?.Invoke();
+            OnInvoke?.Invoke(this);
             return true;
         }
     }

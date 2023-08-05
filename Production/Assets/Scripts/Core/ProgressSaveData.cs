@@ -43,8 +43,10 @@ namespace MoonBunny
             foreach (StageName stageName in (StageName[])Enum.GetValues(typeof(StageName)))
             {
                 if ((int)stageName < 0) continue;
-                progressSaveData.ClearDict.Add(stageName, 0);
+                progressSaveData.ClearDict.Add(stageName, -1);
             }
+
+            progressSaveData.ClearDict[StageName.GrassField] = 0;
             
             progressSaveData.UsingFriendName = FriendName.Sugar.ToString();
             progressSaveData.DiamondNumber = 0;

@@ -395,6 +395,8 @@ namespace MoonBunny.Effects
 
         private Vector2 areaMin;
         private Vector2 areaMax;
+
+        private const float X_PADDING = 0.2f;
         
         public ShootingStarEffect(int targetRow, int targetColumn)
         {
@@ -410,7 +412,7 @@ namespace MoonBunny.Effects
             Transform parent = GameObject.FindWithTag("Obstacles").transform;
             for (int i = 0; i < S_ShootingStarNumber; i++)
             {
-                Vector3 shootingStarPosition = new Vector3(Random.Range(areaMin.x, areaMax.x), Random.Range(areaMin.y, areaMax.y), 0);
+                Vector3 shootingStarPosition = new Vector3(Random.Range(areaMin.x + X_PADDING, areaMax.x - X_PADDING), Random.Range(areaMin.y, areaMax.y), 0);
                 MonoBehaviour.Instantiate(S_ShootingStarEffectPrefab, shootingStarPosition, Quaternion.identity, parent);
             }
         }

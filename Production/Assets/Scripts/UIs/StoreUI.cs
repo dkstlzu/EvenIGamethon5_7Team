@@ -28,6 +28,14 @@ namespace MoonBunny.UIs
     
     public class StoreUI : UI
     {
+        public static event Action<GotchaReward> OnGotchaRewardGet;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        static void EventInit()
+        {
+            OnGotchaRewardGet = null;
+        }
+        
         public RectTransform Board;
         public RectTransform Contents;
         public List<TextMeshProUGUI> MemoryPurchaseTextList;
@@ -163,6 +171,8 @@ namespace MoonBunny.UIs
                 {
                     NormalGotchaResult.DOText($"와! {reward.MemoryNumber}개의 {StringValue.GetStringValue(reward.MemoryType)}조각을 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
                 }
+                
+                OnGotchaRewardGet?.Invoke(reward);
             
                 Rebuild();
                 GameManager.instance.SaveProgress();
@@ -223,6 +233,8 @@ namespace MoonBunny.UIs
                     SpecialGotchaResult.DOText($"와! {reward.MemoryNumber}개의 {StringValue.GetStringValue(reward.MemoryType)}조각을 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
                 }
             
+                OnGotchaRewardGet?.Invoke(reward);
+
                 Rebuild();
                 GameManager.instance.SaveProgress();
 

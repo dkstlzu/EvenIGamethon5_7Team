@@ -151,8 +151,8 @@ namespace MoonBunny
             ItemSaveData.isFinished = State == QuestState.IsFinished;
             ItemSaveData.CurrentProgress = CurrentProgress;
             
-            GameManager.instance.GoldNumber += Reward.GoldReward;
-            GameManager.instance.DiamondNumber += Reward.DiamondReward;
+            QuestManager.instance.GetGold(Reward.GoldReward);
+            QuestManager.instance.GetDiamond(Reward.DiamondReward);
 
             if (Reward.MemoryTarget != FriendName.None && Reward.MemoryNumber > 0)
             {

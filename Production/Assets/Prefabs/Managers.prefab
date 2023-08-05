@@ -300,26 +300,31 @@ MonoBehaviour:
     Id: diamond_10
     Description: "\uB2E4\uC774\uC54410\uAC1C"
     Price: 1000
+    RewardValue: 10
   Diamond100ProductInfo:
     Name: "100\uB2E4\uC774\uC544"
     Id: diamond_100
     Description: "\uB2E4\uC774\uC544100\uAC1C"
-    Price: 100
+    Price: 9700
+    RewardValue: 100
   Diamond200ProductInfo:
     Name: "200\uB2E4\uC774\uC544"
     Id: diamond_200
     Description: "\uB2E4\uC774\uC544200\uAC1C"
-    Price: 200
+    Price: 19000
+    RewardValue: 200
   Diamond1000ProductInfo:
-    Name: "100\uB2E4\uC774\uC544"
+    Name: "1000\uB2E4\uC774\uC544"
     Id: diamond_1000
     Description: "\uB2E4\uC774\uC544100\uAC1C"
-    Price: 1000
+    Price: 85000
+    RewardValue: 1000
   RemoveAdProductInfo:
     Name: "\uAD11\uACE0\uC81C\uAC70"
     Id: remove_ad
     Description: "\uAD11\uACE0\uC81C\uAC70"
-    Price: 1000
+    Price: 5000
+    RewardValue: 0
 --- !u!1 &7393346921992038708
 GameObject:
   m_ObjectHideFlags: 0

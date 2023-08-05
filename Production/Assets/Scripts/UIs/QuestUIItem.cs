@@ -129,6 +129,7 @@ namespace MoonBunny.UIs
         public void OnTakeReward()
         {
             _quest.TakeReward();
+            Rewind();
         }
     }
 }

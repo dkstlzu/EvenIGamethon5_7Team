@@ -46,7 +46,7 @@ namespace MoonBunny.UIs
         private void ExchangeGoldToDiamond(int time)
         {
             GameManager.instance.GoldNumber -= GoldNumberPerTrade * time;
-            GameManager.instance.DiamondNumber += DiamondNumberPerTrade * time;
+            QuestManager.instance.GetDiamond(DiamondNumberPerTrade * time);
             
             Rebuild();
         }

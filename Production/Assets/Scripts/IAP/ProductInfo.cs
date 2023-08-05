@@ -11,6 +11,7 @@ namespace MoonBunny
         public string Id;
         public string Description;
         public float Price;
+        public int RewardValue;
         
         public IStoreController StoreController { get; set; }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using dkstlzu.Utility;
+using MoonBunny.UIs;
 using UnityEngine;
 
 namespace MoonBunny
@@ -19,7 +20,7 @@ namespace MoonBunny
                 else return instance.SaveLoadSystem.QuestSaveData;
             }
         }
-        
+
         private const string QUEST_PATH = "Specs/Quest/";
 
         private const int JUMP_ID = 0;
@@ -150,6 +151,7 @@ namespace MoonBunny
             };
             
             FriendCollectionManager.instance.OnCollectFriendFinish += OnCollectFinish;
+            StoreUI.OnGotchaRewardGet += OnGotchaReward;
             Item.OnInvoke += OnItemInvoke;
             Obstacle.OnInvoke += OnObstacleInvoke;
             BouncyPlatform.OnInvoke += OnJump;
@@ -157,6 +159,12 @@ namespace MoonBunny
             Stage.OnNewStageUnlocked += OnNewStageUnlocked;
             Stage.OnNewLevelUnlocked += OnNewLevelUnlocked;
             Stage.OnStageClear += OnStageClear;
+        }
+
+        private void OnGotchaReward(GotchaReward reward)
+        {
+            GetGold(reward.GoldNumber);
+            GetDiamond(reward.DiamondNumber);
         }
 
         private void OnSideWallCollision()
@@ -183,10 +191,17 @@ namespace MoonBunny
             _questDict[targetID].ProgressAhead();
         }
 
-        private void OnItemInvoke()
+        private void OnItemInvoke(Item item)
         {
             SaveData.ItemTakenCount++;
-            _questDict[ITEM_TAKEN_ID].ProgressAhead();
+            if (item is Coin)
+            {
+                GetGold(1);
+            }
+            else
+            {
+                _questDict[ITEM_TAKEN_ID].ProgressAhead();
+            }
         }
 
         private void OnObstacleInvoke()
@@ -197,7 +212,7 @@ namespace MoonBunny
 
         private void OnNewStageUnlocked(int stageLevel)
         {
-            int targetId = UNLOCK_STAGE_ID + stageLevel;
+            int targetId = UNLOCK_STAGE_ID + stageLevel - 1;
             _questDict[targetId].ProgressAhead();
         }
         
@@ -219,6 +234,21 @@ namespace MoonBunny
         }
 
         #endregion
+        
+        public void GetDiamond(int number)
+        {
+            print($"GetDiamond!! {number}");
+            SaveData.DiamondGetCount += number;
+            _questDict[DIAMOND_GET_ID].ProgressAhead(number);
+            GameManager.instance.DiamondNumber += number;
+        }
+
+        public void GetGold(int number)
+        {
+            SaveData.GoldGetCount += number;
+            _questDict[GOLD_GET_ID].ProgressAhead(number);
+            GameManager.instance.GoldNumber += number;
+        }
         
         private void OnApplicationQuit()
         {

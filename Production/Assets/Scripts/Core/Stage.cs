@@ -250,13 +250,15 @@ namespace MoonBunny
                 FriendCollectionManager.instance.Collect(element.Key, element.Value);
             }
 
-            if (GameManager.ProgressSaveData.ClearDict[Name] <= SubLevel)
+            int previousClear = GameManager.ProgressSaveData.ClearDict[Name];
+            if (previousClear <= SubLevel)
             {
                 GameManager.ProgressSaveData.ClearDict[Name] = SubLevel+1;
                 OnNewLevelUnlocked?.Invoke(SubLevel+1);
                 
-                if (SubLevel >= 3)
+                if (SubLevel >= 2)
                 {
+                    GameManager.ProgressSaveData.ClearDict[Name + 1] = 0;
                     OnNewStageUnlocked?.Invoke(StageLevel+1);
                 }
             }
