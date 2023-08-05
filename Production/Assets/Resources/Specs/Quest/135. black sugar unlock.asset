@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 135
   TargetProgress: 1
-  DependentId: -1
+  DependentId: 124
   Repeatable: 0
   DescriptionText: "\uD751\uB2F9\uC774 \uC7A0\uAE08\uD574\uC81C"
   DescriptionTextOnDisabled: ???????

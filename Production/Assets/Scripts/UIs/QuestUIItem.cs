@@ -1,4 +1,5 @@
 ﻿using System;
+using dkstlzu.Utility;
 using MoonBunny.Dev;
 using TMPro;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace MoonBunny.UIs
         public Button Button;
         public TextMeshProUGUI Description;
         public TextMeshProUGUI Progress;
+        public TextMeshProUGUI RewardText;
 
         private Quest _quest;
         private QuestState _lastState = QuestState.None;
@@ -22,8 +24,6 @@ namespace MoonBunny.UIs
 
             _quest = quest;
             _quest.OnStateChanged += Rewind;
-            
-            Rewind();
         }
 
         private void OnDestroy()
@@ -60,6 +60,22 @@ namespace MoonBunny.UIs
                     QuestUI.S_FinishedNumber--;
                     break;
             }
+
+            RewardText.text = "보상 :";
+            if (_quest.Reward.GoldReward > 0)
+            {
+                RewardText.text += $" 골드 {_quest.Reward.GoldReward}개";
+            }
+
+            if (_quest.Reward.DiamondReward > 0)
+            {
+                RewardText.text += $" 다이아 {_quest.Reward.DiamondReward}개";
+            }
+
+            if (_quest.Reward.MemoryNumber > 0)
+            {
+                RewardText.text += $" {StringValue.GetStringValue(_quest.Reward.MemoryTarget)}조각 {_quest.Reward.MemoryNumber}개";
+            }
             
             switch (_quest.State)
             {
@@ -75,6 +91,7 @@ namespace MoonBunny.UIs
                     Button.interactable = false;
                     Description.text = _quest.DescriptionTextOnDisabled;
                     Description.color = MoonBunnyColor.DisabledColor;
+                    RewardText.text = $"보상 : ????";
 
                     QuestUI.S_DisabledNumber++;
                     transform.SetSiblingIndex(QuestUI.S_CanTakeRewardNumber + QuestUI.S_EnabledNumber + QuestUI.S_HiddenNumber);
@@ -83,6 +100,7 @@ namespace MoonBunny.UIs
                     Button.interactable = false;
                     Description.text = _quest.DescriptionTextOnHidden;
                     Description.color = MoonBunnyColor.QuestHiddenColor;
+                    RewardText.text = $"보상 : ????";
 
                     QuestUI.S_HiddenNumber++;
                     transform.SetSiblingIndex(QuestUI.S_CanTakeRewardNumber + QuestUI.S_EnabledNumber);

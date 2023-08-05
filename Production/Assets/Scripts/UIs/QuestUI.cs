@@ -34,6 +34,8 @@ namespace MoonBunny.UIs
 
         private void Start()
         {
+            InitNumber();
+            
             Quest[] quests = QuestManager.instance.GetAllQuest();
             List<QuestUIItem> UIItemList = new List<QuestUIItem>();
 
@@ -57,6 +59,8 @@ namespace MoonBunny.UIs
                 {
                     RewardNoticeImage.enabled = false;
                 }
+                
+                GameManager.instance.StartSceneUI.FriendSelectUI.Open();
             };
         }
 

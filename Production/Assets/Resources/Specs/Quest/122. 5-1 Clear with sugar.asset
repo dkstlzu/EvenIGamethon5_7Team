@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 122
   TargetProgress: 1
-  DependentId: -1
+  DependentId: 103
   Repeatable: 0
   DescriptionText: "5-1 \uC124\uD0D5\uC774\uB85C<sprite=\"GameIcons1\" index=9>\uD074\uB9AC\uC5B4"
   DescriptionTextOnDisabled: ???????
