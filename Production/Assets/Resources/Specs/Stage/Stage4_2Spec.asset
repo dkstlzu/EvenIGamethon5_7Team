@@ -22,7 +22,7 @@ MonoBehaviour:
   FriendCollectableNumber: 3
   SummonThunderEnabled: 1
   SummonThunderInterval: 11
-  ThunderWarningTime: 1
+  ThunderWarningTime: 1.5
   SummonShootingStarEnabled: 0
   SummonShootingStarInterval: 0
   ShootingStarWarningTime: 0
