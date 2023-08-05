@@ -64,7 +64,7 @@ namespace MoonBunny.UIs
 
         private void Start()
         {
-            OnExit += GameManager.instance.StartSceneUI.FriendSelectUI.RebuildProgressBar;
+            OnExit += GameManager.instance.StartSceneUI.FriendSelectUI.Open;
         }
 
         protected override void Rebuild()
