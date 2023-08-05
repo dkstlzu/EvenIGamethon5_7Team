@@ -96,12 +96,16 @@ namespace MoonBunny
 
         public void ProgressAhead()
         {
+            if (State == QuestState.IsFinished) return;
+            
             CurrentProgress++;
             CheckProgress();
         }
 
         public void ProgressAhead(int step)
         {
+            if (State == QuestState.IsFinished) return;
+
             CurrentProgress += step;
             CheckProgress();
         }
@@ -111,6 +115,8 @@ namespace MoonBunny
             if (CurrentProgress >= TargetProgress)
             {
                 State = QuestState.CanTakeReward;
+
+                if (!Repeatable) CurrentProgress = TargetProgress;
             }
 
             if (ItemSaveData != null)
