@@ -21325,6 +21325,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanvasGroup: {fileID: 2038758089395472560}
+  Board: {fileID: 3556062461375794401}
+  Contents: {fileID: 5026665387805953915}
   MemoryPurchaseTextList:
   - {fileID: 1669116942245455425}
   - {fileID: 7226452416717753396}
@@ -21338,7 +21340,12 @@ MonoBehaviour:
   - {fileID: 958221079119932436}
   - {fileID: 6251287100400872966}
   MemoryPriceList: 010000000200000003000000050000000a000000
-  GotchaAnimationInterval: 2
+  GotchaAnimationInterval: 1
+  NormalGotchaText:
+  - "\uACFC\uC5F0"
+  - "\uACFC\uC5F0 \uBB34\uC5C7\uC774"
+  - "\uACFC\uC5F0 \uBB34\uC5C7\uC774 \uB098\uC62C\uAE4C?"
+  - 
   NormalGotchaImage: {fileID: 668091113500812755}
   NormalGotchaAnimationSprites:
   - {fileID: -1191906365, guid: cc2512b51784c5d4f91b451d0eb6da79, type: 3}
@@ -21347,6 +21354,11 @@ MonoBehaviour:
   - {fileID: 201744097, guid: cc2512b51784c5d4f91b451d0eb6da79, type: 3}
   NormalGotchaData: {fileID: 11400000, guid: fd2ca993bd78f5a4e9fcd12ee9a457bc, type: 2}
   NormalGotchaResult: {fileID: 1812099280140394770}
+  SpecialGotchaText:
+  - "\uC5EC\uAE30\uC5D0"
+  - "\uC5EC\uAE30\uC5D0 \uD1A0\uC0DD\uC744"
+  - "\uC5EC\uAE30\uC5D0 \uD1A0\uC0DD\uC744 \uAC78\uC5C8\uC5B4!"
+  - 
   SpecialGotchaImage: {fileID: 6003021458501926476}
   SpecialGotchaData: {fileID: 11400000, guid: 2718c85f29828eb439023ea8ee090db4, type: 2}
   SpecialGotchaAnimationSprites:
@@ -25133,8 +25145,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.053609714, y: 0.047732074}
   m_AnchorMax: {x: 0.9436098, y: 0.86500007}
-  m_AnchoredPosition: {x: 0, y: 4.5}
-  m_SizeDelta: {x: 0, y: -9}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1738683503466739170
 MonoBehaviour:

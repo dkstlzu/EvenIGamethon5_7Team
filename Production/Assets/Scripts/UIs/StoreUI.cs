@@ -28,16 +28,21 @@ namespace MoonBunny.UIs
     
     public class StoreUI : UI
     {
+        public RectTransform Board;
+        public RectTransform Contents;
         public List<TextMeshProUGUI> MemoryPurchaseTextList;
         public List<TextMeshProUGUI> MemoryPriceTextList;
         public List<int> MemoryPriceList;
 
         public float GotchaAnimationInterval;
-        
+
+        public List<string> NormalGotchaText;
         public Image NormalGotchaImage;
         public List<Sprite> NormalGotchaAnimationSprites;
         public GotchaData NormalGotchaData;
         public TextMeshProUGUI NormalGotchaResult;
+
+        public List<string> SpecialGotchaText;
         public Image SpecialGotchaImage;
         public GotchaData SpecialGotchaData;
         public List<Sprite> SpecialGotchaAnimationSprites;
@@ -57,10 +62,10 @@ namespace MoonBunny.UIs
         public const int NORMAL_GOTCHA_GOLD_COST = 150;
         public const int SPECIAL_GOTCHA_DIAMOND_COST = 3;
 
-        protected override void Awake()
-        {
-            base.Awake();
-        }
+        private const float TWEEN_DURATION = 0.5f;
+        private const float NORMAL_GOTCHA_Y = 0f;
+        private const float SPECIAL_GOTCHA_Y = 615f;
+        private const float MEMORY_Y = 1270;
 
         private void Start()
         {
@@ -111,14 +116,20 @@ namespace MoonBunny.UIs
         {
             _graphicRaycaster.enabled = false;
 
+            Contents.DOLocalMoveY(Board.rect.yMax + NORMAL_GOTCHA_Y, TWEEN_DURATION, true);
+
             for (int i = 0; i < NormalGotchaAnimationSprites.Count; i++)
             {
                 int index = i;
-
+                
                 CoroutineHelper.Delay(() =>
                 {
+                    if (NormalGotchaAnimationSprites.Count - 2 >= index)
+                    {
+                        NormalGotchaResult.DOText(NormalGotchaText[index], GOTCHA_RESULT_TWEEN_DURATION);
+                    }
                     NormalGotchaImage.sprite = NormalGotchaAnimationSprites[index];
-                }, i * GotchaAnimationInterval);
+                }, index * GotchaAnimationInterval);
             }
             
             CoroutineHelper.Delay(() =>
@@ -163,17 +174,23 @@ namespace MoonBunny.UIs
         private void DoSpecialGotcha()
         {
             _graphicRaycaster.enabled = false;
+            
+            Contents.DOLocalMoveY(Board.rect.yMax + SPECIAL_GOTCHA_Y, TWEEN_DURATION, true);
 
             for (int i = 0; i < SpecialGotchaAnimationSprites.Count; i++)
             {
                 int index = i;
-
+                
                 CoroutineHelper.Delay(() =>
                 {
+                    if (SpecialGotchaAnimationSprites.Count - 2 >= index)
+                    {
+                        SpecialGotchaResult.DOText(SpecialGotchaText[index], GOTCHA_RESULT_TWEEN_DURATION);
+                    }
                     SpecialGotchaImage.sprite = SpecialGotchaAnimationSprites[index];
-                }, i * GotchaAnimationInterval);
+                }, index * GotchaAnimationInterval);
             }
-            
+
             CoroutineHelper.Delay(() =>
             {
                 GameManager.instance.DiamondNumber -= SPECIAL_GOTCHA_DIAMOND_COST;
@@ -252,6 +269,8 @@ namespace MoonBunny.UIs
 
             if (Enum.TryParse<FriendName>(friendName, out friendNameEnum))
             {
+                Contents.DOLocalMoveY(Board.rect.yMax + MEMORY_Y, TWEEN_DURATION, true);
+                
                 if (GameManager.instance.DiamondNumber < MemoryPriceList[((int)friendNameEnum) - 1])
                 {
                     NotEnoughMoney();    
