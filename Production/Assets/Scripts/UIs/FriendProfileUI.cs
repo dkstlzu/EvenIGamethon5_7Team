@@ -79,16 +79,17 @@ namespace MoonBunny.UIs
 
         }
 
+        private float targetPivotX = 0;
         public void OnLeftButtonClicked()
         {
-            float xTarget = Mathf.Clamp01(_content.pivot.x - 0.5f);
-            _content.DOPivot(new Vector2(xTarget, 0f), 1);
+            targetPivotX = Mathf.Clamp01(targetPivotX - 0.5f);
+            _content.DOPivot(new Vector2(targetPivotX, 0f), 1);
         }
         
         public void OnRightButtonClicked()
         {
-            float xTarget = Mathf.Clamp01(_content.pivot.x + 0.5f);
-            _content.DOPivot(new Vector2(xTarget, 0.5f), 1);
+            targetPivotX = Mathf.Clamp01(targetPivotX + 0.5f);
+            _content.DOPivot(new Vector2(targetPivotX, 0.5f), 1);
         }
 
         public void OnConfirmButtonClicked()
