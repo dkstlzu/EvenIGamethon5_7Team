@@ -66,6 +66,7 @@ namespace MoonBunny.UIs
         public float NoticeTweenDuration;
         public const string AlreadyCollectedText = "이미 수집 완료한 친구입니다.";
         public const string SellLimitExceedText = "구매 가능한 최대숫자를 넘었습니다";
+        public const string PurchaseSuccess = "구매 완료";
 
         public const int NORMAL_GOTCHA_GOLD_COST = 150;
         public const int SPECIAL_GOTCHA_DIAMOND_COST = 3;
@@ -289,13 +290,17 @@ namespace MoonBunny.UIs
                     return;
                 }
                 
+
                 if (FriendCollectionManager.instance.CollectFinished(friendNameEnum))
                 {
+                    NoticeText.text = "";
                     NoticeText.DOText(AlreadyCollectedText, NoticeTweenDuration);
                     return;
                 }
+                
                 if (GameManager.ProgressSaveData.CollectionSellDict[friendNameEnum] >= PreloadedResources.instance.FriendSpecList[(int)friendNameEnum].MaxPurchasableNumber)
                 {
+                    NoticeText.text = "";
                     NoticeText.DOText(SellLimitExceedText, NoticeTweenDuration);
                     return;
                 }
@@ -310,10 +315,12 @@ namespace MoonBunny.UIs
         void BuyMemory(FriendName friendName)
         {
             MoonBunnyLog.print($"Memory Purchase {friendName}");
-
             
+            NoticeText.text = "";
+            NoticeText.DOText(PurchaseSuccess, NoticeTweenDuration);
+
             GameManager.ProgressSaveData.CollectionSellDict[friendName]++;
-            FriendCollectionManager.instance.Collection.Datas[(int)friendName].CurrentCollectingNumber++;
+            FriendCollectionManager.instance.Collect(friendName, 1);
             Rebuild();
             GameManager.instance.SaveProgress();
         }
