@@ -40,6 +40,14 @@ namespace MoonBunny.Dev.Editor
                 collection.Datas.Add(data);
             }
         }
+
+        [MenuItem("Dev/Datas/OpenDirectory")]
+        public static void OpenSaveDirectory()
+        {
+            string path = Path.Combine(Application.persistentDataPath, "Saves");
+            Debug.Log(path);
+            System.Diagnostics.Process.Start(path);
+        }
         
         
         [MenuItem("Dev/Datas/CreateDefaultSaveData")]
