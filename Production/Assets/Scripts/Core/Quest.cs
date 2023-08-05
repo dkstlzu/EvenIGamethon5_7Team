@@ -128,7 +128,14 @@ namespace MoonBunny
             if (Repeatable)
             {
                 CurrentProgress -= TargetProgress;
-                State = QuestState.Enabled;
+                if (CurrentProgress >= TargetProgress)
+                {
+                    State = QuestState.CanTakeReward;
+                }
+                else
+                {
+                    State = QuestState.Enabled;
+                }
             }
             else
             {
