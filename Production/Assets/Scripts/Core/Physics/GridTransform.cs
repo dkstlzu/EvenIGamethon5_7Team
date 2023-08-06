@@ -72,8 +72,11 @@ namespace MoonBunny
 
         public static bool HasGridObject(Vector2Int gridPosition, out GridObject gridObject)
         {
-            Collider2D[] colliders = Physics2D.OverlapBoxAll(ToReal(gridPosition), GetGridSize(), 0,S_findingLayerMask);
-            if (colliders != null && colliders.Length > 0)
+            Collider2D[] colliders = new Collider2D[1];
+                
+            Physics2D.OverlapBoxNonAlloc(ToReal(gridPosition), GetGridSize(), 0, colliders, S_findingLayerMask);
+            
+            if (colliders[0] != null)
             {
                 if (colliders[0].TryGetComponent<GridObject>(out gridObject))
                 {

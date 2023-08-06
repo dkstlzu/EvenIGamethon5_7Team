@@ -80,6 +80,22 @@ namespace MoonBunny
         }
 
         public event Action OnSaveSuccess;
+
+        public void SaveString(string str)
+        {
+            CheckDirectory();
+            CheckFile();
+            
+            using (FileStream fs = new FileStream(SaveDataFilePath, FileMode.Create))
+            {
+                using (StreamWriter writer = new StreamWriter(fs))
+                {
+                    writer.Write(str);
+                    MoonBunnyLog.print($"Save Data successfully on File {SaveDataFilePath}");
+                    OnSaveSuccess?.Invoke();
+                }
+            }
+        }
         
         public void SaveJson(object data)
         {
@@ -89,24 +105,9 @@ namespace MoonBunny
                 return;
             }
             
-            CheckDirectory();
-            CheckFile();
-            
             string jsonData = JsonUtility.ToJson(data, true);
-            
-            using (FileStream fs = new FileStream(SaveDataFilePath, FileMode.Create))
-            {
-                using (StreamWriter writer = new StreamWriter(fs))
-                {
-                    writer.Write(jsonData);
-                    MoonBunnyLog.print($"Save Data successfully on File {SaveDataFilePath}");
-                    OnSaveSuccess?.Invoke();
-                }
-            }
 
-#if UNITY_EDITOR
-            AssetDatabase.Refresh();
-#endif
+            SaveString(jsonData);
         }
 
         public void SaveProgress()
