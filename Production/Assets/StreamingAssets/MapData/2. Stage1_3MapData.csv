@@ -101,7 +101,7 @@ No,Type,X,Y,Value1,Value2,Value3,Value4,Value5,Value6
 100,Magnet,-1,13,,,,,,
 101,ItemBox,2,78,,,,,,
 102,ItemBox,1,57,,,,,,
-103,ItemBox,1,30,,,,,,
+103,ItemBox,0,30,,,,,,
 104,Bee,3,85,,,,,,
 105,Bee,3,74,,,,,,
 106,Bee,-2,49,,,,,,
