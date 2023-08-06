@@ -21,12 +21,14 @@ namespace MoonBunny
         public bool DataIsLoaded;
         public ProgressSaveData ProgressSaveData;
         public QuestSaveData QuestSaveData;
-        public string DataSavingFolderPath => Path.Combine(Application.persistentDataPath, DataSavingFolderName);
+        public string PersistenceFolderPath => Path.Combine(Application.persistentDataPath, DataSavingFolderName);
+        public string StreamingFolderPath => Path.Combine(Application.streamingAssetsPath, DataSavingFolderName);
         private string DataSavingFolderName = "Saves";
         private string DataSavingFileName = "Save";
         private string DataSavingExtension = ".txt";
 
-        public string SaveDataFilePath => Path.Combine(DataSavingFolderPath, DataSavingFileName) + DataSavingExtension;
+        public string PersistenceFilePath => Path.Combine(PersistenceFolderPath, DataSavingFileName) + DataSavingExtension;
+        public string StreamingFilePath => Path.Combine(StreamingFolderPath, DataSavingFileName) + DataSavingExtension;
 
         public SaveLoadSystem()
         {
@@ -48,7 +50,7 @@ namespace MoonBunny
         
         void CheckDirectory()
         {
-            string path = DataSavingFolderPath;
+            string path = PersistenceFolderPath;
 
             if (!Directory.Exists(path))
             {
@@ -63,7 +65,7 @@ namespace MoonBunny
 
         void CheckFile()
         {
-            string path = SaveDataFilePath;
+            string path = PersistenceFilePath;
 
             if (!File.Exists(path))
             {
@@ -86,12 +88,12 @@ namespace MoonBunny
             CheckDirectory();
             CheckFile();
             
-            using (FileStream fs = new FileStream(SaveDataFilePath, FileMode.Create))
+            using (FileStream fs = new FileStream(PersistenceFilePath, FileMode.Create))
             {
                 using (StreamWriter writer = new StreamWriter(fs))
                 {
                     writer.Write(str);
-                    MoonBunnyLog.print($"Save Data successfully on File {SaveDataFilePath}");
+                    MoonBunnyLog.print($"Save Data successfully on File {PersistenceFilePath}");
                     OnSaveSuccess?.Invoke();
                 }
             }
@@ -139,7 +141,7 @@ namespace MoonBunny
             CheckDirectory();
             CheckFile();
 
-            using (FileStream fs = File.OpenRead(SaveDataFilePath))
+            using (FileStream fs = File.OpenRead(PersistenceFilePath))
             {
                 using (StreamReader reader = new StreamReader(fs))
                 {
@@ -147,11 +149,11 @@ namespace MoonBunny
                     ProgressSaveData = JsonUtility.FromJson<ProgressSaveData>(jsonData);
                     if (ProgressSaveData != null)
                     {
-                        MoonBunnyLog.print($"SaveLoadSystem load success : {SaveDataFilePath}");
+                        MoonBunnyLog.print($"SaveLoadSystem load success : {PersistenceFilePath}");
                     }
                     else
                     {
-                        MoonBunnyLog.print($"SaveLoadSystem load fail : {SaveDataFilePath}.\n So made new one");
+                        MoonBunnyLog.print($"SaveLoadSystem load fail : {PersistenceFilePath}.\n So made new one");
                         ProgressSaveData = ProgressSaveData.GetDefaultSaveData();
                     }
                     DataIsLoaded = true;
@@ -165,7 +167,7 @@ namespace MoonBunny
             CheckDirectory();
             CheckFile();
 
-            using (FileStream fs = File.OpenRead(SaveDataFilePath))
+            using (FileStream fs = File.OpenRead(PersistenceFilePath))
             {
                 using (StreamReader reader = new StreamReader(fs))
                 {
@@ -173,11 +175,11 @@ namespace MoonBunny
                     QuestSaveData = JsonUtility.FromJson<QuestSaveData>(jsonData);
                     if (QuestSaveData != null)
                     {
-                        MoonBunnyLog.print($"SaveLoadSystem load success :{SaveDataFilePath}");
+                        MoonBunnyLog.print($"SaveLoadSystem load success :{PersistenceFilePath}");
                     }
                     else
                     {
-                        MoonBunnyLog.print($"SaveLoadSystem load fail : {SaveDataFilePath}.\n So made new one");
+                        MoonBunnyLog.print($"SaveLoadSystem load fail : {PersistenceFilePath}.\n So made new one");
                         QuestSaveData = QuestSaveData.GetDefaultSaveData();
                     }
                     DataIsLoaded = true;
@@ -243,7 +245,7 @@ namespace MoonBunny
             }
 
             CreateDefaultMapData(DataSavingFileName);
-            File.AppendAllLines(SaveDataFilePath, fileStr);
+            File.AppendAllLines(PersistenceFilePath, fileStr);
             AssetDatabase.Refresh();
         }
 
@@ -255,8 +257,8 @@ namespace MoonBunny
             setting.componentsNotMatchedBecomesOverride = true;
             setting.gameObjectsNotMatchedBecomesOverride = true;
             
-            Debug.Log("DB" + SaveDataFilePath);
-            string[] fileContents = File.ReadAllLines(SaveDataFilePath);
+            Debug.Log("Load CSV From " + StreamingFilePath);
+            string[] fileContents = File.ReadAllLines(StreamingFilePath);
 
             int noIndex = Array.IndexOf(CSVHeader, "No");
             int typeIndex = Array.IndexOf(CSVHeader, "Type");
