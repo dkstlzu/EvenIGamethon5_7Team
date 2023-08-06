@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1a22f9a0a4e3b5646a70e4f7be251bc1
+guid: 97f8f1694629da448acc8214e1ae2608
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -136,97 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlatformLevelEndFlagCushion
-      rect:
-        serializedVersion: 2
-        x: 33
-        y: 1153
-        width: 450
-        height: 260
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2276e3c19cb9b6d4ab59c1cbb28f677a
-      internalID: 1154674338
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlatformLevelEndFlagFlower
-      rect:
-        serializedVersion: 2
-        x: 541
-        y: 1151
-        width: 450
-        height: 260
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 853e6b124f8e2b84fa995901cede4cc8
-      internalID: 965661563
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlatformLevelEndFlagBranch
-      rect:
-        serializedVersion: 2
-        x: 29
-        y: 653
-        width: 454
-        height: 260
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 467040d4346b5da42898dd0ed0830aa7
-      internalID: 1962843608
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlatformLevelEndFlagAsteroid
-      rect:
-        serializedVersion: 2
-        x: 539
-        y: 649
-        width: 460
-        height: 260
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c24836d3297710d42a39795fe5297a71
-      internalID: 2052851898
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlatformLevelEndFlagCloud
+      name: IconMenuChargeSpecialPackage
       rect:
         serializedVersion: 2
         x: 0
-        y: 133
-        width: 512
-        height: 260
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,8 +150,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e79482c56e2187042a94f97164717f17
-      internalID: 1240413948
+      spriteID: c547b52c12b40e54684c9d8093d7336f
+      internalID: 1655306970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IconMenuChargeNomalPackage
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bb3369b484fa9c48850faf8922c9dc1
+      internalID: 1008489103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IconMenuChargeHeart
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebb0bddd628cc5148be6686e20f2c9a8
+      internalID: 2024783066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IconMenuChargeSeal
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea715be8f5a50a94f940de1cea919c28
+      internalID: -305908404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IconMenuChargeSpecialTwinkle
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57bf83fbb15cf744aa707f8df931513e
+      internalID: 900380599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IconMenuChargeSpecialPackageDiamond
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72d8f7606af262245a137dc84c13a7de
+      internalID: 2132177320
       vertices: []
       indices: 
       edges: []
@@ -251,11 +272,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PlatformLevelEndFlagAsteroid: 2052851898
-      PlatformLevelEndFlagBranch: 1962843608
-      PlatformLevelEndFlagCloud: 1240413948
-      PlatformLevelEndFlagCushion: 1154674338
-      PlatformLevelEndFlagFlower: 965661563
+      IconMenuChargeHeart: 2024783066
+      IconMenuChargeNomalPackage: 1008489103
+      IconMenuChargeSeal: -305908404
+      IconMenuChargeSpecialPackage: 1655306970
+      IconMenuChargeSpecialPackageDiamond: 2132177320
+      IconMenuChargeSpecialTwinkle: 900380599
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
