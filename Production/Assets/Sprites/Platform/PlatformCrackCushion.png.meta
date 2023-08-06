@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2812d3280519b734799cf7a45afa5f7a
+guid: 7b0415dd1df7bce40891053bdd50b9c9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -136,190 +136,190 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlatformCrack_0
+      name: PlatformCrackCushion_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 2
-        width: 258
-        height: 258
+        y: 512
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6dca300ca193bb34f96d5d01dbdf4668
-      internalID: -397201070
+      spriteID: 609a4b410bf1e994598de36c5a315bbe
+      internalID: -1783612430
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformCrack_1
+      name: PlatformCrackCushion_1
       rect:
         serializedVersion: 2
-        x: 258
-        y: 2
-        width: 258
-        height: 258
+        x: 256
+        y: 512
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b24b94ddcfdb03544b3c5f9a55e80036
-      internalID: 136756978
+      spriteID: 2aedcf80e0b43484a80af9c24b5132ed
+      internalID: -741866270
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformCrack_2
+      name: PlatformCrackCushion_2
       rect:
         serializedVersion: 2
-        x: 516
-        y: 2
-        width: 258
-        height: 258
+        x: 512
+        y: 512
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bda4a05e405a46e4d8d0ec2f0af4427d
-      internalID: -838500086
+      spriteID: de5ea6962b40b9a418b7a1bc7b866a99
+      internalID: -795495087
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformCrack_3
+      name: PlatformCrackCushion_3
       rect:
         serializedVersion: 2
-        x: 774
-        y: 2
-        width: 258
-        height: 258
+        x: 0
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 474e40933cc01a0479c554a98b5293e6
-      internalID: -96862908
+      spriteID: a07d1cd0907b52d4fbf2bcf04d595512
+      internalID: -1766754140
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformCrack_4
+      name: PlatformCrackCushion_4
       rect:
         serializedVersion: 2
-        x: 1032
-        y: 2
-        width: 258
-        height: 258
+        x: 256
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a53dd31dcc556e747ab9760197d34e8e
-      internalID: 812919828
+      spriteID: bb2416c63c10e6c42b0cc24c3dd51514
+      internalID: 225703029
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformCrack_5
+      name: PlatformCrackCushion_5
       rect:
         serializedVersion: 2
-        x: 1290
-        y: 2
-        width: 258
-        height: 258
+        x: 512
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb02eb919118998429bdecfef2d8087b
-      internalID: 1756773506
+      spriteID: 54eba236fd7d1574ca1b566a41260327
+      internalID: -1284261898
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformCrack_6
+      name: PlatformCrackCushion_6
       rect:
         serializedVersion: 2
-        x: 1548
-        y: 2
-        width: 258
-        height: 258
+        x: 0
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b6768a6fc3720a4c8fe76878febaf08
-      internalID: 1185809667
+      spriteID: 640c0d7b2edb089408ff7ca93bb54c1c
+      internalID: 50339455
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformCrack_7
+      name: PlatformCrackCushion_7
       rect:
         serializedVersion: 2
-        x: 1806
-        y: 2
-        width: 258
-        height: 258
+        x: 256
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0889158af96575949ab2ec7ce87dc8d2
-      internalID: -211009284
+      spriteID: 268b731aa9c55f64bb4c9968b7cea88d
+      internalID: -1575232412
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformCrack_8
+      name: PlatformCrackCushion_8
       rect:
         serializedVersion: 2
-        x: 2064
-        y: 2
-        width: 258
-        height: 258
+        x: 512
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 56ffc7dcfb13d6849a7da3cfb550633d
-      internalID: -1253283144
+      spriteID: dc4d8f0f142dcfb42825288c03f7aa56
+      internalID: 1859427250
       vertices: []
       indices: 
       edges: []
@@ -335,15 +335,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PlatformCrack_0: -397201070
-      PlatformCrack_1: 136756978
-      PlatformCrack_2: -838500086
-      PlatformCrack_3: -96862908
-      PlatformCrack_4: 812919828
-      PlatformCrack_5: 1756773506
-      PlatformCrack_6: 1185809667
-      PlatformCrack_7: -211009284
-      PlatformCrack_8: -1253283144
+      PlatformCrackCushion_0: -1783612430
+      PlatformCrackCushion_1: -741866270
+      PlatformCrackCushion_2: -795495087
+      PlatformCrackCushion_3: -1766754140
+      PlatformCrackCushion_4: 225703029
+      PlatformCrackCushion_5: -1284261898
+      PlatformCrackCushion_6: 50339455
+      PlatformCrackCushion_7: -1575232412
+      PlatformCrackCushion_8: 1859427250
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

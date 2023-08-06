@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2812d3280519b734799cf7a45afa5f7a
+guid: c7b2eefa8105784489c0d4b47944916b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -136,190 +136,169 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlatformCrack_0
+      name: PlatformCrackFlower_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 2
-        width: 258
-        height: 258
+        y: 512
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6dca300ca193bb34f96d5d01dbdf4668
-      internalID: -397201070
+      spriteID: 1c42db49779241a44ba592a80f430312
+      internalID: -510836354
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformCrack_1
+      name: PlatformCrackFlower_1
       rect:
         serializedVersion: 2
-        x: 258
-        y: 2
-        width: 258
-        height: 258
+        x: 256
+        y: 512
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b24b94ddcfdb03544b3c5f9a55e80036
-      internalID: 136756978
+      spriteID: ad614a27c85ad0540a7224a067ad879c
+      internalID: -1573735400
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformCrack_2
+      name: PlatformCrackFlower_2
       rect:
         serializedVersion: 2
-        x: 516
-        y: 2
-        width: 258
-        height: 258
+        x: 512
+        y: 512
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bda4a05e405a46e4d8d0ec2f0af4427d
-      internalID: -838500086
+      spriteID: 37a8b921329a5bb44aebc6a7704bc797
+      internalID: -568985273
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformCrack_3
+      name: PlatformCrackFlower_3
       rect:
         serializedVersion: 2
-        x: 774
-        y: 2
-        width: 258
-        height: 258
+        x: 0
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 474e40933cc01a0479c554a98b5293e6
-      internalID: -96862908
+      spriteID: f63676827433094448d26ec2ea5eaaa1
+      internalID: 930937086
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformCrack_4
+      name: PlatformCrackFlower_4
       rect:
         serializedVersion: 2
-        x: 1032
-        y: 2
-        width: 258
-        height: 258
+        x: 256
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a53dd31dcc556e747ab9760197d34e8e
-      internalID: 812919828
+      spriteID: a276ec1a80340cc469475f43f57bea89
+      internalID: -1380736901
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformCrack_5
+      name: PlatformCrackFlower_5
       rect:
         serializedVersion: 2
-        x: 1290
-        y: 2
-        width: 258
-        height: 258
+        x: 512
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb02eb919118998429bdecfef2d8087b
-      internalID: 1756773506
+      spriteID: 283511d75ec23d242a287d0b02e7b8ec
+      internalID: -729683523
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformCrack_6
+      name: PlatformCrackFlower_6
       rect:
         serializedVersion: 2
-        x: 1548
-        y: 2
-        width: 258
-        height: 258
+        x: 0
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b6768a6fc3720a4c8fe76878febaf08
-      internalID: 1185809667
+      spriteID: 688fb13287e1efd459159d06e1a91e56
+      internalID: 917538097
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformCrack_7
+      name: PlatformCrackFlower_7
       rect:
         serializedVersion: 2
-        x: 1806
-        y: 2
-        width: 258
-        height: 258
+        x: 256
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0889158af96575949ab2ec7ce87dc8d2
-      internalID: -211009284
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlatformCrack_8
-      rect:
-        serializedVersion: 2
-        x: 2064
-        y: 2
-        width: 258
-        height: 258
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 56ffc7dcfb13d6849a7da3cfb550633d
-      internalID: -1253283144
+      spriteID: d5469eb36cb867f4eb4f51f9e54f6c3b
+      internalID: -354419785
       vertices: []
       indices: 
       edges: []
@@ -335,15 +314,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PlatformCrack_0: -397201070
-      PlatformCrack_1: 136756978
-      PlatformCrack_2: -838500086
-      PlatformCrack_3: -96862908
-      PlatformCrack_4: 812919828
-      PlatformCrack_5: 1756773506
-      PlatformCrack_6: 1185809667
-      PlatformCrack_7: -211009284
-      PlatformCrack_8: -1253283144
+      PlatformCrackFlower_0: -510836354
+      PlatformCrackFlower_1: -1573735400
+      PlatformCrackFlower_2: -568985273
+      PlatformCrackFlower_3: 930937086
+      PlatformCrackFlower_4: -1380736901
+      PlatformCrackFlower_5: -729683523
+      PlatformCrackFlower_6: 917538097
+      PlatformCrackFlower_7: -354419785
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
