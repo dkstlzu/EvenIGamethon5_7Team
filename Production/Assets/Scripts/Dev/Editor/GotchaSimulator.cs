@@ -22,6 +22,18 @@ namespace Dev.Editor
             System.Diagnostics.Process.Start(GOTCHA_RESULT_PATH);
         }
 
+        [MenuItem("Dev/Gotcha/Open Normal Result")]
+        static void OpenNormalGotchaResult()
+        {
+            System.Diagnostics.Process.Start(GOTCHA_RESULT_PATH + "/NormalGotcha.txt");
+        }
+        
+        [MenuItem("Dev/Gotcha/Open Normal Result")]
+        static void OpenSpecialGotchaResult()
+        {
+            System.Diagnostics.Process.Start(GOTCHA_RESULT_PATH + "/SpecialGotcha.txt");
+        }
+
         [MenuItem("Dev/Gotcha/Normal 1000")]
         static void NormalGotcha1000()
         {
@@ -86,7 +98,7 @@ namespace Dev.Editor
             SaveLoadSystem saveLoadSystem = new SaveLoadSystem("Test", "NormalGotcha", "txt");
             saveLoadSystem.SaveString(summaryBuilder.ToString());
             
-            OpenGotchaDirectory();
+            OpenNormalGotchaResult();
         }
         
         [MenuItem("Dev/Gotcha/Special 1000")]
@@ -153,7 +165,7 @@ namespace Dev.Editor
             SaveLoadSystem saveLoadSystem = new SaveLoadSystem("Test", "SpecialGotcha", "txt");
             saveLoadSystem.SaveString(summaryBuilder.ToString());
             
-            OpenGotchaDirectory();
+            OpenSpecialGotchaResult();
         }
         
         static GotchaReward GetRandom(IEnumerable<GotchaReward> rewards, out float randomValue, out int index)
