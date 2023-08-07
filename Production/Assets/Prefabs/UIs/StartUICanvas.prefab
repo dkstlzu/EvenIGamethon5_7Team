@@ -506,7 +506,7 @@ GameObject:
   - component: {fileID: 567915326484925488}
   - component: {fileID: 9069040530207812780}
   m_Layer: 5
-  m_Name: Quit
+  m_Name: Credit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -577,9 +577,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 990965457328876112}
-        m_TargetAssemblyTypeName: MoonBunny.UIs.StartSceneUI, Assembly-CSharp
-        m_MethodName: OnQuitButtonClicked
+      - m_Target: {fileID: 8393388765319475536}
+        m_TargetAssemblyTypeName: MoonBunny.UIs.SettingUI, Assembly-CSharp
+        m_MethodName: OnCreditButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1245,7 +1245,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -68937264, guid: 282e41a0f95a70848afdcab8efac2fce, type: 3}
+  m_Sprite: {fileID: 1445126976, guid: 282e41a0f95a70848afdcab8efac2fce, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -22365,7 +22365,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 53.95
+  m_fontSize: 56.15
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -24094,6 +24094,9 @@ MonoBehaviour:
   QuestUI: {fileID: 203216724328702907}
   StoreUI: {fileID: 9163122713863015649}
   ExchangeUI: {fileID: 8664300546940628295}
+  ConfirmUI: {fileID: 2374192228035279710}
+  ReallyQuitText: "\uD1A0\uB07C\uB97C \uB450\uACE0 \uB5A0\uB098\uC2E4 \uAC74\uAC00\uC694????\n\n<size=80%>\uC5D0\uC774
+    \uC124\uB9C8\n<size=60%>\uADF8\uB7F4\uB9AC\uAC00\n<size=40%>\uC5C6\uC796\uC544\uC694"
   GoldText1: {fileID: 5930256871186895922}
   GoldText2: {fileID: 7498398225572825008}
   DiamondText1: {fileID: 8413590397653518947}
