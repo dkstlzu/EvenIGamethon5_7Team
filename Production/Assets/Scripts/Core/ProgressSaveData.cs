@@ -7,6 +7,26 @@ using UnityEngine.Serialization;
 namespace MoonBunny
 {
     [Serializable]
+    public class LegacyProgressSaveData
+    {
+        [SerializeField] private ReadOnlyEnumDict<FriendName, int> _collectionDict = new ReadOnlyEnumDict<FriendName, int>();
+        [SerializeField] private ReadOnlyEnumDict<FriendName, int> _collectionSellDict = new ReadOnlyEnumDict<FriendName, int>();
+        [SerializeField] private ReadOnlyEnumDict<StageName, int> _clearDict = new ReadOnlyEnumDict<StageName, int>();
+
+        public ReadOnlyEnumDict<FriendName, int> CollectionDict => _collectionDict;
+        public ReadOnlyEnumDict<FriendName, int> CollectionSellDict => _collectionSellDict;
+        public ReadOnlyEnumDict<StageName, int> ClearDict => _clearDict;
+
+        public string UsingFriendName;
+        public int DiamondNumber;
+        public int GoldNumber;
+
+        public bool ShowTutorial;
+        public float VolumeSetting;
+    }
+    
+    
+    [Serializable]
     public class ProgressSaveData
     {
         [SerializeField] private ReadOnlyEnumDict<FriendName, int> _collectionDict = new ReadOnlyEnumDict<FriendName, int>();
@@ -23,11 +43,7 @@ namespace MoonBunny
 
         public bool ShowTutorial;
         public float VolumeSetting;
-
-        public ProgressSaveData()
-        {
-
-        }
+        public bool RemoveAd;
 
         public static ProgressSaveData GetDefaultSaveData()
         {
@@ -96,7 +112,42 @@ namespace MoonBunny
             return data;
         }
 
-        public int this[FriendName friendName] => _collectionDict[friendName];
-        public int this[StageName stageName] => _clearDict[stageName];
+        public static ProgressSaveData MigrateFromLegacy(LegacyProgressSaveData data)
+        {
+            ProgressSaveData newData = GetDefaultSaveData();
+
+            foreach (var pair in data.CollectionDict)
+            {
+                if (newData.CollectionDict.ContainsKey(pair.Key))
+                {
+                    newData.CollectionDict[pair.Key] = pair.Value;
+                }
+            }
+            
+            foreach (var pair in data.CollectionSellDict)
+            {
+                if (newData.CollectionSellDict.ContainsKey(pair.Key))
+                {
+                    newData.CollectionSellDict[pair.Key] = pair.Value;
+                }
+            }
+
+            foreach (var pair in data.ClearDict)
+            {
+                if (newData.ClearDict.ContainsKey(pair.Key))
+                {
+                    newData.ClearDict[pair.Key] = pair.Value;
+                }
+            }
+
+            newData.UsingFriendName = data.UsingFriendName;
+            newData.DiamondNumber = data.DiamondNumber;
+            newData.GoldNumber = data.GoldNumber;
+
+            newData.ShowTutorial = data.ShowTutorial;
+            newData.VolumeSetting = data.VolumeSetting;
+            
+            return newData;
+        }
     }
 }

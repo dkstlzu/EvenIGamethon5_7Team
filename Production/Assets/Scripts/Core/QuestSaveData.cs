@@ -5,6 +5,23 @@ using UnityEngine;
 namespace MoonBunny
 {
     [Serializable]
+    public class LegacyQuestSaveData
+    {
+        [SerializeField] private List<QuestItemSaveData> _questClearList = new List<QuestItemSaveData>();
+
+        public List<QuestItemSaveData> QuestClearList => _questClearList;
+
+        public int JumpCount;
+        public int ChangeDirectionCount;
+        public int SideWallCollisionCount;
+        public int ItemTakenCount;
+        public int ObstacleCollisionCount;
+        public int GoldGetCount;
+        public int DiamondGetCount;
+
+    }
+    
+    [Serializable]
     public class QuestSaveData
     {
         [SerializeField] private List<QuestItemSaveData> _questClearList = new List<QuestItemSaveData>();
@@ -45,6 +62,26 @@ namespace MoonBunny
             }
 
             return saveData;
+        }
+        
+        public static QuestSaveData MigrateFromLegacy(LegacyQuestSaveData data)
+        {
+            QuestSaveData newData = GetDefaultSaveData();
+
+            foreach (QuestItemSaveData itemData in data.QuestClearList)
+            {
+                newData.QuestClearList.Add(itemData);
+            }
+
+            newData.JumpCount = data.JumpCount;
+            newData.ChangeDirectionCount = data.ChangeDirectionCount;
+            newData.SideWallCollisionCount = data.SideWallCollisionCount;
+            newData.ItemTakenCount = data.ItemTakenCount;
+            newData.ObstacleCollisionCount = data.ObstacleCollisionCount;
+            newData.GoldGetCount = data.GoldGetCount;
+            newData.DiamondGetCount = data.DiamondGetCount;
+
+            return newData;
         }
     }
 }
