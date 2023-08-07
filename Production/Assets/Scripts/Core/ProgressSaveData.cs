@@ -43,7 +43,10 @@ namespace MoonBunny
 
         public bool ShowTutorial;
         public float VolumeSetting;
+        
         public bool RemoveAd;
+        public bool LimitedPackagePurchased;
+        public int UnlimitedPackagePurchasedNumber;
 
         public static ProgressSaveData GetDefaultSaveData()
         {

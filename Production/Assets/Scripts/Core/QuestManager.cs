@@ -23,18 +23,18 @@ namespace MoonBunny
 
         private const string QUEST_PATH = "Specs/Quest/";
 
-        private const int JUMP_ID = 0;
-        private const int CHANGE_DIRECTION_ID = 1;
-        private const int SIDEWALL_COLLISION_ID = 2;
-        private const int ITEM_TAKEN_ID = 3;
-        private const int OBSTACLE_COLLISION_ID = 4;
-        private const int GOLD_GET_ID = 5;
-        private const int DIAMOND_GET_ID = 6;
+        public const int JUMP_ID = 0;
+        public const int CHANGE_DIRECTION_ID = 1;
+        public const int SIDEWALL_COLLISION_ID = 2;
+        public const int ITEM_TAKEN_ID = 3;
+        public const int OBSTACLE_COLLISION_ID = 4;
+        public const int GOLD_GET_ID = 5;
+        public const int DIAMOND_GET_ID = 6;
         
-        private const int UNLOCK_STAGE_ID = 100;
-        private const int SUGAR_PERFECTCLEAR_ID = 110;
-        private const int FRIEND_COLLECTION_ID = 130;
-        private const int PERFECTCLEAR_ID = 140;
+        public const int UNLOCK_STAGE_ID = 100;
+        public const int SUGAR_PERFECTCLEAR_ID = 110;
+        public const int FRIEND_COLLECTION_ID = 130;
+        public const int PERFECTCLEAR_ID = 140;
         
         void SpecialQuestSet(Quest quest)
         {

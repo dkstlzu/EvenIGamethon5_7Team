@@ -117,8 +117,6 @@ namespace MoonBunny
 
             SCB = new SceneLoadCallbackSetter(SceneName.Names);
 
-
-
             for (int i = 0; i < SceneName.StageNames.Length; i++)
             {
                 SCB.SceneLoadCallBackDict[SceneName.StageNames[i]] += () =>
@@ -130,6 +128,18 @@ namespace MoonBunny
                     OnStageSceneUnloaded?.Invoke();
                 };
             }
+
+            IAPManager.instance.OnPurchaseComplete += (productName) =>
+            {
+                if (productName == "패키지")
+                {
+                    ProgressSaveData.UnlimitedPackagePurchasedNumber++;
+                }
+                else if (productName == "한정 패키지")
+                {
+                    ProgressSaveData.LimitedPackagePurchased = true;
+                }
+            };
         }
 
         private void OnApplicationQuit()

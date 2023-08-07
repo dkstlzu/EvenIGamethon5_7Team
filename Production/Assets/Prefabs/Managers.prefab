@@ -244,6 +244,9 @@ MonoBehaviour:
       GoldNumber: 0
       ShowTutorial: 0
       VolumeSetting: 0
+      RemoveAd: 0
+      LimitedPackagePurchased: 0
+      UnlimitedPackagePurchasedNumber: 0
     QuestSaveData:
       _questClearList: []
       JumpCount: 0
@@ -282,6 +285,9 @@ MonoBehaviour:
       GoldNumber: 0
       ShowTutorial: 0
       VolumeSetting: 0
+      RemoveAd: 0
+      LimitedPackagePurchased: 0
+      UnlimitedPackagePurchasedNumber: 0
     QuestSaveData:
       _questClearList: []
       JumpCount: 0
@@ -351,13 +357,13 @@ MonoBehaviour:
     Price: 100000
     RewardValue: 1230
   LimitedPackageProductInfo:
-    Name: "\uD55C\uC815\uD328\uD0A4\uC9C0"
+    Name: "\uD55C\uC815 \uD328\uD0A4\uC9C0"
     Id: package_limited
     Description: "\uCD5C\uCD081\uD68C\uD55C\uC815 \uD328\uD0A4\uC9C0"
     Price: 5000
     RewardValue: 100
   UnlimitedPackageProductInfo:
-    Name: "\uC77C\uBC18\uD328\uD0A4\uC9C0"
+    Name: "\uD328\uD0A4\uC9C0"
     Id: package_unlimited
     Description: "\uD328\uD0A4\uC9C0"
     Price: 15000

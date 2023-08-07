@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace MoonBunny.UIs
@@ -16,12 +17,50 @@ namespace MoonBunny.UIs
         [SerializeField] private GameObject PackageReceiptGO;
         [SerializeField] private GameObject DiamondChargeReceiptGO;
 
+        [SerializeField] private Button LimitedPackageButton;
+        [SerializeField] private Button UnlimitedPackageButton;
+
+        [SerializeField] private TextMeshProUGUI LimitedPackageDescription;
+        [SerializeField] private TextMeshProUGUI UnlimitedPackageDescription;
+
         protected override void Awake()
         {
             base.Awake();
             
             PackageToggle.onValueChanged.AddListener(OnPackageToggle);
             DiamondChargeToggle.onValueChanged.AddListener(OnDiamondChargeToggle);
+
+            IAPManager.instance.OnPurchaseComplete += (productName) =>
+            {
+                if (productName == "패키지" || productName == "한정 패키지")
+                {
+                    Rebuild();
+                }
+            };
+        }
+
+        protected override void Rebuild()
+        {
+            base.Rebuild();
+
+            LimitedPackageButton.interactable = !GameManager.ProgressSaveData.LimitedPackagePurchased;
+            if (!LimitedPackageButton.interactable)
+            {
+                LimitedPackageDescription.text = "최대한도로 구매함";
+            }
+
+            int clearedStageNumber = 0;
+
+            clearedStageNumber += QuestManager.instance.GetQuest(QuestManager.UNLOCK_STAGE_ID).State == QuestState.IsFinished || QuestManager.instance.GetQuest(QuestManager.UNLOCK_STAGE_ID).State == QuestState.CanTakeReward ? 1 : 0;
+            clearedStageNumber += QuestManager.instance.GetQuest(QuestManager.UNLOCK_STAGE_ID+1).State == QuestState.IsFinished || QuestManager.instance.GetQuest(QuestManager.UNLOCK_STAGE_ID+1).State == QuestState.CanTakeReward ? 1 : 0;
+            clearedStageNumber += QuestManager.instance.GetQuest(QuestManager.UNLOCK_STAGE_ID+2).State == QuestState.IsFinished || QuestManager.instance.GetQuest(QuestManager.UNLOCK_STAGE_ID+2).State == QuestState.CanTakeReward ? 1 : 0;
+            clearedStageNumber += QuestManager.instance.GetQuest(QuestManager.UNLOCK_STAGE_ID+3).State == QuestState.IsFinished || QuestManager.instance.GetQuest(QuestManager.UNLOCK_STAGE_ID+3).State == QuestState.CanTakeReward ? 1 : 0;
+
+            UnlimitedPackageButton.interactable = clearedStageNumber > GameManager.ProgressSaveData.UnlimitedPackagePurchasedNumber;
+            if (!UnlimitedPackageButton.interactable)
+            {
+                UnlimitedPackageDescription.text = "최대한도로 구매함";
+            }
         }
 
         public void OnPackageToggle(bool isOn)

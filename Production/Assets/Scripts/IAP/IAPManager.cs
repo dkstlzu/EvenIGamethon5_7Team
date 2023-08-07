@@ -123,6 +123,8 @@ namespace MoonBunny
             Debug.LogError(error + message);
         }
 
+        public event Action<string> OnPurchaseComplete;
+
         public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs purchaseEvent)
         {
             Product product = purchaseEvent.purchasedProduct;
@@ -163,6 +165,7 @@ namespace MoonBunny
                 GameManager.instance.RemoveAd = true;
             }
  
+            OnPurchaseComplete?.Invoke(GetProductInfoWithId(id).Name);
             return PurchaseProcessingResult.Complete;
         }
 
@@ -179,6 +182,11 @@ namespace MoonBunny
         public ProductInfo GetProductInfo(string productName)
         {
             return ProductInfoList.Find(info => info.Name == productName);
+        }
+        
+        public ProductInfo GetProductInfoWithId(string productId)
+        {
+            return ProductInfoList.Find(info => info.Id == productId);
         }
     }
 }
