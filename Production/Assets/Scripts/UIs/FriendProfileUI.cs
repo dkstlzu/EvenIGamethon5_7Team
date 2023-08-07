@@ -70,12 +70,15 @@ namespace MoonBunny.UIs
             _memoryImage.sprite = PieceOfMemorySpriteList[index];
             _description.text = FriendProfileTextList[index].Description;
             _memoryText.text = string.Empty;
-            
-            for (int i = 0; i < Mathf.Min(_currentCollectionNumber, FriendProfileTextList[index].MemoryTexts.Count); i++)
-            {
-                _memoryText.text += FriendProfileTextList[index].MemoryTexts[i] + "\n";
-            }
 
+            for (int i = 0; i < FriendProfileTextList[index].MemoryTexts.Count; i++)
+            {
+                if (_currentCollectionNumber >= FriendProfileTextList[index].MemoryTexts[i].Integer)
+                {
+                    _memoryText.text = FriendProfileTextList[index].MemoryTexts[i].Str;
+                    break;
+                }
+            }
         }
 
         private float targetPivotX = 0;
