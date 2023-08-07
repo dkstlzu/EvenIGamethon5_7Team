@@ -52,19 +52,16 @@ namespace MoonBunny.UIs
 
         public void OnLimitedPackagePurchase()
         {
-            print("limited package");
             IAPManager.instance.LimitedPackageProductInfo.InitiatePurchase();
         }
 
         public void OnUnlimitedPackagePurchase()
         {
-            print("unlimited package");
             IAPManager.instance.UnlimitedPackageProductInfo.InitiatePurchase();
         }
 
         public void OnChargeButtonClicked(string productName)
         {
-            print(productName);
             IAPManager.instance.GetProductInfo(productName).InitiatePurchase();
         }
     }
