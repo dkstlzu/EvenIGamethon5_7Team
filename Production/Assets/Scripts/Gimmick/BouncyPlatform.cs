@@ -65,7 +65,6 @@ namespace MoonBunny
 
             _loopStartPosition = transform.position;
             _loopForwardPosition = GridTransform.ToReal(GridTransform.ToGrid(_loopStartPosition) + new Vector2Int(HorizontalMoveRange, VerticalMoveRange));
-            print($"{name} {_loopStartPosition}, {_loopForwardPosition}, {GridTransform.ToReal(GridTransform.ToGrid(_loopStartPosition) + new Vector2Int(HorizontalMoveRange, VerticalMoveRange))}, {GridTransform.ToGrid(_loopStartPosition)}, {new Vector2Int(HorizontalMoveRange, VerticalMoveRange)}");
 
             _loopDelta = (_loopForwardPosition - _loopStartPosition).normalized * LoopCycleSpeed;
             _currentLoopDelta = _loopDelta;
@@ -113,24 +112,24 @@ namespace MoonBunny
                 CurrentPattern = 2;
                 foreach (BouncyPlatform platform in Pattern1PlatformList)
                 {
-                    platform.MakeVirtual();
+                    if (platform) platform.MakeVirtual();
                 }
 
                 foreach (BouncyPlatform platform in Pattern2PlatformList)
                 {
-                    platform.MakeConcrete();
+                    if (platform) platform.MakeConcrete();
                 }
             } else if (CurrentPattern == 2)
             {
                 CurrentPattern = 1;
                 foreach (BouncyPlatform platform in Pattern1PlatformList)
                 {
-                    platform.MakeConcrete();
+                    if (platform) platform.MakeConcrete();
                 }
 
                 foreach (BouncyPlatform platform in Pattern2PlatformList)
                 {
-                    platform.MakeVirtual();
+                    if (platform) platform.MakeVirtual();
                 }
             }
             

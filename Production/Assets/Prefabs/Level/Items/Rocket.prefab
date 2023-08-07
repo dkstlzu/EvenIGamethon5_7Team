@@ -138,7 +138,7 @@ MonoBehaviour:
   _renderer: {fileID: 7224674976207212376}
   _audioClip: {fileID: 8300000, guid: f4828492e24b7304e800453915f98644, type: 3}
   UpSpeed: 15
-  Duration: 1.34
+  Duration: 2.5
 --- !u!61 &1606204566041422334
 BoxCollider2D:
   m_ObjectHideFlags: 0
