@@ -132,194 +132,207 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlatformCrack_0
+      name: PlatformCrackAsteroid_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 2
-        width: 258
-        height: 258
+        y: 4
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6dca300ca193bb34f96d5d01dbdf4668
-      internalID: -397201070
+      spriteID: 1bc7cc21c8050914e84e8510a36913c6
+      internalID: -1916222419
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformCrack_1
+      name: PlatformCrackAsteroid_1
       rect:
         serializedVersion: 2
-        x: 258
-        y: 2
-        width: 258
-        height: 258
+        x: 256
+        y: 4
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b24b94ddcfdb03544b3c5f9a55e80036
-      internalID: 136756978
+      spriteID: 181de054f16ec2448ac939679ad63e3f
+      internalID: 1613513203
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformCrack_2
+      name: PlatformCrackAsteroid_2
       rect:
         serializedVersion: 2
-        x: 516
-        y: 2
-        width: 258
-        height: 258
+        x: 512
+        y: 4
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bda4a05e405a46e4d8d0ec2f0af4427d
-      internalID: -838500086
+      spriteID: 2f8c4ac188119be499845f35cfadda05
+      internalID: -33139941
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformCrack_3
+      name: PlatformCrackAsteroid_3
       rect:
         serializedVersion: 2
-        x: 774
-        y: 2
-        width: 258
-        height: 258
+        x: 768
+        y: 4
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 474e40933cc01a0479c554a98b5293e6
-      internalID: -96862908
+      spriteID: be4b2f0ec9afa784a8edcdca2cbaaa03
+      internalID: -1237749765
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformCrack_4
+      name: PlatformCrackAsteroid_4
       rect:
         serializedVersion: 2
-        x: 1032
-        y: 2
-        width: 258
-        height: 258
+        x: 1024
+        y: 4
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a53dd31dcc556e747ab9760197d34e8e
-      internalID: 812919828
+      spriteID: 6eb82402aab856b4b9fd9dcd976212b1
+      internalID: -279348710
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformCrack_5
+      name: PlatformCrackAsteroid_5
       rect:
         serializedVersion: 2
-        x: 1290
-        y: 2
-        width: 258
-        height: 258
+        x: 1280
+        y: 4
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb02eb919118998429bdecfef2d8087b
-      internalID: 1756773506
+      spriteID: 0c9cca20fb9254f4cb2db3232db8384e
+      internalID: -1421084591
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformCrack_6
+      name: PlatformCrackAsteroid_6
       rect:
         serializedVersion: 2
-        x: 1548
-        y: 2
-        width: 258
-        height: 258
+        x: 1536
+        y: 4
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b6768a6fc3720a4c8fe76878febaf08
-      internalID: 1185809667
+      spriteID: 3e744a4c04bce014486d8f752f645e3c
+      internalID: 1577621601
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformCrack_7
+      name: PlatformCrackAsteroid_7
       rect:
         serializedVersion: 2
-        x: 1806
-        y: 2
-        width: 258
-        height: 258
+        x: 1792
+        y: 4
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0889158af96575949ab2ec7ce87dc8d2
-      internalID: -211009284
+      spriteID: 2c194991b3e82d44ab82265025667358
+      internalID: -1672708167
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlatformCrack_8
+      name: PlatformCrackAsteroid_8
       rect:
         serializedVersion: 2
-        x: 2064
-        y: 2
-        width: 258
-        height: 258
+        x: 2048
+        y: 4
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 56ffc7dcfb13d6849a7da3cfb550633d
-      internalID: -1253283144
+      spriteID: fdd8da8bb2357ef43be211d71476d525
+      internalID: -1414906130
       vertices: []
       indices: 
       edges: []
@@ -335,15 +348,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PlatformCrack_0: -397201070
-      PlatformCrack_1: 136756978
-      PlatformCrack_2: -838500086
-      PlatformCrack_3: -96862908
-      PlatformCrack_4: 812919828
-      PlatformCrack_5: 1756773506
-      PlatformCrack_6: 1185809667
-      PlatformCrack_7: -211009284
-      PlatformCrack_8: -1253283144
+      PlatformCrackAsteroid_0: -1916222419
+      PlatformCrackAsteroid_1: 1613513203
+      PlatformCrackAsteroid_2: -33139941
+      PlatformCrackAsteroid_3: -1237749765
+      PlatformCrackAsteroid_4: -279348710
+      PlatformCrackAsteroid_5: -1421084591
+      PlatformCrackAsteroid_6: 1577621601
+      PlatformCrackAsteroid_7: -1672708167
+      PlatformCrackAsteroid_8: -1414906130
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

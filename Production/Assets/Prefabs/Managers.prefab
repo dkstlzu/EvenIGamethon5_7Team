@@ -111,6 +111,18 @@ MonoBehaviour:
   - {fileID: 22100000, guid: 4bb068285fcb64642b0da2707ed2c17d, type: 2}
   - {fileID: 22100000, guid: de0692b42b4dbf84da0c632f5ab10d02, type: 2}
   - {fileID: 22100000, guid: 89def2f6a1b26ae448b0123caf81609c, type: 2}
+  CrackPlatformAnimatorControllerList:
+  - {fileID: 9100000, guid: 0b224c5e291d51341b65ab6e0aaee9f2, type: 2}
+  - {fileID: 22100000, guid: 3118dd0254c97a44aaf3e29aeb43fa34, type: 2}
+  - {fileID: 22100000, guid: 318e7ad5496946144b3978025340efc2, type: 2}
+  - {fileID: 22100000, guid: d9ab12669db6bbe488bc5dafddfbe8df, type: 2}
+  - {fileID: 22100000, guid: c73a6c741360d584a99264da20ef69e1, type: 2}
+  CrackPlatformSpriteList:
+  - {fileID: -510836354, guid: c7b2eefa8105784489c0d4b47944916b, type: 3}
+  - {fileID: -510836354, guid: c7b2eefa8105784489c0d4b47944916b, type: 3}
+  - {fileID: -1783612430, guid: 7b0415dd1df7bce40891053bdd50b9c9, type: 3}
+  - {fileID: -1783612430, guid: 7b0415dd1df7bce40891053bdd50b9c9, type: 3}
+  - {fileID: -1916222419, guid: 2812d3280519b734799cf7a45afa5f7a, type: 3}
   CharacterAnimatorControllerList:
   - {fileID: 9100000, guid: 804a55612287c32458a152721bbb8f9c, type: 2}
   - {fileID: 22100000, guid: 220332ddabc9ab643bfc79270007157a, type: 2}

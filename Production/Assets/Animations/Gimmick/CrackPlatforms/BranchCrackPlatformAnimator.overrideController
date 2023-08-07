@@ -1,0 +1,13 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BranchCrackPlatformAnimator
+  m_Controller: {fileID: 9100000, guid: 0b224c5e291d51341b65ab6e0aaee9f2, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 4fd552db207e8f94f8f73770893940ad, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a48a25c5cebbd0d4f9facc22bc5a32e0, type: 2}
