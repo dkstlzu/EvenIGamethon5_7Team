@@ -235,19 +235,25 @@ namespace MoonBunny
 
         #endregion
         
-        public void GetDiamond(int number)
+        public void GetDiamond(int number, bool onlyQuest = true)
         {
             print($"GetDiamond!! {number}");
             SaveData.DiamondGetCount += number;
             _questDict[DIAMOND_GET_ID].ProgressAhead(number);
-            GameManager.instance.DiamondNumber += number;
+            if (!onlyQuest)
+            {
+                GameManager.instance.DiamondNumber += number;
+            }
         }
 
-        public void GetGold(int number)
+        public void GetGold(int number, bool onlyQuest = true)
         {
             SaveData.GoldGetCount += number;
             _questDict[GOLD_GET_ID].ProgressAhead(number);
-            GameManager.instance.GoldNumber += number;
+            if (!onlyQuest)
+            {
+                GameManager.instance.GoldNumber += number;
+            }
         }
         
         private void OnApplicationQuit()
