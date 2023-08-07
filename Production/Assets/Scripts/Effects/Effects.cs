@@ -43,8 +43,8 @@ namespace MoonBunny.Effects
             {
                 UpdateManager.instance.Delay(() =>
                 {
-                    _target.radius = previousPower;
-                    _spriteRenderer.transform.localScale = new Vector3(previousPower * 2, previousPower * 2, 1);
+                    _target.radius -= _magneticPower;
+                    _spriteRenderer.transform.localScale = new Vector3(_target.radius * 2, _target.radius * 2, 1);
                 }, _duration);
             }
         }
