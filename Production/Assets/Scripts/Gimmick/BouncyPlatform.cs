@@ -46,7 +46,7 @@ namespace MoonBunny
         private Vector2 _currentLoopDelta;
         float multiplier;
 
-        private int _numberToCrack = 2;
+        private int _numberToCrack = 3;
         private int _currentInvokeNumber = 0;
 
         private bool _doLoop = false;
@@ -65,6 +65,7 @@ namespace MoonBunny
 
             _loopStartPosition = transform.position;
             _loopForwardPosition = GridTransform.ToReal(GridTransform.ToGrid(_loopStartPosition) + new Vector2Int(HorizontalMoveRange, VerticalMoveRange));
+            print($"{name} {_loopStartPosition}, {_loopForwardPosition}, {GridTransform.ToReal(GridTransform.ToGrid(_loopStartPosition) + new Vector2Int(HorizontalMoveRange, VerticalMoveRange))}, {GridTransform.ToGrid(_loopStartPosition)}, {new Vector2Int(HorizontalMoveRange, VerticalMoveRange)}");
 
             _loopDelta = (_loopForwardPosition - _loopStartPosition).normalized * LoopCycleSpeed;
             _currentLoopDelta = _loopDelta;
