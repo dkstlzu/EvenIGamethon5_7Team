@@ -46,6 +46,9 @@ namespace MoonBunny
         private Vector2 _currentLoopDelta;
         float multiplier;
 
+        private int _numberToCrack = 2;
+        private int _currentInvokeNumber = 0;
+
         private bool _doLoop = false;
         
         protected void Start()
@@ -128,6 +131,13 @@ namespace MoonBunny
                 {
                     platform.MakeVirtual();
                 }
+            }
+            
+            _currentInvokeNumber++;
+
+            if (_currentInvokeNumber >= _numberToCrack)
+            {
+                Destroy(gameObject);
             }
 
             return true;
