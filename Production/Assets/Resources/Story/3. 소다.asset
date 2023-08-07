@@ -18,4 +18,4 @@ MonoBehaviour:
     \uAD6C\uD574\uC8FC\uB824\uB2E4 \r\n\uC18C\uB2E4\uAC00 \uD750\uB974\uB294 \uBA38\uB9AC\uCE74\uB77D\uC774\r\n\uC19C\uC0AC\uD0D5
     \uD558\uB298\uC5D0 \uBD99\uC5B4\uBC84\uB838\uB2E4. "
   MemoryTexts: []
-  StoryText: 
+  StorySprite: {fileID: 21300000, guid: 5636cb6db98ab964d8da2cb8d4167681, type: 3}

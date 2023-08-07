@@ -17,4 +17,4 @@ MonoBehaviour:
     \uD1A0\uB07C\uC778 \uD305\uD074\uC740 \uC232\uC5D0 \uB4E4\uC5B4\uAC14\uB2E4 \r\n\uC2DD\uC778
     \uAF43\uC5D0 \uC7A1\uD600\uBC84\uB838\uB2E4.  "
   MemoryTexts: []
-  StoryText: 
+  StorySprite: {fileID: 21300000, guid: 5daf983ab1c197446bd3446f3a4eaca2, type: 3}
