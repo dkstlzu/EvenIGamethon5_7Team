@@ -153,9 +153,6 @@ namespace MoonBunny.UIs
                     return;
                 }
             
-                GameManager.instance.GoldNumber += reward.GoldNumber;
-                GameManager.instance.DiamondNumber += reward.DiamondNumber;
-
                 if (reward.MemoryNumber > 0 && reward.MemoryType != FriendName.None && !FriendCollectionManager.instance.CollectFinished(reward.MemoryType))
                 {
                     FriendCollectionManager.instance.Collect(reward.MemoryType, reward.MemoryNumber);

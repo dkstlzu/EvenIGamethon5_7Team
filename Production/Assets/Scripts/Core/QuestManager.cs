@@ -237,7 +237,6 @@ namespace MoonBunny
         
         public void GetDiamond(int number, bool onlyQuest = true)
         {
-            print($"GetDiamond!! {number}");
             SaveData.DiamondGetCount += number;
             _questDict[DIAMOND_GET_ID].ProgressAhead(number);
             if (!onlyQuest)
