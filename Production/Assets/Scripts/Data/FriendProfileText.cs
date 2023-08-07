@@ -8,6 +8,6 @@ namespace MoonBunny
     {
         [Multiline(10)] public string Description;
         [Multiline(10)] public List<string> MemoryTexts;
-        [Multiline(10)] public string StoryText;
+        public Sprite StorySprite;
     }
 }

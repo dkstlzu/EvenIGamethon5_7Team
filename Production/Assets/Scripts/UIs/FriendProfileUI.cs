@@ -26,7 +26,7 @@ namespace MoonBunny.UIs
         [SerializeField] private TextMeshProUGUI _specialAbility;
         [SerializeField] private TextMeshProUGUI _description;
         [SerializeField] private TextMeshProUGUI _memoryText;
-        [SerializeField] private TextMeshProUGUI _storyText;
+        [SerializeField] private Image _storyImage;
         [SerializeField] private TextMeshProUGUI _collectionText;
         [SerializeField] private Slider _collectionSlider;
         [SerializeField] private Image _profileImage; 
@@ -48,7 +48,7 @@ namespace MoonBunny.UIs
                 _magneticPower.text = PreloadedResources.instance.FriendSpecList[index].MagneticPower.ToString();
                 _specialAbility.text = PreloadedResources.instance.FriendSpecList[index].SpecialAbility;
                 _profileImage.sprite = FriendSpriteList[index];
-                _storyText.text = FriendProfileTextList[index].StoryText;
+                _storyImage.sprite = FriendProfileTextList[index].StorySprite;
                 _selectButton.interactable = true;
             }
             else
@@ -58,7 +58,6 @@ namespace MoonBunny.UIs
                 _magneticPower.text = "???";
                 _specialAbility.text = "???";
                 _profileImage.sprite = SilhouetteSprite;
-                _storyText.text = "날 구해줘! 부탁해";
                 _selectButton.interactable = false;
             }
             
