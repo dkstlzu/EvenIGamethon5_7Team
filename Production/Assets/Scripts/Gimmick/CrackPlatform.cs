@@ -12,6 +12,9 @@ namespace MoonBunny
 
         private void Start()
         {
+#if UNITY_EDITOR
+            if (!UnityEditor.EditorApplication.isPlaying) return;
+#endif
             _renderer.sprite = PreloadedResources.instance.CrackPlatformSpriteList[GameManager.instance.Stage.StageLevel];
             _animator.runtimeAnimatorController =
                 PreloadedResources.instance.CrackPlatformAnimatorControllerList[GameManager.instance.Stage.StageLevel];
