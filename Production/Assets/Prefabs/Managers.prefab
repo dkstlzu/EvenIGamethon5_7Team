@@ -295,30 +295,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41da409df8e44954b0a39b3e94c08e4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ProductInfoList: []
   Diamond10ProductInfo:
     Name: "10\uB2E4\uC774\uC544"
     Id: diamond_10
     Description: "\uB2E4\uC774\uC54410\uAC1C"
     Price: 1000
     RewardValue: 10
+  Diamond25ProductInfo:
+    Name: "25\uB2E4\uC774\uC544"
+    Id: diamond_25
+    Description: "\uB2E4\uC774\uC54425\uAC1C(+\uBCF4\uB108\uC2A42\uAC1C)"
+    Price: 2500
+    RewardValue: 27
+  Diamond50ProductInfo:
+    Name: "50\uB2E4\uC774\uC544"
+    Id: diamond_50
+    Description: "\uB2E4\uC774\uC54450\uAC1C(+\uBCF4\uB108\uC2A45\uAC1C)"
+    Price: 5000
+    RewardValue: 55
   Diamond100ProductInfo:
     Name: "100\uB2E4\uC774\uC544"
     Id: diamond_100
-    Description: "\uB2E4\uC774\uC544100\uAC1C"
-    Price: 9700
-    RewardValue: 100
-  Diamond200ProductInfo:
-    Name: "200\uB2E4\uC774\uC544"
-    Id: diamond_200
-    Description: "\uB2E4\uC774\uC544200\uAC1C"
-    Price: 19000
-    RewardValue: 200
+    Description: "\uB2E4\uC774\uC544100\uAC1C(+\uBCF4\uB108\uC2A415\uAC1C)"
+    Price: 10000
+    RewardValue: 115
+  Diamond300ProductInfo:
+    Name: "300\uB2E4\uC774\uC544"
+    Id: diamond_300
+    Description: "\uB2E4\uC774\uC544300\uAC1C(+\uBCF4\uB108\uC2A450\uAC1C)"
+    Price: 30000
+    RewardValue: 350
+  Diamond500ProductInfo:
+    Name: "500\uB2E4\uC774\uC544"
+    Id: diamond_500
+    Description: "\uB2E4\uC774\uC544500\uAC1C(+\uBCF4\uB108\uC2A4100\uAC1C)"
+    Price: 50000
+    RewardValue: 600
   Diamond1000ProductInfo:
     Name: "1000\uB2E4\uC774\uC544"
     Id: diamond_1000
-    Description: "\uB2E4\uC774\uC544100\uAC1C"
-    Price: 85000
-    RewardValue: 1000
+    Description: "\uB2E4\uC774\uC5441000\uAC1C(+\uBCF4\uB108\uC2A4230\uAC1C)"
+    Price: 100000
+    RewardValue: 1230
+  LimitedPackageProductInfo:
+    Name: "\uD55C\uC815\uD328\uD0A4\uC9C0"
+    Id: package_limited
+    Description: "\uCD5C\uCD081\uD68C\uD55C\uC815 \uD328\uD0A4\uC9C0"
+    Price: 5000
+    RewardValue: 100
+  UnlimitedPackageProductInfo:
+    Name: "\uC77C\uBC18\uD328\uD0A4\uC9C0"
+    Id: package_unlimited
+    Description: "\uD328\uD0A4\uC9C0"
+    Price: 15000
+    RewardValue: 200
   RemoveAdProductInfo:
     Name: "\uAD11\uACE0\uC81C\uAC70"
     Id: remove_ad

@@ -15,10 +15,19 @@ namespace MoonBunny
     {
         private IStoreController _controller;
 
+        [HideInInspector] public List<ProductInfo> ProductInfoList = new List<ProductInfo>();
+
         public ProductInfo Diamond10ProductInfo;
+        public ProductInfo Diamond25ProductInfo;
+        public ProductInfo Diamond50ProductInfo;
         public ProductInfo Diamond100ProductInfo;
-        public ProductInfo Diamond200ProductInfo;
+        public ProductInfo Diamond300ProductInfo;
+        public ProductInfo Diamond500ProductInfo;
         public ProductInfo Diamond1000ProductInfo;
+        
+        public ProductInfo LimitedPackageProductInfo;
+        public ProductInfo UnlimitedPackageProductInfo;
+        
         public ProductInfo RemoveAdProductInfo;
 
         private const string DEV_ENV_KEY = "development";
@@ -45,10 +54,30 @@ namespace MoonBunny
             ConfigurationBuilder builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
 
             builder.AddProduct(Diamond10ProductInfo.Id, ProductType.Consumable);
+            builder.AddProduct(Diamond25ProductInfo.Id, ProductType.Consumable);
+            builder.AddProduct(Diamond50ProductInfo.Id, ProductType.Consumable);
             builder.AddProduct(Diamond100ProductInfo.Id, ProductType.Consumable);
-            builder.AddProduct(Diamond200ProductInfo.Id, ProductType.Consumable);
+            builder.AddProduct(Diamond300ProductInfo.Id, ProductType.Consumable);
+            builder.AddProduct(Diamond500ProductInfo.Id, ProductType.Consumable);
             builder.AddProduct(Diamond1000ProductInfo.Id, ProductType.Consumable);
+            
+            builder.AddProduct(LimitedPackageProductInfo.Id, ProductType.Consumable);
+            builder.AddProduct(UnlimitedPackageProductInfo.Id, ProductType.Consumable);
+            
             builder.AddProduct(RemoveAdProductInfo.Id, ProductType.NonConsumable);
+            
+            ProductInfoList.Add(Diamond10ProductInfo);
+            ProductInfoList.Add(Diamond25ProductInfo);
+            ProductInfoList.Add(Diamond50ProductInfo);
+            ProductInfoList.Add(Diamond100ProductInfo);
+            ProductInfoList.Add(Diamond300ProductInfo);
+            ProductInfoList.Add(Diamond500ProductInfo);
+            ProductInfoList.Add(Diamond1000ProductInfo);
+            
+            ProductInfoList.Add(LimitedPackageProductInfo);
+            ProductInfoList.Add(UnlimitedPackageProductInfo);
+            
+            ProductInfoList.Add(RemoveAdProductInfo);
 
             UnityPurchasing.Initialize(this, builder);
         }
@@ -59,11 +88,10 @@ namespace MoonBunny
             
             _controller = controller;
 
-            Diamond10ProductInfo.StoreController = controller;
-            Diamond100ProductInfo.StoreController = controller;
-            Diamond200ProductInfo.StoreController = controller;
-            Diamond1000ProductInfo.StoreController = controller;
-            RemoveAdProductInfo.StoreController = controller;
+            foreach (var info in ProductInfoList)
+            {
+                info.StoreController = controller;
+            }
 
             CheckRemoveAd(RemoveAdProductInfo.Id);
         }
@@ -106,15 +134,30 @@ namespace MoonBunny
             if (id == Diamond10ProductInfo.Id)
             {
                 QuestManager.instance.GetDiamond(Diamond10ProductInfo.RewardValue, false);
+            } else if (id == Diamond25ProductInfo.Id)
+            {
+                QuestManager.instance.GetDiamond(Diamond25ProductInfo.RewardValue, false);
+            } else if (id == Diamond50ProductInfo.Id)
+            {
+                QuestManager.instance.GetDiamond(Diamond50ProductInfo.RewardValue, false);
             } else if (id == Diamond100ProductInfo.Id)
             {
                 QuestManager.instance.GetDiamond(Diamond100ProductInfo.RewardValue, false);
-            } else if (id == Diamond200ProductInfo.Id)
+            } else if (id == Diamond300ProductInfo.Id)
             {
-                QuestManager.instance.GetDiamond(Diamond200ProductInfo.RewardValue, false);
+                QuestManager.instance.GetDiamond(Diamond300ProductInfo.RewardValue, false);
+            } else if (id == Diamond500ProductInfo.Id)
+            {
+                QuestManager.instance.GetDiamond(Diamond500ProductInfo.RewardValue, false);
             } else if (id == Diamond1000ProductInfo.Id)
             {
                 QuestManager.instance.GetDiamond(Diamond1000ProductInfo.RewardValue, false);
+            } else if (id == LimitedPackageProductInfo.Id)
+            {
+                QuestManager.instance.GetDiamond(LimitedPackageProductInfo.RewardValue, false);
+            } else if (id == UnlimitedPackageProductInfo.Id)
+            {
+                QuestManager.instance.GetDiamond(UnlimitedPackageProductInfo.RewardValue, false);
             } else if (id == RemoveAdProductInfo.Id)
             {
                 GameManager.instance.RemoveAd = true;
@@ -131,6 +174,11 @@ namespace MoonBunny
         public void OnPurchaseFailed(Product productInfo, PurchaseFailureDescription failureDescription)
         {
             Debug.LogError($"Fail to purchase {productInfo.definition.id} because of {failureDescription}");
+        }
+
+        public ProductInfo GetProductInfo(string productName)
+        {
+            return ProductInfoList.Find(info => info.Name == productName);
         }
     }
 }
