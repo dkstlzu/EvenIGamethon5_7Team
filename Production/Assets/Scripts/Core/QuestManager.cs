@@ -163,8 +163,8 @@ namespace MoonBunny
 
         private void OnGotchaReward(GotchaReward reward)
         {
-            GetGold(reward.GoldNumber);
-            GetDiamond(reward.DiamondNumber);
+            GetGold(reward.GoldNumber, false);
+            GetDiamond(reward.DiamondNumber, false);
         }
 
         private void OnSideWallCollision()
