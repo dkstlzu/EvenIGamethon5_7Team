@@ -13,6 +13,8 @@ namespace MoonBunny.UIs
     public class StageFailUI : UI
     {
         [Header("Boost Bonus")]
+        public RectTransform BoardTransform;
+        
         public GameObject BoostUI;
         public TextMeshProUGUI BoostNoticeText;
         public BoostUI Boost;
@@ -56,6 +58,9 @@ namespace MoonBunny.UIs
             if (Random.value <= BonusBoostPotential)
             {
                 BoostUI.SetActive(true);
+                BoardTransform.anchorMax = new Vector2(0.5f, 0.3f);
+                BoardTransform.anchorMin = new Vector2(0.5f, 0.3f);
+                
                 bool isManget = Random.value > 0.5f;
                 Boost.BoostName = isManget ? MagnetBoostEffect.BoostName : StarCandyBoostEffect.BoostName;
                 Boost.BoostOnText = isManget ? "자석 부스트!" : "별사탕은 어떤가?";
@@ -68,8 +73,8 @@ namespace MoonBunny.UIs
             else
             {
                 BoostUI.SetActive(false);
-                ((RectTransform)transform).anchorMin = new Vector2(0.5f, 0.5f);
-                ((RectTransform)transform).anchorMax = new Vector2(0.5f, 0.5f);
+                BoardTransform.anchorMax = new Vector2(0.5f, 0.5f);
+                BoardTransform.anchorMin = new Vector2(0.5f, 0.5f);
             }
         }
 
