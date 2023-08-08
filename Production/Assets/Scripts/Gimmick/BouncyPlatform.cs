@@ -46,7 +46,7 @@ namespace MoonBunny
         private Vector2 _currentLoopDelta;
         float multiplier;
 
-        private int _numberToCrack = 3;
+        private int _invokeNumberToCrack = 3;
         private int _currentInvokeNumber = 0;
 
         private bool _doLoop = false;
@@ -84,17 +84,28 @@ namespace MoonBunny
 #if UNITY_EDITOR
             if (!EditorApplication.isPlaying) return;
 #endif
-            // Forward
-            if ((transform.position.y > _loopForwardPosition.y || transform.position.x > _loopForwardPosition.x))
+            if (_doLoop)
             {
-                _currentLoopDelta = -_loopDelta;
-                CheckMovement();
-            }
-            // Backward
-            if (transform.position.y < _loopStartPosition.y || transform.position.x < _loopStartPosition.x)
-            {
-                _currentLoopDelta = _loopDelta;
-                CheckMovement();
+                // Forward
+                if ((_loopDelta.x > 0 && transform.position.x > _loopForwardPosition.x) || (_loopDelta.x < 0 && transform.position.x < _loopForwardPosition.x))
+                {
+                    _currentLoopDelta = -_loopDelta;
+                    CheckMovement();
+                } else if ((_loopDelta.x > 0 && transform.position.x < _loopStartPosition.x) || (_loopDelta.x < 0 && transform.position.x > _loopStartPosition.x))
+                {
+                    _currentLoopDelta = _loopDelta;
+                    CheckMovement();
+                }
+                
+                if ((_loopDelta.y > 0 && transform.position.y > _loopForwardPosition.y) || (_loopDelta.y < 0 && transform.position.y < _loopForwardPosition.y))
+                {
+                    _currentLoopDelta = -_loopDelta;
+                    CheckMovement();
+                } else if ((_loopDelta.y > 0 && transform.position.y < _loopStartPosition.y) || (_loopDelta.y < 0 && transform.position.y > _loopStartPosition.y))
+                {
+                    _currentLoopDelta = _loopDelta;
+                    CheckMovement();
+                }
             }
         }
         
@@ -135,7 +146,7 @@ namespace MoonBunny
             
             _currentInvokeNumber++;
 
-            if (_currentInvokeNumber >= _numberToCrack)
+            if (_currentInvokeNumber >= _invokeNumberToCrack)
             {
                 Destroy(gameObject);
             }
@@ -163,7 +174,7 @@ namespace MoonBunny
 
         public void CheckMovement()
         {
-            if (!_doLoop || isVirtual)
+            if (isVirtual)
             {
                 _rigidbody.StopMove();
             }
