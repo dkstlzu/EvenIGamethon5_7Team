@@ -4,6 +4,13 @@ using UnityEngine;
 
 namespace MoonBunny
 {
+    public enum SnapMethod
+    {
+        None = -1,
+        RealToGrid,
+        GridToReal
+    }
+    
     [Serializable]
     public class GridTransform
     {
@@ -21,6 +28,7 @@ namespace MoonBunny
             set => transform.position = new Vector3(value.x, value.y, transform.position.z);
         }
         public Vector2Int GridPosition;
+        public SnapMethod SnapMethod;
 
         public GridTransform(Transform transform)
         {
@@ -29,7 +37,15 @@ namespace MoonBunny
 
         public void Update()
         {
-            GridPosition = ToGrid(transform.position);
+            switch (SnapMethod)
+            {
+                case SnapMethod.RealToGrid:
+                    GridPosition = ToGrid(transform.position);
+                    break;
+                case SnapMethod.GridToReal:
+                    transform.position = ToReal(GridPosition);
+                    break;
+            }
         }
 
         public void SnapToGrid()
