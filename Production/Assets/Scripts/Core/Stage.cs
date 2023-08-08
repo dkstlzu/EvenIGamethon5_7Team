@@ -139,6 +139,8 @@ namespace MoonBunny
         private void Start()
         {
             _spec = Resources.Load<StageSpec>($"{SpecPath}Stage{StageLevel+1}_{SubLevel+1}Spec");
+            
+            if (GameManager.instance.ShowTutorial) TutorialOn();
         }
 
         #region Initialize

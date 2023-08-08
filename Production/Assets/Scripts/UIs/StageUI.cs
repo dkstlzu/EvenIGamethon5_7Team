@@ -182,7 +182,29 @@ namespace MoonBunny.UIs
         {
             TimeUpdatable.GlobalSpeed = 1;
             UpdateManager.instance.Clear();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name).completed += (ao) =>
+            {
+                Stage stage = GameManager.instance.Stage;
+
+                Character character = GameObject.FindWithTag("Player").GetComponent<Character>();
+
+                if (FailUI.Boost.Checked)
+                {
+                    if (FailUI.Boost.BoostName == MagnetBoostEffect.BoostName)
+                    {
+                        stage.BoostEffectList.Add(new MagnetBoostEffect(character));
+                    }
+                    else
+                    {
+                        stage.BoostEffectList.Add(new StarCandyBoostEffect());
+                    }
+                }
+            };
+            
+            GameManager.instance.GoldNumber -= BoostUI.S_ConsumingGold;
+            BoostUI.S_ConsumingGold = 0;
+            GameManager.instance.SaveProgress();
         }
 
         public void GoToLobbyButtonClicked()

@@ -19,6 +19,7 @@ namespace MoonBunny.UIs
         public string BoostName;
         public int Price;
         public TextMeshProUGUI PriceText;
+        public Image BoostImage;
 
         [Space(10)]
         public TextMeshProUGUI NoticeText;

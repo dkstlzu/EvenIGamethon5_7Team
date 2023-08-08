@@ -803,6 +803,7 @@ MonoBehaviour:
   BoostName: RocketBoost
   Price: 100
   PriceText: {fileID: 76432940809677948}
+  BoostImage: {fileID: 6625604088448951159}
   NoticeText: {fileID: 0}
   LackOfGoldText: "\uACE8\uB4DC\uB3C4 \uC5C6\uB294\uAC8C!"
   WarningColor: {r: 1, g: 0, b: 0, a: 1}
