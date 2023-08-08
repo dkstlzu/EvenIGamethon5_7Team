@@ -71,14 +71,21 @@ namespace MoonBunny.UIs
             _description.text = FriendProfileTextList[index].Description;
             _memoryText.text = string.Empty;
 
+            int targetMemoryIndex = 0;
+
             for (int i = 0; i < FriendProfileTextList[index].MemoryTexts.Count; i++)
             {
                 if (_currentCollectionNumber >= FriendProfileTextList[index].MemoryTexts[i].Integer)
                 {
-                    _memoryText.text = FriendProfileTextList[index].MemoryTexts[i].Str;
+                    targetMemoryIndex = i;
+                }
+                else
+                {
                     break;
                 }
             }
+
+            _memoryText.text = FriendProfileTextList[index].MemoryTexts[targetMemoryIndex].Str;
         }
 
         private float targetPivotX = 0;
