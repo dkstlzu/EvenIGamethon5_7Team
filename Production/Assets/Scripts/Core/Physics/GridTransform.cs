@@ -83,8 +83,14 @@ namespace MoonBunny
             return HasGridObject(gridPosition, out gridObject);
         }
 
-        private static LayerMask S_findingLayerMask = LayerMask.GetMask(new string[]{
-            "Friend","Item","Obstacle","Platform","Character","Gimmick","Ricecake"});
+        private static LayerMask S_findingLayerMask;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        static void SetFindingLayerMask()
+        {
+            S_findingLayerMask = LayerMask.GetMask(new []{
+                "Friend","Item","Obstacle","Platform","Character","Gimmick","Ricecake"});
+        }
 
         public static bool HasGridObject(Vector2Int gridPosition, out GridObject gridObject)
         {

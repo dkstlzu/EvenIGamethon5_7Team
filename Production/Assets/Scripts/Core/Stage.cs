@@ -188,7 +188,7 @@ namespace MoonBunny
         {
             // LevelSummoner setting
             LevelSummoner.RicecakeNumber = Spec.RicecakeNumber;
-            LevelSummoner.RainbowRicecakeRatio = Spec.RainbowRicecakeRatio;
+            Ricecake.S_RainbowRatio = Spec.RainbowRicecakeRatio;
             LevelSummoner.CoinNumber = Spec.CoinNumber;
             LevelSummoner.FriendCollectableNumber = Spec.FriendCollectableNumber;
 

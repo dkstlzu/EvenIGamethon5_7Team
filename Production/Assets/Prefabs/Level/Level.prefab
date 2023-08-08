@@ -49,6 +49,7 @@ MonoBehaviour:
   GridTransform:
     transform: {fileID: 945977558326604405}
     GridPosition: {x: 0, y: 0}
+    SnapMethod: 0
   InvokeOnCollision: 1
 --- !u!61 &1081436156970035009
 BoxCollider2D:
@@ -289,7 +290,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8925414841234326103}
-  - component: {fileID: 2141790649262686506}
   - component: {fileID: 8967351194144355069}
   m_Layer: 0
   m_Name: Level
@@ -323,33 +323,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2141790649262686506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3303332888618322993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9a6a2f0bbfc42d9a584013f23885d5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RicecakePrefab: {fileID: 6739887548533978570, guid: 7077ee0a6b7a8ce4e9f199dc55d902b3, type: 3}
-  CoinPrefab: {fileID: 5553466026946515911, guid: 33683233be09cd345bba46a8631556d4, type: 3}
-  FriendPrefab: {fileID: 3964396391748974210, guid: f08077e1aab2d394f8079d0d9b08fbac, type: 3}
-  RicecakeNumber: 100
-  RainbowRicecakeRatio: 0.2
-  CoinNumber: 50
-  FriendCollectableNumber: 2
-  SummonThunderEnable: 0
-  SummonThunderEnabled: 0
-  SummonThunderInterval: 5
-  ThunderWarningTime: 2
-  SummonShootingStarEnable: 0
-  SummonShootingStarEnabled: 0
-  SummonShootingStarInterval: 12
-  ShootingStarWarningTime: 2
 --- !u!114 &8967351194144355069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,6 +336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 0
+  StageLevel: 0
   SubLevel: 0
   _startPoint: {fileID: 7776708680454044948}
   _spec: {fileID: 11400000, guid: 7e4f134cf9ecf704bbe9353d76d684da, type: 2}
@@ -382,7 +356,6 @@ MonoBehaviour:
     CoinPrefab: {fileID: 5553466026946515911, guid: 33683233be09cd345bba46a8631556d4, type: 3}
     FriendPrefab: {fileID: 3964396391748974210, guid: f08077e1aab2d394f8079d0d9b08fbac, type: 3}
     RicecakeNumber: 100
-    RainbowRicecakeRatio: 0.2
     CoinNumber: 50
     FriendCollectableNumber: 2
     SummonThunderEnable: 0
@@ -394,6 +367,7 @@ MonoBehaviour:
     SummonShootingStarInterval: 12
     ShootingStarWarningTime: 2
     MaxGridHeight: 0
+    SummonPositionVariation: 0.2
 --- !u!1 &3369113203156632384
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,6 +902,7 @@ MonoBehaviour:
   GridTransform:
     transform: {fileID: 7734729899028666847}
     GridPosition: {x: 0, y: 0}
+    SnapMethod: 0
   InvokeOnCollision: 1
   Stage: {fileID: 8967351194144355069}
   _renderer: {fileID: 7243735031654124080}

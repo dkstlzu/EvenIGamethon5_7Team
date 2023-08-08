@@ -4,6 +4,8 @@ namespace MoonBunny
 {
     public class Ricecake : Gimmick
     {
+        public static float S_RainbowRatio;
+        
         public int Score;
 
         private const int NormalCakeScore = 10;
@@ -20,6 +22,19 @@ namespace MoonBunny
             _renderer.sprite = _rainBowRiceCakeSprite;
 
             Score = RainbowCakeScore;
+        }
+
+        protected override void Awake()
+        {
+            base.Awake();
+#if UNITY_EDITOR
+            if (!UnityEditor.EditorApplication.isPlaying) return;
+#endif
+
+            if (Random.value <= S_RainbowRatio)
+            {
+                MakeRainbow();
+            }
         }
 
         public override bool Invoke(MoonBunnyRigidbody with, MoonBunnyCollider.Direction direction)
