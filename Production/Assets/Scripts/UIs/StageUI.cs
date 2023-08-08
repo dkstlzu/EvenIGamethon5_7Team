@@ -48,8 +48,10 @@ namespace MoonBunny.UIs
 
         [Header("Clear")] public Image ClearStarImage;
         public List<Sprite> StarSpriteList;
-        public TextMeshProUGUI ClearScoreText;
-        
+        public TextMeshProUGUI GainedCoinText;
+        public Image MemoryImage;
+        public TextMeshProUGUI GainedMemoryText;
+
         private Character _character;
         public event Action OnDirectionChangeButtonClicked;
         
@@ -146,7 +148,17 @@ namespace MoonBunny.UIs
             FadeIn(ClearUI);
 
             ClearStarImage.sprite = StarSpriteList[_gainedStarNumber];
-            ClearScoreText.text = _scoreText.text;
+            GainedCoinText.text = (Stage.GoldNumber * Stage.GoldMultiplier).ToString();
+            
+            foreach (var friendName in EnumHelper.ClapValuesOfEnum<FriendName>(0))
+            {
+                if (Stage.CollectDict[friendName] > 0)
+                {
+                    MemoryImage.sprite = PreloadedResources.instance.MemorySpriteList[(int)friendName];
+                    GainedMemoryText.text = Stage.CollectDict[friendName].ToString();
+                    break;
+                }
+            }
                 
             SoundManager.instance.PlayClip(_clearAudioClip);
         }
@@ -169,6 +181,7 @@ namespace MoonBunny.UIs
         public void RetryButtonClicked()
         {
             TimeUpdatable.GlobalSpeed = 1;
+            UpdateManager.instance.Clear();
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 

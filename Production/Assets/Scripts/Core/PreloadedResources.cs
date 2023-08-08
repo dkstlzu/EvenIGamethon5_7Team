@@ -18,6 +18,7 @@ namespace MoonBunny
         public AudioClip BouncyPlatformSound;
         public AudioClip OpenStageAudioClip;
         public AudioClip FriendCollectedAudioClip;
+        public List<Sprite> MemorySpriteList;
 
         public GameObject CannibalismEffectPrefab;
         public GameObject StarCandyEffectPrefab;

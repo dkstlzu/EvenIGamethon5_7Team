@@ -142,6 +142,12 @@ MonoBehaviour:
   BouncyPlatformSound: {fileID: 8300000, guid: 3e35fa72656a4594e99720107582a5dd, type: 3}
   OpenStageAudioClip: {fileID: 8300000, guid: 1fdb7f1560016034698d3e970589b4ca, type: 3}
   FriendCollectedAudioClip: {fileID: 8300000, guid: 9e5afcb31f3f2024fa5e57637b72422a, type: 3}
+  MemorySpriteList:
+  - {fileID: -734545194, guid: a24f2f3676d7bad478e75246411598b3, type: 3}
+  - {fileID: -1021032173, guid: a24f2f3676d7bad478e75246411598b3, type: 3}
+  - {fileID: 1066861054, guid: a24f2f3676d7bad478e75246411598b3, type: 3}
+  - {fileID: 1682133160, guid: a24f2f3676d7bad478e75246411598b3, type: 3}
+  - {fileID: 948150549, guid: a24f2f3676d7bad478e75246411598b3, type: 3}
   CannibalismEffectPrefab: {fileID: 9127653965126434405, guid: b99b72f4a9666904fbe5e99b58090b10, type: 3}
   StarCandyEffectPrefab: {fileID: 3072994387487185058, guid: 7f997d2f0cc923545a16cd1f37627173, type: 3}
   ThunderEffectPrefab: {fileID: 13301048646092075, guid: 99e78b6b4035d884a8534bf10f2a8096, type: 3}
