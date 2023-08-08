@@ -30,9 +30,19 @@ namespace MoonBunny.UIs
 
         public const int REVIVE_GOLD_COST = 100;
 
+        private Coroutine _noticeCoroutine;
+
         private void Start()
         {
             Stage = GameManager.instance.Stage;
+
+            OnExit += UncheckBoost;
+        }
+
+        void UncheckBoost()
+        {
+            if (Boost.Checked) Boost.OnClicked();
+            OnExit -= UncheckBoost;
         }
 
         protected override void Rebuild()
@@ -53,7 +63,7 @@ namespace MoonBunny.UIs
                 Boost.PriceText.text = Boost.Price.ToString();
                 Boost.BoostImage.sprite = isManget ? PreloadedResources.instance.BoostSpriteList[0] : PreloadedResources.instance.BoostSpriteList[1];
 
-                StartCoroutine(NoticeCoroutine());
+                _noticeCoroutine = StartCoroutine(NoticeCoroutine());
             }
             else
             {

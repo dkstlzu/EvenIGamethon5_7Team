@@ -39,6 +39,14 @@ namespace MoonBunny.UIs
                     Rebuild();
                 }
             };
+
+            OnExit += ResetUI;
+        }
+
+        private void ResetUI()
+        {
+            PackageToggle.isOn = false;
+            DiamondChargeToggle.isOn = false;
         }
 
         protected override void Rebuild()
@@ -65,7 +73,7 @@ namespace MoonBunny.UIs
                 UnlimitedPackageDescription.text = "최대한도로 구매함";
             }
         }
-
+        
         public void OnPackageToggle(bool isOn)
         {
             if (isOn)

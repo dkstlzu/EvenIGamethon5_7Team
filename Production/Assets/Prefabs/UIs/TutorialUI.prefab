@@ -70,26 +70,27 @@ MonoBehaviour:
     2, 1 \uCE74\uC6B4\uD2B8\uB2E4\uC6B4\uC774 \uB05D\uB098\uBA74 \uC790\uB3D9\uC73C\uB85C
     \uC810\uD504\uB418\uBA70 \uC2DC\uC791\uD569\uB2C8\uB2E4.\n\n<sprite=\"GameIcons1\"
     index=0> \uBC84\uD2BC\uC744 \uB20C\uB7EC\uC11C \uC9C4\uD589\uBC29\uD5A5\uC744
-    \uC88C\uC6B0\uB85C \uBC14\uAFC0 \uC218 \uC788\uC2B5\uB2C8\uB2E4.\n\n\uAC01 \uC2A4\uD14C\uC774\uC9C0
-    \uBCC4\uB85C \uB098\uC624\uB294 \uC7A5\uC560\uBB3C\uACFC \uB2FF\uC73C\uBA74 \uCCB4\uB825\uC744
-    \uD558\uB098 \uC783\uC2B5\uB2C8\uB2E4.\n\uC7A5\uC560\uBB3C \uC885\uB958 : <sprite=\"ObstacleBee\"
-    index=0> <sprite=\"ObstacleCannibalism\" index=0> <sprite=\"ObstaclePinWheel\"
-    index=0> <sprite=\"ObstacleShootingStar\" index=0> <sprite=\"ObstacleSpiderWeb\"
-    index=0> <sprite=\"ObstacleCrow\" index=0>\n\n<sprite=\"ItemRicecakeYellow\"
+    \uC88C\uC6B0\uB85C \uBC14\uAFC0 \uC218 \uC788\uC2B5\uB2C8\uB2E4.\n\n\uBAA8\uB4E0
+    \uBC1C\uD310\uC740 3\uBC88 \uBC1F\uC73C\uBA74 \uBD80\uC11C\uC9D1\uB2C8\uB2E4.\n\n\uAC01
+    \uC2A4\uD14C\uC774\uC9C0 \uBCC4\uB85C \uB098\uC624\uB294 \uC7A5\uC560\uBB3C\uACFC
+    \uB2FF\uC73C\uBA74 \uCCB4\uB825\uC744 \uD558\uB098 \uC783\uC2B5\uB2C8\uB2E4.\n\uC7A5\uC560\uBB3C
+    \uC885\uB958 : <sprite=\"ObstacleBee\" index=0> <sprite=\"ObstacleCannibalism\"
+    index=0> <sprite=\"ObstaclePinWheel\" index=0> <sprite=\"ObstacleShootingStar\"
+    index=0> <sprite=\"ObstacleSpiderWeb\" index=0> <sprite=\"ObstacleCrow\" index=0>\n\n<sprite=\"ItemRicecakeYellow\"
     index=0> <sprite=\"ItemRicecakeRainbow\" index=0>\n\uACBD\uB2E8\uC740 \uBA39\uC5C8\uC744\uB54C
     \uC810\uC218\uB97C \uC5BB\uC744 \uC218 \uC788\uC2B5\uB2C8\uB2E4. \uAC01\uAC01
     10\uC810 50\uC810\uC758 \uC810\uC218\uB97C \uC81C\uACF5\uD569\uB2C8\uB2E4. \uC5BB\uC740
     \uC810\uC218 \uC815\uB3C4\uC5D0 \uB530\uB77C \uC2A4\uD14C\uC774\uC9C0 \uBCC4\uC744
     \uD68D\uB4DD\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.\n\n<sprite=\"ItemMagnet\"
-    index=0> \uC740 \uACBD\uB2E8 \uD68D\uB4DD \uBC94\uC704\uB97C \uB298\uB824\uC90D\uB2C8\uB2E4.\n<sprite=\"ItemRocket\"
-    index=0> \uC740 \uD68D\uB4DD\uC2DC \uC548\uC804\uD558\uAC8C \uC804\uC9C4\uD560
+    index=0>\uC740 \uACBD\uB2E8 \uD68D\uB4DD \uBC94\uC704\uB97C \uB298\uB824\uC90D\uB2C8\uB2E4.\n<sprite=\"ItemRocket\"
+    index=0>\uC740 \uD68D\uB4DD\uC2DC \uC548\uC804\uD558\uAC8C \uC804\uC9C4\uD560
     \uC218 \uC788\uC2B5\uB2C8\uB2E4.\n<sprite=\"ItemChest\" index=0> \uC5D0\uC11C\uB294 
-    \uCCB4\uB825\uC744 \uD68C\uBCF5\uC2DC\uCF1C\uC8FC\uB294  <sprite=\"ItemHeart\"
-    index=0>\uC640 \uBD80\uC2A4\uD2B8\uB97C \uAD6C\uB9E4\uD560 \uC218 \uC788\uB294 
+    \uCCB4\uB825\uC744 \uD68C\uBCF5\uC2DC\uCF1C\uC8FC\uB294 <sprite=\"ItemHeart\"
+    index=0>\uC640 \uBD80\uC2A4\uD2B8\uB97C \uAD6C\uB9E4\uD560 \uC218 \uC788\uB294
     <sprite=\"GameIcons2\" index=2> \uADF8\uB9AC\uACE0 \uC8FC\uBCC0 \uC7A5\uC560\uBB3C\uC744
     \uD30C\uAD34\uD574\uC8FC\uB294  <sprite=\"ItemStarCandy\" index=0> \uB97C \uD655\uB960\uC801\uC73C\uB85C
-    \uC5BB\uC744 \uC218 \uC788\uC2B5\uB2C8\uB2E4.\n\n\uB610\uD55C \uAE30\uC5B5\uC758\uC870\uAC01 
-    <sprite=\"GameIcons2\" index=7>\uC744 \uD68D\uB4DD\uD558\uC5EC \uB2E4\uC591\uD55C
+    \uC5BB\uC744 \uC218 \uC788\uC2B5\uB2C8\uB2E4.\n\n\uB610\uD55C \uAE30\uC5B5\uC758\uC870\uAC01
+    <sprite=\"GameIcons2\" index=8>\uC744 \uD68D\uB4DD\uD558\uC5EC \uB2E4\uC591\uD55C
     \uCE5C\uAD6C\uB4E4\uC744 \uD574\uAE08\uD558\uC138\uC694\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -214,6 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4214afda7eb410d8fd0b72209e1ba91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanvasGroup: {fileID: 0}
 --- !u!223 &2674141484708545581
 Canvas:
   m_ObjectHideFlags: 0
