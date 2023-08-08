@@ -21,6 +21,6 @@ MonoBehaviour:
   DescriptionTextOnHidden: ???????
   Reward:
     GoldReward: 0
-    DiamondReward: 3
+    DiamondReward: 1
     MemoryTarget: -1
     MemoryNumber: 0
