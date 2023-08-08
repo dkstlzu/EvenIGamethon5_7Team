@@ -6130,6 +6130,7 @@ MonoBehaviour:
   Stage: {fileID: 0}
   _changeDirectionButton: {fileID: 2299441506321581284}
   SoundToggle: {fileID: 5861189206355041406}
+  StageInfoText: {fileID: 6072101494065758124}
   _progressBar: {fileID: 2231172796606403176}
   _scoreText: {fileID: 3443909609328036117}
   _progressEmptyStar: {fileID: 651872745, guid: a7d4133fdcb08a84b8ca191f2af71dec, type: 3}
@@ -7062,10 +7063,10 @@ RectTransform:
   m_Father: {fileID: 5759053361402884237}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 368, y: 67}
+  m_SizeDelta: {x: -40, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6859821629782814812
 CanvasRenderer:
@@ -7138,7 +7139,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}

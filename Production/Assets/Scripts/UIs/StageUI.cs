@@ -25,6 +25,7 @@ namespace MoonBunny.UIs
         [SerializeField] private Button _changeDirectionButton;
 
         [Header("Pause")] public Toggle SoundToggle;
+        public TextMeshProUGUI StageInfoText;
         
         [Header("Progress")]
         [SerializeField] private Slider _progressBar;
@@ -60,6 +61,7 @@ namespace MoonBunny.UIs
             _character = GameObject.FindWithTag("Player").GetComponent<Character>();
             _currentHP = _character.CurrentHp;
             SoundToggle.isOn = GameManager.instance.VolumeSetting > 0;
+            StageInfoText.text = $"스테이지 모드 {Stage.StageLevel}-{Stage.SubLevel}";
 
             ThunderEffect.OnThunderAttack += OnThunderAttack;
         }
