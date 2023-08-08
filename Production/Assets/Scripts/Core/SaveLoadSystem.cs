@@ -407,14 +407,16 @@ namespace MoonBunny
                                 {
                                     if (str != NoData)
                                     {
-                                        int targetIndex = int.Parse(str);
-                                        if (targetIndex > 0)
+                                        if (int.TryParse(str, out int targetIndex))
                                         {
-                                            pattern1List.Add(targetIndex);
-                                        }
-                                        else
-                                        {
-                                            platform.MakeVirtual();
+                                            if (targetIndex > 0)
+                                            {
+                                                pattern1List.Add(targetIndex);
+                                            }
+                                            else
+                                            {
+                                                platform.MakeVirtual();
+                                            }
                                         }
                                     }
                                 }
@@ -430,7 +432,10 @@ namespace MoonBunny
                                 {
                                     if (str != NoData)
                                     {
-                                        pattern2List.Add(int.Parse(str));
+                                        if (int.TryParse(str, out int targetIndex))
+                                        {
+                                            pattern2List.Add(targetIndex);
+                                        }
                                     }
                                 }
                                 
