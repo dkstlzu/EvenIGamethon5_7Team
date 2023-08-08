@@ -14535,6 +14535,7 @@ MonoBehaviour:
   UnlimitedPackageButton: {fileID: 1091646002435824704}
   LimitedPackageDescription: {fileID: 3917149311063974986}
   UnlimitedPackageDescription: {fileID: 2781956582006354136}
+  ConfirmUI: {fileID: 2374192228035279710}
 --- !u!1 &4333067393620302053
 GameObject:
   m_ObjectHideFlags: 0
