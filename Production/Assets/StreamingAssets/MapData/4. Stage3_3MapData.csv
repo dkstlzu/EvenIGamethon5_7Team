@@ -96,7 +96,7 @@ No,Type,X,Y,Value1,Value2,Value3,Value4,Value5,Value6
 95,RandomSpawner,0,85,PinWheel,-,SpiderWeb,-,4,
 96,RandomSpawner,1,89,PinWheel,-,SpiderWeb,-,4,
 97,RandomSpawner,-2,91,PinWheel,-,SpiderWeb,-,4,
-98,Rocket,-1,58,,,,,,
+98,Rocket,-1,62,,,,,,
 99,Magnet,3,87,,,,,,
 100,Magnet,3,43,,,,,,
 101,ItemBox,0,37,,,,,,
