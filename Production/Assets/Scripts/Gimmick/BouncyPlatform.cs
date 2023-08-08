@@ -46,7 +46,7 @@ namespace MoonBunny
         private Vector2 _currentLoopDelta;
         float multiplier;
 
-        private int _invokeNumberToCrack = 3;
+        private int _invokeNumberToCrack = 5;
         private int _currentInvokeNumber = 0;
 
         private bool _doLoop = false;
