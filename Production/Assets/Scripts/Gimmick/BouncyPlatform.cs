@@ -123,24 +123,40 @@ namespace MoonBunny
                 CurrentPattern = 2;
                 foreach (BouncyPlatform platform in Pattern1PlatformList)
                 {
-                    if (platform) platform.MakeVirtual();
+                    if (platform)
+                    {
+                        platform.MakeVirtual();
+                        platform.CurrentPattern = 2;
+                    }
                 }
 
                 foreach (BouncyPlatform platform in Pattern2PlatformList)
                 {
-                    if (platform) platform.MakeConcrete();
+                    if (platform)
+                    {
+                        platform.MakeConcrete();
+                        platform.CurrentPattern = 2;
+                    }
                 }
             } else if (CurrentPattern == 2)
             {
                 CurrentPattern = 1;
                 foreach (BouncyPlatform platform in Pattern1PlatformList)
                 {
-                    if (platform) platform.MakeConcrete();
+                    if (platform)
+                    {
+                        platform.MakeConcrete();
+                        platform.CurrentPattern = 1;
+                    }
                 }
 
                 foreach (BouncyPlatform platform in Pattern2PlatformList)
                 {
-                    if (platform) platform.MakeVirtual();
+                    if (platform)
+                    {
+                        platform.MakeVirtual();
+                        platform.CurrentPattern = 1;
+                    }
                 }
             }
             
