@@ -74,6 +74,8 @@ namespace MoonBunny
             
             if (!base.Invoke(with, direction)) return false;
 
+            if (GameObject.FindWithTag("Player").GetComponent<Character>().CurrentHp <= 0) return true;
+
             InvokeOnCollision = false;
             with.PauseMove();
             _picker = new TransformForceEffect(with.transform, _pickingPoint);
