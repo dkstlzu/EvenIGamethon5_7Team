@@ -13,6 +13,9 @@ namespace MoonBunny
         private static readonly int _jumpHash = Animator.StringToHash("FirstJumped");
         private static readonly int _fallingHash = Animator.StringToHash("isFalling");
 
+        public int MaxYGridJumpHeightLimit;
+        private float _maxYJumpHeightLimit;
+
         [SerializeField] private Animator _animator;
         public Animator Animator => _animator;
         public SpriteRenderer Renderer;
@@ -54,6 +57,7 @@ namespace MoonBunny
             if (!UnityEditor.EditorApplication.isPlaying) return;
 #endif
             isIgnoringFlip = false;
+            _maxYJumpHeightLimit = MaxYGridJumpHeightLimit * GridTransform.GridSetting.GridHeight;
         }
 
         private void Start()
@@ -64,13 +68,19 @@ namespace MoonBunny
             CurrentHp = Friend.MaxHp;
             new MagnetEffect(this, Friend.MagneticPower).Effect();
 
-            GameManager.instance.Stage.UI.OnDirectionChangeButtonClicked += OnButtonClicked;
+            if (GameManager.instance)
+            {
+                GameManager.instance.Stage.UI.OnDirectionChangeButtonClicked += OnButtonClicked;
+            }
+            
             Rigidbody.SetDefaultHorizontalSpeed(Friend.HorizontalSpeed);
             Rigidbody.SetBounciness(Friend.JumpPower / 3);
             if (Friend.Name == FriendName.BlackSugar)
             {
                 Rigidbody.CanDestroyObstaclesByStepping = true;
             }
+
+            Rigidbody.MaxYVelocityLimit = Mathf.Sqrt(_maxYJumpHeightLimit * 2 * Rigidbody.Gravity);
         }
 
         protected override void Update()

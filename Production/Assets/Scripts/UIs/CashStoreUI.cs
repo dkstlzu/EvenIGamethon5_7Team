@@ -23,6 +23,12 @@ namespace MoonBunny.UIs
         [SerializeField] private TextMeshProUGUI LimitedPackageDescription;
         [SerializeField] private TextMeshProUGUI UnlimitedPackageDescription;
 
+        private const string MAX_PURCHASED = "최대한도로 구매함";
+        private string LimitedDescription;
+        private string UnlimitedDescription;
+
+        public int CleareStageNumber;
+
         public ConfirmUI ConfirmUI; 
             
         protected override void Awake()
@@ -32,6 +38,9 @@ namespace MoonBunny.UIs
             PackageToggle.onValueChanged.AddListener(OnPackageToggle);
             DiamondChargeToggle.onValueChanged.AddListener(OnDiamondChargeToggle);
 
+            LimitedDescription = LimitedPackageDescription.text;
+            UnlimitedDescription = UnlimitedPackageDescription.text;
+            
             IAPManager.instance.OnPurchaseComplete += (productName) =>
             {
                 if (productName == "패키지" || productName == "한정 패키지")
@@ -39,7 +48,7 @@ namespace MoonBunny.UIs
                     PackageUpdate();
                 }
             };
-
+            
             OnExit += ResetUI;
         }
 
@@ -62,20 +71,28 @@ namespace MoonBunny.UIs
             LimitedPackageButton.interactable = !GameManager.ProgressSaveData.LimitedPackagePurchased;
             if (!LimitedPackageButton.interactable)
             {
-                LimitedPackageDescription.text = "최대한도로 구매함";
+                LimitedPackageDescription.text = MAX_PURCHASED;
+            }
+            else
+            {
+                LimitedPackageDescription.text = LimitedDescription;
             }
 
-            int clearedStageNumber = 0;
+            CleareStageNumber = 0;
 
-            clearedStageNumber += QuestManager.instance.GetQuest(QuestManager.UNLOCK_STAGE_ID).State == QuestState.IsFinished || QuestManager.instance.GetQuest(QuestManager.UNLOCK_STAGE_ID).State == QuestState.CanTakeReward ? 1 : 0;
-            clearedStageNumber += QuestManager.instance.GetQuest(QuestManager.UNLOCK_STAGE_ID+1).State == QuestState.IsFinished || QuestManager.instance.GetQuest(QuestManager.UNLOCK_STAGE_ID+1).State == QuestState.CanTakeReward ? 1 : 0;
-            clearedStageNumber += QuestManager.instance.GetQuest(QuestManager.UNLOCK_STAGE_ID+2).State == QuestState.IsFinished || QuestManager.instance.GetQuest(QuestManager.UNLOCK_STAGE_ID+2).State == QuestState.CanTakeReward ? 1 : 0;
-            clearedStageNumber += QuestManager.instance.GetQuest(QuestManager.UNLOCK_STAGE_ID+3).State == QuestState.IsFinished || QuestManager.instance.GetQuest(QuestManager.UNLOCK_STAGE_ID+3).State == QuestState.CanTakeReward ? 1 : 0;
+            CleareStageNumber += QuestManager.instance.GetQuest(QuestManager.UNLOCK_STAGE_ID).State == QuestState.IsFinished || QuestManager.instance.GetQuest(QuestManager.UNLOCK_STAGE_ID).State == QuestState.CanTakeReward ? 1 : 0;
+            CleareStageNumber += QuestManager.instance.GetQuest(QuestManager.UNLOCK_STAGE_ID+1).State == QuestState.IsFinished || QuestManager.instance.GetQuest(QuestManager.UNLOCK_STAGE_ID+1).State == QuestState.CanTakeReward ? 1 : 0;
+            CleareStageNumber += QuestManager.instance.GetQuest(QuestManager.UNLOCK_STAGE_ID+2).State == QuestState.IsFinished || QuestManager.instance.GetQuest(QuestManager.UNLOCK_STAGE_ID+2).State == QuestState.CanTakeReward ? 1 : 0;
+            CleareStageNumber += QuestManager.instance.GetQuest(QuestManager.UNLOCK_STAGE_ID+3).State == QuestState.IsFinished || QuestManager.instance.GetQuest(QuestManager.UNLOCK_STAGE_ID+3).State == QuestState.CanTakeReward ? 1 : 0;
 
-            UnlimitedPackageButton.interactable = clearedStageNumber > GameManager.ProgressSaveData.UnlimitedPackagePurchasedNumber;
+            UnlimitedPackageButton.interactable = CleareStageNumber > GameManager.ProgressSaveData.UnlimitedPackagePurchasedNumber;
             if (!UnlimitedPackageButton.interactable)
             {
-                UnlimitedPackageDescription.text = "최대한도로 구매함";
+                UnlimitedPackageDescription.text = MAX_PURCHASED;
+            }
+            else
+            {
+                UnlimitedPackageDescription.text = UnlimitedDescription;
             }
         }
         

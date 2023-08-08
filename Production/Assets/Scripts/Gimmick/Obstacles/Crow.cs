@@ -25,10 +25,10 @@ namespace MoonBunny
             if (!UnityEditor.EditorApplication.isPlaying) return;
 #endif
             
-            _rigidbody.OnEnterCollision += OnSideWallCollision;
+            _rigidbody.OnAfterEnterCollision += OnAfterSideWallCollision;
         }
 
-        private void OnSideWallCollision(Collision sideWallCollision)
+        private void OnAfterSideWallCollision(Collision sideWallCollision)
         {
             if (sideWallCollision.Other is SideWall)
             {

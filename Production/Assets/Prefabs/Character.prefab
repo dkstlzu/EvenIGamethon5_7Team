@@ -282,6 +282,8 @@ MonoBehaviour:
   GridTransform:
     transform: {fileID: 6942469379576056503}
     GridPosition: {x: 0, y: 0}
+    SnapMethod: 0
+  MaxYGridJumpHeightLimit: 10
   _animator: {fileID: 8993331230077029172}
   Renderer: {fileID: 1956461046610411173}
   Rigidbody: {fileID: 4521182815814504969}
@@ -340,6 +342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44342a30f9e24963b7611ebeb9b91d16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxYVelocityLimit: 3.4028235e+38
   _gravity: 28
   MoveSacle: 1.2
   GridObject: {fileID: 2034000656419043365}

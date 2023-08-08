@@ -61,7 +61,7 @@ namespace MoonBunny.UIs
             _character = GameObject.FindWithTag("Player").GetComponent<Character>();
             _currentHP = _character.CurrentHp;
             SoundToggle.isOn = GameManager.instance.VolumeSetting > 0;
-            StageInfoText.text = $"스테이지 모드 {Stage.StageLevel}-{Stage.SubLevel}";
+            StageInfoText.text = $"스테이지 모드 {Stage.StageLevel+1}-{Stage.SubLevel+1}";
 
             ThunderEffect.OnThunderAttack += OnThunderAttack;
         }

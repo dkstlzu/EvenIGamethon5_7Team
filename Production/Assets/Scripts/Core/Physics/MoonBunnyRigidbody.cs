@@ -12,15 +12,12 @@ namespace MoonBunny
     public class MoonBunnyRigidbody : MonoBehaviour
     {
         public static List<MoonBunnyRigidbody> S_RigidbodyList = new List<MoonBunnyRigidbody>();
-        public static float S_MaxYHeightLimit;
 
-        public const int MAX_JUMPABLE_GRID_Y = 10;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void ResetList()
         {
             S_RigidbodyList = new List<MoonBunnyRigidbody>();
-            S_MaxYHeightLimit = GridTransform.GridSetting.GridHeight * MAX_JUMPABLE_GRID_Y;
         }
 
         public static void EnableAll()
@@ -41,15 +38,7 @@ namespace MoonBunny
             }
         }
 
-        private float _maxYVelocityLimit = -1;
-        public float MaxYVelocityLimit
-        {
-            get
-            {
-                if (_maxYVelocityLimit < 0) _maxYVelocityLimit = Mathf.Sqrt(S_MaxYHeightLimit * 2 * _gravity);
-                return _maxYVelocityLimit;
-            }
-        }
+        [HideInInspector] public float MaxYVelocityLimit = float.MaxValue;
 
         [SerializeField] private float _gravity;
         public float Gravity
@@ -83,7 +72,8 @@ namespace MoonBunny
         private List<Collision> _previousCollision = new List<Collision>();
         private bool enabled = true;
 
-        public event Action<Collision> OnEnterCollision;
+        public event Action<Collision> OnBeforeEnterCollision;
+        public event Action<Collision> OnAfterEnterCollision;
 
         private void Reset()
         {
@@ -143,9 +133,10 @@ namespace MoonBunny
 
             foreach (Collision enterCollision in ExceptWith(_currentCollision, _previousCollision))
             {
+                OnBeforeEnterCollision?.Invoke(enterCollision);
                 enterCollision.OnCollision();
                 _movement.Collide(enterCollision);
-                OnEnterCollision?.Invoke(enterCollision);
+                OnAfterEnterCollision?.Invoke(enterCollision);
             }
 
             isGrounded = false;

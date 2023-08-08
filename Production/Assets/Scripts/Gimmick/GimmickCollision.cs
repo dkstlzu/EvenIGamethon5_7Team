@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using MoonBunny;
 using MoonBunny.Effects;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
 public class Collision : IEqualityComparer<Collision>
@@ -49,20 +50,20 @@ public class MoonBunnyCollision : Collision
 public class GimmickCollision : MoonBunnyCollision
 {
     public Gimmick Gimmick => (Gimmick)Other;
-    private MoonBunnyRigidbody _rigidbody;
-    private MoonBunnyCollider.Direction _direction;
+    public MoonBunnyRigidbody Rigidbody { get; private set; }
+    public MoonBunnyCollider.Direction Direction { get; private set; }
     
     public GimmickCollision(MoonBunnyRigidbody rigidbody, MoonBunnyCollider.Direction direction, Gimmick gimmick) : base(rigidbody, gimmick)
     {
-        _rigidbody = rigidbody;
-        _direction = direction;
+        Rigidbody = rigidbody;
+        Direction = direction;
     }
 
     public override void OnCollision()
     {
         if (Gimmick.InvokeOnCollision)
         {
-            Gimmick.Invoke(_rigidbody, _direction);
+            Gimmick.Invoke(Rigidbody, Direction);
         }
     }
 }
