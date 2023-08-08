@@ -133,12 +133,13 @@ MonoBehaviour:
   GridTransform:
     transform: {fileID: 8078376960131499520}
     GridPosition: {x: 0, y: 0}
+    SnapMethod: 0
   InvokeOnCollision: 1
   Score: 10
   _renderer: {fileID: 7224674976207212376}
   _audioClip: {fileID: 8300000, guid: f4828492e24b7304e800453915f98644, type: 3}
-  UpSpeed: 15
-  Duration: 2.5
+  UpSpeed: 10
+  UpGridHeight: 10
 --- !u!61 &1606204566041422334
 BoxCollider2D:
   m_ObjectHideFlags: 0
