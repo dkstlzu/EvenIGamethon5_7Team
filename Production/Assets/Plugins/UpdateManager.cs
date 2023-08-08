@@ -89,6 +89,11 @@ namespace dkstlzu.Utility
             _updatableList.Remove(updatable);
         }
 
+        public void Clear()
+        {
+            _updatableList.Clear();
+        }
+
         class DelayedAction : IUpdatable
         {
             private Action _action;
