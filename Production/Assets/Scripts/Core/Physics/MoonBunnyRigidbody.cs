@@ -12,13 +12,15 @@ namespace MoonBunny
     public class MoonBunnyRigidbody : MonoBehaviour
     {
         public static List<MoonBunnyRigidbody> S_RigidbodyList = new List<MoonBunnyRigidbody>();
-        public static float MaxYVelocityLimit;
+        public static float S_MaxYHeightLimit;
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        public const int MAX_JUMPABLE_GRID_Y = 10;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void ResetList()
         {
             S_RigidbodyList = new List<MoonBunnyRigidbody>();
-            MaxYVelocityLimit = 30;
+            S_MaxYHeightLimit = GridTransform.GridSetting.GridHeight * MAX_JUMPABLE_GRID_Y;
         }
 
         public static void EnableAll()
@@ -38,7 +40,17 @@ namespace MoonBunny
                 rigidbody.DisableCollision();
             }
         }
-        
+
+        private float _maxYVelocityLimit = -1;
+        public float MaxYVelocityLimit
+        {
+            get
+            {
+                if (_maxYVelocityLimit < 0) _maxYVelocityLimit = Mathf.Sqrt(S_MaxYHeightLimit * 2 * _gravity);
+                return _maxYVelocityLimit;
+            }
+        }
+
         [SerializeField] private float _gravity;
         public float Gravity
         {
@@ -524,7 +536,7 @@ namespace MoonBunny
         
         public void StartMove(float x, float y)
         {
-            Velocity = new Vector2(x, Mathf.Clamp(y, -MoonBunnyRigidbody.MaxYVelocityLimit, MoonBunnyRigidbody.MaxYVelocityLimit));
+            Velocity = new Vector2(x, Mathf.Clamp(y, -_rigidbody.MaxYVelocityLimit, _rigidbody.MaxYVelocityLimit));
         }
 
         public void StartMove(Vector2 velocity)
@@ -594,7 +606,7 @@ namespace MoonBunny
                 }
             } else if (collision is BouncyPlatformCollision bouncyPlatformCollision)
             {
-                float relativeSpeedByHeight = GridTransform.GetVelocityByRelativeHeight(-Velocity.y, _gravity.GravityValue, Bounciness);
+                float relativeSpeedByHeight = GridTransform.GetBouncedVelocityByRelativeHeight(-Velocity.y, _gravity.GravityValue, Bounciness);
                 Vector2Int fallingGridVelocity = GridTransform.GetGridByVelocity(0, relativeSpeedByHeight, _gravity.GravityValue);
                 
                 int targetGridVelocityX = Velocity.x >= 0 ? DefaultHorizontalSpeedOnCollide : -DefaultHorizontalSpeedOnCollide;

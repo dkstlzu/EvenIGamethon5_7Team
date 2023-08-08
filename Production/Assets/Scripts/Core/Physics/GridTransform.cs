@@ -152,7 +152,7 @@ namespace MoonBunny
             return GetVelocityByGrid(velocity.x, velocity.y, gravity);
         }
 
-        public static float GetVelocityByRelativeHeight(float yVelocity, float gravity, float heightRatio)
+        public static float GetBouncedVelocityByRelativeHeight(float yVelocity, float gravity, float heightRatio)
         {
             if (yVelocity <= 0)
             {
