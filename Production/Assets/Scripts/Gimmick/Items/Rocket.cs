@@ -16,14 +16,15 @@ namespace MoonBunny
         }
         
         public float UpSpeed;
-        public float Duration;
+        public float UpGridHeight;
 
         public override bool Invoke(MoonBunnyRigidbody with, MoonBunnyCollider.Direction direction)
         {
             if (!base.Invoke(with, direction)) return false;
 
-            new RocketEffect(with, UpSpeed, Duration).Effect();
-            OnRocketItemTaken?.Invoke(UpSpeed, Duration);
+            float duration = UpGridHeight * GridTransform.GridSetting.GridHeight / UpSpeed;
+            new RocketEffect(with, UpSpeed, duration).Effect();
+            OnRocketItemTaken?.Invoke(UpSpeed, duration);
             return true;
         }
     }

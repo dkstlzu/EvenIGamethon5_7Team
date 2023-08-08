@@ -17,6 +17,7 @@ namespace MoonBunny.UIs
         [SerializeField] private TextMeshProUGUI _tenTimePriceText;
 
         public int DiamondNumberPerTrade;
+        public int DiamondNumberPerTenTimeTrade;
         public int GoldNumberPerTrade;
         public int GoldNumberPerTenTimeTrade;
 
@@ -30,23 +31,23 @@ namespace MoonBunny.UIs
             _tenTimePriceText.text = GoldNumberPerTenTimeTrade.ToString();
             
             _exchangeOnceButton.interactable = GameManager.instance.GoldNumber >= GoldNumberPerTrade;
-            _exchangeTenTimeButton.interactable = GameManager.instance.GoldNumber >= GoldNumberPerTrade * 10;
+            _exchangeTenTimeButton.interactable = GameManager.instance.GoldNumber >= GoldNumberPerTenTimeTrade;
         }
 
         public void OnExchangeOnceButtonClicked()
         {
-            ExchangeGoldToDiamond(1);
+            ExchangeGoldToDiamond(GoldNumberPerTrade, DiamondNumberPerTrade);
         }
 
         public void OnExchangeTenTimeButtonClicked()
         {
-            ExchangeGoldToDiamond(10);
+            ExchangeGoldToDiamond(GoldNumberPerTenTimeTrade, DiamondNumberPerTenTimeTrade);
         }
 
-        private void ExchangeGoldToDiamond(int time)
+        private void ExchangeGoldToDiamond(int goldNumber, int diamondNumber)
         {
-            GameManager.instance.GoldNumber -= GoldNumberPerTrade * time;
-            QuestManager.instance.GetDiamond(DiamondNumberPerTrade * time);
+            GameManager.instance.GoldNumber -= goldNumber;
+            QuestManager.instance.GetDiamond(diamondNumber, false);
             
             Rebuild();
         }

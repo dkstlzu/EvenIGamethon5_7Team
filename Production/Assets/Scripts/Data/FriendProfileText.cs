@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace MoonBunny
@@ -7,7 +8,16 @@ namespace MoonBunny
     public class FriendProfileText : ScriptableObject
     {
         [Multiline(10)] public string Description;
-        [Multiline(10)] public List<string> MemoryTexts;
-        [Multiline(10)] public string StoryText;
+        public List<StringInt> MemoryTexts;
+        public Sprite StorySprite;
+        
+    }
+
+    [Serializable]
+    public class StringInt
+    {
+        [Multiline(2)]
+        public string Str;
+        public int Integer;
     }
 }

@@ -101,11 +101,6 @@ namespace MoonBunny.UIs
                             break;
                     }
                 }
-                
-                if (GameManager.instance.ShowTutorial)
-                {
-                    GameManager.instance.Stage.TutorialOn();
-                }
             };
             
             GameManager.instance.GoldNumber -= BoostUI.S_ConsumingGold;

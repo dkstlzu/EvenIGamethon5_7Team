@@ -46,6 +46,9 @@ namespace MoonBunny
         private Vector2 _currentLoopDelta;
         float multiplier;
 
+        private int _invokeNumberToCrack = 5;
+        private int _currentInvokeNumber = 0;
+
         private bool _doLoop = false;
         
         protected void Start()
@@ -81,17 +84,28 @@ namespace MoonBunny
 #if UNITY_EDITOR
             if (!EditorApplication.isPlaying) return;
 #endif
-            // Forward
-            if ((transform.position.y > _loopForwardPosition.y || transform.position.x > _loopForwardPosition.x))
+            if (_doLoop)
             {
-                _currentLoopDelta = -_loopDelta;
-                CheckMovement();
-            }
-            // Backward
-            if (transform.position.y < _loopStartPosition.y || transform.position.x < _loopStartPosition.x)
-            {
-                _currentLoopDelta = _loopDelta;
-                CheckMovement();
+                // Forward
+                if ((_loopDelta.x > 0 && transform.position.x > _loopForwardPosition.x) || (_loopDelta.x < 0 && transform.position.x < _loopForwardPosition.x))
+                {
+                    _currentLoopDelta = -_loopDelta;
+                    CheckMovement();
+                } else if ((_loopDelta.x > 0 && transform.position.x < _loopStartPosition.x) || (_loopDelta.x < 0 && transform.position.x > _loopStartPosition.x))
+                {
+                    _currentLoopDelta = _loopDelta;
+                    CheckMovement();
+                }
+                
+                if ((_loopDelta.y > 0 && transform.position.y > _loopForwardPosition.y) || (_loopDelta.y < 0 && transform.position.y < _loopForwardPosition.y))
+                {
+                    _currentLoopDelta = -_loopDelta;
+                    CheckMovement();
+                } else if ((_loopDelta.y > 0 && transform.position.y < _loopStartPosition.y) || (_loopDelta.y < 0 && transform.position.y > _loopStartPosition.y))
+                {
+                    _currentLoopDelta = _loopDelta;
+                    CheckMovement();
+                }
             }
         }
         
@@ -109,25 +123,32 @@ namespace MoonBunny
                 CurrentPattern = 2;
                 foreach (BouncyPlatform platform in Pattern1PlatformList)
                 {
-                    platform.MakeVirtual();
+                    if (platform) platform.MakeVirtual();
                 }
 
                 foreach (BouncyPlatform platform in Pattern2PlatformList)
                 {
-                    platform.MakeConcrete();
+                    if (platform) platform.MakeConcrete();
                 }
             } else if (CurrentPattern == 2)
             {
                 CurrentPattern = 1;
                 foreach (BouncyPlatform platform in Pattern1PlatformList)
                 {
-                    platform.MakeConcrete();
+                    if (platform) platform.MakeConcrete();
                 }
 
                 foreach (BouncyPlatform platform in Pattern2PlatformList)
                 {
-                    platform.MakeVirtual();
+                    if (platform) platform.MakeVirtual();
                 }
+            }
+            
+            _currentInvokeNumber++;
+
+            if (_currentInvokeNumber >= _invokeNumberToCrack)
+            {
+                Destroy(gameObject);
             }
 
             return true;
@@ -153,7 +174,7 @@ namespace MoonBunny
 
         public void CheckMovement()
         {
-            if (!_doLoop || isVirtual)
+            if (isVirtual)
             {
                 _rigidbody.StopMove();
             }

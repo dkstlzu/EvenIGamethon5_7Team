@@ -18,19 +18,19 @@ MonoBehaviour:
     CurrentCollectingNumber: 0
   - Name: 1
     TargetCollectingNumber: 10
-    CurrentCollectingNumber: 0
+    CurrentCollectingNumber: 10
   - Name: 2
-    TargetCollectingNumber: 20
-    CurrentCollectingNumber: 0
+    TargetCollectingNumber: 25
+    CurrentCollectingNumber: 20
   - Name: 3
-    TargetCollectingNumber: 30
-    CurrentCollectingNumber: 0
+    TargetCollectingNumber: 50
+    CurrentCollectingNumber: 30
   - Name: 4
-    TargetCollectingNumber: 30
-    CurrentCollectingNumber: 0
+    TargetCollectingNumber: 80
+    CurrentCollectingNumber: 30
   - Name: 5
-    TargetCollectingNumber: 30
-    CurrentCollectingNumber: 0
+    TargetCollectingNumber: 100
+    CurrentCollectingNumber: 30
   - Name: 6
-    TargetCollectingNumber: 40
-    CurrentCollectingNumber: 0
+    TargetCollectingNumber: 20
+    CurrentCollectingNumber: 9

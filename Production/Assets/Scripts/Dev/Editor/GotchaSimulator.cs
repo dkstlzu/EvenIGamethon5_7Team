@@ -28,7 +28,7 @@ namespace Dev.Editor
             System.Diagnostics.Process.Start(GOTCHA_RESULT_PATH + "/NormalGotcha.txt");
         }
         
-        [MenuItem("Dev/Gotcha/Open Normal Result")]
+        [MenuItem("Dev/Gotcha/Open Special Result")]
         static void OpenSpecialGotchaResult()
         {
             System.Diagnostics.Process.Start(GOTCHA_RESULT_PATH + "/SpecialGotcha.txt");

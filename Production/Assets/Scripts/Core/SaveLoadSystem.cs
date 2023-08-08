@@ -153,9 +153,20 @@ namespace MoonBunny
                     }
                     else
                     {
-                        MoonBunnyLog.print($"SaveLoadSystem load fail : {PersistenceFilePath}.\n So made new one");
-                        ProgressSaveData = ProgressSaveData.GetDefaultSaveData();
+                        LegacyProgressSaveData legacy = JsonUtility.FromJson<LegacyProgressSaveData>(jsonData);
+
+                        if (legacy != null)
+                        {
+                            MoonBunnyLog.print($"SaveLoadSystem is legacy : {PersistenceFilePath}. So migrate to new form");
+                            ProgressSaveData = ProgressSaveData.MigrateFromLegacy(legacy);
+                        }
+                        else
+                        {
+                            MoonBunnyLog.print($"SaveLoadSystem load fail : {PersistenceFilePath}.\n So made new one");
+                            ProgressSaveData = ProgressSaveData.GetDefaultSaveData();
+                        }
                     }
+                    
                     DataIsLoaded = true;
                 }
             }
@@ -179,8 +190,18 @@ namespace MoonBunny
                     }
                     else
                     {
-                        MoonBunnyLog.print($"SaveLoadSystem load fail : {PersistenceFilePath}.\n So made new one");
-                        QuestSaveData = QuestSaveData.GetDefaultSaveData();
+                        LegacyQuestSaveData legacy = JsonUtility.FromJson<LegacyQuestSaveData>(jsonData);
+
+                        if (legacy != null)
+                        {
+                            MoonBunnyLog.print($"SaveLoadSystem is legacy : {PersistenceFilePath}. So migrate to new form");
+                            QuestSaveData = QuestSaveData.MigrateFromLegacy(legacy);
+                        }
+                        else
+                        {
+                            MoonBunnyLog.print($"SaveLoadSystem load fail : {PersistenceFilePath}.\n So made new one");
+                            QuestSaveData = QuestSaveData.GetDefaultSaveData();
+                        }
                     }
                     DataIsLoaded = true;
                 }
@@ -386,14 +407,16 @@ namespace MoonBunny
                                 {
                                     if (str != NoData)
                                     {
-                                        int targetIndex = int.Parse(str);
-                                        if (targetIndex > 0)
+                                        if (int.TryParse(str, out int targetIndex))
                                         {
-                                            pattern1List.Add(targetIndex);
-                                        }
-                                        else
-                                        {
-                                            platform.MakeVirtual();
+                                            if (targetIndex > 0)
+                                            {
+                                                pattern1List.Add(targetIndex);
+                                            }
+                                            else
+                                            {
+                                                platform.MakeVirtual();
+                                            }
                                         }
                                     }
                                 }
@@ -409,7 +432,10 @@ namespace MoonBunny
                                 {
                                     if (str != NoData)
                                     {
-                                        pattern2List.Add(int.Parse(str));
+                                        if (int.TryParse(str, out int targetIndex))
+                                        {
+                                            pattern2List.Add(targetIndex);
+                                        }
                                     }
                                 }
                                 

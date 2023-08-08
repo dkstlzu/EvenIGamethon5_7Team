@@ -43,8 +43,8 @@ namespace MoonBunny.Effects
             {
                 UpdateManager.instance.Delay(() =>
                 {
-                    _target.radius = previousPower;
-                    _spriteRenderer.transform.localScale = new Vector3(previousPower * 2, previousPower * 2, 1);
+                    _target.radius -= _magneticPower;
+                    _spriteRenderer.transform.localScale = new Vector3(_target.radius * 2, _target.radius * 2, 1);
                 }, _duration);
             }
         }
@@ -101,7 +101,9 @@ namespace MoonBunny.Effects
             UpdateManager.instance.Delay(() =>
             {
                 _rigidbody.DontIgnoreCollision(LayerMask.GetMask("Obstacle"));
-                _rigidbody.Move(previousVelocity);
+                float previousX = previousVelocity.x;
+                
+                _rigidbody.Move(new Vector2(previousX, 0));
                 _rigidbody.Gravity = previousGravity;
                 S_isEffectOn = false;
             }, _duration);

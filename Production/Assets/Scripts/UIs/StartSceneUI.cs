@@ -19,7 +19,6 @@ namespace MoonBunny.UIs
 
         [Header("Main UI Flow")]
         public CanvasGroup IntroCanvasGroup;
-        public CanvasGroup MainIntroCanvasGroup;
         public FriendSelectUI FriendSelectUI;
         public StageSelectUI StageSelectUI;
 
@@ -29,6 +28,9 @@ namespace MoonBunny.UIs
         public QuestUI QuestUI;
         public StoreUI StoreUI;
         public DiamondGoldExchangeUI ExchangeUI;
+        public ConfirmUI ConfirmUI;
+        [Multiline(5)]
+        public string ReallyQuitText;
 
         [Header("Money Texts")] 
         public TextMeshProUGUI GoldText1;
@@ -91,14 +93,7 @@ namespace MoonBunny.UIs
         public void OnPressTheAnyKeyIntro(InputAction.CallbackContext callbackContext)
         {
             FadeOut(IntroCanvasGroup);
-            MainIntroCanvasGroup.DOFade(1, 2);
-
-            CoroutineHelper.Delay(() =>
-            {
-                FadeOut(MainIntroCanvasGroup);
-                FriendSelectUI.Open();
-            }, 5f);
-
+            FriendSelectUI.Open();
             
             _gameManager.GetComponent<InputManager>().InputAsset.UI.Click.performed -= OnPressTheAnyKeyIntro;
         }
@@ -125,11 +120,17 @@ namespace MoonBunny.UIs
 
         public void OnQuitButtonClicked()
         {
+            ConfirmUI.Description.text = ReallyQuitText;
+            ConfirmUI.OnConfirm.AddListener(() =>
+            {
 #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
+                UnityEditor.EditorApplication.isPlaying = false;
 #else
-            Application.Quit();
+                Application.Quit();
 #endif
+            });
+            ConfirmUI.Open();
+
         }
 
     }

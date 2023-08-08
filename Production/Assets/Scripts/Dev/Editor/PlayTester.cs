@@ -9,8 +9,8 @@ namespace Dev.Editor
     public class PlayTester
     {
         private static Character _character;
-        private static string LevelPath = "Assets/Prefab/Level/";
-        
+        // private static string LevelPath = "Assets/Prefab/Level/";
+         
         [MenuItem("Dev/PlayTest/Restart Stage")]
         public static void RestartStage()
         {

@@ -4,6 +4,13 @@ using UnityEngine;
 
 namespace MoonBunny
 {
+    public enum SnapMethod
+    {
+        None = -1,
+        RealToGrid,
+        GridToReal
+    }
+    
     [Serializable]
     public class GridTransform
     {
@@ -21,6 +28,7 @@ namespace MoonBunny
             set => transform.position = new Vector3(value.x, value.y, transform.position.z);
         }
         public Vector2Int GridPosition;
+        public SnapMethod SnapMethod;
 
         public GridTransform(Transform transform)
         {
@@ -29,7 +37,15 @@ namespace MoonBunny
 
         public void Update()
         {
-            GridPosition = ToGrid(transform.position);
+            switch (SnapMethod)
+            {
+                case SnapMethod.RealToGrid:
+                    GridPosition = ToGrid(transform.position);
+                    break;
+                case SnapMethod.GridToReal:
+                    transform.position = ToReal(GridPosition);
+                    break;
+            }
         }
 
         public void SnapToGrid()
@@ -67,8 +83,14 @@ namespace MoonBunny
             return HasGridObject(gridPosition, out gridObject);
         }
 
-        private static LayerMask S_findingLayerMask = LayerMask.GetMask(new string[]{
-            "Friend","Item","Obstacle","Platform","Character","Gimmick","Ricecake"});
+        private static LayerMask S_findingLayerMask;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        static void SetFindingLayerMask()
+        {
+            S_findingLayerMask = LayerMask.GetMask(new []{
+                "Friend","Item","Obstacle","Platform","Character","Gimmick","Ricecake"});
+        }
 
         public static bool HasGridObject(Vector2Int gridPosition, out GridObject gridObject)
         {
@@ -130,7 +152,7 @@ namespace MoonBunny
             return GetVelocityByGrid(velocity.x, velocity.y, gravity);
         }
 
-        public static float GetVelocityByRelativeHeight(float yVelocity, float gravity, float heightRatio)
+        public static float GetBouncedVelocityByRelativeHeight(float yVelocity, float gravity, float heightRatio)
         {
             if (yVelocity <= 0)
             {

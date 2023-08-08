@@ -17,94 +17,94 @@ MonoBehaviour:
     DiamondNumber: 0
     MemoryType: -1
     MemoryNumber: 0
-    Potential: 9.09
+    Potential: 10
   - GoldNumber: 100
     DiamondNumber: 0
     MemoryType: -1
     MemoryNumber: 0
-    Potential: 9.08
-  - GoldNumber: 150
+    Potential: 10
+  - GoldNumber: 130
     DiamondNumber: 0
     MemoryType: -1
     MemoryNumber: 0
-    Potential: 9.07
-  - GoldNumber: 300
+    Potential: 10
+  - GoldNumber: 200
     DiamondNumber: 0
     MemoryType: -1
     MemoryNumber: 0
-    Potential: 6
-  - GoldNumber: 1000
+    Potential: 6.67
+  - GoldNumber: 700
     DiamondNumber: 0
     MemoryType: -1
     MemoryNumber: 0
-    Potential: 2.6
+    Potential: 1.33
   - GoldNumber: 0
     DiamondNumber: 1
     MemoryType: -1
     MemoryNumber: 0
-    Potential: 9.08
+    Potential: 10
   - GoldNumber: 0
-    DiamondNumber: 3
+    DiamondNumber: 2
     MemoryType: -1
     MemoryNumber: 0
-    Potential: 6.05
+    Potential: 6.67
   - GoldNumber: 0
     DiamondNumber: 5
     MemoryType: -1
     MemoryNumber: 0
-    Potential: 4.07
+    Potential: 2
   - GoldNumber: 0
     DiamondNumber: 0
     MemoryType: 1
     MemoryNumber: 1
-    Potential: 9.08
+    Potential: 10
   - GoldNumber: 0
     DiamondNumber: 0
     MemoryType: 1
     MemoryNumber: 3
-    Potential: 6.05
+    Potential: 6.67
   - GoldNumber: 0
     DiamondNumber: 0
     MemoryType: 1
     MemoryNumber: 5
-    Potential: 6
+    Potential: 6.67
   - GoldNumber: 0
     DiamondNumber: 0
     MemoryType: 2
     MemoryNumber: 1
-    Potential: 6.05
+    Potential: 6.67
   - GoldNumber: 0
     DiamondNumber: 0
     MemoryType: 2
     MemoryNumber: 3
-    Potential: 4.05
+    Potential: 2
   - GoldNumber: 0
     DiamondNumber: 0
     MemoryType: 2
     MemoryNumber: 5
-    Potential: 2.6
+    Potential: 1.33
   - GoldNumber: 0
     DiamondNumber: 0
     MemoryType: 2
     MemoryNumber: 10
-    Potential: 1
+    Potential: 0.7
   - GoldNumber: 0
     DiamondNumber: 0
     MemoryType: 3
     MemoryNumber: 1
-    Potential: 6
+    Potential: 6.67
   - GoldNumber: 0
     DiamondNumber: 0
     MemoryType: 3
     MemoryNumber: 3
-    Potential: 2.8
+    Potential: 1.33
   - GoldNumber: 0
     DiamondNumber: 0
     MemoryType: 3
-    MemoryNumber: 109
+    MemoryNumber: 5
     Potential: 1
   - GoldNumber: 0
     DiamondNumber: 0
     MemoryType: 3
     MemoryNumber: 10
-    Potential: 0.24
+    Potential: 0.29

@@ -16,5 +16,5 @@ MonoBehaviour:
   CameraAspect: 0.4615385
   Origin: {x: -0.5, y: 0}
   HorizontalDivision: 6
-  GridHeight: 2
-  GridWidth: 2.0000002
+  GridHeight: 3
+  GridWidth: 2

@@ -1,12 +1,28 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using DG.Tweening;
+using MoonBunny.Effects;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace MoonBunny.UIs
 {
     public class StageFailUI : UI
     {
+        [Header("Boost Bonus")]
+        public RectTransform BoardTransform;
+        
+        public GameObject BoostUI;
+        public TextMeshProUGUI BoostNoticeText;
+        public BoostUI Boost;
+        public float BonusBoostPotential;
+        public string[] NoticeTextList;
+        public float NoticeInterval;
+        
+        [Header("Native")]
         public Stage Stage;
         public StageUI StageUI;
 
@@ -16,9 +32,19 @@ namespace MoonBunny.UIs
 
         public const int REVIVE_GOLD_COST = 100;
 
+        private Coroutine _noticeCoroutine;
+
         private void Start()
         {
             Stage = GameManager.instance.Stage;
+
+            OnExit += UncheckBoost;
+        }
+
+        void UncheckBoost()
+        {
+            if (Boost.Checked) Boost.OnClicked();
+            OnExit -= UncheckBoost;
         }
 
         protected override void Rebuild()
@@ -27,6 +53,45 @@ namespace MoonBunny.UIs
             {
                 SetColorOfChildren(ReviveRect, MoonBunnyColor.DisabledColor);
                 ReviveButton.interactable = false;
+            }
+
+            if (Random.value <= BonusBoostPotential)
+            {
+                BoostUI.SetActive(true);
+                BoardTransform.anchorMax = new Vector2(0.5f, 0.3f);
+                BoardTransform.anchorMin = new Vector2(0.5f, 0.3f);
+                
+                bool isManget = Random.value > 0.5f;
+                Boost.BoostName = isManget ? MagnetBoostEffect.BoostName : StarCandyBoostEffect.BoostName;
+                Boost.BoostOnText = isManget ? "자석 부스트!" : "별사탕은 어떤가?";
+                Boost.Price = Random.Range(20, 50);
+                Boost.PriceText.text = Boost.Price.ToString();
+                Boost.BoostImage.sprite = isManget ? PreloadedResources.instance.BoostSpriteList[0] : PreloadedResources.instance.BoostSpriteList[1];
+
+                _noticeCoroutine = StartCoroutine(NoticeCoroutine());
+            }
+            else
+            {
+                BoostUI.SetActive(false);
+                BoardTransform.anchorMax = new Vector2(0.5f, 0.5f);
+                BoardTransform.anchorMin = new Vector2(0.5f, 0.5f);
+            }
+        }
+
+        IEnumerator NoticeCoroutine()
+        {
+            int index = 0;
+
+            while (true)
+            {
+                BoostNoticeText.DOText(NoticeTextList[index], 0.2f);
+                index++;
+                if (index >= NoticeTextList.Length)
+                {
+                    index = 0;
+                }
+
+                yield return new WaitForSeconds(NoticeInterval);
             }
         }
     }

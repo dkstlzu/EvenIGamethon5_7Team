@@ -4,6 +4,7 @@ using UnityEngine.UIElements;
 
 namespace MoonBunny.CustomEditors
 {
+    [CanEditMultipleObjects]
     [CustomEditor(typeof(GridObject), true)]
     public class GridObjectEditor : Editor
     {

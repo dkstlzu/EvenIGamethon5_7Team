@@ -139,6 +139,8 @@ namespace MoonBunny
         private void Start()
         {
             _spec = Resources.Load<StageSpec>($"{SpecPath}Stage{StageLevel+1}_{SubLevel+1}Spec");
+            
+            if (GameManager.instance.ShowTutorial) TutorialOn();
         }
 
         #region Initialize
@@ -188,7 +190,7 @@ namespace MoonBunny
         {
             // LevelSummoner setting
             LevelSummoner.RicecakeNumber = Spec.RicecakeNumber;
-            LevelSummoner.RainbowRicecakeRatio = Spec.RainbowRicecakeRatio;
+            Ricecake.S_RainbowRatio = Spec.RainbowRicecakeRatio;
             LevelSummoner.CoinNumber = Spec.CoinNumber;
             LevelSummoner.FriendCollectableNumber = Spec.FriendCollectableNumber;
 

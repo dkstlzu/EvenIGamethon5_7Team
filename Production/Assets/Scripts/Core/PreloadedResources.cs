@@ -11,11 +11,15 @@ namespace MoonBunny
         public List<Sprite> BouncyPlatformSpriteList;
         public List<Sprite> LevelEndPlatformSpriteList;
         public List<RuntimeAnimatorController> BouncyPlatformAnimatorControllerList;
+        public List<RuntimeAnimatorController> CrackPlatformAnimatorControllerList;
+        public List<Sprite> CrackPlatformSpriteList;
         public List<RuntimeAnimatorController> CharacterAnimatorControllerList;
         public List<FriendSpec> FriendSpecList;
         public AudioClip BouncyPlatformSound;
         public AudioClip OpenStageAudioClip;
         public AudioClip FriendCollectedAudioClip;
+        public List<Sprite> MemorySpriteList;
+        public List<Sprite> BoostSpriteList;
 
         public GameObject CannibalismEffectPrefab;
         public GameObject StarCandyEffectPrefab;

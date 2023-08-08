@@ -23,18 +23,18 @@ namespace MoonBunny
 
         private const string QUEST_PATH = "Specs/Quest/";
 
-        private const int JUMP_ID = 0;
-        private const int CHANGE_DIRECTION_ID = 1;
-        private const int SIDEWALL_COLLISION_ID = 2;
-        private const int ITEM_TAKEN_ID = 3;
-        private const int OBSTACLE_COLLISION_ID = 4;
-        private const int GOLD_GET_ID = 5;
-        private const int DIAMOND_GET_ID = 6;
+        public const int JUMP_ID = 0;
+        public const int CHANGE_DIRECTION_ID = 1;
+        public const int SIDEWALL_COLLISION_ID = 2;
+        public const int ITEM_TAKEN_ID = 3;
+        public const int OBSTACLE_COLLISION_ID = 4;
+        public const int GOLD_GET_ID = 5;
+        public const int DIAMOND_GET_ID = 6;
         
-        private const int UNLOCK_STAGE_ID = 100;
-        private const int SUGAR_PERFECTCLEAR_ID = 110;
-        private const int FRIEND_COLLECTION_ID = 130;
-        private const int PERFECTCLEAR_ID = 140;
+        public const int UNLOCK_STAGE_ID = 100;
+        public const int SUGAR_PERFECTCLEAR_ID = 110;
+        public const int FRIEND_COLLECTION_ID = 130;
+        public const int PERFECTCLEAR_ID = 140;
         
         void SpecialQuestSet(Quest quest)
         {
@@ -163,8 +163,8 @@ namespace MoonBunny
 
         private void OnGotchaReward(GotchaReward reward)
         {
-            GetGold(reward.GoldNumber);
-            GetDiamond(reward.DiamondNumber);
+            GetGold(reward.GoldNumber, false);
+            GetDiamond(reward.DiamondNumber, false);
         }
 
         private void OnSideWallCollision()
@@ -235,19 +235,24 @@ namespace MoonBunny
 
         #endregion
         
-        public void GetDiamond(int number)
+        public void GetDiamond(int number, bool onlyQuest = true)
         {
-            print($"GetDiamond!! {number}");
             SaveData.DiamondGetCount += number;
             _questDict[DIAMOND_GET_ID].ProgressAhead(number);
-            GameManager.instance.DiamondNumber += number;
+            if (!onlyQuest)
+            {
+                GameManager.instance.DiamondNumber += number;
+            }
         }
 
-        public void GetGold(int number)
+        public void GetGold(int number, bool onlyQuest = true)
         {
             SaveData.GoldGetCount += number;
             _questDict[GOLD_GET_ID].ProgressAhead(number);
-            GameManager.instance.GoldNumber += number;
+            if (!onlyQuest)
+            {
+                GameManager.instance.GoldNumber += number;
+            }
         }
         
         private void OnApplicationQuit()

@@ -73,12 +73,12 @@ SpriteRenderer:
   m_SortingLayerID: 511804839
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -397201070, guid: 2812d3280519b734799cf7a45afa5f7a, type: 3}
+  m_Sprite: {fileID: -510836354, guid: c7b2eefa8105784489c0d4b47944916b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.015625, y: 2.015625}
+  m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -136,6 +136,7 @@ MonoBehaviour:
     GridPosition: {x: 0, y: 0}
   InvokeOnCollision: 1
   _animator: {fileID: 5552177862712556466}
+  _renderer: {fileID: 7127225641016986164}
   _audioClip: {fileID: 8300000, guid: ca6ceabe87cd2314e958c12f9abb5686, type: 3}
 --- !u!61 &6844837169341423732
 BoxCollider2D:
