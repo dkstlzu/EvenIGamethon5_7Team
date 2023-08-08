@@ -21,7 +21,7 @@ No,Type,X,Y,Value1,Value2,Value3,Value4,Value5,Value6
 20,BouncyPlatform,1,52,3,-,-,-,-,-
 21,BouncyPlatform,3,55,5,-,-,-,-,-
 22,BouncyPlatform,2,58,4,-,-,-,-,-
-23,BouncyPlatform,1,76,5,-,-,-,-,-
+23,BouncyPlatform,1,75,5,-,-,-,-,-
 24,BouncyPlatform,0,79,3,-,-,-,-,-
 25,BouncyPlatform,-2,80,3,-,-,-,-,-
 26,BouncyPlatform,0,90,4,-,-,-,-,-
@@ -53,8 +53,8 @@ No,Type,X,Y,Value1,Value2,Value3,Value4,Value5,Value6
 52,BouncyPlatform,-1,30,4,0,2,2,-,-
 53,BouncyPlatform,-2,45,4,0,2,2,-,-
 54,BouncyPlatform,-1,56,4,0,2,2,-,-
-55,BouncyPlatform,-2,69,4,0,2,2,-,-
-56,BouncyPlatform,-1,72,4,0,2,2,-,-
+55,BouncyPlatform,-2,67,4,0,2,2,-,-
+56,BouncyPlatform,-1,71,4,0,2,2,-,-
 57,BouncyPlatform,-1,86,4,0,2,2,-,-
 58,BouncyPlatform,-1,101,4,0,2,2,-,-
 59,BouncyPlatform,-2,109,4,0,2,2,-,-
