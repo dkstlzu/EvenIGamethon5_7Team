@@ -154,7 +154,7 @@ namespace MoonBunny.UIs
             {
                 if (Stage.CollectDict[friendName] > 0)
                 {
-                    MemoryImage.sprite = PreloadedResources.instance.MemorySpriteList[(int)friendName];
+                    MemoryImage.sprite = PreloadedResources.instance.MemorySpriteList[(int)friendName - 1];
                     GainedMemoryText.text = Stage.CollectDict[friendName].ToString();
                     break;
                 }

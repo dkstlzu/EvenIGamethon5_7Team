@@ -7306,6 +7306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanvasGroup: {fileID: 234906047041919211}
+  BoardTransform: {fileID: 1727979534299701004}
   BoostUI: {fileID: 480711031056146700}
   BoostNoticeText: {fileID: 8546112325116317806}
   Boost: {fileID: 6263117568658406715}
@@ -7916,7 +7917,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8576892984965730964
 RectTransform:
   m_ObjectHideFlags: 0

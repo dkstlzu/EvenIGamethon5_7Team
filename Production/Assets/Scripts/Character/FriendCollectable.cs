@@ -33,7 +33,7 @@ namespace MoonBunny
         {
             int targetIndex = Stage.S_StageLevel;
 
-            Name = (FriendName)targetIndex;
+            Name = (FriendName)(targetIndex+1);
             _renderer.sprite = PreloadedResources.instance.MemorySpriteList[targetIndex];
         }
 
