@@ -14,10 +14,10 @@ No,Type,X,Y,Value1,Value2,Value3,Value4,Value5,Value6
 13,BouncyPlatform,2,19,5,-,-,-,-,-
 14,BouncyPlatform,-2,20,3,-,-,-,-,-
 15,BouncyPlatform,0,23,5,-,-,-,-,-
-16,BouncyPlatform,0,24,3,-,-,-,-,-
+16,BouncyPlatform,1,24,3,-,-,-,-,-
 17,BouncyPlatform,1,27,4,-,-,-,-,-
 18,BouncyPlatform,-2,28,4,-,-,-,-,-
-19,BouncyPlatform,1,33,3,-,-,-,-,-
+19,BouncyPlatform,2,33,3,-,-,-,-,-
 20,BouncyPlatform,-2,34,3,-,-,-,-,-
 21,BouncyPlatform,1,35,5,-,-,-,-,-
 22,BouncyPlatform,0,40,4,-,-,-,-,-
