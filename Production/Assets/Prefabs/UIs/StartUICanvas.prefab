@@ -21348,6 +21348,7 @@ MonoBehaviour:
   _tenTimeBeforeSalePriceText: {fileID: 3540329837232257812}
   _tenTimePriceText: {fileID: 164255130414085815}
   DiamondNumberPerTrade: 1
+  DiamondNumberPerTenTimeTrade: 10
   GoldNumberPerTrade: 100
   GoldNumberPerTenTimeTrade: 900
 --- !u!223 &663557412088215158
