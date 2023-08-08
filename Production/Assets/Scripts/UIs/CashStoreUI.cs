@@ -36,7 +36,7 @@ namespace MoonBunny.UIs
             {
                 if (productName == "패키지" || productName == "한정 패키지")
                 {
-                    Rebuild();
+                    PackageUpdate();
                 }
             };
 
@@ -54,6 +54,11 @@ namespace MoonBunny.UIs
             ConfirmUI.Description.text = "점프해바니의 서버는 아직 구현중입니다.\n앱을 삭제할시에 결제하신 정보가 남지 않습니다!\n죄송합니다! 꼭 인지하고 진행해주세요";
             ConfirmUI.Open();
 
+            PackageUpdate();
+        }
+
+        private void PackageUpdate()
+        {
             LimitedPackageButton.interactable = !GameManager.ProgressSaveData.LimitedPackagePurchased;
             if (!LimitedPackageButton.interactable)
             {
