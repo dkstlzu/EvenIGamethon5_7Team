@@ -71,7 +71,7 @@ namespace MoonBunny.UIs
             _description.text = FriendProfileTextList[index].Description;
             _memoryText.text = string.Empty;
 
-            int targetMemoryIndex = 0;
+            int targetMemoryIndex = -1;
 
             for (int i = 0; i < FriendProfileTextList[index].MemoryTexts.Count; i++)
             {
@@ -85,7 +85,10 @@ namespace MoonBunny.UIs
                 }
             }
 
-            _memoryText.text = FriendProfileTextList[index].MemoryTexts[targetMemoryIndex].Str;
+            if (targetMemoryIndex > 0)
+            {
+                _memoryText.text = FriendProfileTextList[index].MemoryTexts[targetMemoryIndex].Str;
+            }
         }
 
         private float targetPivotX = 0;
