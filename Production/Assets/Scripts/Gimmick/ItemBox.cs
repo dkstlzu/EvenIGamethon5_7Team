@@ -1,43 +1,46 @@
-﻿using UnityEngine;
+﻿using MoonBunny.Effects;
+using UnityEngine;
 
 namespace MoonBunny
 {
     public class ItemBox : Gimmick
     {
-        public GameObject HeartPrefab;
+        public Sprite HeartSprite;
         [Range(0, 1)] public float HeartPotential;
-        public GameObject StarCandyPrefab;
+        public Sprite StarCandySprite;
         [Range(0, 1)] public float StarCandyPotential;
-        public GameObject RicecakePrefab;
-        [Range(0, 1)] public float RicecakePotential;
+        public Sprite CoinSprite;
+        [Range(0, 1)] public float CoinPotential;
 
         public Transform SpawnPoint;
         [SerializeField] private AudioClip _audioClip;
 
-        private float _totalPotential => HeartPotential + StarCandyPotential + RicecakePotential;
+        private float _totalPotential => HeartPotential + StarCandyPotential + CoinPotential;
 
         public override bool Invoke(MoonBunnyRigidbody with, MoonBunnyCollider.Direction direction)
         {
             if (!base.Invoke(with, direction)) return false;
 
-            float randomValue = Random.value;
-            GameObject targetGo = null;
-            Transform parent = GameObject.FindWithTag("Items").transform;
+            float randomValue = Random.Range(0, _totalPotential);
+            Sprite targetSprite = null;
 
-            if (randomValue < HeartPotential / _totalPotential)
+            if (randomValue < HeartPotential)
             {
-                targetGo = HeartPrefab;
-            } else if (randomValue >= HeartPotential / _totalPotential && randomValue < (HeartPotential + (StarCandyPotential) / _totalPotential))
+                targetSprite = HeartSprite;
+                new HeartEffect(Character.instance).Effect();
+            } else if (randomValue >= HeartPotential && randomValue < (HeartPotential + StarCandyPotential))
             {
-                targetGo = StarCandyPrefab;
+                targetSprite = StarCandySprite;
+                new StarCandyEffect(LayerMask.GetMask("Obstacle"), new Bounds(transform.position, new Vector3(40, GridTransform.GridSetting.GridHeight * 3))).Effect();
             } else
             {
-                targetGo = RicecakePrefab;
+                targetSprite = CoinSprite;
+                GameManager.instance.Stage.GoldNumber++;
             }
 
-            if (targetGo != null)
+            if (targetSprite != null)
             {
-                Instantiate(targetGo, SpawnPoint.position, Quaternion.identity, parent);
+                new SpriteEffect(targetSprite, SpawnPoint.position, 1.5f, 2, 2).Effect();
             }
             else
             {

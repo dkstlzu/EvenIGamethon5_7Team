@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace MoonBunny
 {
@@ -24,13 +26,8 @@ namespace MoonBunny
             Score = RainbowCakeScore;
         }
 
-        protected override void Awake()
+        private void Start()
         {
-            base.Awake();
-#if UNITY_EDITOR
-            if (!UnityEditor.EditorApplication.isPlaying) return;
-#endif
-
             if (Random.value <= S_RainbowRatio)
             {
                 MakeRainbow();

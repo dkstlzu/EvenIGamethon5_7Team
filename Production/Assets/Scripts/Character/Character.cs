@@ -12,6 +12,7 @@ namespace MoonBunny
         // Hard Caching
         private static readonly int _jumpHash = Animator.StringToHash("FirstJumped");
         private static readonly int _fallingHash = Animator.StringToHash("isFalling");
+        public static Character instance;
 
         public int MaxYGridJumpHeightLimit;
         private float _maxYJumpHeightLimit;
@@ -26,8 +27,6 @@ namespace MoonBunny
         public CircleCollider2D MagneticField;
 
         [SerializeField] private int _currentHP;
-
-        public List<Buff> BuffList = new List<Buff>();
 
         public int CurrentHp
         {
@@ -49,22 +48,15 @@ namespace MoonBunny
 
         public bool LookingRight => !Renderer.flipX;
 
-        protected override void Awake()
-        {
-            base.Awake();
-
-#if UNITY_EDITOR
-            if (!UnityEditor.EditorApplication.isPlaying) return;
-#endif
-            isIgnoringFlip = false;
-            _maxYJumpHeightLimit = MaxYGridJumpHeightLimit * GridTransform.GridSetting.GridHeight;
-        }
-
         private void Start()
         {
 #if UNITY_EDITOR
             if (!UnityEditor.EditorApplication.isPlaying) return;
 #endif
+            instance = this;
+            isIgnoringFlip = false;
+            _maxYJumpHeightLimit = MaxYGridJumpHeightLimit * GridTransform.GridSetting.GridHeight;
+            
             CurrentHp = Friend.MaxHp;
             new MagnetEffect(this, Friend.MagneticPower).Effect();
 
