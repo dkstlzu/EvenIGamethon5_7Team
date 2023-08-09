@@ -162,20 +162,27 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  SplashImages: []
-  SplashInterval: 3
+  SplashImages:
+  - {fileID: 21300000, guid: f186083a894d24f46bd31516e66b9ff9, type: 3}
+  - {fileID: 21300000, guid: ba4acd48733be8a4590d3a9eeb86d483, type: 3}
+  - {fileID: 21300000, guid: 5f651d968c4783046a8f03f3dd43d936, type: 3}
+  - {fileID: 21300000, guid: 3afc9a42d35133547a98c270a0b59cb6, type: 3}
+  - {fileID: 21300000, guid: a7d0068eb46480b439bc48d8466a3841, type: 3}
+  - {fileID: 21300000, guid: 7c1efbef6e32f4649b2d124086533777, type: 3}
+  - {fileID: 21300000, guid: 43db5f049c8f9884e8b3fec9d0c2f200, type: 3}
+  SplashInterval: 5
   SplashCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
-      inSlope: 5.773585
-      outSlope: 5.773585
+      value: 0.29766846
+      inSlope: 3.1670096
+      outSlope: 3.1670096
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.041666668
+      outWeight: 0.04244694
     - serializedVersion: 3
       time: 0.5
       value: 1
@@ -187,12 +194,12 @@ MonoBehaviour:
       outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 0
-      inSlope: -5.6603827
-      outSlope: -5.6603827
+      value: 0.29766846
+      inSlope: -3.7357805
+      outSlope: -3.7357805
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.041666627
+      inWeight: 0.037453175
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -241,15 +248,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: f186083a894d24f46bd31516e66b9ff9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 4, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &941892505
@@ -303,8 +310,8 @@ Camera:
   m_GameObject: {fileID: 1420993794}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
