@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -12,6 +13,7 @@ namespace MoonBunny
     public static class SceneName
     {
         public const string Loading = "0. Loading";
+        public const string Scenario = "0. Scenario";
         public const string Start = "1. Start";
         public const string Stage1_1 = "2. Stage1_1";
         public const string Stage1_2 = "2. Stage1_2";
@@ -31,7 +33,7 @@ namespace MoonBunny
         public const string StageChallenge = "7. Stage Challenge";
         public const string Ending = "999. Ending";
 
-        public static string[] Names = {Loading, Start, Stage1_1, Stage1_2, Stage1_3, Stage2_1, Stage2_2, Stage2_3, Stage3_1, Stage3_2, Stage3_3, Stage4_1, Stage4_2, Stage4_3, Stage5_1, Stage5_2, Stage5_3, StageChallenge, Ending};
+        public static string[] Names = {Loading, Scenario, Start, Stage1_1, Stage1_2, Stage1_3, Stage2_1, Stage2_2, Stage2_3, Stage3_1, Stage3_2, Stage3_3, Stage4_1, Stage4_2, Stage4_3, Stage5_1, Stage5_2, Stage5_3, StageChallenge, Ending};
         public static string[] StageNames = {Stage1_1, Stage1_2, Stage1_3, Stage2_1, Stage2_2, Stage2_3, Stage3_1, Stage3_2, Stage3_3, Stage4_1, Stage4_2, Stage4_3, Stage5_1, Stage5_2, Stage5_3, StageChallenge};
 
         public static bool isStage(string name)
@@ -51,6 +53,8 @@ namespace MoonBunny
         [SerializeField] private SpriteRenderer _renderer;
 
         private float _timer;
+
+        public UnityEvent OnSplashFinished;
         
         private void Awake()
         {
@@ -112,6 +116,7 @@ namespace MoonBunny
         {
             if (NextScene < 0)
             {
+                OnSplashFinished?.Invoke();
                 Destroy(_renderer);
                 Destroy(this);
             }

@@ -13,12 +13,7 @@ namespace MoonBunny.UIs
 {
     public class StartSceneUI : UI
     {
-        public DOTweenAnimation ClickToStartDoTweenAnimation;
-
-        private static bool _showCutScene = true;
-
         [Header("Main UI Flow")]
-        public CanvasGroup IntroCanvasGroup;
         public FriendSelectUI FriendSelectUI;
         public StageSelectUI StageSelectUI;
 
@@ -42,12 +37,6 @@ namespace MoonBunny.UIs
 
         private GameManager _gameManager;
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-        static void InitializeOnLoad()
-        {
-            _showCutScene = true;
-        }
-
         protected override void Awake()
         {
             _gameManager = GameManager.instance;
@@ -62,16 +51,6 @@ namespace MoonBunny.UIs
             DiamondText2.text = _gameManager.DiamondNumber.ToString();
         }
 
-        private void Start()
-        {
-            if (!_showCutScene)
-            {
-                SkipIntro();
-            }
-
-            _showCutScene = false;
-        }
-
         public void OnGoToStageSelectButtonClicked()
         {
             StageSelectUI.Open();
@@ -83,34 +62,6 @@ namespace MoonBunny.UIs
         {
             StageSelectUI.OnExitButtonClicked();
             FriendSelectUI.Open();
-        }
-
-        public void OnDiamondPlusButtonClicked()
-        {
-            IAPManager.instance.Diamond10ProductInfo.InitiatePurchase();
-        }
-
-        public void OnPressTheAnyKeyIntro(InputAction.CallbackContext callbackContext)
-        {
-            FadeOut(IntroCanvasGroup);
-            FriendSelectUI.Open();
-            
-            _gameManager.GetComponent<InputManager>().InputAsset.UI.Click.performed -= OnPressTheAnyKeyIntro;
-        }
-
-        public void AfterIntroAnimationFinish()
-        {
-            ClickToStartDoTweenAnimation.DOPlay();
-            GetComponent<Animator>().enabled = false;
-            _gameManager.GetComponent<InputManager>().InputAsset.UI.Click.performed += OnPressTheAnyKeyIntro;
-        }
-
-        public void SkipIntro()
-        {
-            GetComponent<Animator>().enabled = false;
-            IntroCanvasGroup.alpha = 0;
-            IntroCanvasGroup.blocksRaycasts = false;
-            FriendSelectUI.Open(0);
         }
 
         public void ShowEnding()

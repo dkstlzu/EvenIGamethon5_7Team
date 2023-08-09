@@ -29,10 +29,9 @@ namespace MoonBunny
             AudioSourceList.AddRange(_audioSourceParent.GetComponentsInChildren<AudioSource>());
             _stayingSourceList.AddRange(AudioSourceList);
             
-            PlayBGM(IntroBGM);
-            
             Dictionary<string, Action> callbackDict = GameManager.instance.SCB.SceneLoadCallBackDict;
             
+            callbackDict[SceneName.Scenario] += () => PlayBGM(IntroBGM);
             callbackDict[SceneName.Start] += () => PlayBGM(LobbyBGM);
             callbackDict[SceneName.Stage1_1] += () => PlayBGM(Stage1BGM);
             callbackDict[SceneName.Stage1_2] += () => PlayBGM(Stage1BGM);

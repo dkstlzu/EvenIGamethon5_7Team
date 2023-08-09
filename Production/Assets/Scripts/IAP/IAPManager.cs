@@ -33,12 +33,12 @@ namespace MoonBunny
         private const string DEV_ENV_KEY = "development";
         private const string PRODUCT_ENV_KEY = "production";
 
-        private void Start()
+        private async void Start()
         {
             InitializationOptions options = new InitializationOptions().SetEnvironmentName(DEV_ENV_KEY);
             try
             {
-                UnityServices.InitializeAsync(options).ContinueWith(task => MoonBunnyLog.print("Unity Service initialization success."));
+                 await UnityServices.InitializeAsync(options).ContinueWith(task => MoonBunnyLog.print("Unity Service initialization success."));
             }
             catch (Exception)
             {

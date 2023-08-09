@@ -12,6 +12,10 @@ namespace MoonBunny
         public SaveLoadSystem SaveLoadSystem;
         [SerializeField] private ReadOnlyWithClassDict<int, Quest> _questDict = new ReadOnlyWithClassDict<int, Quest>();
 
+#if UNITY_EDITOR
+        public bool UseSaveSystem;
+#endif
+        
         public QuestSaveData SaveData
         {
             get
@@ -104,32 +108,46 @@ namespace MoonBunny
 
         void LoadQuestData()
         {
-            SaveLoadSystem = new SaveLoadSystem("Saves", "Quest", "txt");
-
-            SaveLoadSystem.OnSaveDataLoaded += () =>
+#if UNITY_EDITOR
+            if (UseSaveSystem)
             {
-                for (int i = 0; i < SaveLoadSystem.QuestSaveData.QuestClearList.Count; i++)
-                {
-                    QuestItemSaveData questItemSaveData = SaveLoadSystem.QuestSaveData.QuestClearList[i];
+#endif
+                SaveLoadSystem = new SaveLoadSystem("Saves", "Quest", "txt");
 
-                    Quest targetQuest = _questDict[questItemSaveData.Id];
-                    
-                    targetQuest.CurrentProgress = questItemSaveData.CurrentProgress;
-                    targetQuest.ItemSaveData = questItemSaveData;
-                    
-                    if (targetQuest.State == QuestState.Disabled)
+                SaveLoadSystem.OnSaveDataLoaded += () =>
+                {
+                    for (int i = 0; i < SaveLoadSystem.QuestSaveData.QuestClearList.Count; i++)
                     {
-                    } else if (questItemSaveData.isFinished)
-                    {
-                        targetQuest.State = QuestState.IsFinished;
-                    } else if (targetQuest.CurrentProgress >= targetQuest.TargetProgress)
-                    {
-                        targetQuest.State = QuestState.CanTakeReward;
+                        QuestItemSaveData questItemSaveData = SaveLoadSystem.QuestSaveData.QuestClearList[i];
+
+                        Quest targetQuest = _questDict[questItemSaveData.Id];
+
+                        targetQuest.CurrentProgress = questItemSaveData.CurrentProgress;
+                        targetQuest.ItemSaveData = questItemSaveData;
+
+                        if (targetQuest.State == QuestState.Disabled)
+                        {
+                        }
+                        else if (questItemSaveData.isFinished)
+                        {
+                            targetQuest.State = QuestState.IsFinished;
+                        }
+                        else if (targetQuest.CurrentProgress >= targetQuest.TargetProgress)
+                        {
+                            targetQuest.State = QuestState.CanTakeReward;
+                        }
                     }
-                }
-            };
-            
-            SaveLoadSystem.LoadQuest();
+                };
+
+                SaveLoadSystem.LoadQuest();
+#if UNITY_EDITOR
+            }
+            else
+            {
+                SaveLoadSystem.DataIsLoaded = true;
+                SaveLoadSystem.QuestSaveData = QuestSaveData.GetDefaultSaveData();
+            }
+#endif
         }
         
 

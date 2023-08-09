@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using dkstlzu.Utility;
+using GooglePlayGames.BasicApi;
 using MoonBunny.Dev;
 using MoonBunny.UIs;
 using UnityEngine;
@@ -113,6 +114,11 @@ namespace MoonBunny
                 SaveLoadSystem.LoadProgress();
 #if UNITY_EDITOR
             }
+            else
+            {
+                SaveLoadSystem.DataIsLoaded = true;
+                SaveLoadSystem.ProgressSaveData = ProgressSaveData.GetDefaultSaveData();
+            }
 #endif
 
             SCB = new SceneLoadCallbackSetter(SceneName.Names);
@@ -140,6 +146,22 @@ namespace MoonBunny
                     ProgressSaveData.LimitedPackagePurchased = true;
                 }
             };
+
+            GoogleManager.instance.OnLoginPlayStoreSuccess += CheckReady;
+            SaveLoadSystem.OnSaveDataLoaded += CheckReady;
+            QuestManager.instance.SaveLoadSystem.OnSaveDataLoaded += CheckReady;
+        }
+
+        private void CheckReady()
+        {
+            if (GoogleManager.instance.SignInStatus == SignInStatus.Success && SaveLoadSystem.DataIsLoaded &&
+                QuestManager.instance.SaveLoadSystem.DataIsLoaded)
+            {
+                CoroutineHelper.Delay(() =>
+                {
+                    SceneManager.LoadSceneAsync(SceneName.Scenario);
+                }, 3f);
+            }
         }
 
         private void OnApplicationQuit()

@@ -10,6 +10,7 @@
     "com.unity.purchasing": "4.9.3",
     "com.unity.render-pipelines.universal": "14.0.8",
     "com.unity.services.analytics": "5.0.0",
+    "com.unity.services.authentication": "2.7.2",
     "com.unity.splines": "2.3.0",
     "com.unity.textmeshpro": "3.0.6",
     "com.unity.timeline": "1.7.5",
