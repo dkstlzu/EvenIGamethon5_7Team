@@ -10,7 +10,7 @@ using UnityEditor;
 namespace MoonBunny
 {
     [DefaultExecutionOrder(-1)]
-    public class RandomSpawner : Gimmick
+    public class RandomSpawner : MonoBehaviour
     {
         public List<Vector2Int> PossiblePositionList;
         public GameObject FirstTarget;
@@ -62,11 +62,8 @@ namespace MoonBunny
             SecondTarget = secondTargetPrefab;
         }
 
-        private void Start()
+        private void Awake()
         {
-#if UNITY_EDITOR
-            if (!EditorApplication.isPlaying) return;
-#endif
             Transform parent = GameObject.FindWithTag("Obstacles").transform;
 
             GameObject targetPrefab = (Random.value > 0.5) ? FirstTarget : SecondTarget;

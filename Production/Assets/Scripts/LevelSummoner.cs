@@ -35,8 +35,8 @@ namespace MoonBunny
         public float SummonPositionVariation = 0.1f;
         private List<Vector2Int> _summonPositionList = new List<Vector2Int>();
         
-        private int xmin = GridTransform.GridXMin;
-        private int xmax = GridTransform.GridXMax;
+        private int xmin => GridTransform.GridXMin;
+        private int xmax => GridTransform.GridXMax;
         private int ymin = 0;
         private int ymax => MaxGridHeight;
         
