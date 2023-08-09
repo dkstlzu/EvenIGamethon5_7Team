@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c69f2ad42c4557b6083487f2910997, type: 3}
   m_Name: Stage3_3Spec
   m_EditorClassIdentifier: 
-  Height: 120
+  Height: 119
   FirstStepScore: 100
   SecondStepScore: 300
   ThirdStepScore: 800
