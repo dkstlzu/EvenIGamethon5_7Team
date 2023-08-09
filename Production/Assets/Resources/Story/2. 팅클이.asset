@@ -17,12 +17,15 @@ MonoBehaviour:
     \uD1A0\uB07C\uC778 \uD305\uD074\uC740 \uC232\uC5D0 \uB4E4\uC5B4\uAC14\uB2E4 \r\n\uC2DD\uC778
     \uAF43\uC5D0 \uC7A1\uD600\uBC84\uB838\uB2E4.  "
   MemoryTexts:
-  - Str: "\uB0B4\uAC00 \uC65C \uC5EC\uAE30\uC5D0 \uC788\uC9C0..?"
-    Integer: 6
-  - Str: "\uB098\uB294 \uB204\uAD6C\uC9C0..?"
-    Integer: 12
-  - Str: "\uB0B4 \uC637\uC5D0 \uC65C \uCF69\uACE0\uBB3C\uC774 \uBB3B\uC5B4\uC788\uC9C0?"
-    Integer: 18
-  - Str: "\uADF8\uB798..! \uAE30\uC5B5\uB0AC\uC5B4..! "
-    Integer: 25
-  StorySprite: {fileID: 21300000, guid: 4b9c35b8520b1a942b1428a06df0129e, type: 3}
+  - Text: "\uB0B4\uAC00 \uC65C \uC5EC\uAE30\uC5D0 \uC788\uC9C0..?"
+    MemoryNumber: 6
+    StorySprite: {fileID: 622894037, guid: da433cf3386622b4f851ba4b4c089a09, type: 3}
+  - Text: "\uB098\uB294 \uB204\uAD6C\uC9C0..?"
+    MemoryNumber: 12
+    StorySprite: {fileID: 622894037, guid: da433cf3386622b4f851ba4b4c089a09, type: 3}
+  - Text: "\uB0B4 \uC637\uC5D0 \uC65C \uCF69\uACE0\uBB3C\uC774 \uBB3B\uC5B4\uC788\uC9C0?"
+    MemoryNumber: 18
+    StorySprite: {fileID: 622894037, guid: da433cf3386622b4f851ba4b4c089a09, type: 3}
+  - Text: "\uADF8\uB798..! \uAE30\uC5B5\uB0AC\uC5B4..! "
+    MemoryNumber: 25
+    StorySprite: {fileID: 21300000, guid: 4b9c35b8520b1a942b1428a06df0129e, type: 3}

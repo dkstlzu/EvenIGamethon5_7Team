@@ -18,22 +18,30 @@ MonoBehaviour:
     \uD0D4\uB294\uB370\r\n\uC544\uBFD4\uC2F8. \uBC1C\uC0AC \uBC84\uD2BC\uC744 \uB20C\uB7EC\uBC84\uB824
     \r\n\uD63C\uC790 \uC6B0\uC8FC\uC5D0 \uB3D9\uB3D9 \uB5A0\uC788\uAC8C \uB418\uC5C8\uB2E4."
   MemoryTexts:
-  - Str: "\uB0B4\uAC00 \uC65C \uC5EC\uAE30\uC5D0 \uC788\uC9C0..?"
-    Integer: 12
-  - Str: "\uB098\uB294 \uB204\uAD6C\uC9C0..?"
-    Integer: 24
-  - Str: "\uB098\uB294 \uC65C \uC774\uB7F0 \uC637\uC744 \uC785\uACE0 \uC788\uC9C0?"
-    Integer: 36
-  - Str: "\uB098\uC758 \uD560\uC544\uBC84\uC9C0\uB294 \uB2D0 \uC554\uC2A4\uD1A0\uB871\uC774\uC57C."
-    Integer: 48
-  - Str: "\uD560\uC544\uBC84\uC9C0\uB294 \uC9C0\uAD6C\uB97C \uBC1F\uC740 \uCCAB \uD1A0\uB07C\uC2DC\uC9C0."
-    Integer: 60
-  - Str: "\uB098\uB294 \uD560\uC544\uBC84\uC9C0\uAC00 \uC815\uB9D0 \uC790\uB791\uC2A4\uB7EC\uC6CC."
-    Integer: 72
-  - Str: "\uC6B0\uB9AC\uB294 \uC0C8\uD574\uC5D0 \uD574\uB9DE\uC774\uB97C \uD558\uB824\uACE0
+  - Text: "\uB0B4\uAC00 \uC65C \uC5EC\uAE30\uC5D0 \uC788\uC9C0..?"
+    MemoryNumber: 12
+    StorySprite: {fileID: 622894037, guid: da433cf3386622b4f851ba4b4c089a09, type: 3}
+  - Text: "\uB098\uB294 \uB204\uAD6C\uC9C0..?"
+    MemoryNumber: 24
+    StorySprite: {fileID: 622894037, guid: da433cf3386622b4f851ba4b4c089a09, type: 3}
+  - Text: "\uB098\uB294 \uC65C \uC774\uB7F0 \uC637\uC744 \uC785\uACE0 \uC788\uC9C0?"
+    MemoryNumber: 36
+    StorySprite: {fileID: 622894037, guid: da433cf3386622b4f851ba4b4c089a09, type: 3}
+  - Text: "\uB098\uC758 \uD560\uC544\uBC84\uC9C0\uB294 \uB2D0 \uC554\uC2A4\uD1A0\uB871\uC774\uC57C."
+    MemoryNumber: 48
+    StorySprite: {fileID: 622894037, guid: da433cf3386622b4f851ba4b4c089a09, type: 3}
+  - Text: "\uD560\uC544\uBC84\uC9C0\uB294 \uC9C0\uAD6C\uB97C \uBC1F\uC740 \uCCAB
+      \uD1A0\uB07C\uC2DC\uC9C0."
+    MemoryNumber: 60
+    StorySprite: {fileID: 622894037, guid: da433cf3386622b4f851ba4b4c089a09, type: 3}
+  - Text: "\uB098\uB294 \uD560\uC544\uBC84\uC9C0\uAC00 \uC815\uB9D0 \uC790\uB791\uC2A4\uB7EC\uC6CC."
+    MemoryNumber: 72
+    StorySprite: {fileID: 622894037, guid: da433cf3386622b4f851ba4b4c089a09, type: 3}
+  - Text: "\uC6B0\uB9AC\uB294 \uC0C8\uD574\uC5D0 \uD574\uB9DE\uC774\uB97C \uD558\uB824\uACE0
       \n\uC5B8\uB355 \uC704\uC5D0 \uC788\uB294 \uC124\uD0D5\uC774 \uC9D1\uC5D0\uC11C
       \n\uBAA8\uC774\uAE30\uB85C \uD588\uC5B4."
-    Integer: 86
-  - Str: "\uADF8\uB798..! \uAE30\uC5B5\uB0AC\uC5B4..! "
-    Integer: 100
-  StorySprite: {fileID: 21300000, guid: ae340f8b63f96854d9586dcf3a24e15e, type: 3}
+    MemoryNumber: 86
+    StorySprite: {fileID: 622894037, guid: da433cf3386622b4f851ba4b4c089a09, type: 3}
+  - Text: "\uADF8\uB798..! \uAE30\uC5B5\uB0AC\uC5B4..! "
+    MemoryNumber: 100
+    StorySprite: {fileID: 21300000, guid: ae340f8b63f96854d9586dcf3a24e15e, type: 3}

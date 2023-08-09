@@ -43,16 +43,16 @@ namespace MoonBunny.UIs
             
             int index = (int)friendName;
 
+            FriendSpec targetSpec = PreloadedResources.instance.FriendSpecList[index];
+            
             if (isCollected)
             {
-                _horizontalSpeed.text = PreloadedResources.instance.FriendSpecList[index].HorizontalJumpSpeed.ToString();
-                _bounciness.text = PreloadedResources.instance.FriendSpecList[index].VerticalJumpSpeed.ToString();
-                _magneticPower.text = PreloadedResources.instance.FriendSpecList[index].MagneticPower.ToString();
-                _specialAbility.text = PreloadedResources.instance.FriendSpecList[index].SpecialAbility;
+                _horizontalSpeed.text = targetSpec.HorizontalJumpSpeed.ToString();
+                _bounciness.text = targetSpec.VerticalJumpSpeed.ToString();
+                _magneticPower.text = targetSpec.MagneticPower.ToString();
+                _specialAbility.text = targetSpec.SpecialAbility;
                 _profileImage.sprite = FriendSpriteList[index];
-                _storyImage.sprite = FriendProfileTextList[index].StorySprite;
                 _selectButton.interactable = true;
-                _memoryImage.sprite = PieceOfMemorySpriteList[index];
             }
             else
             {
@@ -61,10 +61,11 @@ namespace MoonBunny.UIs
                 _magneticPower.text = "???";
                 _specialAbility.text = "???";
                 _profileImage.sprite = SilhouetteSprite;
+                _storyImage.sprite = UnCollectedStorySprite;
                 _selectButton.interactable = false;
-                _memoryImage.sprite = UnCollectedStorySprite;
             }
             
+            _memoryImage.sprite = PieceOfMemorySpriteList[index];
             _fullCollectionNumber = FriendCollectionManager.instance[friendName].TargetCollectingNumber;
             _currentCollectionNumber = FriendCollectionManager.instance[friendName].CurrentCollectingNumber;
             _collectionText.text = $"수집률 {_currentCollectionNumber} / {_fullCollectionNumber}";
@@ -76,12 +77,15 @@ namespace MoonBunny.UIs
             _memoryText.text = string.Empty;
 
             StringBuilder stringBuilder = new StringBuilder();
+
+            int memoryIndex = -1;
             
             for (int i = 0; i < profileText.MemoryTexts.Count; i++)
             {
-                if (_currentCollectionNumber >= profileText.MemoryTexts[i].Integer)
+                if (_currentCollectionNumber >= profileText.MemoryTexts[i].MemoryNumber)
                 {
-                    stringBuilder.AppendLine($"{i}. {profileText.MemoryTexts[i].Str}");
+                    stringBuilder.AppendLine($"{i}. {profileText.MemoryTexts[i].Text}");
+                    memoryIndex++;
                 }
                 else
                 {
@@ -90,6 +94,10 @@ namespace MoonBunny.UIs
             }
 
             _memoryText.text = stringBuilder.ToString();
+            if (memoryIndex >= 0)
+            {
+                _storyImage.sprite = profileText.MemoryTexts[memoryIndex].StorySprite;
+            }
         }
 
         private float targetPivotX = 0;
