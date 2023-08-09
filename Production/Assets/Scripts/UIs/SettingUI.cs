@@ -48,7 +48,7 @@ namespace MoonBunny.UIs
         public void OnResetDataButtonClicked()
         {
             ConfirmUI.Description.text = ConfirmDescriptionText;
-            ConfirmUI.OnConfirm.AddListener(DataReset);
+            ConfirmUI.AddConfirmListener(DataReset);
             ConfirmUI.Open();
         }
 
@@ -89,6 +89,5 @@ namespace MoonBunny.UIs
             };
             QuestManager.instance.SaveLoadSystem.SaveQuest();
         }
-
     }
 }

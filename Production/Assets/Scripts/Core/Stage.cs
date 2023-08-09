@@ -80,8 +80,6 @@ namespace MoonBunny
         [SerializeField] private StageSpec _spec;
         public StageSpec Spec => _spec;
 
-        [SerializeField] private GameObject _tutorialPrefab;
-
         public ReadOnlyEnumDict<FriendName, int> CollectDict;
 
         public StageUI UI;
@@ -140,14 +138,14 @@ namespace MoonBunny
         {
             _spec = Resources.Load<StageSpec>($"{SpecPath}Stage{StageLevel+1}_{SubLevel+1}Spec");
             
-            if (GameManager.instance.ShowTutorial) TutorialOn();
+            if (GameManager.instance.ShowTutorial) UI.TutorialOn();
         }
 
         #region Initialize
 
         void SetCharater()
         {
-            _character = GameObject.FindWithTag("Player").GetComponent<Character>();
+            _character = Character.instance;
 
             _character.Friend.SetBySpec(PreloadedResources.instance.FriendSpecList[(int)GameManager.instance.UsingFriendName]);
             _character.Animator.runtimeAnimatorController = PreloadedResources.instance.CharacterAnimatorControllerList[(int)_character.Friend.Name];
@@ -224,11 +222,6 @@ namespace MoonBunny
             
         }
 
-        public void TutorialOn()
-        {
-            Instantiate(_tutorialPrefab).GetComponent<TutorialUI>();
-        }
-        
         public void CountDownFinish()
         {
             _character.Rigidbody.UnpauseMove();

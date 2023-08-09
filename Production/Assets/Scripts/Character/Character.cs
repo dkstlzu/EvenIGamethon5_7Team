@@ -7,6 +7,7 @@ using UnityEngine.Serialization;
 
 namespace MoonBunny
 {
+    [DefaultExecutionOrder(-1)]
     public class Character : GridObject
     {
         // Hard Caching
@@ -47,6 +48,12 @@ namespace MoonBunny
         public bool isIgnoringFlip { get; set; }
 
         public bool LookingRight => !Renderer.flipX;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            instance = this;
+        }
 
         private void Start()
         {

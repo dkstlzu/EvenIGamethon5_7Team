@@ -103,7 +103,7 @@ namespace MoonBunny.UIs
             }
 
             ConfirmUI.Description.text = ConfirmDescription;
-            ConfirmUI.OnConfirm.AddListener(DoNormalGotcha);
+            ConfirmUI.AddConfirmListener(DoNormalGotcha);
             ConfirmUI.Open();
         }
         
@@ -116,7 +116,7 @@ namespace MoonBunny.UIs
             }
 
             ConfirmUI.Description.text = ConfirmDescription;
-            ConfirmUI.OnConfirm.AddListener(DoSpecialGotcha);
+            ConfirmUI.AddConfirmListener(DoSpecialGotcha);
             ConfirmUI.Open();
         }
 
@@ -302,9 +302,8 @@ namespace MoonBunny.UIs
                     return;
                 }
 
-                GameManager.instance.DiamondNumber -= MemoryPriceList[((int)friendNameEnum) - 1];
                 ConfirmUI.Description.text = ConfirmDescription;
-                ConfirmUI.OnConfirm.AddListener(() => BuyMemory(friendNameEnum));
+                ConfirmUI.AddConfirmListener(() => BuyMemory(friendNameEnum));
                 ConfirmUI.Open();
             }
         }
@@ -315,6 +314,7 @@ namespace MoonBunny.UIs
             
             NoticeText.text = "";
             NoticeText.DOText(PurchaseSuccess, NoticeTweenDuration);
+            GameManager.instance.DiamondNumber -= MemoryPriceList[((int)friendName) - 1];
 
             GameManager.ProgressSaveData.CollectionSellDict[friendName]++;
             FriendCollectionManager.instance.Collect(friendName, 1);

@@ -79,7 +79,7 @@ namespace MoonBunny.UIs
             {
                 Stage stage = GameManager.instance.Stage;
 
-                Character character = GameObject.FindWithTag("Player").GetComponent<Character>();
+                Character character = Character.instance;
 
                 foreach (BoostUI boost in BoostItemList)
                 {

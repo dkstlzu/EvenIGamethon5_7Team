@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,27 +9,39 @@ namespace MoonBunny.UIs
     {
         public TextMeshProUGUI Description;
         
-        public UnityEvent OnConfirm;
-        public UnityEvent OnCancel;
+        [SerializeField] private UnityEvent _onConfirm;
+        [SerializeField] private UnityEvent _onCancel;
         
         public void OnConfirmButtonClicked()
         {
-            OnConfirm?.Invoke();
+            _onConfirm?.Invoke();
             
-            OnConfirm.RemoveAllListeners();
-            OnCancel.RemoveAllListeners();
+            _onConfirm.RemoveAllListeners();
+            _onCancel.RemoveAllListeners();
             
             OnExitButtonClicked();
         }
 
         public void OnCancelButtonClicked()
         {
-            OnCancel?.Invoke();
+            _onCancel?.Invoke();
             
-            OnConfirm.RemoveAllListeners();
-            OnCancel.RemoveAllListeners();
+            _onConfirm.RemoveAllListeners();
+            _onCancel.RemoveAllListeners();
             
             OnExitButtonClicked();
+        }
+
+        public void AddConfirmListener(UnityAction action)
+        {
+            _onConfirm.RemoveListener(action);
+            _onConfirm.AddListener(action);
+        }
+
+        public void AddCancelListener(UnityAction action)
+        {
+            _onCancel.RemoveListener(action);
+            _onCancel.AddListener(action);
         }
     }
 }

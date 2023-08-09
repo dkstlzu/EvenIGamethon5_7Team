@@ -121,7 +121,7 @@ namespace MoonBunny.UIs
         public void OnQuitButtonClicked()
         {
             ConfirmUI.Description.text = ReallyQuitText;
-            ConfirmUI.OnConfirm.AddListener(() =>
+            ConfirmUI.AddConfirmListener(() =>
             {
 #if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false;

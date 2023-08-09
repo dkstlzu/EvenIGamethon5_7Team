@@ -80,7 +80,7 @@ namespace MoonBunny
                 
                 UpdateManager.instance.Delay(() =>
                 {
-                    Character character = GameObject.FindWithTag("Player").GetComponent<Character>();
+                    Character character = Character.instance;
                     Vector2 targetPoint = new Vector2(targetGridX, (character.transform.position + Vector3.up * Camera.main.orthographicSize + Vector3.up * 4).y);
                     Vector2Int targetGrid = GridTransform.ToGrid(targetPoint);
                     new ShootingStarEffect(targetGrid.y, targetGridX).Effect();

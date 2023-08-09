@@ -26,6 +26,7 @@ namespace MoonBunny.UIs
 
         [Header("Pause")] public Toggle SoundToggle;
         public TextMeshProUGUI StageInfoText;
+        public TutorialUI TutorialUI;
         
         [Header("Progress")]
         [SerializeField] private Slider _progressBar;
@@ -58,7 +59,7 @@ namespace MoonBunny.UIs
         
         private void Start()
         {
-            _character = GameObject.FindWithTag("Player").GetComponent<Character>();
+            _character = Character.instance;
             _currentHP = _character.CurrentHp;
             SoundToggle.isOn = GameManager.instance.VolumeSetting > 0;
             StageInfoText.text = $"스테이지 모드 {Stage.StageLevel+1}-{Stage.SubLevel+1}";
@@ -102,6 +103,8 @@ namespace MoonBunny.UIs
             MoonBunnyRigidbody.EnableAll();
             TimeUpdatable.GlobalSpeed = 1;
         }
+        
+
 
         public void SetScore(int score)
         {
@@ -189,7 +192,7 @@ namespace MoonBunny.UIs
             {
                 Stage stage = GameManager.instance.Stage;
 
-                Character character = GameObject.FindWithTag("Player").GetComponent<Character>();
+                Character character = Character.instance;
 
                 if (FailUI.Boost.Checked)
                 {
@@ -243,6 +246,11 @@ namespace MoonBunny.UIs
             
             _heartImagelist[_currentHP].sprite = _fullHeartSprite;
             _currentHP++;
+        }
+
+        public void TutorialOn()
+        {
+            TutorialUI.Open(0);
         }
     }
 }

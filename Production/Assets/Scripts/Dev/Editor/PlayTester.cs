@@ -62,7 +62,7 @@ namespace Dev.Editor
             bool isStage = SceneName.isStage(SceneManager.GetActiveScene().name);
             if (isPlaying && isStage)
             {
-                _character = GameObject.FindWithTag("Player").GetComponent<Character>();
+                _character = Character.instance;
             }
             return isPlaying && isStage;
         }
