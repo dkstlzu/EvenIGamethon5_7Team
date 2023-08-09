@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Security.Cryptography;
 using System.Text;
 using MoonBunny.Dev;
 using UnityEngine;
@@ -23,25 +24,95 @@ namespace MoonBunny
         public QuestSaveData QuestSaveData;
         public string PersistenceFolderPath => Path.Combine(Application.persistentDataPath, DataSavingFolderName);
         public string StreamingFolderPath => Path.Combine(Application.streamingAssetsPath, DataSavingFolderName);
+        public string MapdataFolderPath => Path.Combine(Application.dataPath, DataSavingFolderName);
         private string DataSavingFolderName = "Saves";
         private string DataSavingFileName = "Save";
         private string DataSavingExtension = ".txt";
 
+#if UNITY_EDITOR
         public string PersistenceFilePath => Path.Combine(PersistenceFolderPath, DataSavingFileName) + DataSavingExtension;
         public string StreamingFilePath => Path.Combine(StreamingFolderPath, DataSavingFileName) + DataSavingExtension;
+        public string MapdataFilePath => Path.Combine(MapdataFolderPath, DataSavingFileName) + DataSavingExtension;
+#else
+        public string PersistenceFilePath => Path.Combine(PersistenceFolderPath, DataSavingFileName);
+        public string StreamingFilePath => Path.Combine(StreamingFolderPath, DataSavingFileName);
+        public string MapdataFilePath => Path.Combine(MapdataFolderPath, DataSavingFileName);
+#endif
 
-        public SaveLoadSystem()
+
+        private const string ENCRYPTION_KEY = "NUNETINE";
+        private const string ENCRYPTION_IV = "NUNETINEIV";
+        private static byte[] DesEncryptionKeyByte
         {
+            get
+            {
+                byte[] bytes = Encoding.ASCII.GetBytes(ENCRYPTION_KEY);
+                byte[] replacedBytes = new byte[8];
+                
+                FillOrClamp(bytes, replacedBytes);
+
+                return replacedBytes;
+            }
+        }
+        
+        private static byte[] AesEncryptionKeyByte
+        {
+            get
+            {
+                byte[] bytes = Encoding.ASCII.GetBytes(ENCRYPTION_KEY);
+                byte[] replacedBytes = new byte[32];
+                
+                FillOrClamp(bytes, replacedBytes);
+
+                return replacedBytes;
+            }
+        }
+        
+        private static byte[] AesEncryptionIVByte
+        {
+            get
+            {
+                byte[] bytes = Encoding.ASCII.GetBytes(ENCRYPTION_IV);
+                byte[] replacedBytes = new byte[16];
+                
+                FillOrClamp(bytes, replacedBytes);
+
+                return replacedBytes;
+            }
+        }
+
+
+        private static void FillOrClamp(byte[] source, byte[] destination)
+        {
+            if (source.Length <= 0)
+            {
+                FillOrClamp(Encoding.ASCII.GetBytes("DEFAULTK"), destination);
+            } else if (source.Length < destination.Length)
+            {
+                int currentIndex = 0;
+
+                while (currentIndex < destination.Length)
+                {
+                    int copylen = Mathf.Min(source.Length, destination.Length - currentIndex);
+                    Array.Copy(source, 0, destination, currentIndex, copylen);
+                    currentIndex += copylen;
+                }
+            } else if (source.Length > destination.Length)
+            {
+                Array.Copy(source, destination,  destination.Length);
+            }
+            else
+            {
+                Array.Copy(source, destination,  destination.Length);
+            }
+        }
+
+        public SaveLoadSystem(string folder, string fileName) : this(folder, fileName, "txt")
+        {
+
         }
 
         public SaveLoadSystem(string folder, string fileName, string extension)
-        {
-            DataSavingFolderName = folder;
-            DataSavingFileName = fileName;
-            DataSavingExtension = "." + extension;
-        }
-
-        public void Init(string folder, string fileName, string extension)
         {
             DataSavingFolderName = folder;
             DataSavingFileName = fileName;
@@ -82,6 +153,146 @@ namespace MoonBunny
         }
 
         public event Action OnSaveSuccess;
+#if UNITY_EDITOR
+        [MenuItem("Dev/MapData/Encryption Test")]
+        public static void Encrypt()
+        {
+            Encrypt(Path.Combine(Application.dataPath, "MapData", "Test.txt"), Path.Combine(Application.dataPath, "MapData", "TestEncrypt.txt"));
+        }
+        
+        [MenuItem("Dev/MapData/Decryption Test")]
+        public static void Decrypt()
+        {
+            Decrypt(Path.Combine(Application.dataPath, "MapData", "TestEncrypt.txt"), Path.Combine(Application.dataPath, "MapData", "Test.txt"));
+        }
+        
+        [MenuItem("Dev/MapData/Self Encryption Test")]
+        public static void SelfEncrypt()
+        {
+            Encrypt(Path.Combine(Application.dataPath, "MapData", "Test.txt"));
+        }
+        
+        [MenuItem("Dev/Datas/Save Encrypted Test")]
+        public static void SaveEncryptedTest()
+        {
+            GameManager.instance.SaveLoadSystem.SaveEncrypted(JsonUtility.ToJson(GameManager.instance.SaveLoadSystem.ProgressSaveData), (Path.Combine(Application.dataPath, "Mapdata", "Test")));
+            AssetDatabase.Refresh();
+        }
+
+        [MenuItem("Dev/Datas/Load Encrypted Test")]
+        public static void LoadEncryptedTest()
+        {
+            GameManager.instance.SaveLoadSystem.ProgressSaveData = GameManager.instance.SaveLoadSystem.LoadEncrypted<ProgressSaveData>(Path.Combine(Application.dataPath, "Mapdata", "Test"));
+            AssetDatabase.Refresh();
+        }
+#endif
+
+        public static void Encrypt(string fileName)
+        {
+            using (Aes aes = Aes.Create())
+            {
+                aes.Key = AesEncryptionKeyByte;
+                aes.IV = AesEncryptionIVByte;
+
+                byte[] data = File.ReadAllBytes(fileName);
+                FileStream fs = new FileStream(fileName, FileMode.Create);
+                Stream inStream = new MemoryStream(data);
+            
+                ICryptoTransform cryptoTransform = aes.CreateEncryptor();
+                EncryptDecrypt(cryptoTransform, inStream, fs);
+
+                fs.Close();
+                inStream.Close();
+            }
+            
+#if UNITY_EDITOR
+            AssetDatabase.Refresh();
+#endif
+        }
+        
+        public static void Encrypt(string inputFileName, string outputFileName)
+        {
+            using (Aes aes = Aes.Create())
+            {
+                aes.Key = AesEncryptionKeyByte;
+                aes.IV = AesEncryptionIVByte;
+
+                FileStream infs = new FileStream(inputFileName, FileMode.Open);
+                FileStream outfs = new FileStream(outputFileName, FileMode.Create);
+            
+                ICryptoTransform cryptoTransform = aes.CreateEncryptor();
+                EncryptDecrypt(cryptoTransform, infs, outfs);
+
+                outfs.Close();
+                infs.Close();
+            }
+            
+#if UNITY_EDITOR
+            AssetDatabase.Refresh();
+#endif
+        }
+
+        public static void Decrypt(string inputFileName, string outputFileName)
+        {
+            using (Aes aes = Aes.Create())
+            {
+                aes.Key = AesEncryptionKeyByte;
+                aes.IV = AesEncryptionIVByte;
+
+                FileStream infs = new FileStream(inputFileName, FileMode.Open);
+                FileStream outfs = new FileStream(outputFileName, FileMode.Create);
+            
+                ICryptoTransform cryptoTransform = aes.CreateDecryptor();
+                EncryptDecrypt(cryptoTransform, infs, outfs);
+            
+                outfs.Close();
+                infs.Close();
+            }
+            
+#if UNITY_EDITOR
+            AssetDatabase.Refresh();
+#endif
+        }
+
+        public static void EncryptDecrypt(ICryptoTransform cryptoTransform, Stream input, Stream output)
+        {
+            CryptoStream cryptoStream = new CryptoStream(output, cryptoTransform, CryptoStreamMode.Write);
+            
+            byte[] data = new byte[input.Length];
+
+            input.Read(data);
+            cryptoStream.Write(data);
+            
+            cryptoStream.Close();
+        }
+        
+        public void SaveEncrypted(string str, string filePath)
+        {
+            using (Aes aes = Aes.Create())
+            {
+                aes.Key = AesEncryptionKeyByte;
+                aes.IV = AesEncryptionIVByte;
+            
+                byte[] data = Encoding.Default.GetBytes(str);
+                byte[] cryptoData = aes.CreateEncryptor().TransformFinalBlock(data, 0, data.Length);
+                File.WriteAllBytes(filePath, cryptoData);
+            }
+        }
+        
+        public T LoadEncrypted<T>(string filePath)
+        {
+            using (Aes aes = Aes.Create())
+            {
+                aes.Key = AesEncryptionKeyByte;
+                aes.IV = AesEncryptionIVByte;
+
+                byte[] data = File.ReadAllBytes(filePath);
+                byte[] cryptoData = aes.CreateDecryptor().TransformFinalBlock(data, 0, data.Length);
+                string jsonData = Encoding.Default.GetString(cryptoData);
+
+                return JsonUtility.FromJson<T>(jsonData);
+            }
+        }
 
         public void SaveString(string str)
         {
@@ -107,9 +318,14 @@ namespace MoonBunny
                 return;
             }
             
+            
+#if UNITY_EDITOR
             string jsonData = JsonUtility.ToJson(data, true);
-
             SaveString(jsonData);
+#else
+            string jsonData = JsonUtility.ToJson(data);
+            SaveEncrypted(jsonData, PersistenceFilePath);
+#endif
         }
 
         public void SaveProgress()
@@ -141,6 +357,7 @@ namespace MoonBunny
             CheckDirectory();
             CheckFile();
 
+#if UNITY_EDITOR
             using (FileStream fs = File.OpenRead(PersistenceFilePath))
             {
                 using (StreamReader reader = new StreamReader(fs))
@@ -166,10 +383,21 @@ namespace MoonBunny
                             ProgressSaveData = ProgressSaveData.GetDefaultSaveData();
                         }
                     }
-                    
-                    DataIsLoaded = true;
                 }
             }
+#else
+            try
+            {
+                ProgressSaveData = LoadEncrypted<ProgressSaveData>(PersistenceFilePath);
+            }
+            catch (Exception)
+            {
+                MoonBunnyLog.print($"SaveLoadSystem is legacy before encrypting version {PersistenceFilePath}\n So made new encrypted one");
+                ProgressSaveData = ProgressSaveData.GetDefaultSaveData();
+            }
+#endif
+
+            DataIsLoaded = true;
             _onSaveDataLoaded?.Invoke();
         }
 
@@ -178,6 +406,7 @@ namespace MoonBunny
             CheckDirectory();
             CheckFile();
 
+#if UNITY_EDITOR
             using (FileStream fs = File.OpenRead(PersistenceFilePath))
             {
                 using (StreamReader reader = new StreamReader(fs))
@@ -203,9 +432,21 @@ namespace MoonBunny
                             QuestSaveData = QuestSaveData.GetDefaultSaveData();
                         }
                     }
-                    DataIsLoaded = true;
                 }
             }
+#else
+            try
+            {
+                QuestSaveData = LoadEncrypted<QuestSaveData>(PersistenceFilePath);            
+            }
+            catch (Exception)
+            {
+                MoonBunnyLog.print($"SaveLoadSystem is legacy before encrypting version {PersistenceFilePath}\n So made new encrypted one");
+                QuestSaveData = QuestSaveData.GetDefaultSaveData();
+            }
+#endif
+            
+            DataIsLoaded = true;
             _onSaveDataLoaded?.Invoke();
         }
 
@@ -230,14 +471,14 @@ namespace MoonBunny
 
         public static void CreateDefaultMapData(string fileName)
         {
-            string directory = Path.Combine(Application.streamingAssetsPath, "MapData");
+            string directory = Path.Combine(Application.dataPath, "MapData");
             
             if (!Directory.Exists(directory))
             {
                 Directory.CreateDirectory(directory);
             }
 
-            string file = Path.Combine(Application.streamingAssetsPath, "MapData", fileName + ".csv");
+            string file = Path.Combine(Application.dataPath, "MapData", fileName + ".csv");
             
             using (var writer = File.CreateText(file))
             {
@@ -278,8 +519,8 @@ namespace MoonBunny
             setting.componentsNotMatchedBecomesOverride = true;
             setting.gameObjectsNotMatchedBecomesOverride = true;
             
-            Debug.Log("Load CSV From " + StreamingFilePath);
-            string[] fileContents = File.ReadAllLines(StreamingFilePath);
+            Debug.Log("Load CSV From " + MapdataFilePath);
+            string[] fileContents = File.ReadAllLines(MapdataFilePath);
 
             int noIndex = Array.IndexOf(CSVHeader, "No");
             int typeIndex = Array.IndexOf(CSVHeader, "Type");
@@ -310,8 +551,8 @@ namespace MoonBunny
 
             for (int i = 1; i < fileContents.Length; i++)
             {
-                // try
-                // {
+                try
+                {
                     string[] lineContent = fileContents[i].Split(CSVSeperator);
 
                     if (lineContent.Length == 0)
@@ -450,11 +691,11 @@ namespace MoonBunny
                     {
                         PrefabUtility.ConvertToPrefabInstance(instantiatedGo, targetPrefab, setting, InteractionMode.UserAction);
                     }
-                // }
-                // catch (Exception e)
-                // {
-                //     Debug.LogError(e + $"\nError accured while loading csv data line : {i}");
-                // }
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"Error accured while loading csv data line : {i}\n{e}");
+                }
             }
 
             foreach (var pair in bouncyPlatformPattern1Dict)
