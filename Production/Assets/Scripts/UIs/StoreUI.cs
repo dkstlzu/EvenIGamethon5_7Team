@@ -147,33 +147,8 @@ namespace MoonBunny.UIs
 
                 GotchaReward reward = GetRandom(NormalGotchaData.Datas);
             
-                if (EqualityComparer<GotchaReward>.Default.Equals(reward, default))
-                {
-                    Debug.LogError("Random Error on gotcha. Check again");
-                    return;
-                }
-            
-                if (reward.MemoryNumber > 0 && reward.MemoryType != FriendName.None && !FriendCollectionManager.instance.CollectFinished(reward.MemoryType))
-                {
-                    FriendCollectionManager.instance.Collect(reward.MemoryType, reward.MemoryNumber);
-                }
-
-                if (reward.GoldNumber > 0)
-                {
-                    NormalGotchaResult.DOText($"와! {reward.GoldNumber}개의 <sprite=\"GameIcons2\" index=2>를 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
-                } else if (reward.DiamondNumber > 0)
-                {
-                    NormalGotchaResult.DOText($"와! {reward.DiamondNumber}개의 <sprite=\"GameIcons2\" index=6>를 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
-                }
-                else
-                {
-                    NormalGotchaResult.DOText($"와! {reward.MemoryNumber}개의 {StringValue.GetStringValue(reward.MemoryType)}조각을 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
-                }
-                
-                OnGotchaRewardGet?.Invoke(reward);
-            
+                ApplyReward(reward);
                 Rebuild();
-                GameManager.instance.SaveProgress();
 
                 _graphicRaycaster.enabled = true;
             }, NormalGotchaAnimationSprites.Count * GotchaAnimationInterval);
@@ -204,37 +179,9 @@ namespace MoonBunny.UIs
                 GameManager.instance.DiamondNumber -= SPECIAL_GOTCHA_DIAMOND_COST;
 
                 GotchaReward reward = GetRandom(SpecialGotchaData.Datas);
-            
-                if (EqualityComparer<GotchaReward>.Default.Equals(reward, default))
-                {
-                    Debug.LogError("Random Error on gotcha. Check again");
-                    return;
-                }
-            
-                GameManager.instance.GoldNumber += reward.GoldNumber;
-                GameManager.instance.DiamondNumber += reward.DiamondNumber;
-
-                if (reward.MemoryNumber > 0 && !FriendCollectionManager.instance.CollectFinished(reward.MemoryType))
-                {
-                    FriendCollectionManager.instance.Collect(reward.MemoryType, reward.MemoryNumber);
-                }
-            
-                if (reward.GoldNumber > 0)
-                {
-                    SpecialGotchaResult.DOText($"와! {reward.GoldNumber}개의 골드를 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
-                } else if (reward.DiamondNumber > 0)
-                {
-                    SpecialGotchaResult.DOText($"와! {reward.DiamondNumber}개의 다이아를 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
-                }
-                else
-                {
-                    SpecialGotchaResult.DOText($"와! {reward.MemoryNumber}개의 {StringValue.GetStringValue(reward.MemoryType)}조각을 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
-                }
-            
-                OnGotchaRewardGet?.Invoke(reward);
-
+                
+                ApplyReward(reward);
                 Rebuild();
-                GameManager.instance.SaveProgress();
 
                 _graphicRaycaster.enabled = true;
             }, SpecialGotchaAnimationSprites.Count * GotchaAnimationInterval);
@@ -271,6 +218,36 @@ namespace MoonBunny.UIs
             }
 
             return default;
+        }
+
+        private void ApplyReward(GotchaReward reward)
+        {
+            if (EqualityComparer<GotchaReward>.Default.Equals(reward, default))
+            {
+                Debug.LogError("Random Error on gotcha. Check again");
+                return;
+            }
+            
+            if (reward.MemoryNumber > 0 && !FriendCollectionManager.instance.CollectFinished(reward.MemoryType))
+            {
+                FriendCollectionManager.instance.Collect(reward.MemoryType, reward.MemoryNumber);
+            }
+            
+            if (reward.GoldNumber > 0)
+            {
+                SpecialGotchaResult.DOText($"와! {reward.GoldNumber}개의 골드를 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
+            } else if (reward.DiamondNumber > 0)
+            {
+                SpecialGotchaResult.DOText($"와! {reward.DiamondNumber}개의 다이아를 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
+            }
+            else
+            {
+                SpecialGotchaResult.DOText($"와! {reward.MemoryNumber}개의 {StringValue.GetStringValue(reward.MemoryType)}조각을 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
+            }
+            
+            OnGotchaRewardGet?.Invoke(reward);
+
+            GameManager.instance.SaveProgress();
         }
 
         public void OnMemoryPurchase(string friendName)
