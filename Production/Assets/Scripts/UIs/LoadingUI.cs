@@ -1,4 +1,4 @@
-﻿using GooglePlayGames.BasicApi;
+﻿// using GooglePlayGames.BasicApi;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,7 +12,7 @@ namespace MoonBunny.UIs
 
         public void OnLoginButtonClicked()
         {
-            GoogleManager.instance.Login(SignInInteractivity.CanPromptAlways);
+            // GoogleManager.instance.Login(SignInInteractivity.CanPromptAlways);
         }
     }
 }
