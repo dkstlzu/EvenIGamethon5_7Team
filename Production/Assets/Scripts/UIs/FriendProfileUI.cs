@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace MoonBunny.UIs
         public List<Sprite> PieceOfMemorySpriteList;
         public List<FriendProfileText> FriendProfileTextList;
         public Sprite SilhouetteSprite;
+        public Sprite UnCollectedStorySprite;
 
         private int _fullCollectionNumber;
         private int _currentCollectionNumber;
@@ -50,6 +52,7 @@ namespace MoonBunny.UIs
                 _profileImage.sprite = FriendSpriteList[index];
                 _storyImage.sprite = FriendProfileTextList[index].StorySprite;
                 _selectButton.interactable = true;
+                _memoryImage.sprite = PieceOfMemorySpriteList[index];
             }
             else
             {
@@ -59,6 +62,7 @@ namespace MoonBunny.UIs
                 _specialAbility.text = "???";
                 _profileImage.sprite = SilhouetteSprite;
                 _selectButton.interactable = false;
+                _memoryImage.sprite = UnCollectedStorySprite;
             }
             
             _fullCollectionNumber = FriendCollectionManager.instance[friendName].TargetCollectingNumber;
@@ -67,28 +71,25 @@ namespace MoonBunny.UIs
             _collectionSlider.maxValue = _fullCollectionNumber;
             _collectionSlider.value = _currentCollectionNumber;
             
-            _memoryImage.sprite = PieceOfMemorySpriteList[index];
-            _description.text = FriendProfileTextList[index].Description;
+            FriendProfileText profileText = FriendProfileTextList[index];
+            _description.text = profileText.Description;
             _memoryText.text = string.Empty;
 
-            int targetMemoryIndex = -1;
-
-            for (int i = 0; i < FriendProfileTextList[index].MemoryTexts.Count; i++)
+            StringBuilder stringBuilder = new StringBuilder();
+            
+            for (int i = 0; i < profileText.MemoryTexts.Count; i++)
             {
-                if (_currentCollectionNumber >= FriendProfileTextList[index].MemoryTexts[i].Integer)
+                if (_currentCollectionNumber >= profileText.MemoryTexts[i].Integer)
                 {
-                    targetMemoryIndex = i;
+                    stringBuilder.AppendLine($"{i}. {profileText.MemoryTexts[i].Str}");
                 }
                 else
                 {
-                    break;
+                    stringBuilder.AppendLine($"{i}. ????????");
                 }
             }
 
-            if (targetMemoryIndex > 0)
-            {
-                _memoryText.text = FriendProfileTextList[index].MemoryTexts[targetMemoryIndex].Str;
-            }
+            _memoryText.text = stringBuilder.ToString();
         }
 
         private float targetPivotX = 0;

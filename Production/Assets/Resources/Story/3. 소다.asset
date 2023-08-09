@@ -35,4 +35,4 @@ MonoBehaviour:
     Integer: 42
   - Str: "\uADF8\uB798..! \uAE30\uC5B5\uB0AC\uC5B4..! "
     Integer: 50
-  StorySprite: {fileID: 0}
+  StorySprite: {fileID: 21300000, guid: 5636cb6db98ab964d8da2cb8d4167681, type: 3}
