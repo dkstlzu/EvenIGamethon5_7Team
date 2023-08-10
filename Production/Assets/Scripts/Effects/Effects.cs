@@ -102,11 +102,11 @@ namespace MoonBunny.Effects
             {
                 _rigidbody.DontIgnoreCollision(LayerMask.GetMask("Obstacle"));
                 float previousX = previousVelocity.x;
-                
+
                 _rigidbody.Move(new Vector2(previousX, 0));
                 _rigidbody.Gravity = previousGravity;
                 S_isEffectOn = false;
-            }, _duration);
+            }, _duration / _rigidbody.MoveSacle);
         }
     }
     
