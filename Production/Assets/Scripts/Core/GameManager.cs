@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using dkstlzu.Utility;
-using GooglePlayGames.BasicApi;
 using MoonBunny.Dev;
 using MoonBunny.UIs;
 using UnityEngine;
@@ -147,14 +146,14 @@ namespace MoonBunny
                 }
             };
 
-            GoogleManager.instance.OnLoginPlayStoreSuccess += CheckReady;
+            // GoogleManager.instance.OnLoginPlayStoreSuccess += CheckReady;
             SaveLoadSystem.OnSaveDataLoaded += CheckReady;
             QuestManager.instance.SaveLoadSystem.OnSaveDataLoaded += CheckReady;
         }
 
         private void CheckReady()
         {
-            if (GoogleManager.instance.SignInStatus == SignInStatus.Success && SaveLoadSystem.DataIsLoaded &&
+            if (/*GoogleManager.instance.SignInStatus == SignInStatus.Success &&*/ SaveLoadSystem.DataIsLoaded &&
                 QuestManager.instance.SaveLoadSystem.DataIsLoaded)
             {
                 CoroutineHelper.Delay(() =>
