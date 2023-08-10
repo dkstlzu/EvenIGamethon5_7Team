@@ -19,7 +19,6 @@ GameObject:
   - component: {fileID: 1459504920463896759}
   - component: {fileID: 5048097624571690920}
   - component: {fileID: 1028992441649865061}
-  - component: {fileID: -4343465353899564900}
   m_Layer: 0
   m_Name: Managers
   m_TagString: GameController
@@ -386,20 +385,6 @@ MonoBehaviour:
     Description: "\uAD11\uACE0\uC81C\uAC70"
     Price: 5000
     RewardValue: 0
---- !u!114 &-4343465353899564900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1386506531079968234}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5265cc898b8f47f59e09e2dc6f987d49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LoadingUI: {fileID: 0}
-  SignInStatus: 0
 --- !u!1 &7393346921992038708
 GameObject:
   m_ObjectHideFlags: 0

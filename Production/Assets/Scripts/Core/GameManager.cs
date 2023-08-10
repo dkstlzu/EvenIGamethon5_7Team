@@ -147,8 +147,9 @@ namespace MoonBunny
             };
 
             // GoogleManager.instance.OnLoginPlayStoreSuccess += CheckReady;
-            SaveLoadSystem.OnSaveDataLoaded += CheckReady;
-            QuestManager.instance.SaveLoadSystem.OnSaveDataLoaded += CheckReady;
+            // SaveLoadSystem.OnSaveDataLoaded += CheckReady;
+            // QuestManager.instance.SaveLoadSystem.OnSaveDataLoaded += CheckReady;
+            SceneManager.LoadSceneAsync(SceneName.Scenario);
         }
 
         private void CheckReady()
@@ -156,10 +157,7 @@ namespace MoonBunny
             if (/*GoogleManager.instance.SignInStatus == SignInStatus.Success &&*/ SaveLoadSystem.DataIsLoaded &&
                 QuestManager.instance.SaveLoadSystem.DataIsLoaded)
             {
-                CoroutineHelper.Delay(() =>
-                {
-                    SceneManager.LoadSceneAsync(SceneName.Scenario);
-                }, 3f);
+                SceneManager.LoadSceneAsync(SceneName.Scenario);
             }
         }
 

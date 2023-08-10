@@ -283,7 +283,7 @@ namespace MoonBunny
             new HeartEffect(_character).Effect();
             new InvincibleEffect(_character.Rigidbody, LayerMask.GetMask("Obstacle"), _character.Renderer, 3, _character.InvincibleEffectCurve).Effect();
             _character.FirstJumped = false;
-            _character.StartJump(10);
+            _character.StartJump();
         }
     }
 }
