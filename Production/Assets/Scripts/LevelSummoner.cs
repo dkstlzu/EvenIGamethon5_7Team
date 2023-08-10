@@ -37,8 +37,8 @@ namespace MoonBunny
         
         private int xmin => GridTransform.GridXMin;
         private int xmax => GridTransform.GridXMax;
-        private int ymin = 0;
-        private int ymax => MaxGridHeight;
+        private int ymin = 3;
+        private int ymax => MaxGridHeight - 3;
         
         public void Update(float delta)
         {

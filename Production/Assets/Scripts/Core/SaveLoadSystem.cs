@@ -364,35 +364,35 @@ namespace MoonBunny
             CheckDirectory();
             CheckFile();
 
-// #if UNITY_EDITOR
-//             using (FileStream fs = File.OpenRead(PersistenceFilePath))
-//             {
-//                 using (StreamReader reader = new StreamReader(fs))
-//                 {
-//                     string jsonData = reader.ReadToEnd();
-//                     ProgressSaveData = JsonUtility.FromJson<ProgressSaveData>(jsonData);
-//                     if (ProgressSaveData != null)
-//                     {
-//                         MoonBunnyLog.print($"SaveLoadSystem load success : {PersistenceFilePath}");
-//                     }
-//                     else
-//                     {
-//                         LegacyProgressSaveData legacy = JsonUtility.FromJson<LegacyProgressSaveData>(jsonData);
-//
-//                         if (legacy != null)
-//                         {
-//                             MoonBunnyLog.print($"SaveLoadSystem is legacy : {PersistenceFilePath}. So migrate to new form");
-//                             ProgressSaveData = ProgressSaveData.MigrateFromLegacy(legacy);
-//                         }
-//                         else
-//                         {
-//                             MoonBunnyLog.print($"SaveLoadSystem load fail : {PersistenceFilePath}.\n So made new one");
-//                             ProgressSaveData = ProgressSaveData.GetDefaultSaveData();
-//                         }
-//                     }
-//                 }
-//             }
-// #else
+#if UNITY_EDITOR
+            using (FileStream fs = File.OpenRead(PersistenceFilePath))
+            {
+                using (StreamReader reader = new StreamReader(fs))
+                {
+                    string jsonData = reader.ReadToEnd();
+                    ProgressSaveData = JsonUtility.FromJson<ProgressSaveData>(jsonData);
+                    if (ProgressSaveData != null)
+                    {
+                        MoonBunnyLog.print($"SaveLoadSystem load success : {PersistenceFilePath}");
+                    }
+                    else
+                    {
+                        LegacyProgressSaveData legacy = JsonUtility.FromJson<LegacyProgressSaveData>(jsonData);
+
+                        if (legacy != null)
+                        {
+                            MoonBunnyLog.print($"SaveLoadSystem is legacy : {PersistenceFilePath}. So migrate to new form");
+                            ProgressSaveData = ProgressSaveData.MigrateFromLegacy(legacy);
+                        }
+                        else
+                        {
+                            MoonBunnyLog.print($"SaveLoadSystem load fail : {PersistenceFilePath}.\n So made new one");
+                            ProgressSaveData = ProgressSaveData.GetDefaultSaveData();
+                        }
+                    }
+                }
+            }
+#else
             try
             {
                 ProgressSaveData = LoadEncrypted<ProgressSaveData>(PersistenceFilePath);
@@ -400,10 +400,9 @@ namespace MoonBunny
             catch (Exception)
             {
                 MoonBunnyLog.print($"SaveLoadSystem is legacy before encrypting version {PersistenceFilePath}\n So made new encrypted one");
-                // ProgressSaveData = ProgressSaveData.GetDefaultSaveData();
-                ProgressSaveData = ProgressSaveData.GetFullSaveData();
+                ProgressSaveData = ProgressSaveData.GetDefaultSaveData();
             }
-// #endif
+#endif
 
             DataIsLoaded = true;
             _onSaveDataLoaded?.Invoke();
@@ -450,8 +449,7 @@ namespace MoonBunny
             catch (Exception)
             {
                 MoonBunnyLog.print($"SaveLoadSystem is legacy before encrypting version {PersistenceFilePath}\n So made new encrypted one");
-                // QuestSaveData = QuestSaveData.GetDefaultSaveData();
-                QuestSaveData = QuestSaveData.GetFullSaveData();
+                QuestSaveData = QuestSaveData.GetDefaultSaveData();
             }
 #endif
             
@@ -606,6 +604,10 @@ namespace MoonBunny
                     }
                     else
                     {
+                        if (GridTransform.HasGridObject(gridPosition))
+                        {
+                            continue;
+                        }
                         instantiatedGo = MonoBehaviour.Instantiate(targetPrefab, realPosition, Quaternion.identity, objectParent);
                     }
 

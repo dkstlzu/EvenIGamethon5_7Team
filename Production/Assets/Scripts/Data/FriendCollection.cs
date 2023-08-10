@@ -21,6 +21,13 @@ namespace MoonBunny
                 else return false;
             }
 
+            public float GetPercent()
+            {
+                if (TargetCollectingNumber == 0) return 1;
+                
+                return (float)CurrentCollectingNumber / TargetCollectingNumber;
+            }
+
             public bool Equals(Data other)
             {
                 if (ReferenceEquals(null, other)) return false;

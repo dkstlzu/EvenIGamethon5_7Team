@@ -147,9 +147,8 @@ namespace MoonBunny
             };
 
             // GoogleManager.instance.OnLoginPlayStoreSuccess += CheckReady;
-            // SaveLoadSystem.OnSaveDataLoaded += CheckReady;
-            // QuestManager.instance.SaveLoadSystem.OnSaveDataLoaded += CheckReady;
-            SceneManager.LoadSceneAsync(SceneName.Scenario);
+            SaveLoadSystem.OnSaveDataLoaded += CheckReady;
+            QuestManager.instance.SaveLoadSystem.OnSaveDataLoaded += CheckReady;
         }
 
         private void CheckReady()

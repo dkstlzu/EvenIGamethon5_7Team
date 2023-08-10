@@ -343,7 +343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxYVelocityLimit: 3.4028235e+38
-  _gravity: 28
+  _gravity: 33.6
   MoveSacle: 1.2
   GridObject: {fileID: 2034000656419043365}
   ColliderLayerList:

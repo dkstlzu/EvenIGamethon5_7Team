@@ -1,5 +1,6 @@
 ﻿using System;
 using MoonBunny.Dev;
+using UnityEditor;
 using UnityEngine;
 
 namespace MoonBunny
@@ -85,7 +86,7 @@ namespace MoonBunny
 
         private static LayerMask S_findingLayerMask;
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        [InitializeOnLoadMethod]
         static void SetFindingLayerMask()
         {
             S_findingLayerMask = LayerMask.GetMask(new []{

@@ -49,12 +49,13 @@ MonoBehaviour:
   GridTransform:
     transform: {fileID: 8124042349635491868}
     GridPosition: {x: 0, y: 0}
+    SnapMethod: 0
   InvokeOnCollision: 1
   Score: 10
   _renderer: {fileID: 7581157464681463720}
   _audioClip: {fileID: 8300000, guid: 8d4cc197b31d5d2489ea7213839e6d9b, type: 3}
   MagnetPower: 2
-  Duration: 8
+  Duration: 10
 --- !u!61 &9141902299460575830
 BoxCollider2D:
   m_ObjectHideFlags: 0
