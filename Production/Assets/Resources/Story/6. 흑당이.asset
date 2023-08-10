@@ -16,15 +16,15 @@ MonoBehaviour:
     \uC9C0\uAD6C\uB85C \uB5A8\uC5B4\uB728\uB9B0 \uC8FC\uBC94\uC778 \uAC83 \uAC19\uB2E4.\r\n\uB2EC(\uACE0)\uB098\uB77C\uC5D0\uC11C
     \uB300\uCCB4 \uBB34\uC2A8 \uC77C\uC774 \uC788\uC5C8\uB358\uAC78\uAE4C?! "
   MemoryTexts:
-  - Text: 
+  - Text: "\uB204\uAD6C\uC57C?"
     MemoryNumber: 5
     StorySprite: {fileID: 464114589, guid: 576c6a7a19c056847bca9d6c2953eb7c, type: 3}
-  - Text: 
+  - Text: "\uB0B4\uAC00 \uB204\uAD70\uC9C0 \uC54C\uACE0 \uC2F6\uC5B4?"
     MemoryNumber: 10
     StorySprite: {fileID: -96572070, guid: 576c6a7a19c056847bca9d6c2953eb7c, type: 3}
-  - Text: 
+  - Text: "\uB098\uB294 \uD770 \uD1A0\uB07C\uAC00 \uC2EB\uC5C8\uC5B4."
     MemoryNumber: 15
     StorySprite: {fileID: -882651891, guid: 576c6a7a19c056847bca9d6c2953eb7c, type: 3}
-  - Text: 
+  - Text: "\uADF8 \uB0A0\uC740.. \uC2AC\uD504\uB3C4\uB85D \uC794\uD639\uD55C \uB0A0\uC774\uC5C8\uC9C0..."
     MemoryNumber: 20
     StorySprite: {fileID: 1260367313, guid: 576c6a7a19c056847bca9d6c2953eb7c, type: 3}

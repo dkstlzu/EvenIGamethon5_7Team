@@ -73,8 +73,7 @@ namespace MoonBunny.UIs
             _fullCollectionNumber = FriendCollectionManager.instance[friendName].TargetCollectingNumber;
             _currentCollectionNumber = FriendCollectionManager.instance[friendName].CurrentCollectingNumber;
             _collectionText.text = $"수집률 {_currentCollectionNumber} / {_fullCollectionNumber}";
-            _collectionSlider.maxValue = _fullCollectionNumber;
-            _collectionSlider.value = _currentCollectionNumber;
+            _collectionSlider.value = targetData.GetPercent();
             
             FriendProfileText profileText = FriendProfileTextList[index];
             _description.text = profileText.Description;

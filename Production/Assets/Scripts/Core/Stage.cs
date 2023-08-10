@@ -156,7 +156,9 @@ namespace MoonBunny
             // Background and sidewalls range initialize;
             Vector3 backgroundPosition = _backgroundSpriteRenderer.transform.position;
             _backgroundSpriteRenderer.transform.position = new Vector3(backgroundPosition.x, _realHeight/2, backgroundPosition.z);
-            _backgroundSpriteRenderer.size = new Vector2(_backgroundSpriteRenderer.size.x, _realHeight + 20);
+            float backgroundSizeX = FindObjectOfType<CameraSetter>()._virtualCamera.m_Lens.OrthographicSize * (float)Screen.width / Screen.height * 2;
+            Debug.Log($"{backgroundSizeX}, {FindObjectOfType<CameraSetter>().GetComponentInChildren<Camera>().orthographicSize}, {Screen.width}, {Screen.height}");
+            _backgroundSpriteRenderer.size = new Vector2(backgroundSizeX, _realHeight + 20);
 
             Vector3 leftWallPosition = _leftWallCollider.transform.position;
             _leftWallCollider.transform.position = new Vector3(leftWallPosition.x, _realHeight/2, leftWallPosition.z);

@@ -7,8 +7,8 @@ namespace MoonBunny
 {
     public class CameraSetter : MonoBehaviour
     {
-        [SerializeField] private CinemachineVirtualCamera _virtualCamera;
-        [SerializeField] private CinemachineConfiner2D _confiner2D;
+        public CinemachineVirtualCamera _virtualCamera;
+        public CinemachineConfiner2D _confiner2D;
 
         public event Action OnCameraSetFinish;
         public float CameraSetTime;
