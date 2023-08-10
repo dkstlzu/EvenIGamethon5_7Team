@@ -38,6 +38,7 @@ namespace MoonBunny.UIs
             if (state.normalizedTime >= 1)
             {
                 LoadingScene.LoadScene(SceneName.Start);
+                AnyKeyInputAction.performed -= OnPressTheAnyKeyIntro;
             } else if (state.normalizedTime >= 0.9f)
             {
                 

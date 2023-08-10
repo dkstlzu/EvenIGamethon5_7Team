@@ -152,20 +152,20 @@ namespace MoonBunny.UIs
                 
                 if (reward.GoldNumber > 0)
                 {
-                    NormalGotchaResult.DOText($"와! {reward.GoldNumber}개의 골드를 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
+                    NormalGotchaResult.DOText($"와! {reward.GoldNumber} 골드를 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
                 } else if (reward.DiamondNumber > 0)
                 {
-                    NormalGotchaResult.DOText($"와! {reward.DiamondNumber}개의 다이아를 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
+                    NormalGotchaResult.DOText($"와! {reward.DiamondNumber} 다이아를 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
                 }
                 else
                 {
-                    NormalGotchaResult.DOText($"와! {reward.MemoryNumber}개의 {StringValue.GetStringValue(reward.MemoryType)}조각을 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
+                    NormalGotchaResult.DOText($"와! {reward.MemoryNumber} {StringValue.GetStringValue(reward.MemoryType)}조각을 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
                 }
                 
                 Rebuild();
 
                 _graphicRaycaster.enabled = true;
-            }, NormalGotchaAnimationSprites.Count * GotchaAnimationInterval);
+            }, (NormalGotchaAnimationSprites.Count-1) * GotchaAnimationInterval);
         }
         
         private void DoSpecialGotcha()
@@ -199,20 +199,20 @@ namespace MoonBunny.UIs
                 
                 if (reward.GoldNumber > 0)
                 {
-                    SpecialGotchaResult.DOText($"와! {reward.GoldNumber}개의 골드를 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
+                    SpecialGotchaResult.DOText($"와! {reward.GoldNumber} 골드를 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
                 } else if (reward.DiamondNumber > 0)
                 {
-                    SpecialGotchaResult.DOText($"와! {reward.DiamondNumber}개의 다이아를 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
+                    SpecialGotchaResult.DOText($"와! {reward.DiamondNumber} 다이아를 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
                 }
                 else
                 {
-                    SpecialGotchaResult.DOText($"와! {reward.MemoryNumber}개의 {StringValue.GetStringValue(reward.MemoryType)}조각을 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
+                    SpecialGotchaResult.DOText($"와! {reward.MemoryNumber} {StringValue.GetStringValue(reward.MemoryType)}조각을 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
                 }
                 
                 Rebuild();
 
                 _graphicRaycaster.enabled = true;
-            }, SpecialGotchaAnimationSprites.Count * GotchaAnimationInterval);
+            }, (SpecialGotchaAnimationSprites.Count-1) * GotchaAnimationInterval);
         }
 
         GotchaReward GetRandom(IEnumerable<GotchaReward> rewards)

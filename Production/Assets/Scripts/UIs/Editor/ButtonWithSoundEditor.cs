@@ -8,11 +8,14 @@ namespace MoonBunny.UIs
     public class ButtonWithSoundEditor : ButtonEditor
     {
         private SerializedProperty audioProperty;
+        private SerializedProperty coolTime;
+        
         protected override void OnEnable()
         {
             base.OnEnable();
 
             audioProperty = serializedObject.FindProperty("ButtonSound");
+            coolTime = serializedObject.FindProperty("CoolTime");
         }
 
         public override void OnInspectorGUI()
@@ -22,6 +25,7 @@ namespace MoonBunny.UIs
             serializedObject.Update();
 
             EditorGUILayout.PropertyField(audioProperty);
+            EditorGUILayout.PropertyField(coolTime);
 
             serializedObject.ApplyModifiedProperties();
         }

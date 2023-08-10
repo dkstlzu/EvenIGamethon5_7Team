@@ -74,9 +74,16 @@ namespace MoonBunny.UIs
         {
             Stage.S_StageLevel = _selectingLevel;
             Stage.S_SubLevel = _subLevelIndex;
+
+            Canvas canvas = GameManager.instance.StartSceneUI.GetComponent<Canvas>();
+            canvas.sortingOrder = 1;
+            Scene startScene = SceneManager.GetActiveScene();
+            Camera cam = Camera.main;
             
-            LoadingScene.LoadScene(StringValue.GetStringValue(_stageName, _subLevelIndex), afterSceneLoad: () =>
+            SceneManager.LoadSceneAsync(StringValue.GetStringValue(_stageName, _subLevelIndex), LoadSceneMode.Additive).completed += (ao) =>
             {
+                Destroy(cam.gameObject);
+                
                 Stage stage = GameManager.instance.Stage;
 
                 Character character = Character.instance;
@@ -101,7 +108,13 @@ namespace MoonBunny.UIs
                             break;
                     }
                 }
-            });
+
+                FindObjectOfType<CameraSetter>().OnCameraSetFinish += () =>
+                {
+                    canvas.sortingOrder = -1;
+                    SceneManager.UnloadSceneAsync(startScene);
+                };
+            };
             
             GameManager.instance.GoldNumber -= BoostUI.S_ConsumingGold;
             BoostUI.S_ConsumingGold = 0;

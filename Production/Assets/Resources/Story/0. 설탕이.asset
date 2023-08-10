@@ -16,5 +16,11 @@ MonoBehaviour:
     \uBD88\uC2DC\uCC29\uD55C \uB2EC\uD1A0\uB07C. \r\n\uD568\uAED8 \uB5A8\uC5B4\uC9C4
     \uCE5C\uAD6C\uB4E4\uC744 \uAD6C\uD558\uAE30 \uC704\uD574 \r\n\uC5EC\uD589\uC744
     \uB5A0\uB098\uAE30\uB85C \uACB0\uC2EC\uD588\uB2E4. \r\n "
-  MemoryTexts: []
-  StoryText: 
+  MemoryTexts:
+  - Text: "\uCE5C\uAD6C\uB4E4\uC774 \uBAA8\uB450 \uAE30\uC5B5\uC744 \uC783\uACE0
+      \uD769\uC5B4\uC84C\uC5B4"
+    MemoryNumber: 0
+    StorySprite: {fileID: 622894037, guid: da433cf3386622b4f851ba4b4c089a09, type: 3}
+  - Text: "\uC598\uB4E4\uC544! \uB0B4\uAC00 \uAF2D \uAD6C\uD558\uB7EC \uAC08\uAC8C"
+    MemoryNumber: 0
+    StorySprite: {fileID: -1261327812, guid: a24f2f3676d7bad478e75246411598b3, type: 3}

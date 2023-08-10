@@ -341,7 +341,6 @@ MonoBehaviour:
   SubLevel: 0
   _startPoint: {fileID: 7776708680454044948}
   _spec: {fileID: 11400000, guid: 7e4f134cf9ecf704bbe9353d76d684da, type: 2}
-  _tutorialPrefab: {fileID: 1156140302764553417, guid: 318cac4417a8d9f46838e50ec5e04e7f, type: 3}
   CollectDict:
     _elementList: []
   UI: {fileID: 2628499118603251068}
@@ -768,7 +767,7 @@ SpriteRenderer:
   m_DrawMode: 2
   m_Size: {x: 12, y: 236.71729}
   m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
+  m_SpriteTileMode: 1
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
@@ -812,7 +811,7 @@ PolygonCollider2D:
     newSize: {x: 12, y: 236.71729}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
-    adaptiveTiling: 0
+    adaptiveTiling: 1
   m_AutoTiling: 0
   m_Points:
     m_Paths:
