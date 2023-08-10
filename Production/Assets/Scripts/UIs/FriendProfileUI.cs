@@ -87,12 +87,12 @@ namespace MoonBunny.UIs
             {
                 if (_currentCollectionNumber >= profileText.MemoryTexts[i].MemoryNumber)
                 {
-                    stringBuilder.AppendLine($"{i}. {profileText.MemoryTexts[i].Text}");
+                    stringBuilder.AppendLine($"{i+1}. {profileText.MemoryTexts[i].Text}");
                     memoryIndex++;
                 }
                 else
                 {
-                    stringBuilder.AppendLine($"{i}. ????????");
+                    stringBuilder.AppendLine($"{i+1}. ????????");
                 }
             }
 
