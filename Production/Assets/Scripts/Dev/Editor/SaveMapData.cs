@@ -72,6 +72,15 @@ namespace MoonBunny.Dev.Editor
                 
                 MonoBehaviour.DestroyImmediate(gimmicks[i].gameObject);
             }
+            
+            RandomSpawner[] randomSpawners = GameObject.FindObjectsByType<RandomSpawner>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            
+            for (int i = 0; i < randomSpawners.Length; i++)
+            {
+                if (randomSpawners[i] == null) continue;
+                
+                MonoBehaviour.DestroyImmediate(randomSpawners[i].gameObject);
+            }
         }
 
         private static string GetFileName()
