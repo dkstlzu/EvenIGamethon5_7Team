@@ -49,6 +49,8 @@ namespace MoonBunny.UIs
             GoldText2.text = _gameManager.GoldNumber.ToString();
             DiamondText1.text = _gameManager.DiamondNumber.ToString();
             DiamondText2.text = _gameManager.DiamondNumber.ToString();
+            
+            FriendSelectUI.Open();
         }
 
         public void OnGoToStageSelectButtonClicked()

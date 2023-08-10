@@ -112,7 +112,7 @@ namespace MoonBunny
             if (UseSaveSystem)
             {
 #endif
-                SaveLoadSystem = new SaveLoadSystem("Saves", "Quest", "txt");
+                SaveLoadSystem.Init("Saves", "Quest", "txt");
 
                 SaveLoadSystem.OnSaveDataLoaded += () =>
                 {

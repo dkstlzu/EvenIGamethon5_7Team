@@ -109,7 +109,7 @@ namespace MoonBunny
             if (useSaveSystem)
             {
 #endif
-                SaveLoadSystem = new SaveLoadSystem("Saves", "Save", "txt");
+                SaveLoadSystem.Init("Saves", "Save", "txt");
                 SaveLoadSystem.LoadProgress();
 #if UNITY_EDITOR
             }

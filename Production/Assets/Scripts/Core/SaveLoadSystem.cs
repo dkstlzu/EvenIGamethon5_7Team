@@ -119,6 +119,13 @@ namespace MoonBunny
             DataSavingExtension = "." + extension;
         }
         
+        public void Init(string folder, string fileName, string extension)
+        {
+            DataSavingFolderName = folder;
+            DataSavingFileName = fileName;
+            DataSavingExtension = "." + extension;
+        }
+        
         void CheckDirectory()
         {
             string path = PersistenceFolderPath;
