@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using dkstlzu.Utility;
+using MoonBunny.Dev;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -43,6 +45,37 @@ namespace MoonBunny
     }
     public class LoadingScene : MonoBehaviour
     {
+        public static bool S_isLoadingScene = false;
+        private static AsyncOperation S_loaindgAO;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        static void Init()
+        {
+            S_isLoadingScene = false;
+            S_loaindgAO = null;
+        }
+        
+        public static AsyncOperation LoadScene(string sceneName, float minimumDelayTime = 0f, Action afterSceneLoad = null)
+        {
+            if (S_isLoadingScene) return null;
+
+            S_isLoadingScene = true;
+            S_loaindgAO = SceneManager.LoadSceneAsync(sceneName);
+            S_loaindgAO.allowSceneActivation = false;
+            
+            CoroutineHelper.Delay(() => S_loaindgAO.allowSceneActivation = true, minimumDelayTime);
+            
+            S_loaindgAO.completed += (ao) =>
+            {
+                afterSceneLoad?.Invoke();
+
+                S_isLoadingScene = false;
+                S_loaindgAO = null;
+            };
+
+            return S_loaindgAO;
+        }
+        
         public InputAction AnyInputAction;
         public List<Sprite> SplashImages;
         [Range(0, 10)] public float SplashInterval;
@@ -122,7 +155,7 @@ namespace MoonBunny
             }
             else
             {
-                SceneManager.LoadScene(SceneName.Names[NextScene]);
+                LoadScene(SceneName.Names[NextScene]);
             }
         }
     }

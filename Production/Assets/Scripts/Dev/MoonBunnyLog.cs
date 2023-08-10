@@ -22,5 +22,10 @@ namespace MoonBunny.Dev
             
             Debug.Log(Prefix + lineOffetStr + msg.ToString());
         }
+
+        public static void print(object msg, string tag)
+        {
+            Debug.Log($"[{tag}] : {msg}");
+        }
     }
 }

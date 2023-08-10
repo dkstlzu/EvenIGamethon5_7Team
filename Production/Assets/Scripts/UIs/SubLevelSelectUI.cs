@@ -75,7 +75,7 @@ namespace MoonBunny.UIs
             Stage.S_StageLevel = _selectingLevel;
             Stage.S_SubLevel = _subLevelIndex;
             
-            SceneManager.LoadSceneAsync(StringValue.GetStringValue(_stageName, _subLevelIndex)).completed += (ao) =>
+            LoadingScene.LoadScene(StringValue.GetStringValue(_stageName, _subLevelIndex), afterSceneLoad: () =>
             {
                 Stage stage = GameManager.instance.Stage;
 
@@ -101,7 +101,7 @@ namespace MoonBunny.UIs
                             break;
                     }
                 }
-            };
+            });
             
             GameManager.instance.GoldNumber -= BoostUI.S_ConsumingGold;
             BoostUI.S_ConsumingGold = 0;

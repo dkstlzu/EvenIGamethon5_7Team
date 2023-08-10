@@ -16,12 +16,17 @@ namespace MoonBunny
         public bool UseSaveSystem;
 #endif
         
-        public QuestSaveData SaveData
+        public static QuestSaveData SaveData
         {
             get
             {
                 if (!instance.SaveLoadSystem.DataIsLoaded) return null;
                 else return instance.SaveLoadSystem.QuestSaveData;
+            }
+            set
+            {
+                instance.SaveLoadSystem.DataIsLoaded = true;
+                instance.SaveLoadSystem.QuestSaveData = value;
             }
         }
 
@@ -112,7 +117,7 @@ namespace MoonBunny
             if (UseSaveSystem)
             {
 #endif
-                SaveLoadSystem = new SaveLoadSystem("Saves", "Quest", "txt");
+                SaveLoadSystem.Init("Saves", "Quest", "txt");
 
                 SaveLoadSystem.OnSaveDataLoaded += () =>
                 {

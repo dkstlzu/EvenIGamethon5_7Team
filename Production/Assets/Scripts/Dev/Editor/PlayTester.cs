@@ -14,7 +14,7 @@ namespace Dev.Editor
         [MenuItem("Dev/PlayTest/Restart Stage")]
         public static void RestartStage()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            LoadingScene.LoadScene(SceneManager.GetActiveScene().name);
         }
         
         [MenuItem("Dev/PlayTest/HP Recovery")]

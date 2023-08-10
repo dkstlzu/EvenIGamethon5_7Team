@@ -37,8 +37,7 @@ namespace MoonBunny.UIs
             var state = IntroAnimator.GetCurrentAnimatorStateInfo(0);
             if (state.normalizedTime >= 1)
             {
-
-                SceneManager.LoadSceneAsync(SceneName.Start);
+                LoadingScene.LoadScene(SceneName.Start);
             } else if (state.normalizedTime >= 0.9f)
             {
                 

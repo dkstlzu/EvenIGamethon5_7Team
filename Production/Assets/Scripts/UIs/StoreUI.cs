@@ -127,6 +127,7 @@ namespace MoonBunny.UIs
 
             Contents.DOLocalMoveY(Board.rect.yMax + NORMAL_GOTCHA_Y, TWEEN_DURATION, true);
 
+            NormalGotchaResult.text = String.Empty;
             for (int i = 0; i < NormalGotchaAnimationSprites.Count; i++)
             {
                 int index = i;
@@ -148,6 +149,19 @@ namespace MoonBunny.UIs
                 GotchaReward reward = GetRandom(NormalGotchaData.Datas);
             
                 ApplyReward(reward);
+                
+                if (reward.GoldNumber > 0)
+                {
+                    NormalGotchaResult.DOText($"와! {reward.GoldNumber}개의 골드를 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
+                } else if (reward.DiamondNumber > 0)
+                {
+                    NormalGotchaResult.DOText($"와! {reward.DiamondNumber}개의 다이아를 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
+                }
+                else
+                {
+                    NormalGotchaResult.DOText($"와! {reward.MemoryNumber}개의 {StringValue.GetStringValue(reward.MemoryType)}조각을 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
+                }
+                
                 Rebuild();
 
                 _graphicRaycaster.enabled = true;
@@ -160,6 +174,7 @@ namespace MoonBunny.UIs
             
             Contents.DOLocalMoveY(Board.rect.yMax + SPECIAL_GOTCHA_Y, TWEEN_DURATION, true);
 
+            SpecialGotchaResult.text = String.Empty;
             for (int i = 0; i < SpecialGotchaAnimationSprites.Count; i++)
             {
                 int index = i;
@@ -181,6 +196,19 @@ namespace MoonBunny.UIs
                 GotchaReward reward = GetRandom(SpecialGotchaData.Datas);
                 
                 ApplyReward(reward);
+                
+                if (reward.GoldNumber > 0)
+                {
+                    SpecialGotchaResult.DOText($"와! {reward.GoldNumber}개의 골드를 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
+                } else if (reward.DiamondNumber > 0)
+                {
+                    SpecialGotchaResult.DOText($"와! {reward.DiamondNumber}개의 다이아를 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
+                }
+                else
+                {
+                    SpecialGotchaResult.DOText($"와! {reward.MemoryNumber}개의 {StringValue.GetStringValue(reward.MemoryType)}조각을 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
+                }
+                
                 Rebuild();
 
                 _graphicRaycaster.enabled = true;
@@ -233,17 +261,7 @@ namespace MoonBunny.UIs
                 FriendCollectionManager.instance.Collect(reward.MemoryType, reward.MemoryNumber);
             }
             
-            if (reward.GoldNumber > 0)
-            {
-                SpecialGotchaResult.DOText($"와! {reward.GoldNumber}개의 골드를 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
-            } else if (reward.DiamondNumber > 0)
-            {
-                SpecialGotchaResult.DOText($"와! {reward.DiamondNumber}개의 다이아를 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
-            }
-            else
-            {
-                SpecialGotchaResult.DOText($"와! {reward.MemoryNumber}개의 {StringValue.GetStringValue(reward.MemoryType)}조각을 얻었다!", GOTCHA_RESULT_TWEEN_DURATION);
-            }
+
             
             OnGotchaRewardGet?.Invoke(reward);
 

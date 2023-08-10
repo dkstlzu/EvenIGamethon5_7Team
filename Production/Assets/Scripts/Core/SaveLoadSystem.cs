@@ -42,7 +42,7 @@ namespace MoonBunny
 
         private const string ENCRYPTION_KEY = "NUNETINE";
         private const string ENCRYPTION_IV = "NUNETINEIV";
-        private static byte[] DesEncryptionKeyByte
+        public static byte[] DesEncryptionKeyByte
         {
             get
             {
@@ -55,7 +55,7 @@ namespace MoonBunny
             }
         }
         
-        private static byte[] AesEncryptionKeyByte
+        public static byte[] AesEncryptionKeyByte
         {
             get
             {
@@ -68,7 +68,7 @@ namespace MoonBunny
             }
         }
         
-        private static byte[] AesEncryptionIVByte
+        public static byte[] AesEncryptionIVByte
         {
             get
             {
@@ -119,6 +119,13 @@ namespace MoonBunny
             DataSavingExtension = "." + extension;
         }
         
+        public void Init(string folder, string fileName, string extension)
+        {
+            DataSavingFolderName = folder;
+            DataSavingFileName = fileName;
+            DataSavingExtension = "." + extension;
+        }
+            
         void CheckDirectory()
         {
             string path = PersistenceFolderPath;

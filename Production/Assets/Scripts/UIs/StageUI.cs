@@ -188,7 +188,7 @@ namespace MoonBunny.UIs
             TimeUpdatable.GlobalSpeed = 1;
             UpdateManager.instance.Clear();
             
-            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name).completed += (ao) =>
+            LoadingScene.LoadScene(SceneManager.GetActiveScene().name, afterSceneLoad: () =>
             {
                 Stage stage = GameManager.instance.Stage;
 
@@ -205,7 +205,7 @@ namespace MoonBunny.UIs
                         stage.BoostEffectList.Add(new StarCandyBoostEffect());
                     }
                 }
-            };
+            });
             
             GameManager.instance.GoldNumber -= BoostUI.S_ConsumingGold;
             BoostUI.S_ConsumingGold = 0;
@@ -217,11 +217,11 @@ namespace MoonBunny.UIs
             Stage.OnGotoStageSelect();
             UpdateManager.instance.Clear();
 
-            SceneManager.LoadSceneAsync(SceneName.Start).completed += (ao) =>
+            LoadingScene.LoadScene(SceneName.Start, afterSceneLoad: () =>
             {
                 GameManager.instance.StartSceneUI.FriendSelectUI.OnExitButtonClicked(0);
                 GameManager.instance.StartSceneUI.StageSelectUI.Open(0);
-            };
+            });
         }
 
         public void OnSoundToggle()

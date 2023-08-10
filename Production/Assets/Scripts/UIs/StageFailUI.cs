@@ -55,7 +55,9 @@ namespace MoonBunny.UIs
                 ReviveButton.interactable = false;
             }
 
-            if (Random.value <= BonusBoostPotential)
+            float randomValue = Random.value;
+            
+            if (randomValue <= BonusBoostPotential)
             {
                 BoostUI.SetActive(true);
                 BoardTransform.anchorMax = new Vector2(0.5f, 0.3f);

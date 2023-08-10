@@ -9,7 +9,7 @@ namespace MoonBunny.Dev.Editor
         [MenuItem("Dev/Load Start Scene", priority = 2)]
         public static void StartScene()
         {
-            SceneManager.LoadScene("1. Start");
+            LoadingScene.LoadScene(SceneName.Start);
         }
     }
 }

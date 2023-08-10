@@ -399,7 +399,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LoadingUI: {fileID: 0}
-  SignInStatus: 0
+  SignInStatus: 8
+  Token: 
 --- !u!1 &7393346921992038708
 GameObject:
   m_ObjectHideFlags: 0

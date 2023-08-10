@@ -35,6 +35,11 @@ namespace MoonBunny
                 }
                 else return instance.SaveLoadSystem.ProgressSaveData;
             }
+            set
+            {
+                instance.SaveLoadSystem.DataIsLoaded = true;
+                instance.SaveLoadSystem.ProgressSaveData = value;
+            }
         }
 
         public SceneLoadCallbackSetter SCB;
@@ -109,7 +114,7 @@ namespace MoonBunny
             if (useSaveSystem)
             {
 #endif
-                SaveLoadSystem = new SaveLoadSystem("Saves", "Save", "txt");
+                SaveLoadSystem.Init("Saves", "Save", "txt");
                 SaveLoadSystem.LoadProgress();
 #if UNITY_EDITOR
             }
@@ -134,6 +139,14 @@ namespace MoonBunny
                 };
             }
 
+            foreach (string sceneName in SceneName.Names)
+            {
+                SCB.SceneLoadCallBackDict[sceneName] += () =>
+                {
+                    AudioListener.volume = VolumeSetting;
+                };
+            }
+            
             IAPManager.instance.OnPurchaseComplete += (productName) =>
             {
                 if (productName == "패키지")
@@ -145,22 +158,6 @@ namespace MoonBunny
                     ProgressSaveData.LimitedPackagePurchased = true;
                 }
             };
-
-            GoogleManager.instance.OnLoginPlayStoreSuccess += CheckReady;
-            SaveLoadSystem.OnSaveDataLoaded += CheckReady;
-            QuestManager.instance.SaveLoadSystem.OnSaveDataLoaded += CheckReady;
-        }
-
-        private void CheckReady()
-        {
-            if (GoogleManager.instance.SignInStatus == SignInStatus.Success && SaveLoadSystem.DataIsLoaded &&
-                QuestManager.instance.SaveLoadSystem.DataIsLoaded)
-            {
-                CoroutineHelper.Delay(() =>
-                {
-                    SceneManager.LoadSceneAsync(SceneName.Scenario);
-                }, 3f);
-            }
         }
 
         private void OnApplicationQuit()
@@ -184,7 +181,7 @@ namespace MoonBunny
 
         public void RestartApplication()
         {
-            SceneManager.LoadScene(SceneName.Loading);
+            LoadingScene.LoadScene(SceneName.Loading);
         }
     }
 }
