@@ -489,7 +489,7 @@ MonoBehaviour:
       SubLevelTextSprite: {fileID: -2099167519, guid: d4fe1bc3f13ad4b4e90c9631beca6d49, type: 3}
     - SubLevelSprite: {fileID: 21300000, guid: 64221d308da0b9a429abc33425aa4416, type: 3}
       SubLevelTextSprite: {fileID: 21300000, guid: b60004bdd05e94840b577dba4dddd744, type: 3}
-  StartButton: {fileID: 6325751966344029457}
+  StartButton: {fileID: 0}
   LockStageSprite: {fileID: 1916047239, guid: 678b4acebbd2e7c4a9027dc0aef71088, type: 3}
   BoostItemList:
   - {fileID: 8505256432439634744}
@@ -590,6 +590,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &168280325063350521
 GameObject:
   m_ObjectHideFlags: 0
@@ -1103,6 +1104,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &520671636024958364
 GameObject:
   m_ObjectHideFlags: 0
@@ -2721,6 +2723,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &946187007892898607
 GameObject:
   m_ObjectHideFlags: 0
@@ -4568,6 +4571,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &1892792085378683974
 GameObject:
   m_ObjectHideFlags: 0
@@ -5376,6 +5380,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &2228702839523041485
 GameObject:
   m_ObjectHideFlags: 0
@@ -8197,6 +8202,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &2909360307338545803
 GameObject:
   m_ObjectHideFlags: 0
@@ -8420,6 +8426,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &2924071021792109103
 GameObject:
   m_ObjectHideFlags: 0
@@ -11100,6 +11107,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &3805156386290124440
 GameObject:
   m_ObjectHideFlags: 0
@@ -14130,6 +14138,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &4604237919945423923
 GameObject:
   m_ObjectHideFlags: 0
@@ -14139,7 +14148,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5768310457339623653}
-  - component: {fileID: 6325751966344029457}
+  - component: {fileID: 2992743153095293290}
   m_Layer: 5
   m_Name: Start
   m_TagString: Untagged
@@ -14169,7 +14178,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 200}
   m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6325751966344029457
+--- !u!114 &2992743153095293290
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14178,7 +14187,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4604237919945423923}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 79919bf9d1c844d08eccc87f1b52f130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -14225,6 +14234,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 1
 --- !u!1 &4626986724448380228
 GameObject:
   m_ObjectHideFlags: 0
@@ -15807,6 +15818,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &4976110254370269667
 GameObject:
   m_ObjectHideFlags: 0
@@ -16977,6 +16989,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &5296333408667543380
 GameObject:
   m_ObjectHideFlags: 0
@@ -17263,6 +17276,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &5367320023959862442
 GameObject:
   m_ObjectHideFlags: 0
@@ -17696,6 +17710,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &5486001640351128064
 GameObject:
   m_ObjectHideFlags: 0
@@ -17958,6 +17973,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &5535737357826518898
 GameObject:
   m_ObjectHideFlags: 0
@@ -19001,6 +19017,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &5957883702467377756
 GameObject:
   m_ObjectHideFlags: 0
@@ -20090,6 +20107,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &6246319618212609167
 GameObject:
   m_ObjectHideFlags: 0
@@ -21320,6 +21338,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!114 &704986667700788063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21845,6 +21864,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &6625480725613837271
 GameObject:
   m_ObjectHideFlags: 0
@@ -22667,6 +22687,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &6930577379265417572
 GameObject:
   m_ObjectHideFlags: 0
@@ -23452,6 +23473,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &7221060085661312341
 GameObject:
   m_ObjectHideFlags: 0
@@ -23583,6 +23605,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &7259577218670180559
 GameObject:
   m_ObjectHideFlags: 0
@@ -23891,6 +23914,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &7381935151876186277
 GameObject:
   m_ObjectHideFlags: 0
@@ -24142,6 +24166,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &7412024929805525725
 GameObject:
   m_ObjectHideFlags: 0
@@ -24315,6 +24340,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &7436981031548789405
 GameObject:
   m_ObjectHideFlags: 0
@@ -24545,6 +24571,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &7513956344823829661
 GameObject:
   m_ObjectHideFlags: 0
@@ -26263,6 +26290,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!114 &4884010148604653048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26953,6 +26981,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &8379516815892791312
 GameObject:
   m_ObjectHideFlags: 0
@@ -27402,6 +27431,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &8462793409334237186
 GameObject:
   m_ObjectHideFlags: 0
@@ -27939,6 +27969,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &8806632772416404918
 GameObject:
   m_ObjectHideFlags: 0

@@ -299,6 +299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _virtualCamera: {fileID: 8301922084155902287}
   _confiner2D: {fileID: 3472184930909005835}
+  CameraSetTime: 0.5
 --- !u!1 &9197991868720157737
 GameObject:
   m_ObjectHideFlags: 0
