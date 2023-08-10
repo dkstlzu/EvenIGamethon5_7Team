@@ -1,4 +1,5 @@
 ﻿using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,6 +19,27 @@ namespace MoonBunny.Dev.Editor
             SaveLoadSystem system = new SaveLoadSystem("MapData", fileName, "csv");
             
             system.SaveCSV();
+        }
+
+        private const string SCENE_FOLDER_PATH = "Assets/Scenes/";
+            
+        [MenuItem("Dev/MapData/Load All", priority = 3)]
+        public static void LoadDataAll()
+        {
+            string[] targetScenes = SceneName.StageNames;
+            
+            foreach (string targetScene in targetScenes)
+            {
+                if (targetScene == SceneName.StageChallenge) continue;
+                
+                EditorSceneManager.OpenScene(SCENE_FOLDER_PATH + targetScene + ".unity");
+                LoadData();
+            
+                Scene currentScene = EditorSceneManager.GetActiveScene();
+                string path = currentScene.path;
+                bool saveOK = EditorSceneManager.SaveScene(EditorSceneManager.GetActiveScene(), path);
+                Debug.Log($"Saved Scene {currentScene.name} " + (saveOK ? "OK" : "Error!"));
+            }
         }
         
         [MenuItem("Dev/MapData/Load", priority = 1)]
@@ -49,6 +71,15 @@ namespace MoonBunny.Dev.Editor
                 if (gimmicks[i] == null) continue;
                 
                 MonoBehaviour.DestroyImmediate(gimmicks[i].gameObject);
+            }
+            
+            RandomSpawner[] randomSpawners = GameObject.FindObjectsByType<RandomSpawner>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            
+            for (int i = 0; i < randomSpawners.Length; i++)
+            {
+                if (randomSpawners[i] == null) continue;
+                
+                MonoBehaviour.DestroyImmediate(randomSpawners[i].gameObject);
             }
         }
 

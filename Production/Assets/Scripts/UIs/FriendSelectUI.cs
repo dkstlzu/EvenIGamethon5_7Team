@@ -19,6 +19,7 @@ namespace MoonBunny.UIs
         
         public List<FriendLibraryUI> FriendLibraryUIList;
         public FriendProfileUI FriendProfileUI;
+        public AnimationCurve FriendLibraryImageCurve;
 
         public TextMeshProUGUI ProgressText;
         public Slider ProgressBar;
@@ -28,12 +29,20 @@ namespace MoonBunny.UIs
         {
             for (int i = 0; i < FriendLibraryUIList.Count; i++)
             {
-                if (!FriendCollectionManager.instance.Collection.Datas[i].IsFinish()) continue;
+                FriendCollection.Data data = FriendCollectionManager.instance.Collection.Datas[i];
                 
-                FriendLibraryUIList[i].SelectButton.interactable = true;
-                FriendLibraryUIList[i].SelectButton.image.sprite = FriendProfileUI.FriendSpriteList[i];
-                string name = StringValue.GetStringValue(FriendCollectionManager.instance.Collection.Datas[i].Name);
-                FriendLibraryUIList[i].NameText.text = name;
+                if (data.IsFinish())
+                {
+                    FriendLibraryUIList[i].SelectButton.interactable = true;
+                    string name = StringValue.GetStringValue(FriendCollectionManager.instance.Collection.Datas[i].Name);
+                    FriendLibraryUIList[i].NameText.text = name;
+                    FriendLibraryUIList[i].SelectButton.image.color = Color.white;
+                }
+                else
+                {
+                    float value = FriendLibraryImageCurve.Evaluate(data.GetPercent());
+                    FriendLibraryUIList[i].SelectButton.image.color = new Color(value, value, value, 1);
+                }
             }
 
             RebuildProgressBar();

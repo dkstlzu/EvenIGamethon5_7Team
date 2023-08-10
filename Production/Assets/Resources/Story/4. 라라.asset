@@ -24,7 +24,7 @@ MonoBehaviour:
   - Text: "\uB098\uB294 \uB204\uAD6C\uC9C0..?"
     MemoryNumber: 20
     StorySprite: {fileID: 622894037, guid: da433cf3386622b4f851ba4b4c089a09, type: 3}
-  - Text: "\uB098\uB294 \uB178\uB798\uB97C \uC798\uD588\uB358 \uAC70 \uAC19\uC544.fasf"
+  - Text: "\uB098\uB294 \uB178\uB798\uB97C \uC798\uD588\uB358 \uAC70 \uAC19\uC544."
     MemoryNumber: 30
     StorySprite: {fileID: 622894037, guid: da433cf3386622b4f851ba4b4c089a09, type: 3}
   - Text: "\uB098\uB294 \uC870\uC6A9\uD55C \uC131\uACA9\uC758 \uB77C\uB77C."

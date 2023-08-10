@@ -620,6 +620,10 @@ namespace MoonBunny
                     }
                     else
                     {
+                        if (GridTransform.HasGridObject(gridPosition))
+                        {
+                            continue;
+                        }
                         instantiatedGo = MonoBehaviour.Instantiate(targetPrefab, realPosition, Quaternion.identity, objectParent);
                     }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using dkstlzu.Utility;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -76,8 +77,9 @@ namespace MoonBunny
 
             return progressSaveData;
         }
-        
-        private const string CollectionAssetPath = "Assets/Resources/Specs/FriendCollection.asset"; 
+
+        private const string ResourcesPath = "Assets/Resources";
+        private const string CollectionAssetPath = "Specs/FriendCollection"; 
 
         public static ProgressSaveData GetFullSaveData()
         {
@@ -88,7 +90,7 @@ namespace MoonBunny
 #if UNITY_EDITOR
             if (!UnityEditor.EditorApplication.isPlaying)
             {
-                collection = UnityEditor.AssetDatabase.LoadAssetAtPath<FriendCollection>(CollectionAssetPath);
+                collection = UnityEditor.AssetDatabase.LoadAssetAtPath<FriendCollection>(Path.Combine(ResourcesPath, CollectionAssetPath)+".asset");
             }
 #endif
 

@@ -113,7 +113,7 @@ namespace MoonBunny
             if (!enabled) return;
             
             float deltaTime = Time.deltaTime;
-            _movement.UpdateGravity(deltaTime * MoveSacle);
+            _movement.UpdateGravity(deltaTime);
             
             // Collision Check
             _currentCollision.Clear();

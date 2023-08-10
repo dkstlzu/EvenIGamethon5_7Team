@@ -39,19 +39,22 @@ namespace MoonBunny.UIs
         public void Set(FriendName friendName)
         {
             _selectingName = friendName;
-            bool isCollected = FriendCollectionManager.instance.Collection.Datas[(int)_selectingName].IsFinish();
+            FriendCollection.Data targetData = FriendCollectionManager.instance.Collection.Datas[(int)_selectingName];
+            bool isCollected = targetData.IsFinish();
             
             int index = (int)friendName;
 
             FriendSpec targetSpec = PreloadedResources.instance.FriendSpecList[index];
             
+            _profileImage.sprite = FriendSpriteList[index];
+
             if (isCollected)
             {
                 _horizontalSpeed.text = targetSpec.HorizontalJumpSpeed.ToString();
                 _bounciness.text = targetSpec.VerticalJumpSpeed.ToString();
                 _magneticPower.text = targetSpec.MagneticPower.ToString();
                 _specialAbility.text = targetSpec.SpecialAbility;
-                _profileImage.sprite = FriendSpriteList[index];
+                _profileImage.color = Color.white;
                 _selectButton.interactable = true;
             }
             else
@@ -60,8 +63,9 @@ namespace MoonBunny.UIs
                 _bounciness.text = "???";
                 _magneticPower.text = "???";
                 _specialAbility.text = "???";
-                _profileImage.sprite = SilhouetteSprite;
                 _storyImage.sprite = UnCollectedStorySprite;
+                float colorValue = StartSceneUI.FriendSelectUI.FriendLibraryImageCurve.Evaluate(targetData.GetPercent());
+                _profileImage.color = new Color(colorValue, colorValue, colorValue, 1);
                 _selectButton.interactable = false;
             }
             

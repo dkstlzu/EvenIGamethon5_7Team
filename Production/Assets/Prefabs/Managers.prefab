@@ -19,7 +19,6 @@ GameObject:
   - component: {fileID: 1459504920463896759}
   - component: {fileID: 5048097624571690920}
   - component: {fileID: 1028992441649865061}
-  - component: {fileID: -4343465353899564900}
   m_Layer: 0
   m_Name: Managers
   m_TagString: GameController
@@ -142,7 +141,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f427407b6f1214947bc5de3c92a72268, type: 2}
   BouncyPlatformSound: {fileID: 8300000, guid: 3e35fa72656a4594e99720107582a5dd, type: 3}
   OpenStageAudioClip: {fileID: 8300000, guid: 1fdb7f1560016034698d3e970589b4ca, type: 3}
-  FriendCollectedAudioClip: {fileID: 8300000, guid: 9e5afcb31f3f2024fa5e57637b72422a, type: 3}
+  FriendCollectedAudioClip: {fileID: 8300000, guid: 9e5afcb31f3f2024fa5e57637b72422a,
+    type: 3}
   MemorySpriteList:
   - {fileID: -734545194, guid: a24f2f3676d7bad478e75246411598b3, type: 3}
   - {fileID: -1021032173, guid: a24f2f3676d7bad478e75246411598b3, type: 3}
@@ -153,13 +153,20 @@ MonoBehaviour:
   - {fileID: 21300000, guid: bb90e2a4544d54f2ca60d2e7db129b39, type: 3}
   - {fileID: 21300000, guid: 0a13d86a441345b428885a22cee43ceb, type: 3}
   - {fileID: -2018725415, guid: da433cf3386622b4f851ba4b4c089a09, type: 3}
-  CannibalismEffectPrefab: {fileID: 9127653965126434405, guid: b99b72f4a9666904fbe5e99b58090b10, type: 3}
-  StarCandyEffectPrefab: {fileID: 3072994387487185058, guid: 7f997d2f0cc923545a16cd1f37627173, type: 3}
-  ThunderEffectPrefab: {fileID: 13301048646092075, guid: 99e78b6b4035d884a8534bf10f2a8096, type: 3}
-  ThunderImpactEffectPrefab: {fileID: 7849791404790678207, guid: 4b02a9aff3cab62438a74180032b4b4f, type: 3}
-  WarningEffectPrefab: {fileID: 5105176418460448878, guid: d9d01206de179ba4d912ab7cfb2d3a54, type: 3}
-  ShootingStarEffectPrefab: {fileID: 210294969498474542, guid: 0ec458f0f6573e8449038e3e2a74d4f0, type: 3}
-  CoinPrefab: {fileID: 5553466026946515911, guid: 33683233be09cd345bba46a8631556d4, type: 3}
+  CannibalismEffectPrefab: {fileID: 9127653965126434405, guid: b99b72f4a9666904fbe5e99b58090b10,
+    type: 3}
+  StarCandyEffectPrefab: {fileID: 3072994387487185058, guid: 7f997d2f0cc923545a16cd1f37627173,
+    type: 3}
+  ThunderEffectPrefab: {fileID: 13301048646092075, guid: 99e78b6b4035d884a8534bf10f2a8096,
+    type: 3}
+  ThunderImpactEffectPrefab: {fileID: 7849791404790678207, guid: 4b02a9aff3cab62438a74180032b4b4f,
+    type: 3}
+  WarningEffectPrefab: {fileID: 5105176418460448878, guid: d9d01206de179ba4d912ab7cfb2d3a54,
+    type: 3}
+  ShootingStarEffectPrefab: {fileID: 210294969498474542, guid: 0ec458f0f6573e8449038e3e2a74d4f0,
+    type: 3}
+  CoinPrefab: {fileID: 5553466026946515911, guid: 33683233be09cd345bba46a8631556d4,
+    type: 3}
 --- !u!114 &4825278954930423277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,17 +472,28 @@ MonoBehaviour:
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
-  m_ActionsAsset: {fileID: -944628639613478452, guid: 1154d3ae385e0474a8fd96162f85ea97, type: 3}
-  m_PointAction: {fileID: 232832665379511964, guid: 1154d3ae385e0474a8fd96162f85ea97, type: 3}
-  m_MoveAction: {fileID: 8488155159550957953, guid: 1154d3ae385e0474a8fd96162f85ea97, type: 3}
-  m_SubmitAction: {fileID: -4507330155721010522, guid: 1154d3ae385e0474a8fd96162f85ea97, type: 3}
-  m_CancelAction: {fileID: -4105540731062214787, guid: 1154d3ae385e0474a8fd96162f85ea97, type: 3}
-  m_LeftClickAction: {fileID: 5342924532545970603, guid: 1154d3ae385e0474a8fd96162f85ea97, type: 3}
-  m_MiddleClickAction: {fileID: 3792575964693094180, guid: 1154d3ae385e0474a8fd96162f85ea97, type: 3}
-  m_RightClickAction: {fileID: 4576312366299797775, guid: 1154d3ae385e0474a8fd96162f85ea97, type: 3}
-  m_ScrollWheelAction: {fileID: 4918282498480506063, guid: 1154d3ae385e0474a8fd96162f85ea97, type: 3}
-  m_TrackedDevicePositionAction: {fileID: 7606412104058546147, guid: 1154d3ae385e0474a8fd96162f85ea97, type: 3}
-  m_TrackedDeviceOrientationAction: {fileID: -1100134378505278057, guid: 1154d3ae385e0474a8fd96162f85ea97, type: 3}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: 1154d3ae385e0474a8fd96162f85ea97,
+    type: 3}
+  m_PointAction: {fileID: 232832665379511964, guid: 1154d3ae385e0474a8fd96162f85ea97,
+    type: 3}
+  m_MoveAction: {fileID: 8488155159550957953, guid: 1154d3ae385e0474a8fd96162f85ea97,
+    type: 3}
+  m_SubmitAction: {fileID: -4507330155721010522, guid: 1154d3ae385e0474a8fd96162f85ea97,
+    type: 3}
+  m_CancelAction: {fileID: -4105540731062214787, guid: 1154d3ae385e0474a8fd96162f85ea97,
+    type: 3}
+  m_LeftClickAction: {fileID: 5342924532545970603, guid: 1154d3ae385e0474a8fd96162f85ea97,
+    type: 3}
+  m_MiddleClickAction: {fileID: 3792575964693094180, guid: 1154d3ae385e0474a8fd96162f85ea97,
+    type: 3}
+  m_RightClickAction: {fileID: 4576312366299797775, guid: 1154d3ae385e0474a8fd96162f85ea97,
+    type: 3}
+  m_ScrollWheelAction: {fileID: 4918282498480506063, guid: 1154d3ae385e0474a8fd96162f85ea97,
+    type: 3}
+  m_TrackedDevicePositionAction: {fileID: 7606412104058546147, guid: 1154d3ae385e0474a8fd96162f85ea97,
+    type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: -1100134378505278057, guid: 1154d3ae385e0474a8fd96162f85ea97,
+    type: 3}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
