@@ -113,10 +113,8 @@ namespace MoonBunny
 #if UNITY_EDITOR
             if (useSaveSystem)
             {
-#endif
                 SaveLoadSystem.Init("Saves", "Save", "txt");
                 SaveLoadSystem.LoadProgress();
-#if UNITY_EDITOR
             }
             else
             {
@@ -162,7 +160,9 @@ namespace MoonBunny
 
         private void OnApplicationQuit()
         {
+#if UNITY_EDITOR
             SaveProgress();
+#endif
         }
 
         public void SaveProgress()

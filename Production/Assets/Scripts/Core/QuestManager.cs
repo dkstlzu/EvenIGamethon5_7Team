@@ -117,6 +117,7 @@ namespace MoonBunny
             if (UseSaveSystem)
             {
 #endif
+
                 SaveLoadSystem.Init("Saves", "Quest", "txt");
 
                 SaveLoadSystem.OnSaveDataLoaded += () =>
@@ -144,8 +145,8 @@ namespace MoonBunny
                     }
                 };
 
-                SaveLoadSystem.LoadQuest();
 #if UNITY_EDITOR
+                SaveLoadSystem.LoadQuest();
             }
             else
             {
@@ -280,7 +281,9 @@ namespace MoonBunny
         
         private void OnApplicationQuit()
         {
+#if UNITY_EDITOR
             SaveLoadSystem.SaveQuest();
+#endif
         }
         
         public Quest GetQuest(int id)

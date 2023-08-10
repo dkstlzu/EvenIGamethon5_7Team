@@ -346,6 +346,7 @@ namespace MoonBunny
         }
 
         private event Action _onSaveDataLoaded;
+#if UNITY_EDITOR
         public event Action OnSaveDataLoaded
         {
             add
@@ -358,6 +359,21 @@ namespace MoonBunny
                 _onSaveDataLoaded -= value;
             }
         }
+#else
+        public event Action OnSaveDataLoaded
+        {
+            add
+            {
+                if (DataIsLoaded) value?.Invoke();
+                else GoogleManager.instance.OnDataLoadSuccess += value;
+            }
+            remove
+            {
+                GoogleManager.instance.OnDataLoadSuccess -= value;
+            }
+        }
+#endif
+
 
         public void LoadProgress()
         {
