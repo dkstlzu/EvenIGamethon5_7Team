@@ -20,13 +20,22 @@ namespace MoonBunny.UIs
         public List<FriendLibraryUI> FriendLibraryUIList;
         public FriendProfileUI FriendProfileUI;
         public AnimationCurve FriendLibraryImageCurve;
+        
+        public Image QuestRewardNoticeImage;
 
         public TextMeshProUGUI ProgressText;
         public Slider ProgressBar;
         public GameObject ShowEnding;
 
+        private void Start()
+        {
+            CoroutineHelper.OnNextFrame(Rebuild);
+        }
+
         protected override void Rebuild()
         {
+            QuestRewardNoticeImage.enabled = QuestUI.S_CanTakeRewardNumber > 0;
+            
             for (int i = 0; i < FriendLibraryUIList.Count; i++)
             {
                 FriendCollection.Data data = FriendCollectionManager.instance.Collection.Datas[i];

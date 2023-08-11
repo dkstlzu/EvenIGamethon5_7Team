@@ -1,11 +1,12 @@
 ﻿using System;
+using dkstlzu.Utility;
 using MoonBunny.UIs;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace MoonBunny
 {
-    public class InputManager : MonoBehaviour
+    public class InputManager : Singleton<InputManager>
     {
         public MoonBunnyInputAsset InputAsset;
 

@@ -438,6 +438,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanvasGroup: {fileID: 8094749384884865727}
+  isOpened: 0
+  _isFading: 0
   SubLevelContent: {fileID: 4704852716732870821}
   SubLevelSwipeTime: 1
   SubLevelList:
@@ -2772,7 +2774,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1320713366654823381}
-  - component: {fileID: 7985628708124718738}
+  - component: {fileID: 8624590141122473998}
   m_Layer: 5
   m_Name: ToRight
   m_TagString: Untagged
@@ -2801,7 +2803,7 @@ RectTransform:
   m_AnchoredPosition: {x: 157, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7985628708124718738
+--- !u!114 &8624590141122473998
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2810,7 +2812,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1048498781338191325}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 79919bf9d1c844d08eccc87f1b52f130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -2857,6 +2859,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &1072501811255303673
 GameObject:
   m_ObjectHideFlags: 0
@@ -3359,6 +3363,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanvasGroup: {fileID: 3156635292298045639}
+  isOpened: 0
+  _isFading: 0
   FriendLibraryUIList:
   - SelectButton: {fileID: 4038479827932997634}
     NameText: {fileID: 7759063908152615333}
@@ -3406,6 +3412,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  QuestRewardNoticeImage: {fileID: 1720016772835141007}
   ProgressText: {fileID: 2340033805939587678}
   ProgressBar: {fileID: 8987948348248725817}
   ShowEnding: {fileID: 3756298785683012573}
@@ -4149,6 +4156,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanvasGroup: {fileID: 9041369078905565541}
+  isOpened: 0
+  _isFading: 0
   StageButtonList:
   - Button: {fileID: 234449451354132153}
     StarImage: {fileID: 606207949841273092}
@@ -4279,6 +4288,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanvasGroup: {fileID: 4179296197404334451}
+  isOpened: 0
+  _isFading: 0
   Description: {fileID: 8220056128115491298}
   _onConfirm:
     m_PersistentCalls:
@@ -11177,12 +11188,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanvasGroup: {fileID: 9068636426028888948}
+  isOpened: 0
+  _isFading: 0
   QuestUIItemPrefab: {fileID: 5580850277251791773, guid: f4d9048c1fc83694d84ebe1b4b8e28fc, type: 3}
   UIItemParent: {fileID: 4997775181367839012}
   QuestUIItemDict:
     _elementList: []
   _layoutGroup: {fileID: 9218378244249369899}
-  RewardNoticeImage: {fileID: 1720016772835141007}
 --- !u!223 &4703876825238500858
 Canvas:
   m_ObjectHideFlags: 0
@@ -11572,7 +11584,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9018415644463450824}
-  - component: {fileID: 3964657383204537652}
+  - component: {fileID: 30452000048022541}
   m_Layer: 5
   m_Name: ToLeft
   m_TagString: Untagged
@@ -11601,7 +11613,7 @@ RectTransform:
   m_AnchoredPosition: {x: -169, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3964657383204537652
+--- !u!114 &30452000048022541
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11610,7 +11622,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3862638870381563760}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 79919bf9d1c844d08eccc87f1b52f130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -11657,6 +11669,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &3866809448884871256
 GameObject:
   m_ObjectHideFlags: 0
@@ -13285,6 +13299,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanvasGroup: {fileID: 606390623803245932}
+  isOpened: 0
+  _isFading: 0
   PackageToggle: {fileID: 1083287962915990069}
   DiamondChargeToggle: {fileID: 8947408990807253121}
   PackageCheckerBackground: {fileID: 4109381453247891276}
@@ -16702,6 +16718,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanvasGroup: {fileID: 5644199248445215966}
+  isOpened: 0
+  _isFading: 0
   SoundToggle: {fileID: 7048403454795431534}
   TutorialToggle: {fileID: 8908248780526385300}
   ConfirmUI: {fileID: 2374192228035279710}
@@ -19849,6 +19867,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanvasGroup: {fileID: 6882756521566265559}
+  isOpened: 0
+  _isFading: 0
   _currentGoldText: {fileID: 299616201413482584}
   _currentDiamondText: {fileID: 5849602973169105345}
   _exchangeOnceButton: {fileID: 3677248952070661860}
@@ -23823,6 +23843,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanvasGroup: {fileID: 2038758089395472560}
+  isOpened: 0
+  _isFading: 0
   Board: {fileID: 3556062461375794401}
   Contents: {fileID: 5026665387805953915}
   MemoryPurchaseTextList:
@@ -24751,6 +24773,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanvasGroup: {fileID: 3422648823053599716}
+  isOpened: 0
+  _isFading: 0
   FriendSpriteList:
   - {fileID: -1520476601, guid: f713bc0843ebd1340acac9f027026242, type: 3}
   - {fileID: -1880205778, guid: f713bc0843ebd1340acac9f027026242, type: 3}
@@ -25838,6 +25862,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanvasGroup: {fileID: 6408232531525247390}
+  isOpened: 0
+  _isFading: 0
 --- !u!223 &2789907332521257179
 Canvas:
   m_ObjectHideFlags: 0
@@ -26885,6 +26911,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanvasGroup: {fileID: 0}
+  isOpened: 0
+  _isFading: 0
   FriendSelectUI: {fileID: 899952262218170852}
   StageSelectUI: {fileID: 3643333339211033760}
   SettingUI: {fileID: 8393388765319475536}

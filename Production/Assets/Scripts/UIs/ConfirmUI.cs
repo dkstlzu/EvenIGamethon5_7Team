@@ -2,6 +2,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 namespace MoonBunny.UIs
 {
@@ -11,7 +12,28 @@ namespace MoonBunny.UIs
         
         [SerializeField] private UnityEvent _onConfirm;
         [SerializeField] private UnityEvent _onCancel;
-        
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            OnOpen += () =>
+            {
+                InputManager.instance.InputAsset.UI.Cancel.performed += OnCancelButtonClicked;
+            };
+
+            OnExit += () =>
+            {
+                InputManager.instance.InputAsset.UI.Cancel.performed -= OnCancelButtonClicked;
+            };
+        }
+
+        private void OnCancelButtonClicked(InputAction.CallbackContext obj)
+        {
+            OnCancelButtonClicked();
+        }
+
+
         public void OnConfirmButtonClicked()
         {
             _onConfirm?.Invoke();

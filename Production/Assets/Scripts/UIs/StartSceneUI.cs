@@ -50,7 +50,12 @@ namespace MoonBunny.UIs
             DiamondText1.text = _gameManager.DiamondNumber.ToString();
             DiamondText2.text = _gameManager.DiamondNumber.ToString();
             
-            FriendSelectUI.Open();
+            InputManager.instance.InputAsset.UI.Cancel.performed += OnQuitButtonClicked;
+        }
+
+        private void OnDestroy()
+        {
+            InputManager.instance.InputAsset.UI.Cancel.performed -= OnQuitButtonClicked;
         }
 
         public void OnGoToStageSelectButtonClicked()
@@ -69,6 +74,14 @@ namespace MoonBunny.UIs
         public void ShowEnding()
         {
             SceneManager.LoadScene(SceneName.Ending);
+        }
+
+        private void OnQuitButtonClicked(InputAction.CallbackContext context)
+        {
+            if (!ConfirmUI.isOpened)
+            {
+                OnQuitButtonClicked();
+            }
         }
 
         public void OnQuitButtonClicked()

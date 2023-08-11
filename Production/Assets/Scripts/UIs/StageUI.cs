@@ -7,6 +7,7 @@ using MoonBunny.Dev;
 using MoonBunny.Effects;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -70,6 +71,7 @@ namespace MoonBunny.UIs
         private void OnDestroy()
         {
             ThunderEffect.OnThunderAttack -= OnThunderAttack;
+            InputManager.instance.InputAsset.UI.Cancel.performed -= Pause;
         }
 
         void OnThunderAttack(float duration)
@@ -86,6 +88,15 @@ namespace MoonBunny.UIs
         public void CountDownFinish()
         {
             Stage.CountDownFinish();
+            InputManager.instance.InputAsset.UI.Cancel.performed += Pause;
+        }
+
+        private void Pause(InputAction.CallbackContext context)
+        {
+            if (PauseUI.alpha < 1)
+            {
+                Pause();
+            }
         }
         
         public void Pause()

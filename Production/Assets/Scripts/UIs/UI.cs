@@ -23,6 +23,7 @@ namespace MoonBunny.UIs
         public CanvasGroup CanvasGroup;
         protected const float DEFAULT_FADE_DURATION = 0.2f;
 
+        public bool isOpened;
         [SerializeField] protected bool _isFading = false;
 
         public event Action OnOpen;
@@ -80,6 +81,7 @@ namespace MoonBunny.UIs
             cg.DOFade(1, duration);
             cg.blocksRaycasts = true;
             if (_graphicRaycaster) _graphicRaycaster.enabled = true;
+            isOpened = true;
         }
 
         protected void FadeOut(CanvasGroup cg, float duration = DEFAULT_FADE_DURATION)
@@ -92,6 +94,7 @@ namespace MoonBunny.UIs
             cg.DOFade(0, duration);
             cg.blocksRaycasts = false;
             if (_graphicRaycaster) _graphicRaycaster.enabled = false;
+            isOpened = false;
         }
     }
 }
