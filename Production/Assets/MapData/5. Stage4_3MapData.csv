@@ -1,5 +1,5 @@
 No,Type,X,Y,Value1,Value2,Value3,Value4,Value5,Value6
-1,GoalInPlatform,-2,148,,,,,,
+1,GoalInPlatform,0,148,,,,,,
 2,BouncyPlatform,1,1,4,-,-,-,-,-
 3,BouncyPlatform,0,4,3,-,-,-,-,-
 4,BouncyPlatform,2,4,3,-,-,-,-,-
