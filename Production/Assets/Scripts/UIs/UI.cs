@@ -23,7 +23,7 @@ namespace MoonBunny.UIs
         public CanvasGroup CanvasGroup;
         protected const float DEFAULT_FADE_DURATION = 0.2f;
 
-        protected bool _isFading = false;
+        [SerializeField] protected bool _isFading = false;
 
         public event Action OnOpen;
         public event Action OnExit;
@@ -72,8 +72,11 @@ namespace MoonBunny.UIs
 
         protected void FadeIn(CanvasGroup cg, float duration = DEFAULT_FADE_DURATION)
         {
-            _isFading = true;
-            CoroutineHelper.Delay(() => _isFading = false, duration);
+            if (duration > 0)
+            {
+                _isFading = true;
+                CoroutineHelper.Delay(() => _isFading = false, duration);
+            }
             cg.DOFade(1, duration);
             cg.blocksRaycasts = true;
             if (_graphicRaycaster) _graphicRaycaster.enabled = true;
@@ -81,8 +84,11 @@ namespace MoonBunny.UIs
 
         protected void FadeOut(CanvasGroup cg, float duration = DEFAULT_FADE_DURATION)
         {
-            _isFading = true;
-            CoroutineHelper.Delay(() => _isFading = false, duration);
+            if (duration > 0)
+            {
+                _isFading = true;
+                CoroutineHelper.Delay(() => _isFading = false, duration);
+            }
             cg.DOFade(0, duration);
             cg.blocksRaycasts = false;
             if (_graphicRaycaster) _graphicRaycaster.enabled = false;

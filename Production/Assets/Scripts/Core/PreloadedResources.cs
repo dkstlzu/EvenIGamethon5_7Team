@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace MoonBunny
 {
-    [DefaultExecutionOrder(-10)]
+    [DefaultExecutionOrder(-100)]
     public class PreloadedResources : Singleton<PreloadedResources>
     {
         public List<Sprite> BouncyPlatformSpriteList;

@@ -153,7 +153,7 @@ namespace MoonBunny.UIs
             FadeIn(ClearUI);
 
             ClearStarImage.sprite = StarSpriteList[_gainedStarNumber];
-            GainedCoinText.text = (Stage.GoldNumber * Stage.GoldMultiplier).ToString();
+            GainedCoinText.text = $"{Stage.GoldNumber} x {Stage.GoldMultiplier}";
             
             foreach (var friendName in EnumHelper.ClapValuesOfEnum<FriendName>(0))
             {

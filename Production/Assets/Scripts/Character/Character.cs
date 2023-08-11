@@ -79,7 +79,7 @@ namespace MoonBunny
                 Rigidbody.CanDestroyObstaclesByStepping = true;
             }
 
-            Rigidbody.MaxYVelocityLimit = Mathf.Sqrt(_maxYJumpHeightLimit * 2 * Rigidbody.Gravity);
+            Rigidbody.MaxYVelocityLimit = Mathf.Sqrt(_maxYJumpHeightLimit * 2 * Rigidbody.Gravity) / Rigidbody.MoveSacle;
         }
 
         protected override void Update()

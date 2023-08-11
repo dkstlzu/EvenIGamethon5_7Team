@@ -2738,6 +2738,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &2856874948595464760
 GameObject:
   m_ObjectHideFlags: 0
@@ -3709,6 +3710,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &4091499075438619611
 GameObject:
   m_ObjectHideFlags: 0
@@ -5617,7 +5619,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 50, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &396681133512021578
 CanvasRenderer:
@@ -7085,6 +7087,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &6439859923246218965
 GameObject:
   m_ObjectHideFlags: 0
@@ -7756,7 +7759,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 50, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6757950168996883240
 CanvasRenderer:
