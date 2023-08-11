@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using dkstlzu.Utility;
 using MoonBunny.Effects;
 using UnityEngine;
@@ -33,7 +32,6 @@ namespace MoonBunny
         
         public int MaxGridHeight;
         public float SummonPositionVariation = 0.1f;
-        private List<Vector2Int> _summonPositionList = new List<Vector2Int>();
         
         private int xmin => GridTransform.GridXMin;
         private int xmax => GridTransform.GridXMax;
@@ -104,12 +102,11 @@ namespace MoonBunny
             {
                 Vector2Int randomGridPosition = GetRandomGridPosition();
 
-                if (!_summonPositionList.Contains(randomGridPosition) && !GridTransform.HasGridObject(randomGridPosition))
+                if (!GridTransform.HasGridObject(randomGridPosition))
                 {
                     Vector3 summonPosition = GetRealPositionWithVariation(randomGridPosition, GridTransform.GridSetting, SummonPositionVariation);
                     MonoBehaviour.Instantiate(RicecakePrefab, summonPosition, Quaternion.identity, parent.transform);
                     
-                    _summonPositionList.Add(randomGridPosition);
                     summonNumber++;
                 }
             }
@@ -130,12 +127,11 @@ namespace MoonBunny
             {
                 Vector2Int randomGridPosition = GetRandomGridPosition();
 
-                if (!_summonPositionList.Contains(randomGridPosition) && !GridTransform.HasGridObject(randomGridPosition))
+                if (!GridTransform.HasGridObject(randomGridPosition))
                 {
                     Vector3 summonPosition = GetRealPositionWithVariation(randomGridPosition, GridTransform.GridSetting, SummonPositionVariation);
                     MonoBehaviour.Instantiate(CoinPrefab, summonPosition, Quaternion.identity, parent.transform);
                     
-                    _summonPositionList.Add(randomGridPosition);
                     summonNumber++;
                 }
             }
@@ -156,12 +152,11 @@ namespace MoonBunny
             {
                 Vector2Int randomGridPosition = GetRandomGridPosition();
 
-                if (!_summonPositionList.Contains(randomGridPosition) && !GridTransform.HasGridObject(randomGridPosition))
+                if (!GridTransform.HasGridObject(randomGridPosition))
                 {
                     Vector3 summonPosition = GetRealPositionWithVariation(randomGridPosition, GridTransform.GridSetting, SummonPositionVariation);
                     MonoBehaviour.Instantiate(FriendPrefab, summonPosition, Quaternion.identity, parent.transform);
 
-                    _summonPositionList.Add(randomGridPosition);
                     summonNumber++;
                 }
             }

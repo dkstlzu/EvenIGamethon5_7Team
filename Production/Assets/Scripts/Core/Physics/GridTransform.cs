@@ -88,6 +88,7 @@ namespace MoonBunny
 #if UNITY_EDITOR
         [InitializeOnLoadMethod]
 #endif
+        [RuntimeInitializeOnLoadMethod]
         static void SetFindingLayerMask()
         {
             S_findingLayerMask = LayerMask.GetMask(new []{
