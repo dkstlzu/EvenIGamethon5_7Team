@@ -166,7 +166,7 @@ MonoBehaviour:
   GridTransform:
     transform: {fileID: 3730416857417677151}
     GridPosition: {x: 0, y: 2}
-    SnapMethod: 0
+    SnapMethod: 1
   InvokeOnCollision: 1
   _renderer: {fileID: 915102327818019555}
   _audioClip: {fileID: 8300000, guid: b68e2ed4335ae4242a1c7be5964906fc, type: 3}

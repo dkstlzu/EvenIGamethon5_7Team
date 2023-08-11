@@ -626,6 +626,7 @@ namespace MoonBunny
                     } else if (lineContent[typeIndex] == "GoalInPlatform")
                     {
                         GameObject.FindWithTag("StageGoal").transform.position = realPosition;
+                        GameObject.FindWithTag("StageGoal").GetComponent<StageGoal>().UpdateGrid();
                         continue;
                     } else if (lineContent[typeIndex] == "SpawnPoint")
                     {
@@ -645,6 +646,11 @@ namespace MoonBunny
                     {
                         Debug.LogError($"Something wrong while instantiating {lineContent[typeIndex]} check again");
                         continue;
+                    }
+
+                    if (instantiatedGo.TryGetComponent(out GridObject gridObject))
+                    {
+                        gridObject.UpdateGrid();
                     }
 
                     switch (lineContent[typeIndex])

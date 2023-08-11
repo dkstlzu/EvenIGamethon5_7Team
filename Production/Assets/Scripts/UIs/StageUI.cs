@@ -71,14 +71,13 @@ namespace MoonBunny.UIs
             SoundToggle.isOn = GameManager.instance.VolumeSetting > 0;
             StageInfoText.text = $"스테이지 모드 {Stage.StageLevel+1}-{Stage.SubLevel+1}";
             _progressHeightImage.sprite = CharacterProfileSpriteList[(int)_character.Friend.Name];
-            _realHeight = Stage.Spec.Height * GridTransform.GridSetting.GridHeight;
 
             ThunderEffect.OnThunderAttack += OnThunderAttack;
         }
 
         private void Update()
         {
-            _progressHeightBar.value = _character.transform.position.y / _realHeight;
+            _progressHeightBar.value = _character.transform.position.y / Stage.Height;
         }
 
         private void OnDestroy()
@@ -269,7 +268,6 @@ namespace MoonBunny.UIs
 
         public void GoToLobbyButtonClicked()
         {
-            Stage.OnGotoStageSelect();
             UpdateManager.instance.Clear();
 
             SceneManager.LoadSceneAsync(SceneName.Start).completed += (ao) =>

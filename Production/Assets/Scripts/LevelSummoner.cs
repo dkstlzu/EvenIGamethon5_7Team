@@ -37,7 +37,7 @@ namespace MoonBunny
         private int xmin => GridTransform.GridXMin;
         private int xmax => GridTransform.GridXMax;
         private int ymin = 3;
-        private int ymax => MaxGridHeight - 3;
+        private int ymax => MaxGridHeight;
         
         public void Update(float delta)
         {
@@ -72,7 +72,7 @@ namespace MoonBunny
                 int targetGridX = Random.Range(GridTransform.GridXMin + 1, GridTransform.GridXMax - 1);
                 
                 Vector2 areaMin = GridTransform.ToReal(new Vector2Int(targetGridX - 1, GridTransform.GridYMin)) - GridTransform.GetGridSize() / 2;
-                Vector2 areaMax = GridTransform.ToReal(new Vector2Int(targetGridX + 1, GameManager.instance.Stage.Spec.Height)) + GridTransform.GetGridSize() / 2;
+                Vector2 areaMax = GridTransform.ToReal(new Vector2Int(targetGridX + 1, GameManager.instance.Stage.GridHeight)) + GridTransform.GetGridSize() / 2;
 
                 WarningEffect warningEffect = new WarningEffect(new Rect(areaMin, areaMax - areaMin), ShootingStarWarningTime);
                 warningEffect.Effect();

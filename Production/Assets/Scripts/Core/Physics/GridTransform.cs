@@ -7,7 +7,7 @@ namespace MoonBunny
 {
     public enum SnapMethod
     {
-        None = -1,
+        None,
         RealToGrid,
         GridToReal
     }

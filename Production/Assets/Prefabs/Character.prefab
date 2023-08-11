@@ -282,7 +282,7 @@ MonoBehaviour:
   GridTransform:
     transform: {fileID: 6942469379576056503}
     GridPosition: {x: 0, y: 0}
-    SnapMethod: 0
+    SnapMethod: 1
   MaxYGridJumpHeightLimit: 10
   _animator: {fileID: 8993331230077029172}
   Renderer: {fileID: 1956461046610411173}

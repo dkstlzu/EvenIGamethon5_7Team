@@ -4,21 +4,21 @@ using UnityEngine.UIElements;
 
 namespace MoonBunny.CustomEditors
 {
-    [CanEditMultipleObjects]
-    [CustomEditor(typeof(GridObject), true)]
-    public class GridObjectEditor : Editor
-    {
-        public override VisualElement CreateInspectorGUI()
-        {
-            VisualElement root = new VisualElement();
-
-            PropertyField gridTransform = new PropertyField(serializedObject.FindProperty("GridTransform").FindPropertyRelative("GridPosition"));
-
-            InspectorElement.FillDefaultInspector(root, serializedObject, this);
-
-            root.Insert(1, gridTransform);
-            
-            return root;
-        }
-    }
+    // [CanEditMultipleObjects]
+    // [CustomEditor(typeof(GridObject), true)]
+    // public class GridObjectEditor : Editor
+    // {
+    //     public override VisualElement CreateInspectorGUI()
+    //     {
+    //         VisualElement root = new VisualElement();
+    //
+    //         PropertyField gridTransform = new PropertyField(serializedObject.FindProperty("GridTransform").FindPropertyRelative("GridPosition"));
+    //
+    //         InspectorElement.FillDefaultInspector(root, serializedObject, this);
+    //
+    //         root.Insert(1, gridTransform);
+    //         
+    //         return root;
+    //     }
+    // }
 }

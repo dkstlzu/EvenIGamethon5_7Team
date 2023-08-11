@@ -135,6 +135,7 @@ MonoBehaviour:
   GridTransform:
     transform: {fileID: 649675485607266654}
     GridPosition: {x: 0, y: 0}
+    SnapMethod: 1
   InvokeOnCollision: 1
   _renderer: {fileID: 5804303894752395474}
   _audioClip: {fileID: 8300000, guid: b68e2ed4335ae4242a1c7be5964906fc, type: 3}
@@ -152,6 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44342a30f9e24963b7611ebeb9b91d16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxYVelocityLimit: 3.4028235e+38
   _gravity: 0
   MoveSacle: 1
   GridObject: {fileID: 5943036066580041157}
@@ -160,7 +162,7 @@ MonoBehaviour:
     LayerMask:
       serializedVersion: 2
       m_Bits: 2048
-    Direciton: 12
+    Direction: 12
   IgnoringLayerMask:
     serializedVersion: 2
     m_Bits: 0

@@ -317,7 +317,7 @@ namespace MoonBunny.Effects
         public void Effect()
         {
             areaMin = GridTransform.ToReal(new Vector2Int(_targetColumn, GridTransform.GridYMin)) - GridTransform.GetGridSize() / 2;
-            areaMax = GridTransform.ToReal(new Vector2Int(_targetColumn, GameManager.instance.Stage.Spec.Height)) + GridTransform.GetGridSize() / 2;
+            areaMax = GridTransform.ToReal(new Vector2Int(_targetColumn, GameManager.instance.Stage.GridHeight)) + GridTransform.GetGridSize() / 2;
 
             WarningEffect warningEffect = new WarningEffect(new Rect(areaMin, areaMax - areaMin), _warningDuration);
             warningEffect.Effect();
