@@ -284,6 +284,7 @@ namespace MoonBunny
                 byte[] data = Encoding.Default.GetBytes(str);
                 byte[] cryptoData = aes.CreateEncryptor().TransformFinalBlock(data, 0, data.Length);
                 File.WriteAllBytes(filePath, cryptoData);
+                OnSaveSuccess?.Invoke();
             }
         }
         
@@ -380,6 +381,7 @@ namespace MoonBunny
                         
                         if (ProgressSaveData.StarDict.Count < stageNames.Length * 3)
                         {
+                            ProgressSaveData.StarDict.Clear();
                             foreach (StageName stageName in stageNames)
                             {
                                 int stageLevel = (int)stageName;
@@ -410,6 +412,20 @@ namespace MoonBunny
             try
             {
                 ProgressSaveData = LoadEncrypted<ProgressSaveData>(PersistenceFilePath);
+                
+                StageName[] stageNames = EnumHelper.ClapValuesOfEnum<StageName>(0);
+                        
+                if (ProgressSaveData.StarDict.Count < stageNames.Length * 3)
+                {
+                    ProgressSaveData.StarDict.Clear();
+                    foreach (StageName stageName in stageNames)
+                    {
+                        int stageLevel = (int)stageName;
+                        ProgressSaveData.StarDict.Add(stageLevel * 10 + 0, 0);
+                        ProgressSaveData.StarDict.Add(stageLevel * 10 + 1, 0);
+                        ProgressSaveData.StarDict.Add(stageLevel * 10 + 2, 0);
+                    }
+                }
             }
             catch (Exception)
             {

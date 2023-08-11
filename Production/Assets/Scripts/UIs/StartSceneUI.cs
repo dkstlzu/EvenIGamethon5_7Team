@@ -16,6 +16,7 @@ namespace MoonBunny.UIs
         [Header("Main UI Flow")]
         public FriendSelectUI FriendSelectUI;
         public StageSelectUI StageSelectUI;
+        public SubLevelSelectUI SubLevelSelectUI;
 
         [Header("Sub Pop Ups")] 
         public SettingUI SettingUI;

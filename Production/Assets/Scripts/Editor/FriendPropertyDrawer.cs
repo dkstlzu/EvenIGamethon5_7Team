@@ -21,6 +21,7 @@ namespace MoonBunny.CustomEditors
             foldout.text = "Friend";
 
             PropertyField spec = new PropertyField(property.FindPropertyRelative("_spec"));
+            PropertyField name = new PropertyField(property.FindPropertyRelative("Name"));
             Label horizontalSpeed = new Label("Speed" + Space + property.FindPropertyRelative("HorizontalSpeed").intValue);
             Label jumpPower = new Label("JumpPower" + Space + property.FindPropertyRelative("JumpPower").floatValue);
             Label magneticPower = new Label("MagneticPower" + Space + property.FindPropertyRelative("MagneticPower").floatValue);
@@ -28,6 +29,7 @@ namespace MoonBunny.CustomEditors
             spec.RegisterValueChangeCallback((evt) => OnSpecChanged((FriendSpec)evt.changedProperty.objectReferenceValue, property));
 
             foldout.Add(spec);
+            foldout.Add(name);
             foldout.Add(horizontalSpeed);
             foldout.Add(jumpPower);
             foldout.Add(magneticPower);

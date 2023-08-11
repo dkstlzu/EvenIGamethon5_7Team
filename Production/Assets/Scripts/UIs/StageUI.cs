@@ -128,8 +128,6 @@ namespace MoonBunny.UIs
             MoonBunnyRigidbody.EnableAll();
             TimeUpdatable.GlobalSpeed = 1;
         }
-        
-
 
         public void SetScore(int score)
         {
@@ -173,8 +171,12 @@ namespace MoonBunny.UIs
             OnDirectionChangeButtonClicked?.Invoke();
         }
 
+        private bool _cleared = false;
+        
         public void Clear()
         {
+            _cleared = true;
+            
             FadeIn(ClearUI);
 
             ClearStarImage.sprite = StarSpriteList[_gainedStarNumber];
@@ -218,6 +220,7 @@ namespace MoonBunny.UIs
             Scene startScene = SceneManager.GetActiveScene();
             CameraSetter previousCameraSetter = FindObjectOfType<CameraSetter>();
             previousCameraSetter.MainCamera.tag = "Untagged";
+            previousCameraSetter.MainCamera.depth = 1;
             previousCameraSetter.Brain.enabled = false;
             Destroy(GameObject.FindWithTag("GlobalLight").gameObject);
             

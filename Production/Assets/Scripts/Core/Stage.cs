@@ -133,11 +133,11 @@ namespace MoonBunny
             _spec = Resources.Load<StageSpec>($"{SpecPath}Stage{StageLevel+1}_{SubLevel+1}Spec");
             
             SetConfiner();
+            SetCharater();
         }
 
         private void Start()
         {
-            SetCharater();
             SetEnvironments();
             SetSummoner();
         }

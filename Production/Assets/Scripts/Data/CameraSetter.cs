@@ -23,8 +23,9 @@ namespace MoonBunny
             Confiner2D.m_BoundingShape2D = GameManager.instance.Stage.LevelConfiner;
             Confiner2D.InvalidateCache();
             
-            CoroutineHelper.OnNextFrame(() =>
+            CoroutineHelper.Delay(() =>
             {
+                VirtualCamera.Follow = Character.instance.transform;
                 OnCameraSetFinish?.Invoke();
                 if (GameManager.instance.ShowTutorial)
                 {
@@ -34,7 +35,7 @@ namespace MoonBunny
                 {
                     GameManager.instance.Stage.UI.GetComponent<Animator>().enabled = true;
                 }
-            });
+            }, CameraSetTime);
         }
     }
 }
