@@ -55,6 +55,7 @@ namespace MoonBunny.UIs
 
         private void OnDestroy()
         {
+            if (InputManager.instance)
             InputManager.instance.InputAsset.UI.Cancel.performed -= OnQuitButtonClicked;
         }
 

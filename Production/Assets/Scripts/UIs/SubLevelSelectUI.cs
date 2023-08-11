@@ -15,6 +15,7 @@ namespace MoonBunny.UIs
         public class SubLevelUI
         {
             public Image Image;
+            public Image StarImage;
             public Image Text;
             public bool Enabled;
             public List<SubLevelSprites> SpriteList;
@@ -31,6 +32,7 @@ namespace MoonBunny.UIs
         public RectTransform SubLevelContent;
         public float SubLevelSwipeTime;
         public List<SubLevelUI> SubLevelList;
+        public List<Sprite> StarSpriteList;
         public Button StartButton;
         public Sprite LockStageSprite;
         
@@ -50,6 +52,8 @@ namespace MoonBunny.UIs
             {
                 SubLevelList[i].Enabled = GameManager.ProgressSaveData.ClearDict[(StageName)_selectingLevel] >= i;
                 SubLevelList[i].Image.sprite = SubLevelList[i].Enabled ? SubLevelList[i].SpriteList[_selectingLevel].SubLevelSprite : LockStageSprite;
+                int clearedStar = GameManager.ProgressSaveData.StarDict[_selectingLevel * 10 + i];
+                SubLevelList[i].StarImage.sprite = StarSpriteList[clearedStar];
                 SubLevelList[i].Text.sprite = SubLevelList[i].SpriteList[_selectingLevel].SubLevelTextSprite;
             }
         }

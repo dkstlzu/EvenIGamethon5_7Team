@@ -21,6 +21,8 @@ namespace MoonBunny.Dev.Editor
             {
                 case BuildTarget.Android:
                     PlayerSettings.Android.bundleVersionCode++;
+                    float currentVersion = float.Parse(PlayerSettings.bundleVersion);
+                    PlayerSettings.bundleVersion = (currentVersion += 0.001f).ToString();
                     break;
             } 
         }

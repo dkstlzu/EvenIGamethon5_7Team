@@ -33,10 +33,12 @@ namespace MoonBunny
         [SerializeField] private ReadOnlyEnumDict<FriendName, int> _collectionDict = new ReadOnlyEnumDict<FriendName, int>();
         [SerializeField] private ReadOnlyEnumDict<FriendName, int> _collectionSellDict = new ReadOnlyEnumDict<FriendName, int>();
         [SerializeField] private ReadOnlyEnumDict<StageName, int> _clearDict = new ReadOnlyEnumDict<StageName, int>();
+        [SerializeField] private ReadOnlyDict<int, int> _starDict = new ReadOnlyDict<int, int>();
 
         public ReadOnlyEnumDict<FriendName, int> CollectionDict => _collectionDict;
         public ReadOnlyEnumDict<FriendName, int> CollectionSellDict => _collectionSellDict;
         public ReadOnlyEnumDict<StageName, int> ClearDict => _clearDict;
+        public ReadOnlyDict<int, int> StarDict => _starDict;
 
         public string UsingFriendName;
         public int DiamondNumber;
@@ -64,7 +66,12 @@ namespace MoonBunny
             {
                 if ((int)stageName < 0) continue;
                 progressSaveData.ClearDict.Add(stageName, -1);
+                int stageLevel = (int)stageName;
+                progressSaveData.StarDict.Add(stageLevel * 10 + 0, 0);
+                progressSaveData.StarDict.Add(stageLevel * 10 + 1, 0);
+                progressSaveData.StarDict.Add(stageLevel * 10 + 2, 0);
             }
+
 
             progressSaveData.ClearDict[StageName.GrassField] = 0;
             
@@ -107,6 +114,10 @@ namespace MoonBunny
             for (int i = 0; i < data.ClearDict.Count; i++)
             {
                 data.ClearDict[(StageName)i] = 3;
+                int stageLevel = i;
+                data.StarDict[stageLevel * 10 + 0] = 3;
+                data.StarDict[stageLevel * 10 + 1] = 3;
+                data.StarDict[stageLevel * 10 + 2] = 3;
             }
 
             data.DiamondNumber = 9999;

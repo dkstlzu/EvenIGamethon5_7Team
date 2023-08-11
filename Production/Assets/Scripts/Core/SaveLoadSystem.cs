@@ -2,6 +2,7 @@
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+using dkstlzu.Utility;
 using MoonBunny.Dev;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -374,6 +375,19 @@ namespace MoonBunny
                     if (ProgressSaveData != null)
                     {
                         MoonBunnyLog.print($"SaveLoadSystem load success : {PersistenceFilePath}");
+
+                        StageName[] stageNames = EnumHelper.ClapValuesOfEnum<StageName>(0);
+                        
+                        if (ProgressSaveData.StarDict.Count < stageNames.Length * 3)
+                        {
+                            foreach (StageName stageName in stageNames)
+                            {
+                                int stageLevel = (int)stageName;
+                                ProgressSaveData.StarDict.Add(stageLevel * 10 + 0, 0);
+                                ProgressSaveData.StarDict.Add(stageLevel * 10 + 1, 0);
+                                ProgressSaveData.StarDict.Add(stageLevel * 10 + 2, 0);
+                            }
+                        }
                     }
                     else
                     {

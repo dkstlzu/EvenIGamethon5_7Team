@@ -57,6 +57,8 @@ namespace MoonBunny
         /// </summary>
         public static event Action<int> OnNewLevelUnlocked;
 
+        public static event Action<int, int> OnNewStarGained;
+
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static void Init()
@@ -64,6 +66,7 @@ namespace MoonBunny
             OnStageClear = null;
             OnNewStageUnlocked = null;
             OnNewLevelUnlocked = null;
+            OnNewStarGained = null;
         }
 
         private const string SpecPath = "Specs/Stage/";
@@ -254,6 +257,14 @@ namespace MoonBunny
                     GameManager.ProgressSaveData.ClearDict[Name + 1] = 0;
                     OnNewStageUnlocked?.Invoke(StageLevel+1);
                 }
+            }
+
+            int levelKey = StageLevel * 10 + SubLevel;
+            int previousStar = GameManager.ProgressSaveData.StarDict[levelKey];
+            if (previousStar < GainedStar)
+            {
+                GameManager.ProgressSaveData.StarDict[levelKey] = GainedStar;
+                OnNewStarGained?.Invoke(levelKey, GainedStar);
             }
             
             GameManager.instance.GoldNumber += (int)(GoldNumber * GoldMultiplier);

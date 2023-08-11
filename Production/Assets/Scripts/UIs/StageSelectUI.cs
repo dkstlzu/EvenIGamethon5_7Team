@@ -12,12 +12,10 @@ namespace MoonBunny.UIs
         public class StageButtonUI
         {
             public Button Button;
-            public Image StarImage;
             public Image LockImage;
         }
         
         public List<StageButtonUI> StageButtonList;
-        public List<Sprite> StarSpriteList;
         public SubLevelSelectUI SubLevelSelectUI;
 
         protected override void Awake()
@@ -29,9 +27,6 @@ namespace MoonBunny.UIs
                 for (int i = 0; i < StageButtonList.Count; i++)
                 {
                     int subLevelClear = GameManager.ProgressSaveData.ClearDict[(StageName)i];
-
-                    if (StageButtonList[i].StarImage)
-                        StageButtonList[i].StarImage.sprite = StarSpriteList[Mathf.Clamp(subLevelClear, 0, StarSpriteList.Count-1)];
 
                     if (i + 1 < StageButtonList.Count)
                     {
