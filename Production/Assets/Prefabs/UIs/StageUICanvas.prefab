@@ -1753,6 +1753,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanvasGroup: {fileID: 0}
+  _isFading: 0
   MagnetBuff: {fileID: 4314193292174683525}
   SpiderDebuff: {fileID: 6878790339360927679}
 --- !u!1 &1938575941660016495
@@ -2424,6 +2425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanvasGroup: {fileID: 3447410209086767117}
+  _isFading: 0
   Description: {fileID: 923576377703979936}
   _onConfirm:
     m_PersistentCalls:
@@ -4221,10 +4223,10 @@ RectTransform:
   m_Father: {fileID: 7377737122949396343}
   m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &852137858733074922
 CanvasRenderer:
@@ -7302,6 +7304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanvasGroup: {fileID: 0}
+  _isFading: 0
   PauseUI: {fileID: 2949121869577439244}
   FailUI: {fileID: 8735353596425527459}
   ClearUI: {fileID: 3085994134885186056}
@@ -8753,6 +8756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanvasGroup: {fileID: 234906047041919211}
+  _isFading: 0
   BoardTransform: {fileID: 1727979534299701004}
   BoostUI: {fileID: 480711031056146700}
   BoostNoticeText: {fileID: 8546112325116317806}
