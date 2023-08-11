@@ -122,10 +122,10 @@ namespace MoonBunny
             GameManager.instance.Stage = this;
             UI.Stage = this;
             
-            Name = StringValue.GetEnumValue<StageName>(SceneManager.GetActiveScene().name);
-
             StageLevel = S_StageLevel;
             SubLevel = S_SubLevel;
+
+            Name = (StageName)StageLevel;
             
             _spec = Resources.Load<StageSpec>($"{SpecPath}Stage{StageLevel+1}_{SubLevel+1}Spec");
             
