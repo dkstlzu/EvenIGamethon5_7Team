@@ -706,7 +706,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 6598437420881310712}
   m_FillRect: {fileID: 1191661078592434912}
   m_HandleRect: {fileID: 1800884440302365965}
   m_Direction: 2
@@ -7598,13 +7598,13 @@ RectTransform:
   m_Children:
   - {fileID: 5793139012983259400}
   - {fileID: 7196188587901330085}
+  - {fileID: 3628901587944592072}
   - {fileID: 8576892984965730964}
   - {fileID: 1999628140710429478}
   - {fileID: 2508573921276277226}
   - {fileID: 1616155733249725445}
   - {fileID: 880194094001212588}
   - {fileID: 2402018899154900373}
-  - {fileID: 3628901587944592072}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

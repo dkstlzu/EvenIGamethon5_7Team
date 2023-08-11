@@ -132,17 +132,36 @@ namespace MoonBunny
             
             _spec = Resources.Load<StageSpec>($"{SpecPath}Stage{StageLevel+1}_{SubLevel+1}Spec");
             
-            SetCharater();
-            SetEnvironments();
+            SetConfiner();
         }
 
         private void Start()
         {
+            SetCharater();
+            SetEnvironments();
             SetSummoner();
         }
 
         #region Initialize
 
+        void SetConfiner()
+        {
+            Vector2 minPoint = GridTransform.ToReal(new Vector2Int(GridTransform.GridXMin, -Spec.Height / 2)) -
+                GridTransform.GetGridSize() / 2 + Vector2.down * 3;
+            Vector2 maxPoint = GridTransform.ToReal(new Vector2Int(GridTransform.GridXMax, Spec.Height/2)) +
+                               GridTransform.GetGridSize() / 2;
+
+            Vector2[] path = new Vector2[]
+            {
+                new Vector2(minPoint.x, maxPoint.y),
+                minPoint,
+                new Vector2(maxPoint.x, minPoint.y),
+                maxPoint
+            };
+
+            _levelCollider.SetPath(0, path);
+        }
+        
         void SetCharater()
         {
             _character = Character.instance;
@@ -158,7 +177,7 @@ namespace MoonBunny
             // Background and sidewalls range initialize;
             Vector3 backgroundPosition = _backgroundSpriteRenderer.transform.position;
             _backgroundSpriteRenderer.transform.position = new Vector3(backgroundPosition.x, _realHeight/2, backgroundPosition.z);
-            float backgroundSizeX = FindObjectOfType<CameraSetter>()._virtualCamera.m_Lens.OrthographicSize * (float)Screen.width / Screen.height * 2;
+            float backgroundSizeX = FindObjectOfType<CameraSetter>().VirtualCamera.m_Lens.OrthographicSize * (float)Screen.width / Screen.height * 2;
             _backgroundSpriteRenderer.size = new Vector2(backgroundSizeX, _realHeight + 20);
 
             Vector3 leftWallPosition = _leftWallCollider.transform.position;
@@ -168,21 +187,6 @@ namespace MoonBunny
             Vector3 rightWallPosition = _rightWallCollider.transform.position;
             _rightWallCollider.transform.position = new Vector3(rightWallPosition.x, _realHeight/2, rightWallPosition.z);
             _rightWallCollider.size = new Vector2(_rightWallCollider.size.x, _realHeight + 20);
-
-            Vector2 minPoint = GridTransform.ToReal(new Vector2Int(GridTransform.GridXMin, -Spec.Height / 2)) -
-                GridTransform.GetGridSize() / 2 + Vector2.down * 3;
-            Vector2 maxPoint = GridTransform.ToReal(new Vector2Int(GridTransform.GridXMax, Spec.Height/2)) +
-                               GridTransform.GetGridSize() / 2;
-
-            Vector2[] path = new Vector2[]
-            {
-                new Vector2(minPoint.x, maxPoint.y),
-                minPoint,
-                new Vector2(maxPoint.x, minPoint.y),
-                maxPoint
-            };
-
-            _levelCollider.SetPath(0, path);
         }
 
         void SetSummoner()

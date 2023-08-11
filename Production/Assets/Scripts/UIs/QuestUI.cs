@@ -48,6 +48,8 @@ namespace MoonBunny.UIs
                 UIItemList[i].Set(quests[i]);
                 QuestUIItemDict.Add(UIItemList[i].TargetQuestId, UIItemList[i]);
             }
+
+            GameManager.instance.StartSceneUI.FriendSelectUI.QuestRewardNoticeImage.enabled = S_CanTakeRewardNumber > 0;
             
             Rebuild();
             

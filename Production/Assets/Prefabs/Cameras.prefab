@@ -297,8 +297,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5647a7e5c24426b9ea488de6336d535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _virtualCamera: {fileID: 8301922084155902287}
-  _confiner2D: {fileID: 3472184930909005835}
+  MainCamera: {fileID: 1471663645572331350}
+  AudioListener: {fileID: 6511626789803076828}
+  Brain: {fileID: 7740290399025237075}
+  VirtualCamera: {fileID: 8301922084155902287}
+  Confiner2D: {fileID: 3472184930909005835}
   CameraSetTime: 0.5
 --- !u!1 &9197991868720157737
 GameObject:

@@ -56,6 +56,8 @@ namespace MoonBunny.UIs
                 SubLevelList[i].StarImage.sprite = StarSpriteList[clearedStar];
                 SubLevelList[i].Text.sprite = SubLevelList[i].SpriteList[_selectingLevel].SubLevelTextSprite;
             }
+            
+            StartButton.interactable = SubLevelList[_subLevelIndex].Enabled;
         }
         
         public void OnLeftButtonClicked()

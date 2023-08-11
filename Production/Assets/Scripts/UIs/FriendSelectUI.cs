@@ -27,9 +27,10 @@ namespace MoonBunny.UIs
         public Slider ProgressBar;
         public GameObject ShowEnding;
 
-        private void Start()
+        protected override void Awake()
         {
-            CoroutineHelper.OnNextFrame(Rebuild);
+            base.Awake();
+            Rebuild();
         }
 
         protected override void Rebuild()

@@ -2,6 +2,7 @@
 using dkstlzu.Utility;
 using MoonBunny.Effects;
 using UnityEngine;
+using UnityEngine.Rendering;
 using Random = UnityEngine.Random;
 
 namespace MoonBunny

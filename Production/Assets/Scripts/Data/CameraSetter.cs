@@ -2,13 +2,17 @@
 using Cinemachine;
 using dkstlzu.Utility;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace MoonBunny
 {
     public class CameraSetter : MonoBehaviour
     {
-        public CinemachineVirtualCamera _virtualCamera;
-        public CinemachineConfiner2D _confiner2D;
+        public Camera MainCamera;
+        public AudioListener AudioListener;
+        public CinemachineBrain Brain;
+        public CinemachineVirtualCamera VirtualCamera;
+        public CinemachineConfiner2D Confiner2D;
 
         public event Action OnCameraSetFinish;
         public float CameraSetTime;
@@ -16,10 +20,10 @@ namespace MoonBunny
         protected void Start()
         {
             AudioListener.volume = GameManager.instance.VolumeSetting;
-            _confiner2D.m_BoundingShape2D = GameManager.instance.Stage.LevelConfiner;
-            _confiner2D.InvalidateCache();
+            Confiner2D.m_BoundingShape2D = GameManager.instance.Stage.LevelConfiner;
+            Confiner2D.InvalidateCache();
             
-            CoroutineHelper.Delay(() =>
+            CoroutineHelper.OnNextFrame(() =>
             {
                 OnCameraSetFinish?.Invoke();
                 if (GameManager.instance.ShowTutorial)
@@ -30,7 +34,7 @@ namespace MoonBunny
                 {
                     GameManager.instance.Stage.UI.GetComponent<Animator>().enabled = true;
                 }
-            }, CameraSetTime);
+            });
         }
     }
 }

@@ -216,13 +216,14 @@ namespace MoonBunny.UIs
             Canvas canvas = GetComponent<Canvas>();
             canvas.sortingOrder = 1;
             Scene startScene = SceneManager.GetActiveScene();
-            Camera cam = Camera.main;
-            cam.transform.tag = "Untagged";
+            CameraSetter previousCameraSetter = FindObjectOfType<CameraSetter>();
+            previousCameraSetter.MainCamera.tag = "Untagged";
+            previousCameraSetter.Brain.enabled = false;
             Destroy(GameObject.FindWithTag("GlobalLight").gameObject);
             
             SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name, LoadSceneMode.Additive).completed += (ao) =>
             {
-                Destroy(cam.gameObject);
+                Destroy(previousCameraSetter.AudioListener);
 
                 Stage stage = GameManager.instance.Stage;
 
@@ -242,14 +243,20 @@ namespace MoonBunny.UIs
                 
                 stage.gameObject.SetActive(false);
                 character.gameObject.SetActive(false);
-                
-                Camera.main.GetComponentInParent<CameraSetter>().OnCameraSetFinish += () =>
+                    
+                CameraSetter nextCameraSetter = Camera.main.GetComponentInParent<CameraSetter>();
+
+                nextCameraSetter.MainCamera.GetComponentInParent<CameraSetter>().OnCameraSetFinish += () =>
                 {
                     canvas.sortingOrder = -1;
-                    SceneManager.UnloadSceneAsync(startScene);
-                    stage.gameObject.SetActive(true);
-                    character.gameObject.SetActive(true);
+                    SceneManager.UnloadSceneAsync(startScene).completed += (ao) =>
+                    {
+                        stage.gameObject.SetActive(true);
+                        character.gameObject.SetActive(true);
+                        nextCameraSetter.MainCamera.enabled = true;
+                    };
                 };
+                nextCameraSetter.MainCamera.enabled = false;
             };
             
             GameManager.instance.GoldNumber -= BoostUI.S_ConsumingGold;

@@ -9,6 +9,11 @@ namespace MoonBunny.UIs
             Application.OpenURL("https://www.instagram.com/jump_have_bunny_official/");            
         }
 
+        public void OnBlogButtonClicked()
+        {
+            Application.OpenURL("https://blog.naver.com/manggaeduck");            
+        }
+
         public void OnVoteButtonClicked()
         {
             Application.OpenURL("https://pale-flower-e0d.notion.site/5-9793ec7a499b4f9dae63af25a17b8b71");            
