@@ -68,8 +68,8 @@ namespace MoonBunny.UIs
         public const string SellLimitExceedText = "구매 가능한 최대숫자를 넘었습니다";
         public const string PurchaseSuccess = "구매 완료";
 
-        public const int NORMAL_GOTCHA_GOLD_COST = 150;
-        public const int SPECIAL_GOTCHA_DIAMOND_COST = 3;
+        public const int NORMAL_GOTCHA_GOLD_COST = 200;
+        public const int SPECIAL_GOTCHA_DIAMOND_COST = 5;
 
         private const float TWEEN_DURATION = 0.5f;
         private const float NORMAL_GOTCHA_Y = 0f;

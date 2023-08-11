@@ -8,6 +8,7 @@ using MoonBunny.Effects;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -32,6 +33,9 @@ namespace MoonBunny.UIs
         [Header("Progress")]
         [SerializeField] private Slider _progressBar;
         [SerializeField] private TextMeshProUGUI _scoreText;
+        [SerializeField] private Slider _progressHeightBar;
+        [SerializeField] private Image _progressHeightImage;
+        public List<Sprite> CharacterProfileSpriteList;
 
         [SerializeField] private Sprite _progressEmptyStar;
         [SerializeField] private Sprite _progressFullStar;
@@ -57,6 +61,8 @@ namespace MoonBunny.UIs
 
         private Character _character;
         public event Action OnDirectionChangeButtonClicked;
+
+        private float _realHeight;
         
         private void Start()
         {
@@ -64,13 +70,21 @@ namespace MoonBunny.UIs
             _currentHP = _character.CurrentHp;
             SoundToggle.isOn = GameManager.instance.VolumeSetting > 0;
             StageInfoText.text = $"스테이지 모드 {Stage.StageLevel+1}-{Stage.SubLevel+1}";
+            _progressHeightImage.sprite = CharacterProfileSpriteList[(int)_character.Friend.Name];
+            _realHeight = Stage.Spec.Height * GridTransform.GridSetting.GridHeight;
 
             ThunderEffect.OnThunderAttack += OnThunderAttack;
+        }
+
+        private void Update()
+        {
+            _progressHeightBar.value = _character.transform.position.y / _realHeight;
         }
 
         private void OnDestroy()
         {
             ThunderEffect.OnThunderAttack -= OnThunderAttack;
+            if (InputManager.instance)
             InputManager.instance.InputAsset.UI.Cancel.performed -= Pause;
         }
 
@@ -199,8 +213,17 @@ namespace MoonBunny.UIs
             TimeUpdatable.GlobalSpeed = 1;
             UpdateManager.instance.Clear();
             
-            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name).completed += (ao) =>
+            Canvas canvas = GetComponent<Canvas>();
+            canvas.sortingOrder = 1;
+            Scene startScene = SceneManager.GetActiveScene();
+            Camera cam = Camera.main;
+            cam.transform.tag = "Untagged";
+            Destroy(GameObject.FindWithTag("GlobalLight").gameObject);
+            
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name, LoadSceneMode.Additive).completed += (ao) =>
             {
+                Destroy(cam.gameObject);
+
                 Stage stage = GameManager.instance.Stage;
 
                 Character character = Character.instance;
@@ -216,6 +239,17 @@ namespace MoonBunny.UIs
                         stage.BoostEffectList.Add(new StarCandyBoostEffect());
                     }
                 }
+                
+                stage.gameObject.SetActive(false);
+                character.gameObject.SetActive(false);
+                
+                Camera.main.GetComponentInParent<CameraSetter>().OnCameraSetFinish += () =>
+                {
+                    canvas.sortingOrder = -1;
+                    SceneManager.UnloadSceneAsync(startScene);
+                    stage.gameObject.SetActive(true);
+                    character.gameObject.SetActive(true);
+                };
             };
             
             GameManager.instance.GoldNumber -= BoostUI.S_ConsumingGold;

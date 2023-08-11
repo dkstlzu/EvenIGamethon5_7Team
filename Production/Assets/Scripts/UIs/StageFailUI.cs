@@ -64,7 +64,7 @@ namespace MoonBunny.UIs
                 bool isManget = Random.value > 0.5f;
                 Boost.BoostName = isManget ? MagnetBoostEffect.BoostName : StarCandyBoostEffect.BoostName;
                 Boost.BoostOnText = isManget ? "자석 부스트!" : "별사탕은 어떤가?";
-                Boost.Price = Random.Range(20, 50);
+                Boost.Price = isManget ? Random.Range(20, 30) : Random.Range(10, 20);
                 Boost.PriceText.text = Boost.Price.ToString();
                 Boost.BoostImage.sprite = isManget ? PreloadedResources.instance.BoostSpriteList[0] : PreloadedResources.instance.BoostSpriteList[1];
 
