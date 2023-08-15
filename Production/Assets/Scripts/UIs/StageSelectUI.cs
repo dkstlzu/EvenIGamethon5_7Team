@@ -12,8 +12,8 @@ namespace MoonBunny.UIs
         public class StageButtonUI
         {
             public Button Button;
-            public Image StarImage;
             public Image LockImage;
+            public Image StarImage;
         }
         
         public List<StageButtonUI> StageButtonList;
@@ -29,15 +29,10 @@ namespace MoonBunny.UIs
                 for (int i = 0; i < StageButtonList.Count; i++)
                 {
                     int subLevelClear = GameManager.ProgressSaveData.ClearDict[(StageName)i];
-
-                    if (StageButtonList[i].StarImage)
-                        StageButtonList[i].StarImage.sprite = StarSpriteList[Mathf.Clamp(subLevelClear, 0, StarSpriteList.Count-1)];
-
-                    if (i + 1 < StageButtonList.Count)
-                    {
-                        StageButtonList[i + 1].Button.interactable = subLevelClear > 2;
-                        StageButtonList[i + 1].LockImage.enabled = subLevelClear <= 2;
-                    }
+                    if (subLevelClear >= 0)
+                    StageButtonList[i].StarImage.sprite = StarSpriteList[subLevelClear];
+                    StageButtonList[i].Button.interactable = subLevelClear >= 0;
+                    StageButtonList[i].LockImage.enabled = subLevelClear < 0;
                 }
             };
         }

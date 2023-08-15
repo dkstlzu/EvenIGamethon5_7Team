@@ -13,31 +13,46 @@ MonoBehaviour:
   m_Name: NormalGotcha
   m_EditorClassIdentifier: 
   Datas:
+  - GoldNumber: 1
+    DiamondNumber: 0
+    MemoryType: -1
+    MemoryNumber: 0
+    Potential: 10
+  - GoldNumber: 5
+    DiamondNumber: 0
+    MemoryType: -1
+    MemoryNumber: 0
+    Potential: 10
+  - GoldNumber: 10
+    DiamondNumber: 0
+    MemoryType: -1
+    MemoryNumber: 0
+    Potential: 10
+  - GoldNumber: 30
+    DiamondNumber: 0
+    MemoryType: -1
+    MemoryNumber: 0
+    Potential: 10
   - GoldNumber: 50
     DiamondNumber: 0
     MemoryType: -1
     MemoryNumber: 0
     Potential: 10
   - GoldNumber: 100
-    DiamondNumber: 0
+    DiamondNumber: 1
     MemoryType: -1
     MemoryNumber: 0
     Potential: 10
-  - GoldNumber: 130
+  - GoldNumber: 300
     DiamondNumber: 0
     MemoryType: -1
     MemoryNumber: 0
-    Potential: 10
-  - GoldNumber: 200
+    Potential: 1.1
+  - GoldNumber: 1500
     DiamondNumber: 0
     MemoryType: -1
     MemoryNumber: 0
-    Potential: 6.67
-  - GoldNumber: 700
-    DiamondNumber: 0
-    MemoryType: -1
-    MemoryNumber: 0
-    Potential: 1.33
+    Potential: 0.05
   - GoldNumber: 0
     DiamondNumber: 1
     MemoryType: -1
@@ -47,12 +62,17 @@ MonoBehaviour:
     DiamondNumber: 2
     MemoryType: -1
     MemoryNumber: 0
-    Potential: 6.67
+    Potential: 2.4
   - GoldNumber: 0
     DiamondNumber: 5
     MemoryType: -1
     MemoryNumber: 0
-    Potential: 2
+    Potential: 0.8
+  - GoldNumber: 0
+    DiamondNumber: 10
+    MemoryType: -1
+    MemoryNumber: 0
+    Potential: 0.1
   - GoldNumber: 0
     DiamondNumber: 0
     MemoryType: 1
@@ -62,49 +82,49 @@ MonoBehaviour:
     DiamondNumber: 0
     MemoryType: 1
     MemoryNumber: 3
-    Potential: 6.67
+    Potential: 3.1
   - GoldNumber: 0
     DiamondNumber: 0
     MemoryType: 1
     MemoryNumber: 5
-    Potential: 6.67
+    Potential: 2.4
   - GoldNumber: 0
     DiamondNumber: 0
     MemoryType: 2
     MemoryNumber: 1
-    Potential: 6.67
+    Potential: 3.1
   - GoldNumber: 0
     DiamondNumber: 0
     MemoryType: 2
     MemoryNumber: 3
-    Potential: 2
+    Potential: 1.8
   - GoldNumber: 0
     DiamondNumber: 0
     MemoryType: 2
     MemoryNumber: 5
-    Potential: 1.33
+    Potential: 0.8
   - GoldNumber: 0
     DiamondNumber: 0
     MemoryType: 2
     MemoryNumber: 10
-    Potential: 0.7
+    Potential: 0.25
   - GoldNumber: 0
     DiamondNumber: 0
     MemoryType: 3
     MemoryNumber: 1
-    Potential: 6.67
+    Potential: 2.4
   - GoldNumber: 0
     DiamondNumber: 0
     MemoryType: 3
     MemoryNumber: 3
-    Potential: 1.33
+    Potential: 1.1
   - GoldNumber: 0
     DiamondNumber: 0
     MemoryType: 3
     MemoryNumber: 5
-    Potential: 1
+    Potential: 0.5
   - GoldNumber: 0
     DiamondNumber: 0
     MemoryType: 3
     MemoryNumber: 10
-    Potential: 0.29
+    Potential: 0.1

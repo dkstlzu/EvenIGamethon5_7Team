@@ -516,7 +516,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4916687337402314034}
-  - component: {fileID: 5543229529656587959}
+  - component: {fileID: 5093259227864254322}
   m_Layer: 0
   m_Name: ExitButton
   m_TagString: Untagged
@@ -545,7 +545,7 @@ RectTransform:
   m_AnchoredPosition: {x: -50, y: -50}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 1, y: 1}
---- !u!114 &5543229529656587959
+--- !u!114 &5093259227864254322
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -554,7 +554,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4703200602582940916}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 79919bf9d1c844d08eccc87f1b52f130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -564,7 +564,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 0
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -601,6 +601,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &4727492875542452361
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,6 +699,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ButtonSound: {fileID: 8300000, guid: 061b93b4027eebe49bebca0818167f4d, type: 3}
+  CoolTime: 0
 --- !u!1 &5452850777040087848
 GameObject:
   m_ObjectHideFlags: 0

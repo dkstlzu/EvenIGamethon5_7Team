@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using dkstlzu.Utility;
 using MoonBunny.Effects;
 using UnityEngine;
+using UnityEngine.Rendering;
 using Random = UnityEngine.Random;
 
 namespace MoonBunny
@@ -33,12 +33,11 @@ namespace MoonBunny
         
         public int MaxGridHeight;
         public float SummonPositionVariation = 0.1f;
-        private List<Vector2Int> _summonPositionList = new List<Vector2Int>();
         
         private int xmin => GridTransform.GridXMin;
         private int xmax => GridTransform.GridXMax;
         private int ymin = 3;
-        private int ymax => MaxGridHeight - 3;
+        private int ymax => MaxGridHeight;
         
         public void Update(float delta)
         {
@@ -73,7 +72,7 @@ namespace MoonBunny
                 int targetGridX = Random.Range(GridTransform.GridXMin + 1, GridTransform.GridXMax - 1);
                 
                 Vector2 areaMin = GridTransform.ToReal(new Vector2Int(targetGridX - 1, GridTransform.GridYMin)) - GridTransform.GetGridSize() / 2;
-                Vector2 areaMax = GridTransform.ToReal(new Vector2Int(targetGridX + 1, GameManager.instance.Stage.Spec.Height)) + GridTransform.GetGridSize() / 2;
+                Vector2 areaMax = GridTransform.ToReal(new Vector2Int(targetGridX + 1, GameManager.instance.Stage.GridHeight)) + GridTransform.GetGridSize() / 2;
 
                 WarningEffect warningEffect = new WarningEffect(new Rect(areaMin, areaMax - areaMin), ShootingStarWarningTime);
                 warningEffect.Effect();
@@ -104,12 +103,11 @@ namespace MoonBunny
             {
                 Vector2Int randomGridPosition = GetRandomGridPosition();
 
-                if (!_summonPositionList.Contains(randomGridPosition) && !GridTransform.HasGridObject(randomGridPosition))
+                if (!GridTransform.HasGridObject(randomGridPosition))
                 {
                     Vector3 summonPosition = GetRealPositionWithVariation(randomGridPosition, GridTransform.GridSetting, SummonPositionVariation);
                     MonoBehaviour.Instantiate(RicecakePrefab, summonPosition, Quaternion.identity, parent.transform);
                     
-                    _summonPositionList.Add(randomGridPosition);
                     summonNumber++;
                 }
             }
@@ -130,12 +128,11 @@ namespace MoonBunny
             {
                 Vector2Int randomGridPosition = GetRandomGridPosition();
 
-                if (!_summonPositionList.Contains(randomGridPosition) && !GridTransform.HasGridObject(randomGridPosition))
+                if (!GridTransform.HasGridObject(randomGridPosition))
                 {
                     Vector3 summonPosition = GetRealPositionWithVariation(randomGridPosition, GridTransform.GridSetting, SummonPositionVariation);
                     MonoBehaviour.Instantiate(CoinPrefab, summonPosition, Quaternion.identity, parent.transform);
                     
-                    _summonPositionList.Add(randomGridPosition);
                     summonNumber++;
                 }
             }
@@ -156,12 +153,11 @@ namespace MoonBunny
             {
                 Vector2Int randomGridPosition = GetRandomGridPosition();
 
-                if (!_summonPositionList.Contains(randomGridPosition) && !GridTransform.HasGridObject(randomGridPosition))
+                if (!GridTransform.HasGridObject(randomGridPosition))
                 {
                     Vector3 summonPosition = GetRealPositionWithVariation(randomGridPosition, GridTransform.GridSetting, SummonPositionVariation);
                     MonoBehaviour.Instantiate(FriendPrefab, summonPosition, Quaternion.identity, parent.transform);
 
-                    _summonPositionList.Add(randomGridPosition);
                     summonNumber++;
                 }
             }

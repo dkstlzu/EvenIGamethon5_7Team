@@ -7,19 +7,24 @@ namespace MoonBunny
 {
     public class CameraSetter : MonoBehaviour
     {
-        public CinemachineVirtualCamera _virtualCamera;
-        public CinemachineConfiner2D _confiner2D;
+        public Camera MainCamera;
+        public AudioListener AudioListener;
+        public CinemachineBrain Brain;
+        public CinemachineVirtualCamera VirtualCamera;
+        public CinemachineConfiner2D Confiner2D;
 
         public event Action OnCameraSetFinish;
         public float CameraSetTime;
         
         protected void Start()
         {
-            _confiner2D.m_BoundingShape2D = GameManager.instance.Stage.LevelConfiner;
-            _confiner2D.InvalidateCache();
+            AudioListener.volume = GameManager.instance.VolumeSetting;
+            Confiner2D.m_BoundingShape2D = GameManager.instance.Stage.LevelConfiner;
+            Confiner2D.InvalidateCache();
             
             CoroutineHelper.Delay(() =>
             {
+                VirtualCamera.Follow = Character.instance.transform;
                 OnCameraSetFinish?.Invoke();
                 if (GameManager.instance.ShowTutorial)
                 {

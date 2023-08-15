@@ -21,10 +21,9 @@ namespace MoonBunny.UIs
             
             SoundToggle.onValueChanged.AddListener(OnSoundToggle);
             TutorialToggle.onValueChanged.AddListener(OnTutorialToggle);
-            GameManager.instance.SaveLoadSystem.OnSaveDataLoaded += Init;
         }
 
-        private void Init()
+        protected override void Rebuild()
         {
             TutorialToggle.isOn = GameManager.ProgressSaveData.ShowTutorial;
             SoundToggle.isOn = GameManager.ProgressSaveData.VolumeSetting > 0;

@@ -118,6 +118,7 @@ MonoBehaviour:
   GridTransform:
     transform: {fileID: 4318821955201273328}
     GridPosition: {x: 0, y: 0}
+    SnapMethod: 1
   InvokeOnCollision: 1
   Enabled: 1
   _rigidbody: {fileID: 6470761770131956253}
@@ -145,6 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44342a30f9e24963b7611ebeb9b91d16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxYVelocityLimit: 3.4028235e+38
   _gravity: 0
   MoveSacle: 1
   GridObject: {fileID: 3675761889070197999}

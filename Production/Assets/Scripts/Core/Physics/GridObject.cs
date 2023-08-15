@@ -11,7 +11,7 @@ namespace MoonBunny
     [ExecuteAlways]
     public class GridObject : FieldObject
     {
-        [HideInInspector] public GridTransform GridTransform;
+        public GridTransform GridTransform;
 
         protected virtual void Reset()
         {
@@ -43,12 +43,31 @@ namespace MoonBunny
         [ContextMenu("SnapToGrid")]
         public void SnapToGrid()
         {
+#if UNITY_EDITOR
+            Undo.RecordObject(this, "GridObjectSnapToGrid");
+#endif
             GridTransform.SnapToGrid();
+        }
+        
+        [ContextMenu("UpdateGrid")]
+        public void UpdateGrid()
+        {
+            var method = GridTransform.SnapMethod;
+            GridTransform.SnapMethod = SnapMethod.RealToGrid;
+            GridTransform.Update();
+            GridTransform.SnapMethod = method;
+#if UNITY_EDITOR
+            EditorUtility.SetDirty(this);
+#endif
+
         }
 
         [ContextMenu("Move To Origin")]
         public void ToOrigin()
         {
+#if UNITY_EDITOR
+            Undo.RecordObject(transform, "GridObjectToOrigin");
+#endif
             transform.position = GridTransform.ToReal(Vector2Int.zero);
         }
     }

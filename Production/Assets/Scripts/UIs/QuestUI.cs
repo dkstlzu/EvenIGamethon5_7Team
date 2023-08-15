@@ -30,7 +30,6 @@ namespace MoonBunny.UIs
         public Transform UIItemParent;
         public ReadOnlyDict<int, QuestUIItem> QuestUIItemDict = new ReadOnlyDict<int, QuestUIItem>();
         [SerializeField] private VerticalLayoutGroup _layoutGroup;
-        [SerializeField] private Image RewardNoticeImage;
 
         private void Start()
         {
@@ -49,17 +48,13 @@ namespace MoonBunny.UIs
                 UIItemList[i].Set(quests[i]);
                 QuestUIItemDict.Add(UIItemList[i].TargetQuestId, UIItemList[i]);
             }
+
+            GameManager.instance.StartSceneUI.FriendSelectUI.QuestRewardNoticeImage.enabled = S_CanTakeRewardNumber > 0;
             
             Rebuild();
             
-            RewardNoticeImage.enabled = S_CanTakeRewardNumber > 0;
             OnExit += () =>
             {
-                if (S_CanTakeRewardNumber == 0)
-                {
-                    RewardNoticeImage.enabled = false;
-                }
-                
                 GameManager.instance.StartSceneUI.FriendSelectUI.Open();
             };
         }

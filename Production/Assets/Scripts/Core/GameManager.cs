@@ -10,7 +10,7 @@ using UnityEngine.Serialization;
 
 namespace MoonBunny
 {
-    [DefaultExecutionOrder(-1)]
+    [DefaultExecutionOrder(-10)]
     public class GameManager : Singleton<GameManager>
     {
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]

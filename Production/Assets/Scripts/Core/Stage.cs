@@ -57,6 +57,8 @@ namespace MoonBunny
         /// </summary>
         public static event Action<int> OnNewLevelUnlocked;
 
+        public static event Action<int, int> OnNewStarGained;
+
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static void Init()
@@ -64,6 +66,7 @@ namespace MoonBunny
             OnStageClear = null;
             OnNewStageUnlocked = null;
             OnNewLevelUnlocked = null;
+            OnNewStarGained = null;
         }
 
         private const string SpecPath = "Specs/Stage/";
@@ -101,7 +104,18 @@ namespace MoonBunny
 
         private Character _character;
         public int RevivedNumber { get; set; }
-        private float _realHeight =>  GridTransform.GridSetting.GridHeight *  Spec.Height;
+        
+        [SerializeField] private StageGoal _stageGoal;
+        private float _gridHeight;
+        
+        private int _stageGoalGridHeight;
+        private float _stageGoalRealHeight;
+
+        private int _confinerGridHeight;
+        private float _confinerHeight;
+        public int GridHeight => _confinerGridHeight;
+        public float Height => _confinerHeight;
+
         [SerializeField] private SpriteRenderer _backgroundSpriteRenderer;
         [SerializeField] private BoxCollider2D _leftWallCollider;
         [SerializeField] private BoxCollider2D _rightWallCollider;
@@ -122,25 +136,49 @@ namespace MoonBunny
             GameManager.instance.Stage = this;
             UI.Stage = this;
             
-            Name = StringValue.GetEnumValue<StageName>(SceneManager.GetActiveScene().name);
-
             StageLevel = S_StageLevel;
             SubLevel = S_SubLevel;
+        
+            Name = (StageName)StageLevel;
             
             _spec = Resources.Load<StageSpec>($"{SpecPath}Stage{StageLevel+1}_{SubLevel+1}Spec");
+            _gridHeight = GridTransform.GridSetting.GridHeight;
             
+            _stageGoalGridHeight = _stageGoal.GridTransform.GridPosition.y;
+            _stageGoalRealHeight = _stageGoal.transform.position.y;
+            _confinerGridHeight = _stageGoalGridHeight + 3;
+            _confinerHeight = _confinerGridHeight * _gridHeight + GridTransform.GridSetting.Origin.y;
+            
+            SetConfiner();
             SetCharater();
-            SetEnvironments();
-            SetSummoner();
         }
 
         private void Start()
         {
-            _spec = Resources.Load<StageSpec>($"{SpecPath}Stage{StageLevel+1}_{SubLevel+1}Spec");
+            SetEnvironments();
+            SetSummoner();
         }
 
         #region Initialize
 
+        void SetConfiner()
+        {
+            Vector2 minPoint = GridTransform.ToReal(new Vector2Int(GridTransform.GridXMin, -_confinerGridHeight / 2)) -
+                GridTransform.GetGridSize() / 2 + Vector2.down * _gridHeight / 2;
+            Vector2 maxPoint = GridTransform.ToReal(new Vector2Int(GridTransform.GridXMax, _confinerGridHeight / 2)) +
+                               GridTransform.GetGridSize() / 2;
+
+            Vector2[] path = new Vector2[]
+            {
+                new Vector2(minPoint.x, maxPoint.y),
+                minPoint,
+                new Vector2(maxPoint.x, minPoint.y),
+                maxPoint
+            };
+
+            _levelCollider.SetPath(0, path);
+        }
+        
         void SetCharater()
         {
             _character = Character.instance;
@@ -155,33 +193,17 @@ namespace MoonBunny
         {
             // Background and sidewalls range initialize;
             Vector3 backgroundPosition = _backgroundSpriteRenderer.transform.position;
-            _backgroundSpriteRenderer.transform.position = new Vector3(backgroundPosition.x, _realHeight/2, backgroundPosition.z);
-            float backgroundSizeX = FindObjectOfType<CameraSetter>()._virtualCamera.m_Lens.OrthographicSize * (float)Screen.width / Screen.height * 2;
-            Debug.Log($"{backgroundSizeX}, {FindObjectOfType<CameraSetter>().GetComponentInChildren<Camera>().orthographicSize}, {Screen.width}, {Screen.height}");
-            _backgroundSpriteRenderer.size = new Vector2(backgroundSizeX, _realHeight + 20);
+            _backgroundSpriteRenderer.transform.position = new Vector3(backgroundPosition.x, _confinerHeight/2, backgroundPosition.z);
+            float backgroundSizeX = FindObjectOfType<CameraSetter>().VirtualCamera.m_Lens.OrthographicSize * (float)Screen.width / Screen.height * 2;
+            _backgroundSpriteRenderer.size = new Vector2(backgroundSizeX, _confinerHeight + 20);
 
             Vector3 leftWallPosition = _leftWallCollider.transform.position;
-            _leftWallCollider.transform.position = new Vector3(leftWallPosition.x, _realHeight/2, leftWallPosition.z);
-            _leftWallCollider.size = new Vector2(_leftWallCollider.size.x, _realHeight + 20);
+            _leftWallCollider.transform.position = new Vector3(leftWallPosition.x, _confinerHeight/2, leftWallPosition.z);
+            _leftWallCollider.size = new Vector2(_leftWallCollider.size.x, _confinerHeight + 40);
             
             Vector3 rightWallPosition = _rightWallCollider.transform.position;
-            _rightWallCollider.transform.position = new Vector3(rightWallPosition.x, _realHeight/2, rightWallPosition.z);
-            _rightWallCollider.size = new Vector2(_rightWallCollider.size.x, _realHeight + 20);
-
-            Vector2 minPoint = GridTransform.ToReal(new Vector2Int(GridTransform.GridXMin, -Spec.Height / 2)) -
-                GridTransform.GetGridSize() / 2 + Vector2.down * 3;
-            Vector2 maxPoint = GridTransform.ToReal(new Vector2Int(GridTransform.GridXMax, Spec.Height/2)) +
-                               GridTransform.GetGridSize() / 2;
-
-            Vector2[] path = new Vector2[]
-            {
-                new Vector2(minPoint.x, maxPoint.y),
-                minPoint,
-                new Vector2(maxPoint.x, minPoint.y),
-                maxPoint
-            };
-
-            _levelCollider.SetPath(0, path);
+            _rightWallCollider.transform.position = new Vector3(rightWallPosition.x, _confinerHeight/2, rightWallPosition.z);
+            _rightWallCollider.size = new Vector2(_rightWallCollider.size.x, _confinerHeight + 40);
         }
 
         void SetSummoner()
@@ -200,7 +222,7 @@ namespace MoonBunny
             LevelSummoner.SummonShootingStarInterval = Spec.SummonShootingStarInterval;
             LevelSummoner.ShootingStarWarningTime = Spec.ShootingStarWarningTime;
 
-            LevelSummoner.MaxGridHeight = Spec.Height;
+            LevelSummoner.MaxGridHeight = _confinerGridHeight - 1;
 
             LevelSummoner.SummonRicecakes();
             LevelSummoner.SummonCoins();
@@ -215,11 +237,6 @@ namespace MoonBunny
         private void OnDisable()
         {
             UpdateManager.instance?.Unregister(new TimeUpdatable(LevelSummoner, 1));
-        }
-
-        public void OnGotoStageSelect()
-        {
-            
         }
 
         public void CountDownFinish()
@@ -256,6 +273,14 @@ namespace MoonBunny
                     GameManager.ProgressSaveData.ClearDict[Name + 1] = 0;
                     OnNewStageUnlocked?.Invoke(StageLevel+1);
                 }
+            }
+
+            int levelKey = StageLevel * 10 + SubLevel;
+            int previousStar = GameManager.ProgressSaveData.StarDict[levelKey];
+            if (previousStar < GainedStar)
+            {
+                GameManager.ProgressSaveData.StarDict[levelKey] = GainedStar;
+                OnNewStarGained?.Invoke(levelKey, GainedStar);
             }
             
             GameManager.instance.GoldNumber += (int)(GoldNumber * GoldMultiplier);

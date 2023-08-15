@@ -8,7 +8,7 @@ using UnityEngine.Serialization;
 
 namespace MoonBunny
 {
-    [DefaultExecutionOrder(-1)]
+    [DefaultExecutionOrder(-5)]
     public class MoonBunnyRigidbody : MonoBehaviour
     {
         public static List<MoonBunnyRigidbody> S_RigidbodyList = new List<MoonBunnyRigidbody>();

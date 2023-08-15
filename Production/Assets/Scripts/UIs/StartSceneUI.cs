@@ -16,6 +16,7 @@ namespace MoonBunny.UIs
         [Header("Main UI Flow")]
         public FriendSelectUI FriendSelectUI;
         public StageSelectUI StageSelectUI;
+        public SubLevelSelectUI SubLevelSelectUI;
 
         [Header("Sub Pop Ups")] 
         public SettingUI SettingUI;
@@ -50,7 +51,13 @@ namespace MoonBunny.UIs
             DiamondText1.text = _gameManager.DiamondNumber.ToString();
             DiamondText2.text = _gameManager.DiamondNumber.ToString();
             
-            FriendSelectUI.Open(0);
+            InputManager.instance.InputAsset.UI.Cancel.performed += OnQuitButtonClicked;
+        }
+
+        private void OnDestroy()
+        {
+            if (InputManager.instance)
+            InputManager.instance.InputAsset.UI.Cancel.performed -= OnQuitButtonClicked;
         }
 
         public void OnGoToStageSelectButtonClicked()
@@ -69,6 +76,14 @@ namespace MoonBunny.UIs
         public void ShowEnding()
         {
             LoadingScene.LoadScene(SceneName.Ending);
+        }
+
+        private void OnQuitButtonClicked(InputAction.CallbackContext context)
+        {
+            if (!ConfirmUI.isOpened)
+            {
+                OnQuitButtonClicked();
+            }
         }
 
         public void OnQuitButtonClicked()

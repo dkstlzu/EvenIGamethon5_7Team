@@ -7,7 +7,7 @@ namespace MoonBunny
 {
     public enum SnapMethod
     {
-        None = -1,
+        None,
         RealToGrid,
         GridToReal
     }
@@ -85,8 +85,10 @@ namespace MoonBunny
         }
 
         private static LayerMask S_findingLayerMask;
-
+#if UNITY_EDITOR
         [InitializeOnLoadMethod]
+#endif
+        [RuntimeInitializeOnLoadMethod]
         static void SetFindingLayerMask()
         {
             S_findingLayerMask = LayerMask.GetMask(new []{
