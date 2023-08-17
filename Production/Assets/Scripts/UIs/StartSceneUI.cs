@@ -91,15 +91,9 @@ namespace MoonBunny.UIs
             ConfirmUI.Description.text = ReallyQuitText;
             ConfirmUI.AddConfirmListener(() =>
             {
-#if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-#else
-                Application.Quit();
-#endif
+                GameManager.instance.QuitGame();
             });
             ConfirmUI.Open();
-
         }
-
     }
 }

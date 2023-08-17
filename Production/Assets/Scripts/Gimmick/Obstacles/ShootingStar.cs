@@ -43,7 +43,7 @@ namespace MoonBunny
 #if UNITY_EDITOR
             if (!UnityEditor.EditorApplication.isPlaying) return;
 #endif
-            _renderer.transform.Rotate(Vector3.forward, 1);
+            _renderer.transform.Rotate(Vector3.forward, Time.deltaTime);
         }
 
         public override bool Invoke(MoonBunnyRigidbody with, MoonBunnyCollider.Direction direction)

@@ -111,6 +111,8 @@ namespace MoonBunny
         
         private void Awake()
         {
+            Application.targetFrameRate = 60;
+            
 #if UNITY_EDITOR
             if (useSaveSystem)
             {
@@ -157,6 +159,15 @@ namespace MoonBunny
                     ProgressSaveData.LimitedPackagePurchased = true;
                 }
             };
+        }
+
+        public void QuitGame()
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+                Application.Quit();
+#endif
         }
 
         private void OnApplicationQuit()

@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Runtime.Serialization.Json;
 using System.Security.Cryptography;
 using System.Text;
 using dkstlzu.Utility;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
-using GooglePlayGames.BasicApi.Nearby;
 using GooglePlayGames.BasicApi.SavedGame;
 using MoonBunny.Dev;
 using MoonBunny.UIs;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
 
 namespace MoonBunny
 {
@@ -22,11 +18,10 @@ namespace MoonBunny
         Save,
         Delete,
     }
-    
+
     public class GoogleManager : Singleton<GoogleManager>
     {
         public LoadingUI LoadingUI;
-        public SignInStatus SignInStatus;
 
         private PlayGamesClientConfiguration _clientConfiguration;
 
@@ -42,12 +37,11 @@ namespace MoonBunny
             set => QuestManager.SaveData = value;
         }
 
-        public string Token;
         private IPlayGamesClient _client;
 
         public event Action<SignInStatus> OnAuthentication;
-        
-        private void Start()
+
+        private void Awake()
         {
 #if UNITY_EDITOR
 #else
@@ -55,7 +49,6 @@ namespace MoonBunny
             PlayGamesPlatform.DebugLogEnabled = true;
             PlayGamesPlatform.InitializeInstance(_clientConfiguration);
 #endif
-            Login();
         }
 
         public void Save()
@@ -78,15 +71,15 @@ namespace MoonBunny
                     Array.Reverse(progressLength);
                     Array.Reverse(questLength);
                 }
-                
+
                 Array.Copy(progressLength, 0, totalData, 0, sizeof(Int32));
                 Array.Copy(questLength, 0, totalData, 4, sizeof(Int32));
                 Array.Copy(progressTemp, 0, totalData, 8, progressTemp.Length);
                 Array.Copy(questTemp, 0, totalData, progressTemp.Length, questTemp.Length);
-                
-                loadedByte = aes.CreateEncryptor().TransformFinalBlock(totalData, 0, totalData.Length);
+
+                _loadedByte = aes.CreateEncryptor().TransformFinalBlock(totalData, 0, totalData.Length);
             }
-            
+
             SelectUIMethod = SelectUIMethod.Save;
             ShowSelectUI();
         }
@@ -97,17 +90,19 @@ namespace MoonBunny
             ShowSelectUI();
         }
 
-        private void AfterInitializeNearby(INearbyConnectionClient nearby)
+        private bool _gpgsLoginTriedBefore = false;
+        public void Login()
         {
-        }
-
-        public void Login(SignInInteractivity interactivity = SignInInteractivity.CanPromptOnce)
-        {
-            LoadingUI.GoogleText.text = "로그인중";
 #if UNITY_EDITOR
             Social.localUser.Authenticate(ProcessAuthentication);
 #else
-            PlayGamesPlatform.Instance.Authenticate(interactivity, PlayGamesAuthentication);
+            if (_gpgsLoginTriedBefore)
+            {
+                PlayGamesPlatform.Instance.Authenticate(SignInInteractivity.CanPromptAlways, PlayGamesAuthentication);
+            } else
+            {
+                PlayGamesPlatform.Instance.Authenticate(SignInInteractivity.CanPromptOnce, PlayGamesAuthentication);
+            }
 #endif
         }
 
@@ -125,30 +120,21 @@ namespace MoonBunny
         {
             MoonBunnyLog.print($"PlayGamesPlatform Authentication {status}");
 
-            SignInStatus = status;
-
             switch (status)
             {
                 case SignInStatus.Success:
                     ShowSelectUI();
                     break;
-                case SignInStatus.UiSignInRequired:
-                    break;
-                case SignInStatus.DeveloperError:
-                    break;
-                case SignInStatus.NetworkError:
-                    break;
-                case SignInStatus.InternalError:
-                    break;
-                case SignInStatus.Canceled:
-                    break;
-                case SignInStatus.AlreadyInProgress:
-                    break;
-                case SignInStatus.Failed:
-                    break;
-                case SignInStatus.NotAuthenticated:
-                    break;
+                case SignInStatus.UiSignInRequired: break;
+                case SignInStatus.DeveloperError: break;
+                case SignInStatus.NetworkError: break;
+                case SignInStatus.InternalError: break;
+                case SignInStatus.Canceled: break;
+                case SignInStatus.AlreadyInProgress: break;
+                case SignInStatus.Failed: break;
+                case SignInStatus.NotAuthenticated: break;
             }
+
             OnAuthentication?.Invoke(status);
         }
 
@@ -156,46 +142,32 @@ namespace MoonBunny
         {
             MoonBunnyLog.print($"GoogleManager Authentication Success {success}, Result {result}");
 
-            if (success)
-            {
-                LoadingUI.GoogleText.text = $"로그인 성공! 게임을 시작합니다.\n{Social.localUser.userName} {Social.localUser.id}";
-                SignInStatus = SignInStatus.Success;
-                OnAuthentication?.Invoke(SignInStatus.Success);
-            }
-            else
-            {
-                LoadingUI.Button.interactable = true;
-                LoadingUI.GoogleText.text = "로그인에 실패했습니다. 버튼을 눌러 다시 로그인을 시도해 주세요.";
-                SignInStatus = SignInStatus.Canceled;
-                OnAuthentication?.Invoke(SignInStatus.Canceled);
-            }
+            OnAuthentication?.Invoke(success ? SignInStatus.Success : SignInStatus.Canceled);
         }
 
         #region SelectSaveUI
 
         public event Action<SelectUIStatus> OnSelectUIUnselected;
-        
+
         public SelectUIMethod SelectUIMethod = SelectUIMethod.Load;
-        
-        void ShowSelectUI() {
+
+        void ShowSelectUI()
+        {
             uint maxNumToDisplay = 5;
             bool allowCreateNew = true;
             bool allowDelete = true;
 
             ISavedGameClient savedGameClient = PlayGamesPlatform.Instance.SavedGame;
             MoonBunnyLog.print($"ShowSelectUI savedGameClient type {savedGameClient.GetType()}", "GoogleManager");
-            savedGameClient.ShowSelectSavedGameUI("Select saved game",
-                maxNumToDisplay,
-                allowCreateNew,
-                allowDelete,
-                OnSavedGameSelected);
+            savedGameClient.ShowSelectSavedGameUI("Select saved game", maxNumToDisplay, allowCreateNew, allowDelete, OnSavedGameSelected);
         }
 
-
-        void OnSavedGameSelected (SelectUIStatus status, ISavedGameMetadata game) {
+        void OnSavedGameSelected(SelectUIStatus status, ISavedGameMetadata game)
+        {
             MoonBunnyLog.print($"SelectUI Status : {status}, metadata type {game.GetType()}", "GoogleManager");
-            
-            if (status == SelectUIStatus.SavedGameSelected) {
+
+            if (status == SelectUIStatus.SavedGameSelected)
+            {
                 // handle selected game save
                 switch (SelectUIMethod)
                 {
@@ -203,24 +175,21 @@ namespace MoonBunny
                         OpenSavedGame(game.Filename);
                         break;
                     case SelectUIMethod.Save:
-                        SaveGame(game, loadedByte, game.TotalTimePlayed);
+                        SaveGame(game, _loadedByte, game.TotalTimePlayed);
                         break;
                     case SelectUIMethod.Delete:
                         DeleteGameData(game.Filename);
                         break;
                 }
-                
-            } else {
-                OnSelectUIUnselected?.Invoke(status);
-            }
+            } else { OnSelectUIUnselected?.Invoke(status); }
         }
 
         #endregion
 
-
         #region Load
-        
-        void OpenSavedGame(string filename) {
+
+        void OpenSavedGame(string filename)
+        {
             ISavedGameClient savedGameClient = PlayGamesPlatform.Instance.SavedGame;
             MoonBunnyLog.print($"OpenSavedGame with file {filename}", "GoogleManager");
 
@@ -228,36 +197,38 @@ namespace MoonBunny
                 ConflictResolutionStrategy.UseLongestPlaytime, OnSavedGameOpened);
         }
 
-        void OnSavedGameOpened(SavedGameRequestStatus status, ISavedGameMetadata game) {
+        void OnSavedGameOpened(SavedGameRequestStatus status, ISavedGameMetadata game)
+        {
             MoonBunnyLog.print($"OnSavedGameOpend with status {status}", "GoogleManager");
 
-            if (status == SavedGameRequestStatus.Success) {
+            if (status == SavedGameRequestStatus.Success)
+            {
                 // handle reading or writing of saved game.
                 LoadGameData(game);
-            } else {
+            } else
+            {
                 // handle error
             }
         }
 
         #endregion
 
-
         #region Save
 
         private Texture2D savedImage;
-        
-        void SaveGame (ISavedGameMetadata game, byte[] savedData, TimeSpan totalPlaytime) {
+
+        void SaveGame(ISavedGameMetadata game, byte[] savedData, TimeSpan totalPlaytime)
+        {
             MoonBunnyLog.print($"SaveGame at {game.Filename} with playtime {totalPlaytime}", "GoogleManager");
 
             ISavedGameClient savedGameClient = PlayGamesPlatform.Instance.SavedGame;
 
             SavedGameMetadataUpdate.Builder builder = new SavedGameMetadataUpdate.Builder();
-            builder = builder
-                .WithUpdatedPlayedTime(totalPlaytime)
-                .WithUpdatedDescription("Saved game at " + DateTime.Now);
+            builder = builder.WithUpdatedPlayedTime(totalPlaytime).WithUpdatedDescription("Saved game at " + DateTime.Now);
 
             savedImage = getScreenshot();
-            if (savedImage != null) {
+            if (savedImage != null)
+            {
                 // This assumes that savedImage is an instance of Texture2D
                 // and that you have already called a function equivalent to
                 // getScreenshot() to set savedImage
@@ -265,29 +236,33 @@ namespace MoonBunny
                 byte[] pngData = savedImage.EncodeToPNG();
                 builder = builder.WithUpdatedPngCoverImage(pngData);
             }
+
             SavedGameMetadataUpdate updatedMetadata = builder.Build();
             savedGameClient.CommitUpdate(game, updatedMetadata, savedData, OnSavedGameWritten);
         }
 
-        void OnSavedGameWritten (SavedGameRequestStatus status, ISavedGameMetadata game) {
+        void OnSavedGameWritten(SavedGameRequestStatus status, ISavedGameMetadata game)
+        {
             MoonBunnyLog.print($"SaveGame Result {status} at {game.Filename}", "GoogleManager");
 
-            if (status == SavedGameRequestStatus.Success) {
+            if (status == SavedGameRequestStatus.Success)
+            {
                 // handle reading or writing of saved game.
-            } else {
+            } else
+            {
                 // handle error
             }
         }
 
-        public Texture2D getScreenshot() {
+        public Texture2D getScreenshot()
+        {
             // Create a 2D texture that is 1024x700 pixels from which the PNG will be
             // extracted
             Texture2D screenShot = new Texture2D(1024, 700);
 
             // Takes the screenshot from top left hand corner of screen and maps to top
             // left hand corner of screenShot texture
-            screenShot.ReadPixels(
-                new Rect(0, 0, Screen.width, (Screen.width/1024)*700), 0, 0);
+            screenShot.ReadPixels(new Rect(0, 0, Screen.width, (Screen.width / 1024f) * 700), 0, 0);
             return screenShot;
         }
 
@@ -297,39 +272,41 @@ namespace MoonBunny
 
         public event Action OnDataLoadSuccess;
         public event Action OnDataLoadFail;
-        
-        void LoadGameData (ISavedGameMetadata game) {
+        public bool DataIsLoaded;
+        private byte[] _loadedByte;
+
+        void LoadGameData(ISavedGameMetadata game)
+        {
             MoonBunnyLog.print($"LoadGameData with {game.Filename}", "GoogleManager");
 
             ISavedGameClient savedGameClient = PlayGamesPlatform.Instance.SavedGame;
             savedGameClient.ReadBinaryData(game, OnSavedGameDataRead);
         }
 
-        private byte[] loadedByte;
-
-        void OnSavedGameDataRead (SavedGameRequestStatus status, byte[] data) {
+        void OnSavedGameDataRead(SavedGameRequestStatus status, byte[] data)
+        {
             MoonBunnyLog.print($"Read Game Data {status}", "GoogleManager");
 
             if (status == SavedGameRequestStatus.Success)
             {
                 // handle processing the byte array data
                 MoonBunnyLog.print($"Read Game Data length : {data.Length}", "GoogleManager");
-                loadedByte = data;
+                _loadedByte = data;
 
-                int progressDataLength = BitConverter.ToInt32(loadedByte, 0);
-                int questDataLength = BitConverter.ToInt32(loadedByte, 4);
+                int progressDataLength = BitConverter.ToInt32(_loadedByte, 0);
+                int questDataLength = BitConverter.ToInt32(_loadedByte, 4);
 
                 byte[] progressData = new byte[progressDataLength];
                 byte[] questData = new byte[questDataLength];
-                
-                Array.Copy(loadedByte, 8, progressData, 0, progressDataLength);
-                Array.Copy(loadedByte, 8 + progressDataLength, questData, 0, questDataLength);
+
+                Array.Copy(_loadedByte, 8, progressData, 0, progressDataLength);
+                Array.Copy(_loadedByte, 8 + progressDataLength, questData, 0, questDataLength);
 
                 using (Aes aes = Aes.Create())
                 {
                     aes.Key = SaveLoadSystem.AesEncryptionKeyByte;
                     aes.IV = SaveLoadSystem.AesEncryptionIVByte;
-                        
+
                     var encryptor = aes.CreateDecryptor();
 
                     byte[] decryptedProgressData = encryptor.TransformFinalBlock(progressData, 0, progressDataLength);
@@ -342,8 +319,11 @@ namespace MoonBunny
                     QuestData = JsonUtility.FromJson<QuestSaveData>(questDataStr);
                 }
 
+                DataIsLoaded = true;
                 OnDataLoadSuccess?.Invoke();
-            } else {
+            } else
+            {
+                DataIsLoaded = false;
                 OnDataLoadFail?.Invoke();
             }
         }
@@ -352,7 +332,8 @@ namespace MoonBunny
 
         #region Delete
 
-        void DeleteGameData (string filename) {
+        void DeleteGameData(string filename)
+        {
             MoonBunnyLog.print($"Delete Game Data {filename}", "GoogleManager");
 
             // Open the file to get the metadata.
@@ -361,18 +342,20 @@ namespace MoonBunny
                 ConflictResolutionStrategy.UseLongestPlaytime, DeleteSavedGame);
         }
 
-        void DeleteSavedGame(SavedGameRequestStatus status, ISavedGameMetadata game) {
+        void DeleteSavedGame(SavedGameRequestStatus status, ISavedGameMetadata game)
+        {
             MoonBunnyLog.print($"Delete Game Data status {status}", "GoogleManager");
 
-            if (status == SavedGameRequestStatus.Success) {
+            if (status == SavedGameRequestStatus.Success)
+            {
                 ISavedGameClient savedGameClient = PlayGamesPlatform.Instance.SavedGame;
                 savedGameClient.Delete(game);
-            } else {
+            } else
+            {
                 // handle error
             }
         }
 
         #endregion
-
     }
 }
