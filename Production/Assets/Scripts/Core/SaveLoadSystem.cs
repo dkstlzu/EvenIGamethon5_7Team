@@ -327,7 +327,6 @@ namespace MoonBunny
                 return;
             }
             
-            
 #if UNITY_EDITOR
             string jsonData = JsonUtility.ToJson(data, true);
             SaveString(jsonData);
@@ -349,12 +348,20 @@ namespace MoonBunny
 
         public void SaveProgress()
         {
+#if UNITY_EDITOR
             SaveJson(ProgressSaveData);
+#else
+            GoogleManager.instance.Save();
+#endif
         }
 
         public void SaveQuest()
         {
+#if UNITY_EDITOR
             SaveJson(QuestSaveData);
+#else
+            GoogleManager.instance.Save();
+#endif
         }
 
         private event Action _onSaveDataLoaded;

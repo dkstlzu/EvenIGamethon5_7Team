@@ -68,7 +68,6 @@ namespace MoonBunny.UIs
         private void Start()
         {
             ProgressText.text = _PLAYSTORE_LOGIN;
-            GoogleManager.instance.Login();
             StartCoroutine(BunnyTween());
         }
 

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Security.Cryptography;
 using System.Text;
+using CartoonFX;
 using dkstlzu.Utility;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
@@ -23,7 +25,11 @@ namespace MoonBunny
     {
         public LoadingUI LoadingUI;
 
+        public bool UseSelectUI;
+
         private PlayGamesClientConfiguration _clientConfiguration;
+
+        private const string SAVE_FILE_NAME = "JumpingBunnySave";
 
         public ProgressSaveData ProgressData
         {
@@ -51,6 +57,16 @@ namespace MoonBunny
 #endif
         }
 
+        private void Start()
+        {
+            Login();
+        }
+
+        private void OnApplicationQuit()
+        {
+            Logout();
+        }
+
         public void Save()
         {
             using (Aes aes = Aes.Create())
@@ -64,30 +80,28 @@ namespace MoonBunny
                 byte[] totalData = new byte[progressTemp.Length + questTemp.Length + 8];
 
                 byte[] progressLength = BitConverter.GetBytes(progressTemp.Length);
-                byte[] questLength = BitConverter.GetBytes(progressTemp.Length);
-
-                if (BitConverter.IsLittleEndian)
-                {
-                    Array.Reverse(progressLength);
-                    Array.Reverse(questLength);
-                }
-
+                byte[] questLength = BitConverter.GetBytes(questTemp.Length);
+                
                 Array.Copy(progressLength, 0, totalData, 0, sizeof(Int32));
                 Array.Copy(questLength, 0, totalData, 4, sizeof(Int32));
                 Array.Copy(progressTemp, 0, totalData, 8, progressTemp.Length);
-                Array.Copy(questTemp, 0, totalData, progressTemp.Length, questTemp.Length);
+                Array.Copy(questTemp, 0, totalData, 8 + progressTemp.Length, questTemp.Length);
 
                 _loadedByte = aes.CreateEncryptor().TransformFinalBlock(totalData, 0, totalData.Length);
+                
+                MoonBunnyLog.print($"Save data length : {progressTemp.Length} {questTemp.Length}, lengthData {progressLength.Length} {questLength.Length}, total {totalData.Length} {_loadedByte.Length}", "GoogleManager");
             }
 
             SelectUIMethod = SelectUIMethod.Save;
-            ShowSelectUI();
+
+            OpenSavedGame(SAVE_FILE_NAME);
         }
 
         public void Load()
         {
             SelectUIMethod = SelectUIMethod.Load;
-            ShowSelectUI();
+
+            OpenSavedGame(SAVE_FILE_NAME);
         }
 
         private bool _gpgsLoginTriedBefore = false;
@@ -103,6 +117,8 @@ namespace MoonBunny
             {
                 PlayGamesPlatform.Instance.Authenticate(SignInInteractivity.CanPromptOnce, PlayGamesAuthentication);
             }
+            
+            _gpgsLoginTriedBefore = true;
 #endif
         }
 
@@ -110,8 +126,7 @@ namespace MoonBunny
         {
 #if UNITY_EDITOR
 #else
-            SelectUIMethod = SelectUIMethod.Save;
-            ShowSelectUI();
+            Save();
             PlayGamesPlatform.Instance.SignOut();
 #endif
         }
@@ -123,7 +138,7 @@ namespace MoonBunny
             switch (status)
             {
                 case SignInStatus.Success:
-                    ShowSelectUI();
+                    Load();
                     break;
                 case SignInStatus.UiSignInRequired: break;
                 case SignInStatus.DeveloperError: break;
@@ -151,28 +166,28 @@ namespace MoonBunny
 
         public SelectUIMethod SelectUIMethod = SelectUIMethod.Load;
 
+        // Save Load with Select UI
         void ShowSelectUI()
         {
             uint maxNumToDisplay = 5;
             bool allowCreateNew = true;
             bool allowDelete = true;
-
+        
             ISavedGameClient savedGameClient = PlayGamesPlatform.Instance.SavedGame;
-            MoonBunnyLog.print($"ShowSelectUI savedGameClient type {savedGameClient.GetType()}", "GoogleManager");
             savedGameClient.ShowSelectSavedGameUI("Select saved game", maxNumToDisplay, allowCreateNew, allowDelete, OnSavedGameSelected);
         }
-
+        
         void OnSavedGameSelected(SelectUIStatus status, ISavedGameMetadata game)
         {
-            MoonBunnyLog.print($"SelectUI Status : {status}, metadata type {game.GetType()}", "GoogleManager");
-
+            MoonBunnyLog.print($"SelectUI Status : {status}", "GoogleManager");
+        
             if (status == SelectUIStatus.SavedGameSelected)
             {
                 // handle selected game save
                 switch (SelectUIMethod)
                 {
                     case SelectUIMethod.Load:
-                        OpenSavedGame(game.Filename);
+                        LoadGameData(game);
                         break;
                     case SelectUIMethod.Save:
                         SaveGame(game, _loadedByte, game.TotalTimePlayed);
@@ -186,25 +201,41 @@ namespace MoonBunny
 
         #endregion
 
-        #region Load
+        #region Get Save Data
 
         void OpenSavedGame(string filename)
         {
             ISavedGameClient savedGameClient = PlayGamesPlatform.Instance.SavedGame;
             MoonBunnyLog.print($"OpenSavedGame with file {filename}", "GoogleManager");
 
-            savedGameClient.OpenWithAutomaticConflictResolution(filename, DataSource.ReadCacheOrNetwork,
-                ConflictResolutionStrategy.UseLongestPlaytime, OnSavedGameOpened);
+            if (UseSelectUI)
+            {
+                ShowSelectUI();
+            } else
+            {
+                savedGameClient.OpenWithAutomaticConflictResolution(filename, DataSource.ReadCacheOrNetwork,
+                    ConflictResolutionStrategy.UseLongestPlaytime, OnSavedGameOpened);
+            }
         }
 
         void OnSavedGameOpened(SavedGameRequestStatus status, ISavedGameMetadata game)
         {
-            MoonBunnyLog.print($"OnSavedGameOpend with status {status}", "GoogleManager");
+            MoonBunnyLog.print($"OnSavedGame Opened with status {status}", "GoogleManager");
 
             if (status == SavedGameRequestStatus.Success)
             {
-                // handle reading or writing of saved game.
-                LoadGameData(game);
+                switch (SelectUIMethod)
+                {
+                    case SelectUIMethod.Load:
+                        LoadGameData(game);
+                        break;
+                    case SelectUIMethod.Save:
+                        SaveGame(game, _loadedByte, game.TotalTimePlayed);
+                        break;
+                    case SelectUIMethod.Delete:
+                        DeleteGameData(game.Filename);
+                        break;
+                }
             } else
             {
                 // handle error
@@ -217,16 +248,33 @@ namespace MoonBunny
 
         private Texture2D savedImage;
 
+        /// <summary>
+        /// Save Game with Select UI
+        /// </summary>
         void SaveGame(ISavedGameMetadata game, byte[] savedData, TimeSpan totalPlaytime)
         {
             MoonBunnyLog.print($"SaveGame at {game.Filename} with playtime {totalPlaytime}", "GoogleManager");
 
+            StartCoroutine(SaveWithScreenShot(game, savedData, totalPlaytime));
+        }
+        
+        IEnumerator SaveWithScreenShot(ISavedGameMetadata game, byte[] savedData, TimeSpan totalPlaytime)
+        {
             ISavedGameClient savedGameClient = PlayGamesPlatform.Instance.SavedGame;
 
             SavedGameMetadataUpdate.Builder builder = new SavedGameMetadataUpdate.Builder();
             builder = builder.WithUpdatedPlayedTime(totalPlaytime).WithUpdatedDescription("Saved game at " + DateTime.Now);
+            
+            yield return new WaitForEndOfFrame();
+            
+            // Create a 2D texture that is 1024x700 pixels from which the PNG will be
+            // extracted
+            savedImage = new Texture2D(1024, 700);
 
-            savedImage = getScreenshot();
+            // Takes the screenshot from top left hand corner of screen and maps to top
+            // left hand corner of screenShot texture
+            savedImage.ReadPixels(new Rect(0, 0, Screen.width, (Screen.width / 1024f) * 700), 0, 0);
+            
             if (savedImage != null)
             {
                 // This assumes that savedImage is an instance of Texture2D
@@ -254,25 +302,12 @@ namespace MoonBunny
             }
         }
 
-        public Texture2D getScreenshot()
-        {
-            // Create a 2D texture that is 1024x700 pixels from which the PNG will be
-            // extracted
-            Texture2D screenShot = new Texture2D(1024, 700);
-
-            // Takes the screenshot from top left hand corner of screen and maps to top
-            // left hand corner of screenShot texture
-            screenShot.ReadPixels(new Rect(0, 0, Screen.width, (Screen.width / 1024f) * 700), 0, 0);
-            return screenShot;
-        }
-
         #endregion
 
         #region Read
 
         public event Action OnDataLoadSuccess;
         public event Action OnDataLoadFail;
-        public bool DataIsLoaded;
         private byte[] _loadedByte;
 
         void LoadGameData(ISavedGameMetadata game)
@@ -287,45 +322,77 @@ namespace MoonBunny
         {
             MoonBunnyLog.print($"Read Game Data {status}", "GoogleManager");
 
-            if (status == SavedGameRequestStatus.Success)
+            if (status != SavedGameRequestStatus.Success)
             {
-                // handle processing the byte array data
-                MoonBunnyLog.print($"Read Game Data length : {data.Length}", "GoogleManager");
-                _loadedByte = data;
-
-                int progressDataLength = BitConverter.ToInt32(_loadedByte, 0);
-                int questDataLength = BitConverter.ToInt32(_loadedByte, 4);
-
-                byte[] progressData = new byte[progressDataLength];
-                byte[] questData = new byte[questDataLength];
-
-                Array.Copy(_loadedByte, 8, progressData, 0, progressDataLength);
-                Array.Copy(_loadedByte, 8 + progressDataLength, questData, 0, questDataLength);
-
-                using (Aes aes = Aes.Create())
-                {
-                    aes.Key = SaveLoadSystem.AesEncryptionKeyByte;
-                    aes.IV = SaveLoadSystem.AesEncryptionIVByte;
-
-                    var encryptor = aes.CreateDecryptor();
-
-                    byte[] decryptedProgressData = encryptor.TransformFinalBlock(progressData, 0, progressDataLength);
-                    byte[] decryptedQuestData = encryptor.TransformFinalBlock(questData, 0, questDataLength);
-
-                    string progressDataStr = Encoding.UTF8.GetString(decryptedProgressData);
-                    string questDataStr = Encoding.UTF8.GetString(decryptedQuestData);
-
-                    ProgressData = JsonUtility.FromJson<ProgressSaveData>(progressDataStr);
-                    QuestData = JsonUtility.FromJson<QuestSaveData>(questDataStr);
-                }
-
-                DataIsLoaded = true;
-                OnDataLoadSuccess?.Invoke();
-            } else
-            {
-                DataIsLoaded = false;
+                GameManager.instance.SaveLoadSystem.DataIsLoaded = false;
+                QuestManager.instance.SaveLoadSystem.DataIsLoaded = false;
                 OnDataLoadFail?.Invoke();
+                return;
             }
+            
+            // handle processing the byte array data
+            MoonBunnyLog.print($"Read Game Data length : {data.Length}", "GoogleManager");
+
+            try
+            {
+                if (data.Length <= 8)
+                {
+                    // First time to make save file
+                    MoonBunnyLog.print($"First Time to get save file -> make default", "GoogleManager");
+
+                    ProgressData = ProgressSaveData.GetDefaultSaveData();
+                    QuestData = QuestSaveData.GetDefaultSaveData();
+                } else
+                {
+                    _loadedByte = data;
+
+                    using (Aes aes = Aes.Create())
+                    {
+                        aes.Key = SaveLoadSystem.AesEncryptionKeyByte;
+                        aes.IV = SaveLoadSystem.AesEncryptionIVByte;
+                        
+                        var encryptor = aes.CreateDecryptor();
+
+                        byte[] decryptedData = encryptor.TransformFinalBlock(_loadedByte, 0, _loadedByte.Length);
+
+                        byte[] progressLength = new byte[4];
+                        byte[] questLength = new byte[4];
+
+                        Array.Copy(decryptedData, 0, progressLength, 0, 4);
+                        Array.Copy(decryptedData, 4, questLength, 0, 4);
+
+                        int progressDataLength = BitConverter.ToInt32(progressLength);
+                        int questDataLength = BitConverter.ToInt32(questLength);
+
+                        byte[] progressData = new byte[progressDataLength];
+                        byte[] questData = new byte[questDataLength];
+
+                        Array.Copy(decryptedData, 8, progressData, 0, progressDataLength);
+                        Array.Copy(decryptedData, 8 + progressDataLength, questData, 0, questDataLength);
+                        
+                        MoonBunnyLog.print($"Load data length : {progressData.Length} {questData.Length}, lengthData {progressLength.Length} {questLength.Length}, total {_loadedByte.Length} {decryptedData.Length}", "GoogleManager");
+
+                        string progressDataStr = Encoding.UTF8.GetString(progressData);
+                        string questDataStr = Encoding.UTF8.GetString(questData);
+
+                        ProgressData = JsonUtility.FromJson<ProgressSaveData>(progressDataStr);
+                        QuestData = JsonUtility.FromJson<QuestSaveData>(questDataStr);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                // Save Data is Corrupted
+                MoonBunnyLog.print($"Save Data is Corrupted so make new one", "GoogleManager");
+                MoonBunnyLog.print(e);
+
+                ProgressData = ProgressSaveData.GetDefaultSaveData();
+                QuestData = QuestSaveData.GetDefaultSaveData();
+            }
+
+            GameManager.instance.SaveLoadSystem.DataIsLoaded = true;
+            QuestManager.instance.SaveLoadSystem.DataIsLoaded = true;
+            OnDataLoadSuccess?.Invoke();
         }
 
         #endregion

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Text;
+using UnityEngine;
 
 namespace MoonBunny.Dev
 {
@@ -26,6 +27,25 @@ namespace MoonBunny.Dev
         public static void print(object msg, string tag)
         {
             Debug.Log($"[{tag}] : {msg}");
+        }
+
+        public static void printByteArray(byte[] byteArr)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            stringBuilder.AppendLine(Prefix + "ByteArray");
+
+            for (int i = 0; i < byteArr.Length; i++)
+            {
+                stringBuilder.Append(byteArr[i] + " ");
+
+                if (i % 4 == 3)
+                {
+                    stringBuilder.AppendLine();
+                }
+            }
+            
+            Debug.Log(stringBuilder);
         }
     }
 }

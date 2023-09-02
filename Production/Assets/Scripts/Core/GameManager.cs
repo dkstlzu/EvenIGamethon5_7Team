@@ -32,9 +32,9 @@ namespace MoonBunny
                 if (!instance.SaveLoadSystem.DataIsLoaded)
                 {
                     Debug.LogWarning("ProgressSaveData in GameManager is not loaded yet");
-                    return null;
                 }
-                else return instance.SaveLoadSystem.ProgressSaveData;
+                
+                return instance.SaveLoadSystem.ProgressSaveData;
             }
             set
             {
@@ -140,13 +140,16 @@ namespace MoonBunny
                 };
             }
 
-            foreach (string sceneName in SceneName.Names)
+            SaveLoadSystem.OnSaveDataLoaded += () =>
             {
-                SCB.SceneLoadCallBackDict[sceneName] += () =>
+                foreach (string sceneName in SceneName.Names)
                 {
-                    AudioListener.volume = VolumeSetting;
-                };
-            }
+                    SCB.SceneLoadCallBackDict[sceneName] += () =>
+                    {
+                        AudioListener.volume = VolumeSetting;
+                    };
+                }
+            };
             
             IAPManager.instance.OnPurchaseComplete += (productName) =>
             {
@@ -184,7 +187,7 @@ namespace MoonBunny
 #endif
             if (!SaveLoadSystem.DataIsLoaded)
             {
-                Debug.LogError("Cannot save progress. SaveLoadsystem never loaded data");
+                Debug.LogError("Cannot save progress. SaveLoad system never loaded data");
                 return;
             }
             
