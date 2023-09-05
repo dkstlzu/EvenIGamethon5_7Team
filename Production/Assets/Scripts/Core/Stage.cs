@@ -262,24 +262,24 @@ namespace MoonBunny
                 FriendCollectionManager.instance.Collect(element.Key, element.Value);
             }
 
-            int previousClear = GameManager.ProgressSaveData.ClearDict[Name];
+            int previousClear = GameManager.SaveData.ClearDict[Name];
             if (previousClear <= SubLevel)
             {
-                GameManager.ProgressSaveData.ClearDict[Name] = SubLevel+1;
+                GameManager.SaveData.ClearDict[Name] = SubLevel+1;
                 OnNewLevelUnlocked?.Invoke(SubLevel+1);
                 
                 if (SubLevel >= 2)
                 {
-                    GameManager.ProgressSaveData.ClearDict[Name + 1] = 0;
+                    GameManager.SaveData.ClearDict[Name + 1] = 0;
                     OnNewStageUnlocked?.Invoke(StageLevel+1);
                 }
             }
 
             int levelKey = StageLevel * 10 + SubLevel;
-            int previousStar = GameManager.ProgressSaveData.StarDict[levelKey];
+            int previousStar = GameManager.SaveData.StarDict[levelKey];
             if (previousStar < GainedStar)
             {
-                GameManager.ProgressSaveData.StarDict[levelKey] = GainedStar;
+                GameManager.SaveData.StarDict[levelKey] = GainedStar;
                 OnNewStarGained?.Invoke(levelKey, GainedStar);
             }
             

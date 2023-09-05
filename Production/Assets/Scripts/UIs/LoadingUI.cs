@@ -117,7 +117,7 @@ namespace MoonBunny.UIs
 
         private void CheckSaveDataLoaded()
         {
-            if (GameManager.instance.SaveLoadSystem.DataIsLoaded)
+            if (GameManager.instance.SaveLoadSystem.Validation != SaveLoadSystem.DataValidation.Invalidate)
             {
                 MoonBunnyLog.print("ProgressSaveData load Success.", tag:"LoadingUI");
                 ProgressText.DOText(_SAVEDATA + _DOTS, TWEEN_DURATION);
@@ -141,7 +141,7 @@ namespace MoonBunny.UIs
 
         private void CheckQuestDataLoaded()
         {
-            if (QuestManager.instance.SaveLoadSystem.DataIsLoaded)
+            if (QuestManager.instance.SaveLoadSystem.Validation != SaveLoadSystem.DataValidation.Invalidate)
             {
                 MoonBunnyLog.print("QuestSaveData load Success.", tag:"LoadingUI");
                 _loadDataSucceed = true;

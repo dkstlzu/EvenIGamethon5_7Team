@@ -58,7 +58,9 @@ namespace MoonBunny
             
             for (int i = 0; i < questSpecs.Length; i++)
             {
-                saveData.QuestClearList[i].CurrentProgress = questSpecs[i].TargetProgress;
+                var data = new QuestItemSaveData(questSpecs[i].Id);
+                data.CurrentProgress = questSpecs[i].TargetProgress;
+                saveData.QuestClearList.Add(data);
             }
 
             return saveData;

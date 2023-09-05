@@ -20,7 +20,15 @@ namespace MoonBunny
     [Serializable]
     public class SaveLoadSystem
     {
-        public bool DataIsLoaded;
+        public enum DataValidation
+        {
+            Invalidate,
+            Legacy,
+            Validate,
+            Default,
+        }
+        
+        public DataValidation Validation;
         public ProgressSaveData ProgressSaveData;
         public QuestSaveData QuestSaveData;
         public string PersistenceFolderPath => Path.Combine(Application.persistentDataPath, DataSavingFolderName);
@@ -284,6 +292,7 @@ namespace MoonBunny
                 byte[] data = Encoding.Default.GetBytes(str);
                 byte[] cryptoData = aes.CreateEncryptor().TransformFinalBlock(data, 0, data.Length);
                 File.WriteAllBytes(filePath, cryptoData);
+                MoonBunnyLog.print($"{filePath} save encrypted");
                 OnSaveSuccess?.Invoke();
             }
         }
@@ -348,57 +357,56 @@ namespace MoonBunny
 
         public void SaveProgress()
         {
-#if UNITY_EDITOR
-            SaveJson(ProgressSaveData);
-#else
-            GoogleManager.instance.Save();
-#endif
+            if (GameManager.instance.useSaveSystem)
+                SaveJson(ProgressSaveData);
+            else
+                GoogleManager.instance.Save();
         }
 
         public void SaveQuest()
         {
-#if UNITY_EDITOR
-            SaveJson(QuestSaveData);
-#else
-            GoogleManager.instance.Save();
-#endif
+            if (GameManager.instance.useSaveSystem)
+                SaveJson(QuestSaveData);
+            else
+                GoogleManager.instance.Save();
         }
 
         private event Action _onSaveDataLoaded;
-#if UNITY_EDITOR
+        
         public event Action OnSaveDataLoaded
         {
             add
             {
-                if (DataIsLoaded) value?.Invoke();
-                else _onSaveDataLoaded += value;
+                if (Validation != DataValidation.Invalidate) value?.Invoke();
+                else if (GameManager.instance.useSaveSystem)
+                {
+                    _onSaveDataLoaded += value;
+                } else
+                {
+                    GoogleManager.instance.OnDataLoadSuccess += value;
+                }
             }
             remove
             {
-                _onSaveDataLoaded -= value;
+                if (GameManager.instance.useSaveSystem)
+                {
+                    _onSaveDataLoaded -= value;
+                } else
+                {
+                    GoogleManager.instance.OnDataLoadSuccess -= value;
+
+                }
             }
         }
-#else
-        public event Action OnSaveDataLoaded
-        {
-            add
-            {
-                if (DataIsLoaded) value?.Invoke();
-                else GoogleManager.instance.OnDataLoadSuccess += value;
-            }
-            remove
-            {
-                GoogleManager.instance.OnDataLoadSuccess -= value;
-            }
-        }
-#endif
 
         public void LoadProgress()
         {
-            CheckDirectory();
-            CheckFile();
+            MoonBunnyLog.print("Load Progress");
 
 #if UNITY_EDITOR
+            CheckDirectory();
+            CheckFile();
+            
             using (FileStream fs = File.OpenRead(PersistenceFilePath))
             {
                 using (StreamReader reader = new StreamReader(fs))
@@ -408,20 +416,6 @@ namespace MoonBunny
                     if (ProgressSaveData != null)
                     {
                         MoonBunnyLog.print($"SaveLoadSystem load success : {PersistenceFilePath}");
-
-                        StageName[] stageNames = EnumHelper.ClapValuesOfEnum<StageName>(0);
-                        
-                        if (ProgressSaveData.StarDict.Count < stageNames.Length * 3)
-                        {
-                            ProgressSaveData.StarDict.Clear();
-                            foreach (StageName stageName in stageNames)
-                            {
-                                int stageLevel = (int)stageName;
-                                ProgressSaveData.StarDict.Add(stageLevel * 10 + 0, 0);
-                                ProgressSaveData.StarDict.Add(stageLevel * 10 + 1, 0);
-                                ProgressSaveData.StarDict.Add(stageLevel * 10 + 2, 0);
-                            }
-                        }
                     }
                     else
                     {
@@ -440,46 +434,39 @@ namespace MoonBunny
                     }
                 }
             }
-            
-            DataIsLoaded = true;
-            _onSaveDataLoaded?.Invoke();
+
+            Validation = DataValidation.Validate;
 #else
-            // Encrypt version of saveloadsystem
-            try
+            if (GameManager.instance.useSaveSystem)
             {
-                ProgressSaveData = LoadEncrypted<ProgressSaveData>(PersistenceFilePath);
-                
-                StageName[] stageNames = EnumHelper.ClapValuesOfEnum<StageName>(0);
-                        
-                if (ProgressSaveData.StarDict.Count < stageNames.Length * 3)
+                CheckDirectory();
+                CheckFile();
+
+                // Encrypt version of save load system
+                try
                 {
-                    ProgressSaveData.StarDict.Clear();
-                    foreach (StageName stageName in stageNames)
-                    {
-                        int stageLevel = (int)stageName;
-                        ProgressSaveData.StarDict.Add(stageLevel * 10 + 0, 0);
-                        ProgressSaveData.StarDict.Add(stageLevel * 10 + 1, 0);
-                        ProgressSaveData.StarDict.Add(stageLevel * 10 + 2, 0);
-                    }
+                    ProgressSaveData = LoadEncrypted<ProgressSaveData>(PersistenceFilePath);
+                    Validation = DataValidation.Validate;
                 }
-                
-                DataIsLoaded = true;
-                _onSaveDataLoaded?.Invoke();
-            }
-            catch (Exception)
-            {
-                MoonBunnyLog.print($"SaveLoadSystem is legacy before encrypting version {PersistenceFilePath}\n So made new encrypted one");
-                ProgressSaveData = ProgressSaveData.GetDefaultSaveData();
+                catch (Exception)
+                {
+                    MoonBunnyLog.print($"Progress Data is legacy before encrypting version {PersistenceFilePath}\n So made new encrypted one");
+                    ProgressSaveData = ProgressSaveData.GetDefaultSaveData();
+                    Validation = DataValidation.Default;
+                }
             }
 #endif
+            _onSaveDataLoaded?.Invoke();
         }
         
         public void LoadQuest()
         {
+            MoonBunnyLog.print("Load Quest");
+            
+#if UNITY_EDITOR
             CheckDirectory();
             CheckFile();
-
-#if UNITY_EDITOR
+            
             using (FileStream fs = File.OpenRead(PersistenceFilePath))
             {
                 using (StreamReader reader = new StreamReader(fs))
@@ -507,20 +494,29 @@ namespace MoonBunny
                     }
                 }
             }
+            Validation = DataValidation.Validate;
+
 #else
-            // Encrypt version of saveloadsystem
-            try
+            if (GameManager.instance.useSaveSystem)
             {
-                QuestSaveData = LoadEncrypted<QuestSaveData>(PersistenceFilePath);            
-            }
-            catch (Exception)
-            {
-                MoonBunnyLog.print($"SaveLoadSystem is legacy before encrypting version {PersistenceFilePath}\n So made new encrypted one");
-                QuestSaveData = QuestSaveData.GetDefaultSaveData();
+                CheckDirectory();
+                CheckFile();
+
+                // Encrypt version of save load system
+                try
+                {
+                    QuestSaveData = LoadEncrypted<QuestSaveData>(PersistenceFilePath);       
+                    Validation = DataValidation.Validate;
+                }
+                catch (Exception)
+                {
+                    MoonBunnyLog.print($"Quest Data is legacy before encrypting version {PersistenceFilePath}\n So made new encrypted one");
+                    QuestSaveData = QuestSaveData.GetDefaultSaveData();
+                    Validation = DataValidation.Default;
+                }
             }
 #endif
             
-            DataIsLoaded = true;
             _onSaveDataLoaded?.Invoke();
         }
 

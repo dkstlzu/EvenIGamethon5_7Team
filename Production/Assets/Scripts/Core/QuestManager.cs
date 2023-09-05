@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using dkstlzu.Utility;
+using MoonBunny.Dev;
 using MoonBunny.UIs;
 using UnityEngine;
 
@@ -11,22 +12,17 @@ namespace MoonBunny
     {
         public SaveLoadSystem SaveLoadSystem;
         [SerializeField] private ReadOnlyWithClassDict<int, Quest> _questDict = new ReadOnlyWithClassDict<int, Quest>();
-
-#if UNITY_EDITOR
-        public bool UseSaveSystem;
-#endif
         
         public static QuestSaveData SaveData
         {
             get
             {
-                if (!instance.SaveLoadSystem.DataIsLoaded) return null;
-                else return instance.SaveLoadSystem.QuestSaveData;
-            }
-            set
-            {
-                instance.SaveLoadSystem.DataIsLoaded = true;
-                instance.SaveLoadSystem.QuestSaveData = value;
+                if (instance.SaveLoadSystem.Validation == SaveLoadSystem.DataValidation.Invalidate)
+                {
+                    Debug.LogWarning("QuestSaveData in QuestManager is not loaded yet");
+                }
+                
+                return instance.SaveLoadSystem.QuestSaveData;
             }
         }
 
@@ -113,49 +109,38 @@ namespace MoonBunny
 
         void LoadQuestData()
         {
-#if UNITY_EDITOR
-            if (UseSaveSystem)
+            if (GameManager.instance.useSaveSystem)
             {
-#endif
-
                 SaveLoadSystem.Init("Saves", "Quest", "txt");
-
-                SaveLoadSystem.OnSaveDataLoaded += () =>
-                {
-                    for (int i = 0; i < SaveLoadSystem.QuestSaveData.QuestClearList.Count; i++)
-                    {
-                        QuestItemSaveData questItemSaveData = SaveLoadSystem.QuestSaveData.QuestClearList[i];
-
-                        Quest targetQuest = _questDict[questItemSaveData.Id];
-
-                        targetQuest.CurrentProgress = questItemSaveData.CurrentProgress;
-                        targetQuest.ItemSaveData = questItemSaveData;
-
-                        if (targetQuest.State == QuestState.Disabled)
-                        {
-                        }
-                        else if (questItemSaveData.isFinished)
-                        {
-                            targetQuest.State = QuestState.IsFinished;
-                        }
-                        else if (targetQuest.CurrentProgress >= targetQuest.TargetProgress)
-                        {
-                            targetQuest.State = QuestState.CanTakeReward;
-                        }
-                    }
-                };
-
-#if UNITY_EDITOR
                 SaveLoadSystem.LoadQuest();
             }
-            else
+
+            SaveLoadSystem.OnSaveDataLoaded += () =>
             {
-                SaveLoadSystem.DataIsLoaded = true;
-                SaveLoadSystem.QuestSaveData = QuestSaveData.GetDefaultSaveData();
-            }
-#endif
+                for (int i = 0; i < SaveLoadSystem.QuestSaveData.QuestClearList.Count; i++)
+                {
+                    QuestItemSaveData questItemSaveData = SaveLoadSystem.QuestSaveData.QuestClearList[i];
+                    
+                    Quest targetQuest = _questDict[questItemSaveData.Id];
+
+                    targetQuest.CurrentProgress = questItemSaveData.CurrentProgress;
+                    targetQuest.ItemSaveData = questItemSaveData;
+
+                    if (targetQuest.State == QuestState.Disabled)
+                    {
+                    }
+                    else if (questItemSaveData.isFinished)
+                    {
+                        targetQuest.State = QuestState.IsFinished;
+                    }
+                    else if (targetQuest.CurrentProgress >= targetQuest.TargetProgress)
+                    {
+                        targetQuest.State = QuestState.CanTakeReward;
+                    }
+                }
+            };
+
         }
-        
 
         #endregion
 

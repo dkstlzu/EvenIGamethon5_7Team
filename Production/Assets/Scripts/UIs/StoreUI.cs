@@ -85,7 +85,7 @@ namespace MoonBunny.UIs
         {
             for (int i = 0; i < MemoryPurchaseTextList.Count; i++)
             {
-                MemoryPurchaseTextList[i].text = $"{GameManager.ProgressSaveData.CollectionSellDict[(FriendName)(i+1)]}/{PreloadedResources.instance.FriendSpecList[i+1].MaxPurchasableNumber}";
+                MemoryPurchaseTextList[i].text = $"{GameManager.SaveData.CollectionSellDict[(FriendName)(i+1)]}/{PreloadedResources.instance.FriendSpecList[i+1].MaxPurchasableNumber}";
             }
             
             for (int i = 0; i < MemoryPriceTextList.Count; i++)
@@ -290,7 +290,7 @@ namespace MoonBunny.UIs
                     return;
                 }
                 
-                if (GameManager.ProgressSaveData.CollectionSellDict[friendNameEnum] >= PreloadedResources.instance.FriendSpecList[(int)friendNameEnum].MaxPurchasableNumber)
+                if (GameManager.SaveData.CollectionSellDict[friendNameEnum] >= PreloadedResources.instance.FriendSpecList[(int)friendNameEnum].MaxPurchasableNumber)
                 {
                     NoticeText.text = "";
                     NoticeText.DOText(SellLimitExceedText, NoticeTweenDuration);
@@ -311,7 +311,7 @@ namespace MoonBunny.UIs
             NoticeText.DOText(PurchaseSuccess, NoticeTweenDuration);
             GameManager.instance.DiamondNumber -= MemoryPriceList[((int)friendName) - 1];
 
-            GameManager.ProgressSaveData.CollectionSellDict[friendName]++;
+            GameManager.SaveData.CollectionSellDict[friendName]++;
             FriendCollectionManager.instance.Collect(friendName, 1);
             Rebuild();
             GameManager.instance.SaveProgress();

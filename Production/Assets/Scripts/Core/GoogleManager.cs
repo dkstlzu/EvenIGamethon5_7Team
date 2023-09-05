@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Security.Cryptography;
 using System.Text;
-using CartoonFX;
 using dkstlzu.Utility;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
@@ -32,17 +31,18 @@ namespace MoonBunny
         private SaveLoadSystem _legacySaveLoadSystemChecker;
 
         private const string SAVE_FILE_NAME = "JumpingBunnySave";
+        private const string SAVE_FILE_NAME_TEST = "Test2";
 
         public ProgressSaveData ProgressData
         {
-            get => GameManager.ProgressSaveData;
-            set => GameManager.ProgressSaveData = value;
+            get => GameManager.SaveData;
+            set => GameManager.instance.SaveLoadSystem.ProgressSaveData = value;
         }
 
         public QuestSaveData QuestData
         {
             get => QuestManager.SaveData;
-            set => QuestManager.SaveData = value;
+            set => QuestManager.instance.SaveLoadSystem.QuestSaveData = value;
         }
 
         private IPlayGamesClient _client;
@@ -96,14 +96,22 @@ namespace MoonBunny
 
             SelectUIMethod = SelectUIMethod.Save;
 
+#if DEVELOPMENT_BUILD
+            OpenSavedGame(SAVE_FILE_NAME_TEST);
+#else
             OpenSavedGame(SAVE_FILE_NAME);
+#endif
         }
 
         public void Load()
         {
             SelectUIMethod = SelectUIMethod.Load;
 
+#if DEVELOPMENT_BUILD
+            OpenSavedGame(SAVE_FILE_NAME_TEST);
+#else
             OpenSavedGame(SAVE_FILE_NAME);
+#endif
         }
 
         private bool _gpgsLoginTriedBefore = false;
@@ -128,7 +136,6 @@ namespace MoonBunny
         {
 #if UNITY_EDITOR
 #else
-            Save();
             PlayGamesPlatform.Instance.SignOut();
 #endif
         }
@@ -140,7 +147,8 @@ namespace MoonBunny
             switch (status)
             {
                 case SignInStatus.Success:
-                    Load();
+                    if (!GameManager.instance.useSaveSystem)
+                        Load();
                     break;
                 case SignInStatus.UiSignInRequired: break;
                 case SignInStatus.DeveloperError: break;
@@ -314,7 +322,7 @@ namespace MoonBunny
 
         void LoadGameData(ISavedGameMetadata game)
         {
-            MoonBunnyLog.print($"LoadGameData with {game.Filename}", "GoogleManager");
+            MoonBunnyLog.print($"Get GameData with {game.Filename}", "GoogleManager");
 
             ISavedGameClient savedGameClient = PlayGamesPlatform.Instance.SavedGame;
             savedGameClient.ReadBinaryData(game, OnSavedGameDataRead);
@@ -326,8 +334,8 @@ namespace MoonBunny
 
             if (status != SavedGameRequestStatus.Success)
             {
-                GameManager.instance.SaveLoadSystem.DataIsLoaded = false;
-                QuestManager.instance.SaveLoadSystem.DataIsLoaded = false;
+                GameManager.instance.SaveLoadSystem.Validation = SaveLoadSystem.DataValidation.Invalidate;
+                QuestManager.instance.SaveLoadSystem.Validation = SaveLoadSystem.DataValidation.Invalidate;
                 OnDataLoadFail?.Invoke();
                 return;
             }
@@ -339,19 +347,28 @@ namespace MoonBunny
             {
                 if (data.Length <= 8)
                 {
-                    _legacySaveLoadSystemChecker = new SaveLoadSystem("Saves", "Save");
-                    _legacySaveLoadSystemChecker.LoadProgress();
-                    _legacySaveLoadSystemChecker.LoadQuest();
-
-                    if (_legacySaveLoadSystemChecker.DataIsLoaded)
+                    // Encrypt version of save load system
+                    try
                     {
+                        _legacySaveLoadSystemChecker = new SaveLoadSystem("Saves", "Save");
+                        _legacySaveLoadSystemChecker.ProgressSaveData = _legacySaveLoadSystemChecker.LoadEncrypted<ProgressSaveData>(_legacySaveLoadSystemChecker.PersistenceFilePath);
+                        
+                        _legacySaveLoadSystemChecker.Init("Saves", "Quest", "txt");
+                        _legacySaveLoadSystemChecker.QuestSaveData = _legacySaveLoadSystemChecker.LoadEncrypted<QuestSaveData>(_legacySaveLoadSystemChecker.PersistenceFilePath);
+                        
+                        _legacySaveLoadSystemChecker.Validation = SaveLoadSystem.DataValidation.Legacy;
+                        
                         // Use Legacy SaveData Compatibility
-                        MoonBunnyLog.print($"There is legacy save data and use it", "GoogleManager");
+                        MoonBunnyLog.print($"There is no cloud save data but, legacy save data and use it", "GoogleManager");
 
                         ProgressData = _legacySaveLoadSystemChecker.ProgressSaveData;
                         QuestData = _legacySaveLoadSystemChecker.QuestSaveData;
-                    } else
+                    }
+                    catch (Exception e)
                     {
+                        MoonBunnyLog.print($"Finding legacy save data failed {e}", "GoogleManager");
+                        _legacySaveLoadSystemChecker.Validation = SaveLoadSystem.DataValidation.Invalidate;
+                        
                         // First time to make save file
                         MoonBunnyLog.print($"First Time to get save file -> make default", "GoogleManager");
 
@@ -366,7 +383,7 @@ namespace MoonBunny
                     {
                         aes.Key = SaveLoadSystem.AesEncryptionKeyByte;
                         aes.IV = SaveLoadSystem.AesEncryptionIVByte;
-                        
+
                         var encryptor = aes.CreateDecryptor();
 
                         byte[] decryptedData = encryptor.TransformFinalBlock(_loadedByte, 0, _loadedByte.Length);
@@ -385,8 +402,10 @@ namespace MoonBunny
 
                         Array.Copy(decryptedData, 8, progressData, 0, progressDataLength);
                         Array.Copy(decryptedData, 8 + progressDataLength, questData, 0, questDataLength);
-                        
-                        MoonBunnyLog.print($"Load data length : {progressData.Length} {questData.Length}, lengthData {progressLength.Length} {questLength.Length}, total {_loadedByte.Length} {decryptedData.Length}", "GoogleManager");
+
+                        MoonBunnyLog.print(
+                            $"Load data length : {progressData.Length} {questData.Length}, lengthData {progressLength.Length} {questLength.Length}, total {_loadedByte.Length} {decryptedData.Length}",
+                            "GoogleManager");
 
                         string progressDataStr = Encoding.UTF8.GetString(progressData);
                         string questDataStr = Encoding.UTF8.GetString(questData);
@@ -405,9 +424,9 @@ namespace MoonBunny
                 ProgressData = ProgressSaveData.GetDefaultSaveData();
                 QuestData = QuestSaveData.GetDefaultSaveData();
             }
-
-            GameManager.instance.SaveLoadSystem.DataIsLoaded = true;
-            QuestManager.instance.SaveLoadSystem.DataIsLoaded = true;
+            
+            GameManager.instance.SaveLoadSystem.Validation = SaveLoadSystem.DataValidation.Validate;
+            QuestManager.instance.SaveLoadSystem.Validation = SaveLoadSystem.DataValidation.Validate;
             OnDataLoadSuccess?.Invoke();
         }
 

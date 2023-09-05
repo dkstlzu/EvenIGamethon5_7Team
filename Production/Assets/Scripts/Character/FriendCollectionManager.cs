@@ -79,7 +79,7 @@ namespace MoonBunny
             {
                 foreach (FriendCollection.Data data in Collection.Datas)
                 {
-                    data.CurrentCollectingNumber = GameManager.ProgressSaveData.CollectionDict[data.Name];
+                    data.CurrentCollectingNumber = GameManager.SaveData.CollectionDict[data.Name];
                 }
             };
         }

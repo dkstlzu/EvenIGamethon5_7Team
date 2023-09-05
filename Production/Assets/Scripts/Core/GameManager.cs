@@ -25,21 +25,16 @@ namespace MoonBunny
             }
         }
 
-        public static ProgressSaveData ProgressSaveData
+        public static ProgressSaveData SaveData
         {
             get
             {
-                if (!instance.SaveLoadSystem.DataIsLoaded)
+                if (instance.SaveLoadSystem.Validation == SaveLoadSystem.DataValidation.Invalidate)
                 {
                     Debug.LogWarning("ProgressSaveData in GameManager is not loaded yet");
                 }
                 
                 return instance.SaveLoadSystem.ProgressSaveData;
-            }
-            set
-            {
-                instance.SaveLoadSystem.DataIsLoaded = true;
-                instance.SaveLoadSystem.ProgressSaveData = value;
             }
         }
 
@@ -52,16 +47,16 @@ namespace MoonBunny
 
         public FriendName UsingFriendName
         {
-            get => Enum.Parse<FriendName>(ProgressSaveData.UsingFriendName);
-            set => ProgressSaveData.UsingFriendName = value.ToString();
+            get => Enum.Parse<FriendName>(SaveData.UsingFriendName);
+            set => SaveData.UsingFriendName = value.ToString();
         }
 
         public int DiamondNumber
         {
-            get => ProgressSaveData.DiamondNumber;
+            get => SaveData.DiamondNumber;
             set
             {
-                ProgressSaveData.DiamondNumber = value;
+                SaveData.DiamondNumber = value;
                 if (StartSceneUI)
                 {
                     StartSceneUI.DiamondText1.text = value.ToString();
@@ -72,10 +67,10 @@ namespace MoonBunny
 
         public int GoldNumber
         {
-            get => ProgressSaveData.GoldNumber;
+            get => SaveData.GoldNumber;
             set
             {
-                ProgressSaveData.GoldNumber = value;
+                SaveData.GoldNumber = value;
                 if (StartSceneUI)
                 {
                     StartSceneUI.GoldText1.text = value.ToString();
@@ -86,45 +81,40 @@ namespace MoonBunny
 
         public bool ShowTutorial
         {
-            get => ProgressSaveData.ShowTutorial;
-            set => ProgressSaveData.ShowTutorial = value;
+            get => SaveData.ShowTutorial;
+            set => SaveData.ShowTutorial = value;
         }
         
         public float VolumeSetting
         {
-            get => ProgressSaveData.VolumeSetting;
+            get => SaveData.VolumeSetting;
             set
             {
-                ProgressSaveData.VolumeSetting = value;
+                SaveData.VolumeSetting = value;
                 AudioListener.volume = value;
             }
         }
 
-        public bool RemoveAd;
+        public bool RemoveAd
+        {
+            get => SaveData.RemoveAd;
+            set => SaveData.RemoveAd = value;
+        }
 
         public event Action OnStageSceneLoaded;
         public event Action OnStageSceneUnloaded;
         
-#if UNITY_EDITOR
         public bool useSaveSystem;
-#endif
         
         private void Awake()
         {
             Application.targetFrameRate = 60;
             
-#if UNITY_EDITOR
             if (useSaveSystem)
             {
                 SaveLoadSystem.Init("Saves", "Save", "txt");
                 SaveLoadSystem.LoadProgress();
             }
-            else
-            {
-                SaveLoadSystem.DataIsLoaded = true;
-                SaveLoadSystem.ProgressSaveData = ProgressSaveData.GetDefaultSaveData();
-            }
-#endif
 
             SCB = new SceneLoadCallbackSetter(SceneName.Names);
 
@@ -155,11 +145,11 @@ namespace MoonBunny
             {
                 if (productName == "패키지")
                 {
-                    ProgressSaveData.UnlimitedPackagePurchasedNumber++;
+                    SaveData.UnlimitedPackagePurchasedNumber++;
                 }
                 else if (productName == "한정 패키지")
                 {
-                    ProgressSaveData.LimitedPackagePurchased = true;
+                    SaveData.LimitedPackagePurchased = true;
                 }
             };
         }
@@ -169,23 +159,18 @@ namespace MoonBunny
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
 #else
-                Application.Quit();
+            Application.Quit();
 #endif
         }
 
         private void OnApplicationQuit()
         {
-#if UNITY_EDITOR
             SaveProgress();
-#endif
         }
 
         public void SaveProgress()
         {
-#if UNITY_EDITOR
-            if (!useSaveSystem) return;
-#endif
-            if (!SaveLoadSystem.DataIsLoaded)
+            if (SaveLoadSystem.Validation == SaveLoadSystem.DataValidation.Invalidate)
             {
                 Debug.LogError("Cannot save progress. SaveLoad system never loaded data");
                 return;

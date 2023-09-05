@@ -68,7 +68,7 @@ namespace MoonBunny.UIs
 
         private void PackageUpdate()
         {
-            LimitedPackageButton.interactable = !GameManager.ProgressSaveData.LimitedPackagePurchased;
+            LimitedPackageButton.interactable = !GameManager.SaveData.LimitedPackagePurchased;
             if (!LimitedPackageButton.interactable)
             {
                 LimitedPackageDescription.text = MAX_PURCHASED;
@@ -85,7 +85,7 @@ namespace MoonBunny.UIs
             CleareStageNumber += QuestManager.instance.GetQuest(QuestManager.UNLOCK_STAGE_ID+2).State == QuestState.IsFinished || QuestManager.instance.GetQuest(QuestManager.UNLOCK_STAGE_ID+2).State == QuestState.CanTakeReward ? 1 : 0;
             CleareStageNumber += QuestManager.instance.GetQuest(QuestManager.UNLOCK_STAGE_ID+3).State == QuestState.IsFinished || QuestManager.instance.GetQuest(QuestManager.UNLOCK_STAGE_ID+3).State == QuestState.CanTakeReward ? 1 : 0;
 
-            UnlimitedPackageButton.interactable = CleareStageNumber > GameManager.ProgressSaveData.UnlimitedPackagePurchasedNumber;
+            UnlimitedPackageButton.interactable = CleareStageNumber > GameManager.SaveData.UnlimitedPackagePurchasedNumber;
             if (!UnlimitedPackageButton.interactable)
             {
                 UnlimitedPackageDescription.text = MAX_PURCHASED;
