@@ -29,6 +29,8 @@ namespace MoonBunny
 
         private PlayGamesClientConfiguration _clientConfiguration;
 
+        private SaveLoadSystem _legacySaveLoadSystemChecker;
+
         private const string SAVE_FILE_NAME = "JumpingBunnySave";
 
         public ProgressSaveData ProgressData
@@ -238,7 +240,7 @@ namespace MoonBunny
                 }
             } else
             {
-                // handle error
+
             }
         }
 
@@ -337,11 +339,25 @@ namespace MoonBunny
             {
                 if (data.Length <= 8)
                 {
-                    // First time to make save file
-                    MoonBunnyLog.print($"First Time to get save file -> make default", "GoogleManager");
+                    _legacySaveLoadSystemChecker = new SaveLoadSystem("Saves", "Save");
+                    _legacySaveLoadSystemChecker.LoadProgress();
+                    _legacySaveLoadSystemChecker.LoadQuest();
 
-                    ProgressData = ProgressSaveData.GetDefaultSaveData();
-                    QuestData = QuestSaveData.GetDefaultSaveData();
+                    if (_legacySaveLoadSystemChecker.DataIsLoaded)
+                    {
+                        // Use Legacy SaveData Compatibility
+                        MoonBunnyLog.print($"There is legacy save data and use it", "GoogleManager");
+
+                        ProgressData = _legacySaveLoadSystemChecker.ProgressSaveData;
+                        QuestData = _legacySaveLoadSystemChecker.QuestSaveData;
+                    } else
+                    {
+                        // First time to make save file
+                        MoonBunnyLog.print($"First Time to get save file -> make default", "GoogleManager");
+
+                        ProgressData = ProgressSaveData.GetDefaultSaveData();
+                        QuestData = QuestSaveData.GetDefaultSaveData();
+                    }
                 } else
                 {
                     _loadedByte = data;

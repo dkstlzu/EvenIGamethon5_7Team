@@ -393,12 +393,12 @@ namespace MoonBunny
         }
 #endif
 
-#if UNITY_EDITOR
         public void LoadProgress()
         {
             CheckDirectory();
             CheckFile();
 
+#if UNITY_EDITOR
             using (FileStream fs = File.OpenRead(PersistenceFilePath))
             {
                 using (StreamReader reader = new StreamReader(fs))
@@ -441,33 +441,37 @@ namespace MoonBunny
                 }
             }
             
-            // Encrypt version of saveloadsystem
-            // try
-            // {
-            //     ProgressSaveData = LoadEncrypted<ProgressSaveData>(PersistenceFilePath);
-            //     
-            //     StageName[] stageNames = EnumHelper.ClapValuesOfEnum<StageName>(0);
-            //             
-            //     if (ProgressSaveData.StarDict.Count < stageNames.Length * 3)
-            //     {
-            //         ProgressSaveData.StarDict.Clear();
-            //         foreach (StageName stageName in stageNames)
-            //         {
-            //             int stageLevel = (int)stageName;
-            //             ProgressSaveData.StarDict.Add(stageLevel * 10 + 0, 0);
-            //             ProgressSaveData.StarDict.Add(stageLevel * 10 + 1, 0);
-            //             ProgressSaveData.StarDict.Add(stageLevel * 10 + 2, 0);
-            //         }
-            //     }
-            // }
-            // catch (Exception)
-            // {
-            //     MoonBunnyLog.print($"SaveLoadSystem is legacy before encrypting version {PersistenceFilePath}\n So made new encrypted one");
-            //     ProgressSaveData = ProgressSaveData.GetDefaultSaveData();
-            // }
-
             DataIsLoaded = true;
             _onSaveDataLoaded?.Invoke();
+#else
+            // Encrypt version of saveloadsystem
+            try
+            {
+                ProgressSaveData = LoadEncrypted<ProgressSaveData>(PersistenceFilePath);
+                
+                StageName[] stageNames = EnumHelper.ClapValuesOfEnum<StageName>(0);
+                        
+                if (ProgressSaveData.StarDict.Count < stageNames.Length * 3)
+                {
+                    ProgressSaveData.StarDict.Clear();
+                    foreach (StageName stageName in stageNames)
+                    {
+                        int stageLevel = (int)stageName;
+                        ProgressSaveData.StarDict.Add(stageLevel * 10 + 0, 0);
+                        ProgressSaveData.StarDict.Add(stageLevel * 10 + 1, 0);
+                        ProgressSaveData.StarDict.Add(stageLevel * 10 + 2, 0);
+                    }
+                }
+                
+                DataIsLoaded = true;
+                _onSaveDataLoaded?.Invoke();
+            }
+            catch (Exception)
+            {
+                MoonBunnyLog.print($"SaveLoadSystem is legacy before encrypting version {PersistenceFilePath}\n So made new encrypted one");
+                ProgressSaveData = ProgressSaveData.GetDefaultSaveData();
+            }
+#endif
         }
         
         public void LoadQuest()
@@ -475,6 +479,7 @@ namespace MoonBunny
             CheckDirectory();
             CheckFile();
 
+#if UNITY_EDITOR
             using (FileStream fs = File.OpenRead(PersistenceFilePath))
             {
                 using (StreamReader reader = new StreamReader(fs))
@@ -502,22 +507,22 @@ namespace MoonBunny
                     }
                 }
             }
-            
+#else
             // Encrypt version of saveloadsystem
-            // try
-            // {
-            //     QuestSaveData = LoadEncrypted<QuestSaveData>(PersistenceFilePath);            
-            // }
-            // catch (Exception)
-            // {
-            //     MoonBunnyLog.print($"SaveLoadSystem is legacy before encrypting version {PersistenceFilePath}\n So made new encrypted one");
-            //     QuestSaveData = QuestSaveData.GetDefaultSaveData();
-            // }
+            try
+            {
+                QuestSaveData = LoadEncrypted<QuestSaveData>(PersistenceFilePath);            
+            }
+            catch (Exception)
+            {
+                MoonBunnyLog.print($"SaveLoadSystem is legacy before encrypting version {PersistenceFilePath}\n So made new encrypted one");
+                QuestSaveData = QuestSaveData.GetDefaultSaveData();
+            }
+#endif
             
             DataIsLoaded = true;
             _onSaveDataLoaded?.Invoke();
         }
-#endif
 
 #if UNITY_EDITOR
         private static string CSVSeperator = ",";
