@@ -213,8 +213,16 @@ namespace MoonBunny
 
         #region Get Save Data
 
+        private bool _isOpeningSavedGame = false;
         void OpenSavedGame(string filename)
         {
+            if (_isOpeningSavedGame)
+            {
+                MoonBunnyLog.print($"Already Opening SavedGame", "GoogleManager");
+                return;
+            }
+
+            _isOpeningSavedGame = true;
             ISavedGameClient savedGameClient = PlayGamesPlatform.Instance.SavedGame;
             MoonBunnyLog.print($"OpenSavedGame with file {filename}", "GoogleManager");
 
@@ -230,6 +238,7 @@ namespace MoonBunny
 
         void OnSavedGameOpened(SavedGameRequestStatus status, ISavedGameMetadata game)
         {
+            _isOpeningSavedGame = false;
             MoonBunnyLog.print($"OnSavedGame Opened with status {status}", "GoogleManager");
 
             if (status == SavedGameRequestStatus.Success)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using dkstlzu.Utility;
+using MoonBunny.Dev;
 using MoonBunny.Effects;
 using MoonBunny.UIs;
 using UnityEngine;
@@ -130,7 +131,7 @@ namespace MoonBunny
         {
             foreach (var friendName in EnumHelper.ClapValuesOfEnum<FriendName>(0))
             {
-                CollectDict.Add(friendName, 0);    
+                CollectDict.Add(friendName, 0);
             }
             
             GameManager.instance.Stage = this;
@@ -257,6 +258,8 @@ namespace MoonBunny
 
         public void Clear()
         {
+            MoonBunnyLog.print($"Stage Clear");
+
             foreach (var element in CollectDict)
             {
                 FriendCollectionManager.instance.Collect(element.Key, element.Value);

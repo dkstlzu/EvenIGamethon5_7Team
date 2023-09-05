@@ -109,6 +109,10 @@ namespace MoonBunny
         private void Awake()
         {
             Application.targetFrameRate = 60;
+
+#if UNITY_EDITOR
+            useSaveSystem = true;
+#endif
             
             if (useSaveSystem)
             {

@@ -8,6 +8,7 @@ namespace MoonBunny
 {
     public class FriendCollectionManager : Singleton<FriendCollectionManager>
     {
+        private FriendCollection _collectionData;
         public FriendCollection Collection;
         
         public List<FriendCollection.Data> CollectingFriendCharacterList;
@@ -19,7 +20,12 @@ namespace MoonBunny
             {
                 int total = 0;
 
-                foreach (FriendCollection.Data data in Collection.Datas)
+                foreach (FriendCollection.Data data in CollectedFriendCharacterList)
+                {
+                    total += data.TargetCollectingNumber;
+                }
+                
+                foreach (FriendCollection.Data data in CollectingFriendCharacterList)
                 {
                     total += data.TargetCollectingNumber;
                 }
@@ -34,7 +40,12 @@ namespace MoonBunny
             {
                 int total = 0;
 
-                foreach (FriendCollection.Data data in Collection.Datas)
+                foreach (FriendCollection.Data data in CollectedFriendCharacterList)
+                {
+                    total += data.CurrentCollectingNumber;
+                }
+                
+                foreach (FriendCollection.Data data in CollectingFriendCharacterList)
                 {
                     total += data.CurrentCollectingNumber;
                 }
@@ -52,70 +63,55 @@ namespace MoonBunny
         {
             get
             {
-                foreach (var data in Collection.Datas)
-                {
-                    if (data.Name == name) return data;
-                }
-
-                return null;
+                return GetData(name);
             }
             set
             {
-                foreach (var data in Collection.Datas)
-                {
-                    if (data.Name == name)
-                    {
-                        data.TargetCollectingNumber = value.TargetCollectingNumber;
-                        data.CurrentCollectingNumber = value.CurrentCollectingNumber;
-                    }
-                }
+                FriendCollection.Data data = GetData(name);
+                data.TargetCollectingNumber = value.TargetCollectingNumber;
+                data.CurrentCollectingNumber = value.CurrentCollectingNumber;
             }
         }
 
         private void Awake()
         {
+            _collectionData = new FriendCollection();
+            Collection.CopyTo(_collectionData);
+            
             _gameManager = GameManager.instance;
             _gameManager.SaveLoadSystem.OnSaveDataLoaded += () =>
             {
-                foreach (FriendCollection.Data data in Collection.Datas)
+                MoonBunnyLog.print($"FriendCollection Save Loaded");
+
+                foreach (FriendCollection.Data data in _collectionData.Datas)
                 {
                     data.CurrentCollectingNumber = GameManager.SaveData.CollectionDict[data.Name];
+                    if (data.TargetCollectingNumber <= data.CurrentCollectingNumber)
+                    {
+                        CollectedFriendCharacterList.Add(data);
+                    }
+                    else
+                    {
+                        CollectingFriendCharacterList.Add(data);
+                    }
                 }
             };
         }
 
-        private void Start()
-        {
-            foreach (var collection in Collection.Datas)
-            {
-                if (collection.TargetCollectingNumber <= collection.CurrentCollectingNumber)
-                {
-                    CollectedFriendCharacterList.Add(collection);
-                }
-                else
-                {
-                    CollectingFriendCharacterList.Add(collection);
-                }
-            }
-        }
-
         public void Collect(FriendName name, int number)
         {
-            if (CollectFinished(name))
-            {
-                return;
-            }
-            
             FriendCollection.Data data = GetCollectingData(name);
             if (data == null)
             {
                 MoonBunnyLog.print($"{name} friend is already collected so can not collected anymore");
                 return;
             }
+
+            int collectedNumber = Mathf.Clamp(data.CurrentCollectingNumber + number, 0, data.TargetCollectingNumber);
             
-            data.CurrentCollectingNumber = Mathf.Clamp(data.CurrentCollectingNumber + number, 0, data.TargetCollectingNumber);
-            
-            _gameManager.SaveLoadSystem.ProgressSaveData.CollectionDict[name] = data.CurrentCollectingNumber;
+            GetData(name).CurrentCollectingNumber = collectedNumber;
+
+            GameManager.SaveData.CollectionDict[name] = collectedNumber;
             
             OnCollectFriend?.Invoke(name, data.CurrentCollectingNumber);
             if (data.IsFinish()) CollectFinish(name);

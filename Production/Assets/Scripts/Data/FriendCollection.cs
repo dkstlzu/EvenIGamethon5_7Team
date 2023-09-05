@@ -9,7 +9,7 @@ namespace MoonBunny
     public class FriendCollection : ScriptableObject
     {
         [Serializable]
-        public class Data : IEquatable<Data>
+        public class Data : IEquatable<Data>, ICloneable
         {
             public FriendName Name;
             public int TargetCollectingNumber;
@@ -47,8 +47,35 @@ namespace MoonBunny
             {
                 return (int)Name;
             }
+
+            /// <summary><para>Returns a string that represents the current object.</para></summary>
+            public override string ToString()
+            {
+                return $"FriendCollection Data {Name} {CurrentCollectingNumber}/{TargetCollectingNumber}";
+            }
+
+            /// <summary><para>Creates a new object that is a copy of the current instance.</para></summary>
+            public object Clone()
+            {
+                Data instance = new Data();
+                instance.TargetCollectingNumber = TargetCollectingNumber;
+                instance.CurrentCollectingNumber = CurrentCollectingNumber;
+                instance.Name = Name;
+                return instance;
+            }
         }
 
-        public List<Data> Datas;
+        public List<Data> Datas = new List<Data>();
+
+        /// <summary><para>Creates a new object that is a copy of the current instance.</para></summary>
+        public void CopyTo(FriendCollection target)
+        {
+            target.Datas.Clear();
+
+            foreach (Data data in Datas)
+            {
+                target.Datas.Add((Data)data.Clone());
+            }
+        }
     }
 }

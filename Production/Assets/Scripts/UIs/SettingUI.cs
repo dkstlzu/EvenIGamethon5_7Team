@@ -39,16 +39,6 @@ namespace MoonBunny.UIs
             GameManager.instance.ShowTutorial = on;
         }
 
-        public void OnCreditButtonClicked()
-        {
-#if UNITY_EDITOR
-            GameManager.instance.SaveProgress();
-            QuestManager.instance.SaveLoadSystem.SaveQuest();
-#else
-            GoogleManager.instance.Save();
-#endif
-        }
-
         public void OnResetDataButtonClicked()
         {
             ConfirmUI.Description.text = ConfirmDescriptionText;

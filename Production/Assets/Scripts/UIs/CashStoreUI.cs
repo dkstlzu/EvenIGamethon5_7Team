@@ -60,8 +60,8 @@ namespace MoonBunny.UIs
 
         protected override void Rebuild()
         {
-            ConfirmUI.Description.text = "점프해바니의 서버는 아직 구현중입니다.\n앱을 삭제할시에 결제하신 정보가 남지 않습니다!\n죄송합니다! 꼭 인지하고 진행해주세요";
-            ConfirmUI.Open();
+            // ConfirmUI.Description.text = "점프해바니의 서버는 아직 구현중입니다.\n앱을 삭제할시에 결제하신 정보가 남지 않습니다!\n죄송합니다! 꼭 인지하고 진행해주세요";
+            // ConfirmUI.Open();
 
             PackageUpdate();
         }

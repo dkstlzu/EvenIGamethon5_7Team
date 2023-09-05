@@ -39,7 +39,7 @@ namespace MoonBunny.UIs
         public void Set(FriendName friendName)
         {
             _selectingName = friendName;
-            FriendCollection.Data targetData = FriendCollectionManager.instance.Collection.Datas[(int)_selectingName];
+            FriendCollection.Data targetData = FriendCollectionManager.instance[_selectingName];
             bool isCollected = targetData.IsFinish();
             
             int index = (int)friendName;

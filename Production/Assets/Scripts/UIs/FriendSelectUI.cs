@@ -39,12 +39,12 @@ namespace MoonBunny.UIs
             
             for (int i = 0; i < FriendLibraryUIList.Count; i++)
             {
-                FriendCollection.Data data = FriendCollectionManager.instance.Collection.Datas[i];
+                FriendCollection.Data data = FriendCollectionManager.instance[(FriendName)i];
                 
                 if (data.IsFinish())
                 {
                     FriendLibraryUIList[i].SelectButton.interactable = true;
-                    string name = StringValue.GetStringValue(FriendCollectionManager.instance.Collection.Datas[i].Name);
+                    string name = StringValue.GetStringValue(data.Name);
                     FriendLibraryUIList[i].NameText.text = name;
                     FriendLibraryUIList[i].SelectButton.image.color = Color.white;
                 }
